@@ -1,10 +1,8 @@
 === Key4ce osTicket Bridge ===
-
-Contributors: key4ce
-Author URI: http://key4ce.com
-Plugin URI: http://key4ce.com/projects/OSTicket-bridge
+Contributors: key4ce, m.tiggelaar
+Plugin Name: Key4ce osTicket Bridge
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
-Tags: helpdesk, support, ticket, osticket, bridge, email ticket system,
+Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system,
 Requires at least: 3.1
 Tested up to: 3.9
 Stable tag: 1.0
@@ -21,25 +19,25 @@ adding new features, fixing old bugs and security flaws.
 
 = Basic Features: =
 
-- Compatible with osTicket 1.8 and 1.9
-- POP / IMAP functionality stays intact
-- You can use both osTicket scp, reply to email OR use Wordpress for all tickets
-- Integrates with your Wordpress users
-- Good workflow of Open, Answered and Closed tickets.
+* Compatible with osTicket 1.8 and 1.9
+* POP / IMAP functionality stays intact
+* You can use both osTicket scp, reply to email OR use Wordpress for all tickets
+* Integrates with your Wordpress users
+* Good workflow of Open, Answered and Closed tickets.
 
 
 = Fixes/ new Features: =
 
-- New design for both Admin and Client end
-- Uses OSTicket email address and name based up on the department
-- Full HTML capable with rich text editor for both client and admin
-- Admin side menu displays the amount of open tickets
-- Displays "Open tickets" in the top admin menu when open tickets are available Displays "Support tickets" when no open ticket is available.
-- Added Answered status to both admin and client side
-- Security Fix: Client no longer able to see everyones ticket by entering the ticket id in the url.
-- Fix: User/ priority/ status fields compatible with OSTicket 1.9
-- Fix: Using department instead of Topic
-- Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin) 
+* New design for both Admin and Client end
+* Uses OSTicket email address and name based up on the department
+* Full HTML capable with rich text editor for both client and admin
+* Admin side menu displays the amount of open tickets
+* Displays "Open tickets" in the top admin menu when open tickets are available Displays "Support tickets" when no open ticket is available.
+* Added Answered status to both admin and client side
+* Security Fix: Client no longer able to see everyones ticket by entering the ticket id in the url.
+* Fix: User/ priority/ status fields compatible with OSTicket 1.9
+* Fix: Using department instead of Topic
+* Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin) 
 
 This plugin is powered by Key4ce - IT Professionals :: http://key4ce.com
 
@@ -93,3 +91,29 @@ http://osticket.com/download
 Each theme is differant, you can open the (page.php) file in the theme folder and copy the header/footer part (not the content statement) into the header and footer files located in the (key4ce-osticket-bridge/templates/) folder. These two files will have instructions.
 
 You can also adjust the (style.css) file located in (key4ce-osticket-bridge/css/) folder. At the top look for (#ost_container) set the margin: 20px 20px 20px 20px; to your needs. 
+
+== Screenshots ==
+
+1. Shows the Client ticket list
+2. Shows how the client views the ticket
+3. Shows how the Wordpress admin views the ticket list
+4. Shows how the Wordpress admin views the ticket
+
+== Changelog ==
+
+= 1.0 =
+- New design for both Admin and Client end
+- Uses OSTicket email address and name based up on the department
+- Full HTML capable with rich text editor for both client and admin
+- Admin side menu displays the amount of open tickets
+- Displays "Open tickets" in the top admin menu when open tickets are available Displays "Support tickets" when no open ticket is available.
+- Added Answered status to both admin and client side
+- Security Fix: Client no longer able to see everyones ticket by entering the ticket id in the url.
+- Fix: User/ priority/ status fields compatible with OSTicket 1.9
+- Fix: Using department instead of Topic
+- Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
+
+== Upgrade Notice ==
+
+= 1.0 =
+Initial version
