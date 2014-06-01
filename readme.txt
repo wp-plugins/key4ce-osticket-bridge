@@ -10,7 +10,7 @@ Tested up to: 3.9
 Stable tag: 1.0
 License: GPLv3
 
-Integrate osTicket into your wordpress site.
+Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket v1.8 and 1.9
 
 == Description ==
 
