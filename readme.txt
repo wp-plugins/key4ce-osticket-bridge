@@ -31,18 +31,18 @@ adding new features, fixing old bugs and security flaws.
 * Uses OSTicket email address and name based up on the department
 * Full HTML capable with rich text editor for both client and admin
 * Admin side menu displays the amount of open tickets
-* Displays \"Open tickets\" in the top admin menu when open tickets are available Displays \"Support tickets\" when no open ticket is available.
+* Displays "Open tickets" in the top admin menu when open tickets are available Displays "Support tickets" when no open ticket is available.
 * Added Answered status to both admin and client side
 * Security Fix: Client no longer able to see everyones ticket by entering the ticket id in the url.
 * Fix: User/ priority/ status fields compatible with OSTicket 1.9
 * Fix: Using department instead of Topic
 * Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
-This plugin is powered by Key4ce - IT Professionals http://www.key4ce.com
+This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 
 == Installation ==
 1. Install key4ce-osticket-bridge folder to the /wp-content/plugins/ directory.
-2. Activate the plugin through the \"Plugins\" menu in WordPress.
+2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Plugin settings are located in Dashboard--> Tickets --> osT-Config
 4. Plugin settings are located in Dashboard--> Tickets --> Settings
 5. Plugin settings are located in Dashboard--> Tickets--> Email Templates
@@ -50,7 +50,7 @@ This plugin is powered by Key4ce - IT Professionals http://www.key4ce.com
 
 == Frequently Asked Questions ==
 = Where does the osTicket need to be Installed? =
-Can be anywhere, just make sure you know it\'s Database settings and fill them in accodringly in osT-Config page.
+Can be anywhere, just make sure you know it's Database settings and fill them in accodringly in osT-Config page.
 
 = What version of osTicket can i use? =
 osTicket v1.8 and v1.9
@@ -60,7 +60,7 @@ Recommended version is 1.9.
 http://osticket.com/download
 
 = Why does the welcome page not displaying right? =
-Each theme is differant, you can open the (page.php) file in the theme folder and copy the header/footer part (not the content statement) into the header and footer files located in the (key4ce-osticket-bridge/templates/) folder. These two files will have instructions.
+Each theme is different, you can open the (page.php) file in the theme folder and copy the header/footer part (not the content statement) into the header and footer files located in the (key4ce-osticket-bridge/templates/) folder. These two files will have instructions.
 
 You can also adjust the (style.css) file located in (key4ce-osticket-bridge/css/) folder. At the top look for (#ost_container) set the margin: 20px 20px 20px 20px; to your needs. 
 
@@ -76,7 +76,7 @@ You can also adjust the (style.css) file located in (key4ce-osticket-bridge/css/
 - Uses OSTicket email address and name based up on the department
 - Full HTML capable with rich text editor for both client and admin
 - Admin side menu displays the amount of open tickets
-- Displays \"Open tickets\" in the top admin menu when open tickets are available Displays \"Support tickets\" when no open ticket is available.
+- Displays "Open tickets" in the top admin menu when open tickets are available Displays "Support tickets" when no open ticket is available.
 - Added Answered status to both admin and client side
 - Security Fix: Client no longer able to see everyones ticket by entering the ticket id in the url.
 - Fix: User/ priority/ status fields compatible with OSTicket 1.9
