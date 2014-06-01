@@ -1,7 +1,9 @@
 === Key4ce osTicket Bridge ===
 
-Contributors: key4ce m.tiggelaar
-website: http://key4ce.com/projects/OSTicket-bridge
+Contributors: key4ce
+Author URI: http://key4ce.com
+Plugin URI: http://key4ce.com/projects/OSTicket-bridge
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Tags: helpdesk, support, ticket, osticket, bridge, email ticket system,
 Requires at least: 3.1
 Tested up to: 3.9
@@ -16,8 +18,6 @@ This is a rebuild of the original OSTicket WP Bridge plugin.
 
 Because the original plugin was no longer developped we desided to make a new plugin out of it.
 adding new features, fixing old bugs and security flaws.
-
-Works with osTicket 1.8 and 1.9
 
 = Basic Features: =
 
@@ -41,7 +41,7 @@ Works with osTicket 1.8 and 1.9
 - Fix: Using department instead of Topic
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin) 
 
-** This plugin is powered by [link] (http://key4ce.com "Key4ce - IT Professionals") **
+This plugin is powered by Key4ce - IT Professionals :: http://key4ce.com
 
 == Installation ==
 
