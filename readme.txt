@@ -1,5 +1,5 @@
 === Key4ce osTicket Bridge ===
-Contributors: key4ce, m.tiggelaar
+Contributors: key4ce, m.tiggelaar, emiprotech
 Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1

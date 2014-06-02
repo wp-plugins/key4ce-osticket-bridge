@@ -50,9 +50,9 @@ if($list_opt)
 	$list_updated=ucwords(ezDate($list->updated)).' Ago';
 	}
     if ($list->subject=="") {
-        $sub_str=Format::stripslashes('Ticket subject not found');	
+        $sub_str=('Ticket subject not found');	
     } else {
- 	$sub_str=Format::stripslashes($list->subject); }			
+ 	$sub_str=($list->subject); }			
 	echo "<div id='ticket_list' onclick=\"location.href='admin.php?page=ost-tickets&service=view&ticket=".$list->number."';\">";
 	echo "<div id='ticket_list1'><a href='admin.php?page=ost-tickets&service=view&ticket=".$list->number."'>".$list->number."</a></div>";
 	echo "<div id='ticket_list2'>".truncate($sub_str,60,'...')."</div>

@@ -123,7 +123,7 @@ $ticketreply=$ost_wpdb->get_row("SELECT id,tpl_id,code_name,subject,body,notes,c
 $ticketreply=$ticketreply->body;
 
 
-$config_dept_data=$ost_wpdb->get_row("SELECT value FROM `$config_table WHERE `namespace` LIKE 'core' AND `key` LIKE 'department_emails'");
+$config_dept_data=$ost_wpdb->get_row("SELECT value FROM $config_table WHERE 'namespace' LIKE 'core' AND 'key' LIKE 'department_emails'");
 $email_per_osticket_dept=$config_dept_data->value;
 
 # ==============================================================================================
@@ -138,7 +138,8 @@ $ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WH
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
 //$ticketinfo=$ost_wpdb->get_row("SELECT number,$ticket_table.user_id,$priority_table.priority_desc,status,$ticket_cdata.subject,$dept_table.dept_name,$ost_user.name,$ost_useremail.address,$ticket_table.created,$ticket_table.topic_id,$topic_table.topic FROM $ticket_table inner join $dept_table on $dept_table.dept_id = $ticket_table.dept_id inner join $priority_table on $priority_table.priority_desc = $priority_table.priority_desc inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_user on $ost_user.name = $ost_user.name and $ticket_table.user_id=$ost_user.id inner join $ost_useremail on $ost_useremail.address = $ost_useremail.address and $ticket_table.user_id=$ost_useremail.user_id  inner join $topic_table on $topic_table.topic_id = $ticket_table.topic_id where number = '$ticket'");
-$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+
+$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 $threadinfo=$ost_wpdb->get_results("
 	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,body,poster 
 	FROM $thread_table 
@@ -154,6 +155,8 @@ $pri_opt = $ost_wpdb->get_results("SELECT priority_desc,priority_id FROM $priori
 if(isset($_REQUEST['search']))
 {
 $search=@$_REQUEST['tq'];
+} else {
+    $search='';
 }
 if(isset($_POST['action']))
 $arr = explode('.', $_POST['action']);

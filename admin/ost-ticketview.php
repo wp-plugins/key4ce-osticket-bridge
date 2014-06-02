@@ -73,7 +73,7 @@ if($ticketinfo->priority_id=='4') {
 <div style="clear: both"></div>
 <div id="tic_sub">
 <div id="tic_subject">Subject:</div>
-<div id="tic_subject_info"><?php echo Format::stripslashes($ticketinfo->subject); ?></div>
+<div id="tic_subject_info"><?php echo ($ticketinfo->subject); ?></div>
 <div style="clear: both"></div>
 </div>
 <div id="tic_thread_img_box">
@@ -88,7 +88,7 @@ if($ticketinfo->priority_id=='4') {
 <th><?php echo $thread_info->created; ?><span><?php if($hidename==1) { echo $thread_info->poster; } ?></span></th>
 </tr>
 <tr>
-<td><?php echo Format::linkslash($thread_info->body);?></td>
+<td><?php echo ($thread_info->body);?></td>
 </tr>
 </tbody>
 </table>

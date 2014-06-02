@@ -67,10 +67,6 @@ $postsubmail=$postsubmail; /// subject in user email (todo's - add field input t
 $to=$usemail;
 eval("\$subject=\"$postsubmail\";");
 eval("\$message=\"$admin_reply\";");
-if($smtp_status=="enable")
-	$SMTPAuth="true";
-else
-	$SMTPAuth="false";	
 require_once ABSPATH . WPINC . '/class-phpmailer.php';
 require_once ABSPATH . WPINC . '/class-smtp.php';
 $phpmailer = new PHPMailer();

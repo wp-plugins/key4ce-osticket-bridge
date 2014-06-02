@@ -97,3 +97,4 @@ wp_editor( $content, $editor_id , $settings );?> </center>
 </div>
 <?php } ?>
 <div class="clear" style="padding: 10px;"></div>
+<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/validate.js';?>"></script>

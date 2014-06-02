@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: db-settings-18.php
+Template Name: db-settings.php
 */
 ?>
 <?php 
@@ -42,10 +42,11 @@ $threadinfo=$ost_wpdb->get_results("
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC"); 
-
 if(isset($_REQUEST['search']))
 {
 $search=@$_REQUEST['tq'];
+} else { 
+    $search='';
 }
 if(isset($_POST['action']))
 $arr = explode('.', $_POST['action']);
