@@ -19,12 +19,12 @@ $usemail=$_REQUEST['usemail'];
 $adem=$_REQUEST['ademail'];
 $title=$_REQUEST['stitle'];
 $dirname=$_REQUEST['sdirna'];
-$postconfirm=Format::stripslashes($_REQUEST['postconfirmtemp']);
+$postconfirm=($_REQUEST['postconfirmtemp']);
 $usdepartment=$_REQUEST['usdepartment'];
 $ussubject=$_REQUEST['ussubject'];
 $uscategories=$_REQUEST['uscategories'];
 $top_id=$_REQUEST['ustopicid'];
-$user_message=Format::stripslashes($_REQUEST['message']);
+$user_message=($_REQUEST['message']);
 $ipaddress=$_SERVER['REMOTE_ADDR'];
 $date=date("Y-m-d, g:i:s", strtotime("-5 hour"));
 

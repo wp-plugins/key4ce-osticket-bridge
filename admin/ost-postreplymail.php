@@ -14,7 +14,7 @@ $ticid=$_REQUEST['tic_id'];
 $thread_type="R";
 $poster=$_REQUEST['adname'];
 $source="Web";
-$admin_response=Format::stripslashes($_REQUEST['message']); ///from post to thread-table to variable to email
+$admin_response=($_REQUEST['message']); ///from post to thread-table to variable to email
 $ipaddress=$_SERVER['REMOTE_ADDR'];
 $date=date("Y-m-d, g:i:s", strtotime("-5 hour")); ///EST (todo's - add option to WP osT-Settings)
 
@@ -40,7 +40,7 @@ $ussubject=$_REQUEST['ussubject'];
 $uscategories=$_REQUEST['uscategories'];
 $top_id=$_REQUEST['ustopicid'];
 $dirname=$_REQUEST['sdirna'];
-$admin_reply=Format::stripslashes($_REQUEST['adreply']); /// clean template from form to user email
+$admin_reply=($_REQUEST['adreply']); /// clean template from form to user email
 
 ///Getting department info
 $deptid=$ost_wpdb->get_row("SELECT * FROM $dept_table WHERE dept_id=$ticket_detail_dept_id");

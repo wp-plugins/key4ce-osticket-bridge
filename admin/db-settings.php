@@ -278,7 +278,7 @@ if(isset($_REQUEST['ost-post-reply'])) {
 # ==============================================================================================
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-admin-reply'])) { 
-$form_admintreply=Format::stripslashes($_POST['form_admintreply']);
+$form_admintreply=($_POST['form_admintreply']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), array('name'=>$arname), array('%s'));
 ?>
@@ -291,7 +291,7 @@ $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), ar
 # ============================================================================================== 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-new-ticket'])) { 
-$form_newticket=Format::stripslashes($_POST['form_newticket']);
+$form_newticket=($_POST['form_newticket']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), array('name'=>$ntname), array('%s'));
 ?>
@@ -304,7 +304,7 @@ $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), arra
 # ============================================================================================== 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-post-confirmed'])) { 
-$form_postconfirmed=Format::stripslashes($_POST['form_postconfirmed']);
+$form_postconfirmed=($_POST['form_postconfirmed']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_postconfirmed,'updated'=>$etdate), array('name'=>$pcname), array('%s'));
 ?>
