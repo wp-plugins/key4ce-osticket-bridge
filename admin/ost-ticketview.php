@@ -11,6 +11,7 @@ Template Name: ost-ticketview
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav_ticket.php'); 
 ?>
+
 <div id="ticket_view">
 <div id="tic_number">Ticket ID #<?php echo $ticketinfo->number; ?></div>
 <div id="tic_icon"><a href="admin.php?page=ost-tickets&service=view&ticket=<?php echo $ticketinfo->number; ?>" title="Reload"><span class="Icon refresh"></span></a><span class="preply">&darr; <a href="#post">Post Reply</a></span></div>

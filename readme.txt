@@ -24,6 +24,8 @@ adding new features, fixing old bugs and security flaws.
 * Integrates with your Wordpress users
 * Good workflow of Open, Answered and Closed tickets.
 
+:: Please note that on setup inspect the includes/header.php and includes/footer.php to match up with your theme ::
+:: We are working hard on implementing shortcodes to avoid this theme related annoyance.. till then please bear with us ::
 
 = Fixes/ new Features: =
 

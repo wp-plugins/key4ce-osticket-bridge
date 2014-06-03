@@ -8,7 +8,6 @@ WHERE `number`=$ticket_number");
 $ticket_detail_dept_name=$ticket_details->dept_name;
 $ticket_detail_dept_email=$ticket_details->email;
 $department_id=$ticket_details->dept_id;
-
 $pid=0;
 $staffid=1; 
 $ticid=$_REQUEST['tic_id'];
@@ -91,7 +90,7 @@ $phpmailer->MsgHTML(wpetss_forum_text($message));
 $phpmailer->AddAddress($to);
 $phpmailer->Send();
 }
-else
+if($smtp_status=="disable")
 {
 $phpmailer->CharSet = 'UTF-8';
 $phpmailer->setFrom("$ticket_detail_dept_email", "$ticket_detail_dept_name");
@@ -101,6 +100,6 @@ add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 $phpmailer->Subject = $subject;
 $phpmailer->MsgHTML(wpetss_forum_text($message));
 $phpmailer->AltBody = 'This is a plain-text message body';
-$phpmailer->send();
+$phpmailer->Send();
 }
 ?>
