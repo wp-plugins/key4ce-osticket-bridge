@@ -64,6 +64,22 @@ $title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_ta
 $title_name=$title_name->value;
 
 // STMP Status Start Here By Pratik Maniar
+$count_smtp_status=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
+if($count_smtp_status == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_status";  
+   $rows_affected = $ost_wpdb->insert( 
+   $table_name_config, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => 'disable', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_status=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
 $smtp_status=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_status");
 $smtp_status=$smtp_status->value;
@@ -71,24 +87,88 @@ $smtp_status=$smtp_status->value;
 
 
 // STMP Username Start Here By Pratik Maniar
+$count_smtp_username=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
+if($count_smtp_username == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_username";  
+   $rows_affected = $ost_wpdb->insert( 
+   $table_name_config, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_username=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
 $smtp_username=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_username");
 $smtp_username=$smtp_username->value;
 // STMP Username End Here By Pratik Maniar
 
 // STMP Password Start Here By Pratik Maniar
+$count_smtp_password=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
+if($count_smtp_password == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_password";  
+   $rows_affected = $ost_wpdb->insert( 
+   $table_name_config, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_password=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
 $smtp_password=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_password");
 $smtp_password=$smtp_password->value;
 // STMP Password End Here By Pratik Maniar
 
 // STMP Host Start Here By Pratik Maniar
+$count_smtp_host=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
+if($count_smtp_host == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_host";  
+   $rows_affected = $ost_wpdb->insert( 
+   $table_name_config, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_host=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
 $smtp_host=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_host");
 $smtp_host=$smtp_host->value;
 // STMP Host End Here By Pratik Maniar
 
 // STMP Port Start Here By Pratik Maniar
+$count_smtp_port=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
+if($count_smtp_port == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_port";  
+   $rows_affected = $ost_wpdb->insert( 
+   $table_name_config, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_port=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
 $smtp_port=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_port");
 $smtp_port=$smtp_port->value;
@@ -278,7 +358,7 @@ if(isset($_REQUEST['ost-post-reply'])) {
 # ==============================================================================================
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-admin-reply'])) { 
-$form_admintreply=($_POST['form_admintreply']);
+$form_admintreply=Format::stripslashes($_POST['form_admintreply']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), array('name'=>$arname), array('%s'));
 ?>
@@ -291,7 +371,7 @@ $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), ar
 # ============================================================================================== 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-new-ticket'])) { 
-$form_newticket=($_POST['form_newticket']);
+$form_newticket=Format::stripslashes($_POST['form_newticket']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), array('name'=>$ntname), array('%s'));
 ?>
@@ -304,7 +384,7 @@ $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), arra
 # ============================================================================================== 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-post-confirmed'])) { 
-$form_postconfirmed=($_POST['form_postconfirmed']);
+$form_postconfirmed=Format::stripslashes($_POST['form_postconfirmed']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_postconfirmed,'updated'=>$etdate), array('name'=>$pcname), array('%s'));
 ?>
