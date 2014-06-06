@@ -23,8 +23,8 @@ $nam=$_REQUEST['cur-name'];
 $adem=$_REQUEST['ademail'];
 $title=$_REQUEST['stitle'];
 $dirname=$_REQUEST['sdirna'];
-$sub=($_REQUEST['subject']);
-$newtickettemp=($_REQUEST['newtickettemp']);
+$sub=Format::stripslashes($_REQUEST['subject']);
+$newtickettemp=Format::stripslashes($_REQUEST['newtickettemp']);
 $ip_add=$_SERVER['REMOTE_ADDR'];
 $stat="open";
 $sour="Web";
@@ -32,7 +32,7 @@ $isoverdue=0;
 $isans=0;
 $las_msg=date("Y-m-d, g:i:s", strtotime("-5 hour"));
 $cre=date("Y-m-d, g:i:s", strtotime("-5 hour"));
-$user_message=($_REQUEST['message']);
+$user_message=Format::stripslashes($_REQUEST['message']);
 $prid = $ost_wpdb->get_row("SELECT priority_desc FROM $priority_table WHERE priority_id=$pri_id");
 $priordesc=$prid->priority_desc;
 // Added by Pratik Maniar on 29-04-2014 Start Here
@@ -64,24 +64,7 @@ if (count ($result2) > 0) {
 }
 ////End of new user info user_email_id email_id
 
-$ost_wpdb->insert($ticket_table, array('number' => $tic_ID,'user_id' => $usid,'user_email_id' => $usid,'dept_id' => $dep_id,'sla_id' => $sla_id,'topic_id' => $top_id,'staff_id' => $staff_id,'team_id' => $team_id,'email_id' => $usid,'ip_address' => $ip_add,'status' => $stat,'source' => $sour,'isoverdue' => $isoverdue,'isanswered' => $isans,'lastmessage' => $las_msg,'created' => $cre), array('%d','%d','%d','%d','%d','%d','%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
 
-$lastid = $ost_wpdb->insert_id;
-$stat="created";
-$staf="SYSTEM";
-$annulled=0;
-$ost_wpdb->insert($ticket_event_table, array('ticket_id' => $lastid,'staff_id' => $staff_id,'team_id' => $team_id,'dept_id' => $dep_id,'topic_id' => $top_id,'state' => $stat,'staff' => $staf,'annulled' => $annulled,'timestamp' => $cre), array('%d','%d','%d','%d','%d','%s','%s','%s','%s'));
-
-$pid=0;	    
-$thread_type="M";
-
-$ost_wpdb->insert($thread_table, array('pid' => $pid,'ticket_id' => $lastid,'staff_id' => $staff_id,'thread_type' => $thread_type,'poster' => $nam,'source' => $sour,'title' => "",'body' => wpetss_forum_text($user_message),'ip_address' => $ip_add,'created' => $cre), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
-
-$ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid,'subject' => $sub,'priority' => $priordesc,'priority_id' => $pri_id), array('%d','%s','%s','%d'));
-
-$topic_tab = $ost_wpdb->get_results("SELECT topic_id, topic FROM $topic_table WHERE topic_id=$top_id");
-
-foreach($topic_tab as $topic_tab1) { $top=$topic_tab1->topic; }
 
 $config_table="ost_config";
 $staff_table="ost_staff";

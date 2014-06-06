@@ -25,6 +25,7 @@ adding new features, fixing old bugs and security flaws.
 * Good workflow of Open, Answered and Closed tickets.
 
 :: Please note that on setup inspect the includes/header.php and includes/footer.php to match up with your theme ::
+
 :: We are working hard on implementing shortcodes to avoid this theme related annoyance.. till then please bear with us ::
 
 = Fixes/ new Features: =
@@ -43,6 +44,11 @@ adding new features, fixing old bugs and security flaws.
 This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 
 == Installation ==
+
+* Make sure that osTicket is installed
+* Make sure that your osTicket version is 1.8 or 1.9
+* osTicket can be downloaded from http://osticket.com/download
+
 1. Install key4ce-osticket-bridge folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Plugin settings are located in Dashboard--> Tickets --> osT-Config
