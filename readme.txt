@@ -73,6 +73,15 @@ http://osticket.com/download
 4. Shows how the Wordpress admin views the ticket.
 
 == Changelog ==
+= 1.1 =
+- Shortcode implementation
+- Cleaned up code issues
+- Admin Alert Email now looks into group members aswell
+- implemented Reply Separator Tag
+- Fixed: Email From name
+- Fixed: Many code warnings and errors in Debug mode
+- And much more..
+
 = 1.0 =
 - New design for both Admin and Client end
 - Uses OSTicket email address and name based up on the department
@@ -85,22 +94,9 @@ http://osticket.com/download
 - Fix: Using department instead of Topic
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
-= 1.1 =
-- Shortcode implementation
-- Cleaned up code issues
-- Admin Alert Email now looks into group members aswell
-- implemented Reply Separator Tag
-- Fixed: Email From name
-- Fixed: Many code warnings and errors in Debug mode
-- And much more..
--
-
-= 1.0 =
-Initial version
-
 == Upgrade Notice ==
-= 1.0 =
-Initial version
-
 = 1.1 =
 Shortcode implementation and many code fixes.
+
+= 1.0 =
+Initial version
