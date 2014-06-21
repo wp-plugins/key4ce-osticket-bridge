@@ -1,0 +1,20 @@
+
+.adostmenu{margin:0 10px; padding:0; height:30px; width:95%; display:block; background:url("../images/topMenuImages.png") repeat-x;}
+.adostmenu li{padding:0; margin:0; list-style:none; display:inline;}
+.adostmenu li a{float:left; padding-left:15px; display:block; color:rgb(80,80,80); text-decoration:none; font:12px Verdana, Arial, Helvetica, sans-serif; cursor:pointer; background:url("../images/topMenuImages.png") 0px -30px no-repeat; outline:none;}
+.adostmenu li a span{line-height:30px; float:left; display:block; padding-right:15px; background:url("../images/topMenuImages.png") 100% -30px no-repeat;}
+.adostmenu li a:hover{background-position:0px -60px; color:rgb(255,255,255);}
+.adostmenu li a:hover span{background-position:100% -60px;}
+.adostmenu li a.active, .adostmenu li a.active:hover{line-height:30px; font:12px Verdana, Arial, Helvetica, sans-serif; background:url("../images/topMenuImages.png") 0px -90px no-repeat; color:rgb(0,0,0);}
+.adostmenu li a.active span, .adostmenu li a.active:hover span{font-weight:500; color:rgb(46,46,46); background:url("../images/topMenuImages.png") 100% -90px no-repeat;}
+.ticketPriority {
+	font-weight:bold; 
+	text-align: center; 
+	width: 100px; 
+	padding: 5px; 
+	border:1px solid; 
+	border-color:white; 
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
