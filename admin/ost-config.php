@@ -44,7 +44,7 @@ Template Name: ost-config
 	'to_ping' =>  '', 
 	'pinged' => '', 
 	'post_password' => '', 
-	'post_content' => "Place Holder - DO NOT DELETE - key4ce-osticket-bridge<br />[addosticket]", 
+	'post_content' => "[addosticket]", 
 	'guid' => '', 
 	'post_content_filtered' => '', 
 	'post_excerpt' => '', 
