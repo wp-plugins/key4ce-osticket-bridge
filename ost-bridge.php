@@ -205,16 +205,6 @@ function ost_config_page() {
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-config.php' );
 }
 
-add_filter( 'page_template', 'new_page_template' );
-
-function new_page_template( $page_template ) {
-    $config = get_option('os_ticket_config');
-    if ( is_page( $config['supportpage'] ) ) {
-    $page_template = dirname( __FILE__ ) . '/osticket-wp.php';
-    }
-    return $page_template;
-}
-
 function ost_settings_page() {
 $config = get_option('os_ticket_config');
 extract($config);
