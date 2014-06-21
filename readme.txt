@@ -93,10 +93,6 @@ http://osticket.com/download
 - Fixed: Email From name
 - Fixed: Many code warnings and errors in Debug mode
 - And much more..
--
-
-= 1.0 =
-Initial version
 
 == Upgrade Notice ==
 = 1.0 =
