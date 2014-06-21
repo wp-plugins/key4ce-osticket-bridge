@@ -6,7 +6,6 @@ Template Name: osticket-wp.php
 <?php 
 $config = get_option('os_ticket_config');
 extract($config);
-require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/header.php' );
 ?>
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo plugin_dir_url(__FILE__).'css/style.css'; ?>" />
 <div id="ost_container"><!--ost_container Start-->
@@ -72,10 +71,10 @@ $max_open_tickets=$max_open_tickets->value;
 
 //Commented By Pratik Maniar on 01-05-2014 Start Here
 	//$id_ademail=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
-	//$admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = //$id_ademail");
-	//$admin_email=$admin_email->value;
+	//$os_admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = //$id_ademail");
+	//$os_admin_email=$os_admin_email->value;
 // Commented By Pratik Maniar on 01-05-2014 Start Here 
-$admin_email=$default_email_id_data->email;
+$os_admin_email=$default_email_id_data->email;
 
 $id_hidename=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%hide_staff_name%');");
 $hidename=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_hidename");
@@ -118,4 +117,4 @@ auth_redirect();
 } } 
 ?>
 </div><!--ost_container End-->
-<?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/footer.php' ); ?>
+

@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1
 Tested up to: 3.9
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -24,12 +24,10 @@ adding new features, fixing old bugs and security flaws.
 * Integrates with your Wordpress users
 * Good workflow of Open, Answered and Closed tickets.
 
-:: Please note that on setup inspect the includes/header.php and includes/footer.php to match up with your theme ::
-
-:: We are working hard on implementing shortcodes to avoid this theme related annoyance.. till then please bear with us ::
-
 = Fixes/ new Features: =
 
+* Shortcode Implementation to avoid Theme issues
+* Reply Separator Tag fix
 * New design for both Admin and Client end
 * Uses OSTicket email address and name based up on the department
 * Full HTML capable with rich text editor for both client and admin
@@ -54,6 +52,7 @@ This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 3. Plugin settings are located in Dashboard--> Tickets --> osT-Config
 4. Plugin settings are located in Dashboard--> Tickets --> Settings
 5. Plugin settings are located in Dashboard--> Tickets--> Email Templates
+6. You can use the shortcode: [addosticket]
 
 
 == Frequently Asked Questions ==
@@ -66,11 +65,6 @@ Recommended version is 1.9.
 
 = Where can I download the tested osTicket versions? =
 http://osticket.com/download
-
-= Why does the welcome page not displaying right? =
-Each theme is different, you can open the (page.php) file in the theme folder and copy the header/footer part (not the content statement) into the header and footer files located in the (key4ce-osticket-bridge/templates/) folder. These two files will have instructions.
-
-You can also adjust the (style.css) file located in (key4ce-osticket-bridge/css/) folder. At the top look for (#ost_container) set the margin: 20px 20px 20px 20px; to your needs. 
 
 == Screenshots ==
 1. Shows the Client ticket list.
@@ -91,6 +85,22 @@ You can also adjust the (style.css) file located in (key4ce-osticket-bridge/css/
 - Fix: Using department instead of Topic
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
+= 1.1 =
+- Shortcode implementation
+- Cleaned up code issues
+- Admin Alert Email now looks into group members aswell
+- implemented Reply Separator Tag
+- Fixed: Email From name
+- Fixed: Many code warnings and errors in Debug mode
+- And much more..
+-
+
+= 1.0 =
+Initial version
+
 == Upgrade Notice ==
 = 1.0 =
 Initial version
+
+= 1.1 =
+Shortcode implementation and many code fixes.

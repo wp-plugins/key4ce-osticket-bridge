@@ -37,7 +37,7 @@ if($list_opt) {
 	else{ 
 	$list_updated=ucwords(ezDate($list->updated)).' Ago'; 
 	} 
-	$sub_str=($list->subject); 			
+	@$sub_str=Format::stripslashes($list->subject); 			
 	echo "<div id='ticket_list' onclick=\"location.href='?service=view&ticket=".$list->number."';\">"; 
 	echo "<div id='ticket_list1'><a href='?service=view&ticket=".$list->number."'>".$list->number."</a></div>"; 
 	echo "<div id='ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='ticket_list3'>"; 

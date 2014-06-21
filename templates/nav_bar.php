@@ -1,23 +1,20 @@
 <?php 
 $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='open'"); 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'");
-	$status=$_REQUEST['status'];
+$status="";
+$open="";
+$closed="";
+	if(isset($_REQUEST['status']))
+		$status=$_REQUEST['status'];
 	
-	if($status=='closed') {
+	if($status=='closed')
 		$closed='selected';
-        $open='';
-        }
-	else if($status=='open') {
+	else if($status=='open')
 		$open='selected';
-        $closed=''; }
-	else if($ticket_count_open > 0) {
+	else if($ticket_count_open > 0)
 		$open='selected';
-        $closed='';
-        }
-	else if($ticket_count_closed > 0) {
+	else if($ticket_count_closed > 0)
 		$closed='selected';
-        $open='';
-        }        
     echo "<div style=\"display: table; width: 100%;\">";
 	echo "<div id='search_ticket' style='display: table-row;'>"; 
 	echo "<div id='search_box' style='display: table-cell;'>";

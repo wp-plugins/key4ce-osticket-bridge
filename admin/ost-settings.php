@@ -13,8 +13,6 @@ Template Name: ost-settings
 <?php 
 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
-echo $email_per_osticket_dept;
-
 $default_email_id=$ost_wpdb->get_var("SELECT value FROM `ost_config` WHERE `key` LIKE 'default_email_id'");
 $default_email_id_data=$ost_wpdb->get_row("SELECT * FROM `ost_email` WHERE `email_id` =$default_email_id");
 $default_email=$default_email_id_data->email;

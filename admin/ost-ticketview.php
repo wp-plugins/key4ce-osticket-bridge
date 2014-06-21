@@ -11,7 +11,6 @@ Template Name: ost-ticketview
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav_ticket.php'); 
 ?>
-
 <div id="ticket_view">
 <div id="tic_number">Ticket ID #<?php echo $ticketinfo->number; ?></div>
 <div id="tic_icon"><a href="admin.php?page=ost-tickets&service=view&ticket=<?php echo $ticketinfo->number; ?>" title="Reload"><span class="Icon refresh"></span></a><span class="preply">&darr; <a href="#post">Post Reply</a></span></div>
@@ -74,7 +73,7 @@ if($ticketinfo->priority_id=='4') {
 <div style="clear: both"></div>
 <div id="tic_sub">
 <div id="tic_subject">Subject:</div>
-<div id="tic_subject_info"><?php echo ($ticketinfo->subject); ?></div>
+<div id="tic_subject_info"><?php echo $ticketinfo->subject; ?></div>
 <div style="clear: both"></div>
 </div>
 <div id="tic_thread_img_box">
@@ -89,7 +88,7 @@ if($ticketinfo->priority_id=='4') {
 <th><?php echo $thread_info->created; ?><span><?php if($hidename==1) { echo $thread_info->poster; } ?></span></th>
 </tr>
 <tr>
-<td><?php echo ($thread_info->body);?></td>
+<td><?php echo $thread_info->body;?></td>
 </tr>
 </tbody>
 </table>
@@ -113,7 +112,7 @@ if($ticketinfo->priority_id=='4') {
 <input type="hidden" name="uscategories" value="<?php echo $ticketinfo->topic; ?>"/>
 <input type="hidden" name="ussubject" value="<?php echo $ticketinfo->subject; ?>"/>
 <input type="hidden" name="ustopicid" value="<?php echo $ticketinfo->topic_id; ?>"/>
-<input type="hidden" name="ademail" value="<?php echo $admin_email; ?>"/>
+<input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
 <input type="hidden" name="adname" value="<?php echo $admin_fname; ?> <?php echo $admin_lname; ?>"/>
 <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
 <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>

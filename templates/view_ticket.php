@@ -67,7 +67,7 @@ if($ticketinfo->priority_id=='4') {
 </div>
 <div id="tic_sub">
 <div id="tic_subject">Subject:</div>
-<div id="tic_subject_info"><strong><?php echo ($ticketinfo->subject); ?></strong></div>
+<div id="tic_subject_info"><strong><?php echo @Format::stripslashes($ticketinfo->subject); ?></strong></div>
 <div style="clear: both"></div>
 </div>
 <div id="tic_thread_img_box">
@@ -83,7 +83,7 @@ if($ticketinfo->priority_id=='4') {
 <th><?php echo $thread_info->created; ?><span id="ticketThread"><?php if($hidename==1) { echo $thread_info->poster; } ?></span></th>
 </tr>
 <tr>
-<td><?php echo ($thread_info->body);?></td>
+<td><?php echo $thread_info->body; ?></td>
 </tr>
 </tbody>
 </table>
@@ -95,6 +95,11 @@ if($ticketinfo->priority_id=='4') {
 <div id="tic_post_detail">To best assist you, please be specific and detailed in your reply.</div>
 <div style="clear: both"></div>
 </div>
+<?php
+$id_ademail=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
+$os_admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
+$os_admin_email_admin=$os_admin_email->value;
+?>
 <table class="welcome nobd" align="center" width="95%" cellspacing="0" cellpadding="3">
 <tr>
 <td class="nobd" align="center">
@@ -109,14 +114,15 @@ if($ticketinfo->priority_id=='4') {
 <input type="hidden" name="uscategories" value="<?php echo $ticketinfo->topic; ?>"/>
 <input type="hidden" name="ussubject" value="<?php echo $ticketinfo->subject; ?>"/>
 <input type="hidden" name="ustopicid" value="<?php echo $ticketinfo->topic_id; ?>"/>
-<input type="hidden" name="ademail" value="<?php echo $admin_email; ?>"/>
+<input type="hidden" name="ademail" value="<?php echo $os_admin_email_admin; ?>"/>
 <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
 <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
 <input type="hidden" name="postconfirmtemp" value="<?php echo $postconfirm; ?>"/>
-<center><?php $content = '';
+<center>
+<?php $content = '';
 $editor_id = 'message';
 $settings = array( 'media_buttons' => false );
-wp_editor( $content, $editor_id , $settings );?></textarea></center>
+wp_editor( $content, $editor_id , $settings );?></center>
 </td>
 </tr>
 <tr>
@@ -142,6 +148,5 @@ wp_editor( $content, $editor_id , $settings );?></textarea></center>
 <div style="clear: both"></div>
 </div>
 <div class="clear" style="padding: 10px;"></div>
-<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/validate.js';?>"></script>
 <?php } else { ?>
     <div style="width: 100%; margin: 20px; font-size: 20px;" align="center">No such ticket available. </div> <?php } ?>

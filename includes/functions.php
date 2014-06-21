@@ -18,16 +18,22 @@ class Format {
 	return $str;
 	} 
 }
-
 function generateID()
 {
-	global $ost_wpdb,$ticket_table;
-	$id=mt_rand(100000, 999999);
-	$checkUserID = $ost_wpdb->get_results("SELECT ticketID from $ticket_table WHERE ticketID = '$id'");
-	if(count($checkUserID)>0)
+	$id=mt_rand(100000, 999999);	
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$link=mysql_connect($host,$username,$password);
+	$db=mysql_select_db($database,$link);
+	$res=mysql_query("SELECT count(*) as count from ost_ticket WHERE number = '$id'",$link);
+	$checkUserID=mysql_fetch_array($res);
+	$count_no=$checkUserID['count'];
+	if($count_no > 0)
 	{
 	return generateID();
 	}
+	
 	return $id;
 }
 function truncate($string, $max = 50, $replacement = '')
@@ -40,10 +46,17 @@ function truncate($string, $max = 50, $replacement = '')
     return substr_replace($string, $replacement, $leave);
 }
 function getKeyValue($key)
-{
-	global $ost_wpdb;
-	$getKeyvalue=$ost_wpdb->get_row("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'");	
-	return $getKeyvalue->value;
+{	
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$link=mysql_connect($host,$username,$password);
+	$db=mysql_select_db($database,$link);
+	$res=mysql_query("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'",$link);
+	$checkUserID=mysql_fetch_array($res);
+	$getKeyvalue=$checkUserID['value'];
+	//$getKeyvalue=$ost_wpdb->get_row("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'");	
+	return $getKeyvalue;
 }
 function wpetss_forum_text($text){
 	//$text = htmlspecialchars($text);
@@ -67,4 +80,5 @@ function wpetss_forum_text($text){
 	}
 	return $print_text;
 }
+
 ?>

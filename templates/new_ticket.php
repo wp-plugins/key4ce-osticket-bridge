@@ -35,7 +35,7 @@ $user_id=$get_user_id[0];
 <div style="clear: both"></div>
 <form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket()">
 <input type="hidden" name="usid" value="<?php echo $user_id; //echo $current_user->ID; ?>"/>
-<input type="hidden" name="ademail" value="<?php echo $admin_email; ?>"/>
+<input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
 <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
 <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
 <input type="hidden" name="newtickettemp" value="<?php echo $newticket; ?>"/>
@@ -97,4 +97,3 @@ wp_editor( $content, $editor_id , $settings );?> </center>
 </div>
 <?php } ?>
 <div class="clear" style="padding: 10px;"></div>
-<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/validate.js';?>"></script>

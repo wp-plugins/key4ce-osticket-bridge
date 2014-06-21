@@ -51,7 +51,6 @@ $version=$config['version'];
 $category=@$_GET['cat'];
 $status_opt=@$_GET['status'];
 $ticket=@$_GET['ticket'];
-
 # ==============================================================================================
 # Changed (id) -> (like) so we search for text in v1.8+
 # ==============================================================================================
@@ -60,26 +59,10 @@ $isactive=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_tabl
 $isactive=$isactive->value;
 
 $id_helptitle=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%helpdesk_title%');");
-$title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_helptitle");
+$title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_helptitle");
 $title_name=$title_name->value;
 
 // STMP Status Start Here By Pratik Maniar
-$count_smtp_status=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
-if($count_smtp_status == 0)
-{
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_status";  
-   $rows_affected = $ost_wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => 'disable', 
-   'updated' => current_time('mysql') 
-   ) );
-}
 $id_smtp_status=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
 $smtp_status=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_status");
 $smtp_status=$smtp_status->value;
@@ -87,88 +70,24 @@ $smtp_status=$smtp_status->value;
 
 
 // STMP Username Start Here By Pratik Maniar
-$count_smtp_username=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
-if($count_smtp_username == 0)
-{
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_username";  
-   $rows_affected = $ost_wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-}
 $id_smtp_username=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
 $smtp_username=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_username");
 $smtp_username=$smtp_username->value;
 // STMP Username End Here By Pratik Maniar
 
 // STMP Password Start Here By Pratik Maniar
-$count_smtp_password=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
-if($count_smtp_password == 0)
-{
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_password";  
-   $rows_affected = $ost_wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-}
 $id_smtp_password=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
 $smtp_password=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_password");
 $smtp_password=$smtp_password->value;
 // STMP Password End Here By Pratik Maniar
 
 // STMP Host Start Here By Pratik Maniar
-$count_smtp_host=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
-if($count_smtp_host == 0)
-{
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_host";  
-   $rows_affected = $ost_wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-}
 $id_smtp_host=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
 $smtp_host=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_host");
 $smtp_host=$smtp_host->value;
 // STMP Host End Here By Pratik Maniar
 
 // STMP Port Start Here By Pratik Maniar
-$count_smtp_port=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
-if($count_smtp_port == 0)
-{
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_port";  
-   $rows_affected = $ost_wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-}
 $id_smtp_port=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
 $smtp_port=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_port");
 $smtp_port=$smtp_port->value;
@@ -179,8 +98,8 @@ $max_open_tickets=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$con
 $max_open_tickets=$max_open_tickets->value;
 
 $id_ademail=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
-$admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
-$admin_email=$admin_email->value;
+$os_admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
+$os_admin_email=$os_admin_email->value;
 
 $admin_info=$ost_wpdb->get_row("SELECT firstname,lastname FROM $staff_table WHERE staff_id = 1");
 $admin_fname=$admin_info->firstname;
@@ -195,16 +114,16 @@ $reply_sep=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_tab
 $reply_sep=$reply_sep->value;
 
 $id_reply_mailOver=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%reply_mailOverride%');");
+if($id_reply_mailOver!="")
+{
 $reply_mailOver=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_reply_mailOver");
 $reply_mailOver=$reply_mailOver->value;
+}
 
 $id_ticketreply=$ost_wpdb->get_var("SELECT id FROM $email_temp_table WHERE $email_temp_table.code_name like ('%ticket.reply%');");
 $ticketreply=$ost_wpdb->get_row("SELECT id,tpl_id,code_name,subject,body,notes,created,updated FROM $email_temp_table where id = $id_ticketreply");
 $ticketreply=$ticketreply->body;
 
-
-$config_dept_data=$ost_wpdb->get_row("SELECT value FROM $config_table WHERE 'namespace' LIKE 'core' AND 'key' LIKE 'department_emails'");
-$email_per_osticket_dept=$config_dept_data->value;
 
 # ==============================================================================================
 # Collecting info needed for ticket count & search box
@@ -218,8 +137,7 @@ $ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WH
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
 //$ticketinfo=$ost_wpdb->get_row("SELECT number,$ticket_table.user_id,$priority_table.priority_desc,status,$ticket_cdata.subject,$dept_table.dept_name,$ost_user.name,$ost_useremail.address,$ticket_table.created,$ticket_table.topic_id,$topic_table.topic FROM $ticket_table inner join $dept_table on $dept_table.dept_id = $ticket_table.dept_id inner join $priority_table on $priority_table.priority_desc = $priority_table.priority_desc inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_user on $ost_user.name = $ost_user.name and $ticket_table.user_id=$ost_user.id inner join $ost_useremail on $ost_useremail.address = $ost_useremail.address and $ticket_table.user_id=$ost_useremail.user_id  inner join $topic_table on $topic_table.topic_id = $ticket_table.topic_id where number = '$ticket'");
-
-$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 $threadinfo=$ost_wpdb->get_results("
 	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,body,poster 
 	FROM $thread_table 
@@ -234,9 +152,7 @@ $pri_opt = $ost_wpdb->get_results("SELECT priority_desc,priority_id FROM $priori
 # ==============================================================================================
 if(isset($_REQUEST['search']))
 {
-$search=@$_REQUEST['tq'];
-} else {
-    $search='';
+@$search=@$_REQUEST['tq'];
 }
 if(isset($_POST['action']))
 $arr = explode('.', $_POST['action']);
@@ -262,9 +178,9 @@ LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id";
 if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
-if($status_opt && ($status_opt!="all") && $search=="")
+if($status_opt && ($status_opt!="all") && @$search=="")
 $sql.=" and $ticket_table.status = '".$status_opt."' and $ticket_table.isanswered = '".$isanswered."' ";
-if(@$search && ($search!=""))
+if(@$search && (@$search!=""))
 $sql.=" and ($ticket_table.number like '%".$search."%' or $ticket_table.status like '%".$search."%' or $ticket_cdata.subject like '%".$search."%' or $dept_table.dept_name like '%".$search."%')";
 $sql.=" GROUP BY $ticket_table.ticket_id";  
 if(isset($_POST['action']) && $arr[0]=='ascen')
@@ -307,7 +223,7 @@ $smtp_port=$_POST['smtp_port'];
 $max_open_tickets=$_POST['max_open_tickets'];
 $reply_sep=$_POST['reply_sep'];
 $hidename=$_POST['hidename'];
-$admin_email=$_POST['admin_email'];
+$os_admin_email=$_POST['admin_email'];
 $admin_fname=$_POST['admin_fname'];
 $admin_lname=$_POST['admin_lname'];
 $adfullname=$_POST['adname'];
@@ -321,13 +237,13 @@ $ost_wpdb->update($config_table, array('value'=>$smtp_host), array('id'=>$id_smt
 $ost_wpdb->update($config_table, array('value'=>$smtp_port), array('id'=>$id_smtp_port), array('%s'));
 //SMTP Setting Changes Query End Here Added By Pratik Maniar
 $ost_wpdb->update($config_table, array('value'=>$max_open_tickets), array('id'=>$id_maxopen), array('%d'));
-$ost_wpdb->update($config_table, array('value'=>$admin_email), array('id'=>$id_ademail), array('%s'));
+$ost_wpdb->update($config_table, array('value'=>$os_admin_email), array('id'=>$id_ademail), array('%s'));
 $ost_wpdb->update($config_table, array('value'=>$reply_sep), array('id'=>$id_replysep), array('%s'));
 $ost_wpdb->update($config_table, array('value'=>$hidename), array('id'=>$id_hidename), array('%d'));
 $ost_wpdb->update($staff_table, array('firstname'=>$admin_fname), array('staff_id'=>1), array('%s'));
 $ost_wpdb->update($staff_table, array('lastname'=>$admin_lname), array('staff_id'=>1), array('%s'));
 $ost_wpdb->update($ost_user, array('name'=>$adfullname), array('id'=>1), array('%s'));
-$ost_wpdb->update($ost_useremail, array('address'=>$admin_email), array('user_id'=>1), array('%s'));
+$ost_wpdb->update($ost_useremail, array('address'=>$os_admin_email), array('user_id'=>1), array('%s'));
 ?>
 <p align="center"><i>Stand by while your <font color="green"><b>Settings</b></font> are being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-sett.js';?>"></script></center></p>
 <?php } ?>
@@ -371,7 +287,7 @@ $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), ar
 # ============================================================================================== 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
 if(isset($_REQUEST['ost-new-ticket'])) { 
-$form_newticket=Format::stripslashes($_POST['form_newticket']);
+$form_newticket=@Format::stripslashes($_POST['form_newticket']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), array('name'=>$ntname), array('%s'));
 ?>
