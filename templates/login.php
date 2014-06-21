@@ -1,0 +1,1 @@
+<?php auth_redirect(); ?>
