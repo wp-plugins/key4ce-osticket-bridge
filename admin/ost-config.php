@@ -30,8 +30,6 @@ Template Name: ost-config
 	$current_user = wp_get_current_user();
 	$new_page_title = $supportpage;
 	$new_page_name = $supportpage;
-	$new_page_content = '';
-	$new_page_template = ''; 
 	$page_check = get_page_by_title($new_page_title);
 	$new_page = array(
 	'post_status' => 'publish', 
@@ -44,7 +42,7 @@ Template Name: ost-config
 	'to_ping' =>  '', 
 	'pinged' => '', 
 	'post_password' => '', 
-	'post_content' => "Place Holder - DO NOT DELETE - key4ce-osticket-bridge<br />[addosticket]", 
+	'post_content' => "[addosticket]", 
 	'guid' => '', 
 	'post_content_filtered' => '', 
 	'post_excerpt' => '', 
