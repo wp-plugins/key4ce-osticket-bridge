@@ -30,35 +30,20 @@ Template Name: ost-config
 	$current_user = wp_get_current_user();
 	$new_page_title = $supportpage;
 	$new_page_name = $supportpage;
-	$new_page_content = '';
-	$new_page_template = ''; 
-	$page_check = get_page_by_title($new_page_title);
-	$new_page = array(
-	'post_status' => 'publish', 
-	'post_type' => 'page', 
-	'post_author' => $current_user->ID, 
-	'ping_status' => 'closed', 
-	'comment_status' => 'closed', 
-	'post_parent' => 0, 
-	'menu_order' => 0, 
-	'to_ping' =>  '', 
-	'pinged' => '', 
-	'post_password' => '', 
-	'post_content' => "[addosticket]", 
-	'guid' => '', 
-	'post_content_filtered' => '', 
-	'post_excerpt' => '', 
-	'import_id' => 0, 
-	'post_title' => $supportpage, 
-	'page_template' => 'default');
-	require_once(ABSPATH.'wp-admin/includes/theme.php');
 	
-	if(!isset($page_check->ID)){
-	$new_page_id = wp_insert_post($new_page);
-	if(!empty($new_page_template)){
-	update_post_meta($new_page_id, "_wp_page_template", $new_page_template);
-	}
-	}
+			wp_insert_post(
+			array(
+				'comment_status'	=>	'closed',
+				'ping_status'		=>	'closed',
+				'post_author'		=>	$current_user->ID,
+				'post_name'			=>	$supportpage,
+				'post_title'		=>	$supportpage,
+				'post_content' 		=> '[addosticket]', 
+				'post_status'		=>	'publish',
+				'post_type'			=>	'page'
+	)
+		);
+	
 	update_option('os_ticket_config', $config);
 	$config = get_option('os_ticket_config');
 	extract($config);
