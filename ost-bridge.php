@@ -83,7 +83,7 @@ $num_rows = mysql_num_rows($result);
 	$capability = 'manage_options';
     $menu_slug = 'ost-tickets';
     $function = 'ost_tickets_page';
-    $position = '5';
+    $position = '50';
 	$icon_url = plugin_dir_url( __FILE__ ) . 'images/status.png';
 
     add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
