@@ -2,8 +2,7 @@
 /*
 Template Name: osticket-wp.php
 */
-?>
-<?php 
+if(is_user_logged_in()) {
 $config = get_option('os_ticket_config');
 extract($config);
 ?>
@@ -90,11 +89,7 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/postreplymail.ph
 if(isset($_REQUEST['create-ticket'])) { 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/newticketmail.php'); 
 } 
-if($parurl=="") { 
-wp_redirect( '?service=list', 301 );
-} elseif (is_user_logged_in()) { 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/versionData.php'); 
-{
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/nav_bar.php'); 
 }
 if(isset($_GET['service']) && $_GET['service']=='new') { 
@@ -112,9 +107,35 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/view_ticket.php
 } elseif (isset($_REQUEST['service']) && $_REQUEST['service']=='list') { 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 
-} } else { 
-auth_redirect();
-} } 
+ } 
+ elseif ($parurl=="") {
+	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php'); 
+	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 
+ }
 ?>
 </div><!--ost_container End-->
+<?php
+} else {
+?><div><br /><br /> <h3>Sorry, you must first log in to view your tickets. If you do not have a account yet you can <a style="color: #2991D6;" href="<?php echo wp_registration_url(); ?>">register here</a>. </h3>
+<br /><br />
+<?php 
+	$login_args = array(
+        'echo'           => true,
+        'redirect'       => site_url( $_SERVER['REQUEST_URI'] ), 
+        'form_id'        => 'loginform',
+        'label_username' => __( 'Username' ),
+        'label_password' => __( 'Password' ),
+        'label_remember' => __( 'Remember Me' ),
+        'label_log_in'   => __( 'Log In' ),
+        'id_username'    => 'user_login',
+        'id_password'    => 'user_pass',
+        'id_remember'    => 'rememberme',
+        'id_submit'      => 'wp-submit',
+        'remember'       => true,
+        'value_username' => NULL,
+        'value_remember' => false
+);
 
+wp_login_form( $login_args ); ?> 
+</div>
+<?php } ?>
