@@ -2,6 +2,7 @@
 /*
 Template Name: view_ticket.php
 */
+global $current_user;
 get_currentuserinfo();
 if ($ticketinfo->address==$current_user->user_email) {
 ?>

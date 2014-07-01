@@ -37,9 +37,19 @@ if($list_opt) {
 	else{ 
 	$list_updated=ucwords(ezDate($list->updated)).' Ago'; 
 	} 
+	if(isset($_REQUEST['page_id']))
+	{
+		$ticket_view=get_permalink()."&service=view&ticket=".$list->number;
+		$ticket_tr="&service=view&ticket=".$list->number;
+	}
+	else
+	{
+		$ticket_view=get_permalink()."?service=view&ticket=".$list->number;
+		$ticket_tr="?service=view&ticket=".$list->number;
+	}
 	@$sub_str=Format::stripslashes($list->subject); 			
-	echo "<div id='ticket_list' onclick=\"location.href='?service=view&ticket=".$list->number."';\">"; 
-	echo "<div id='ticket_list1'><a href='?service=view&ticket=".$list->number."'>".$list->number."</a></div>"; 
+	echo "<div id='ticket_list' onclick=\"location.href='$ticket_view';\">"; 
+	echo "<div id='ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
 	echo "<div id='ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='ticket_list3'>"; 
 	if($list->status=='closed') { 
 	echo '<font color=red>Closed</font>'; 

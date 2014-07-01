@@ -25,25 +25,23 @@ if (x==null || x=="")
   alert("Please select a priority level!");
   return false;
   }  
-/*
-var x=document.forms["newticket"]["message"].value;
-if (x==null || x=="")
-  {
-  alert("Please enter your message!");
-  return false;
-  }
+var editorContent = tinyMCE.get('message').getContent();
+	if (editorContent == '' || editorContent==null)
+	{
+	   alert("Message field cannot be empty!");
+	  return false;
+	}	
 }
-
 function validateFormReply()
 {
-var x=document.forms["reply"]["message"].value;
-if (x==null || x=="")
-  {
-  alert("Message field cannot be empty!");
-  return false;
-  }
+var editorContent = tinyMCE.get('message').getContent();
+	if (editorContent == '' || editorContent==null)
+	{
+	   alert("Message field cannot be empty!");
+	  return false;
+	}
 }
-*/
+
 function validateFormSearch()
 {
 var x=document.forms["search"]["tq"].value;

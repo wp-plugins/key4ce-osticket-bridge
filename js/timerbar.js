@@ -21,7 +21,8 @@ var waitTime=6;                   // NUMBER OF SECONDS FOR PROGRESSBAR
 
 var action=function()
 {
-document.location.href="?service=list&status=open";
+var afterticket = document.getElementById('afterticket').value;
+document.location.href=afterticket;
 }
 
 // THE FUNCTION BELOW CONTAINS THE ACTION(S) TO TAKE PLACE IF THE USER

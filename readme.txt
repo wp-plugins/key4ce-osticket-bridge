@@ -77,6 +77,9 @@ http://osticket.com/download
 - Shortcode redirect fix
 - Login fields added
 - Register link with redirect added
+- Premalink related issues fixed
+- Adding new users to OSticket fixed
+- Form validation fixed
 
 = 1.1 =
 - Shortcode implementation
@@ -101,7 +104,7 @@ http://osticket.com/download
 
 == Upgrade Notice ==
 = 1.1.1 =
-Shortcode related issues fixed
+Shortcode related issues fixed, osTicket user related issues fixed.
 
 = 1.1 =
 Shortcode implementation and many code fixes.

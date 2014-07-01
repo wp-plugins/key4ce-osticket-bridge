@@ -44,9 +44,7 @@ function addtemplate()
 
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/osticket-wp.php');
 }
-add_shortcode('addosticket', 'addtemplate');
-
-
+add_shortcode('addosticket', 'addtemplate');	
 function custom_toolbar_openticket() {
 	global $wp_admin_bar;	
 	$wp_admin_bar->add_menu(array(

@@ -12,6 +12,7 @@ Template Name: new_ticket.php
 <?php 
 if(isset($_REQUEST['create-ticket']))
 {?>
+
 <div class="clear" style="padding: 5px;"></div>
 <p id="msg_notice">A new request has been created successfully!</p>
 <p align="center">
@@ -33,7 +34,7 @@ $user_id=$get_user_id[0];
 <div style="clear: both"></div>
 <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
 <div style="clear: both"></div>
-<form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket()">
+<form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket();">
 <input type="hidden" name="usid" value="<?php echo $user_id; //echo $current_user->ID; ?>"/>
 <input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
 <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>

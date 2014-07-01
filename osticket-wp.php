@@ -45,6 +45,7 @@ $category=@$_GET['cat'];
 $status_opt=@$_GET['status'];
 $ticket=@$_GET['ticket'];
 $parurl=$_SERVER['QUERY_STRING'];
+$page_id_chk=@$_REQUEST['page_id'];
 get_currentuserinfo();
 $user_email=$current_user->user_email;
 
@@ -108,18 +109,18 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/view_ticket.php
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 
  } 
- elseif ($parurl=="") {
+ elseif ($parurl=="" || $page_id_chk) {
+	if(@$_REQUEST['service']!='new')
+		{
 	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php'); 
 	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 
+		}
  }
 ?>
 </div><!--ost_container End-->
 <?php
 } else {
-?><div><br /><br /> <h3>Sorry, you must first log in to view your tickets. If you do not have a account yet you can <a style="color: #2991D6;" href="<?php echo wp_registration_url(); ?>">register here</a>. </h3>
-<br /><br />
-<?php 
-	$login_args = array(
+	$Login_args = array(
         'echo'           => true,
         'redirect'       => site_url( $_SERVER['REQUEST_URI'] ), 
         'form_id'        => 'loginform',
@@ -135,7 +136,8 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'
         'value_username' => NULL,
         'value_remember' => false
 );
-
-wp_login_form( $login_args ); ?> 
+?><div><br /><br /> <h3>Sorry, you must first log in to view your tickets. If you do not have a account yet you can <a style="color: #2991D6;" href="<?php echo wp_registration_url(); ?>">register here</a>. </h3>
+<br /><br />
+<?php wp_login_form( $login_args ); ?> 
 </div>
 <?php } ?>
