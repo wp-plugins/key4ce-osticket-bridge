@@ -81,7 +81,7 @@ if($ticketinfo->priority_id=='4') {
 <table style="width:100%; border: 1px solid #aaa; border-bottom: 2px solid #aaa;" cellspacing="0" cellpadding="1" border="0" class="<?php echo $thread_info->thread_type; ?>">
 <tbody>
 <tr>
-<th><?php echo $thread_info->created; ?><span id="ticketThread"><?php if($hidename==1) { echo $thread_info->poster; } ?></span></th>
+<th><?php echo $thread_info->created; ?><span id="ticketThread"><?php if($hidename==1 && $thread_info->thread_type<>"M") { echo $ticketinfo->dept_name; } else { echo $thread_info->poster; } ?></span></th>
 </tr>
 <tr>
 <td><?php echo $thread_info->body; ?></td>
