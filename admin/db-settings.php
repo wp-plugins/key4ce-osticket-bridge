@@ -8,9 +8,6 @@ $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,update
 $adminreply=$adminreply->text;
 $arname='Admin-Response';
 
-
-
-
 $postsubmail=$wpdb->get_row("SELECT id,name,$ostemail.subject,text,created,updated FROM $ostemail where name = 'Admin-Response'"); 
 $postsubmail=$postsubmail->subject;
 
@@ -62,32 +59,111 @@ $id_helptitle=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_tab
 $title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_helptitle");
 $title_name=$title_name->value;
 
+$table_name_config = "ost_config";
 // STMP Status Start Here By Pratik Maniar
+$count_smtp_status=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
+if($count_smtp_status == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_status";  
+   $rows_affected = $ost_wpdb->insert( 
+   $config_table, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => 'disable', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_status=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
 $smtp_status=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_status");
 $smtp_status=$smtp_status->value;
 // STMP Status End Here By Pratik Maniar
-
-
 // STMP Username Start Here By Pratik Maniar
+$count_smtp_username=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
+if($count_smtp_username == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_username";  
+   $rows_affected = $ost_wpdb->insert( 
+   $config_table, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_username=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_username%');");
 $smtp_username=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_username");
 $smtp_username=$smtp_username->value;
 // STMP Username End Here By Pratik Maniar
 
 // STMP Password Start Here By Pratik Maniar
+$count_smtp_password=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
+if($count_smtp_password == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_password";  
+   $rows_affected = $ost_wpdb->insert( 
+   $config_table, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_password=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_password%');");
 $smtp_password=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_password");
 $smtp_password=$smtp_password->value;
 // STMP Password End Here By Pratik Maniar
 
 // STMP Host Start Here By Pratik Maniar
+$count_smtp_host=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
+if($count_smtp_host == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_host";  
+   $rows_affected = $ost_wpdb->insert( 
+   $config_table, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_host=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_host%');");
 $smtp_host=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_host");
 $smtp_host=$smtp_host->value;
 // STMP Host End Here By Pratik Maniar
 
 // STMP Port Start Here By Pratik Maniar
+$count_smtp_port=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
+if($count_smtp_port == 0)
+{
+   $id = '';
+   $namespace = "core";
+   $key = "smtp_port";  
+   $rows_affected = $ost_wpdb->insert( 
+   $config_table, 
+   array( 
+   'id' => $id,
+   'namespace' => $namespace,
+   'key' => $key,
+   'value' => '', 
+   'updated' => current_time('mysql') 
+   ) );
+}
 $id_smtp_port=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%smtp_port%');");
 $smtp_port=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_smtp_port");
 $smtp_port=$smtp_port->value;
@@ -136,10 +212,14 @@ $ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WH
 # ==============================================================================================
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
-//$ticketinfo=$ost_wpdb->get_row("SELECT number,$ticket_table.user_id,$priority_table.priority_desc,status,$ticket_cdata.subject,$dept_table.dept_name,$ost_user.name,$ost_useremail.address,$ticket_table.created,$ticket_table.topic_id,$topic_table.topic FROM $ticket_table inner join $dept_table on $dept_table.dept_id = $ticket_table.dept_id inner join $priority_table on $priority_table.priority_desc = $priority_table.priority_desc inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_user on $ost_user.name = $ost_user.name and $ticket_table.user_id=$ost_user.id inner join $ost_useremail on $ost_useremail.address = $ost_useremail.address and $ticket_table.user_id=$ost_useremail.user_id  inner join $topic_table on $topic_table.topic_id = $ticket_table.topic_id where number = '$ticket'");
-$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+$ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` 
+INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id 
+INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id
+INNER JOIN $thread_table ON $thread_table.ticket_id=$ticket_table.ticket_id
+INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id
+LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 $threadinfo=$ost_wpdb->get_results("
-	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,body,poster 
+	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
 	where number = '$ticket' 
@@ -170,8 +250,6 @@ elseif($status_opt=="answered") {
 elseif($status_opt=="closed") {
 	$status_opt='closed';
 	$isanswered='1'; }
-    
-//$sql="SELECT $ticket_table.topic_id,number,$ticket_table.user_id,$ticket_cdata.subject,status,$topic_table.topic,$ticket_table.created$ticket_table.updated,$thread_table.poster FROM $ticket_table inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_useremail on $ost_useremail.user_id = $ticket_table.user_id and $ost_useremail.address = $ost_useremail.address inner join $topic_table on $topic_table.topic_id = $ticket_table.topic_id left join $thread_table on ($thread_table.ticket_id = $ticket_table.ticket_id and $thread_table.thread_type='R') where 1";
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id, $ticket_table.status,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority_id, $dept_table.dept_name
 FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id

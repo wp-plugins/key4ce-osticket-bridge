@@ -32,11 +32,9 @@ $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'"); 
 
 //////Ticket Info
-//$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.number,$ticket_table.user_id,$priority_table.priority_desc,status,$ticket_cdata.subject,$dept_table.dept_name,$ost_user.name,$ost_useremail.address,$ticket_table.created,$ticket_table.topic_id,$topic_table.topic FROM $ticket_table inner join $dept_table on $dept_table.dept_id = $ticket_table.dept_id inner join $priority_table on $priority_table.priority_desc = $priority_table.priority_desc inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_user on $ost_user.name = $ost_user.name and $ticket_table.user_id=$ost_user.id inner join$ost_useremail on $ost_useremail.address = $ost_useremail.address and $ticket_table.user_id=$ost_useremail.user_id inner join $topic_table on$topic_table.topic_id = $ticket_table.topic_id where number = '$ticket'"); 
-
 $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 //////Thread Info
-$threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,body,poster 
+$threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
 	inner join ost_user_email on ost_user_email.user_id = $ticket_table.user_id
@@ -60,13 +58,11 @@ if($status_opt=="open") {
 elseif($status_opt=="closed") {
 	$status_opt='closed';
 	}
-//$sql="SELECT $ticket_table.topic_id,number,$ticket_table.user_id,$ticket_cdata.subject,status,$topic_table.topic,$ticket_table.created,$ticket_table.updated,$thread_table.poster FROM $ticket_table inner join $ticket_cdata on $ticket_cdata.subject = $ticket_cdata.subject and $ticket_cdata.ticket_id=$ticket_table.ticket_id inner join $ost_useremail on $ost_useremail.user_id = $ticket_table.user_id and $ost_useremail.address = $ost_useremail.address inner join $topic_table on $topic_table.topic_id = $ticket_table.topic_id left join $thread_table on ($thread_table.ticket_id = $ticket_table.ticket_id and $thread_table.thread_type='R') where 1";
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id, $ticket_table.status,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority_id, $dept_table.dept_name
       FROM $ticket_table
       LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = ost_ticket.ticket_id
       INNER JOIN $dept_table ON $dept_table.dept_id = $ticket_table.dept_id
       WHERE $ticket_table.user_id =$user_id";
-//$sql.=" and $ticket_table.user_id = '".$user_id."'"; /// needed to use id instead of email address
 if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && $search=="")
@@ -96,7 +92,5 @@ $currentpage = 1;
 } 
 $offset = ($currentpage - 1) * $rowsperpage; 
 $sql.=" LIMIT $offset, $rowsperpage";  
-//echo $sql;
 $list_opt = $ost_wpdb->get_results($sql); 
-///$ost_wpdb->flush();
 ?>

@@ -5,13 +5,15 @@ Template Name: postreplymail.php
 require_once('functions.php');
 ?>
 <?php 
+global $current_user;
+get_currentuserinfo();
 $config_table="ost_config";
 $staff_table="ost_staff";
 $pid=0;
 $staffid=0;
 $source="Web";
 $thread_type="M";
-$poster=$_REQUEST['usname'];
+$poster=$current_user->user_login;
 $usid=$_REQUEST['usid'];
 $ticid=$_REQUEST['tic_id'];
 $usticketid=$_REQUEST['usticketid'];
@@ -49,13 +51,6 @@ $ost_wpdb->update($ticket_table, array('status' => 'closed'), array('ticket_id' 
 if(isset($_REQUEST['open_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status' => 'open'), array( 'ticket_id' => $ticid), array('%s')); } 
 
-/* Commented By Pratik Maniar on 20-06-2014 Code Start Here
-$deptid = $ost_wpdb->get_row("SELECT dept_id FROM $topic_table WHERE topic_id=$top_id"); 
-$departid=$deptid->dept_id;
-$con_tab = $ost_wpdb->get_results("SELECT email FROM $staff_table Where dept_id= $departid"); 
-foreach($con_tab as $con_tab1) 
-
-Commented By Pratik Maniar on 20-06-2014 Code End Here */
 ///Variable's for email templates
 $username=$usname;
 $usermail=$usemail; 
@@ -73,9 +68,6 @@ $poconsubmail=$poconsubmail; /// subject in user email (todo's - add field input
 $to=$usermail;
 eval("\$subject=\"$poconsubmail\";");
 eval("\$message=\"$postconfirm\";");
-//$headers = 'From: '.$title.' <' .$os_admin_email. ">\r\n";
-//add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-//wp_mail( $to, $subject, wpetss_forum_text($message), $headers);
 if(getKeyValue('ticket_alert_admin')==1 && getKeyValue('ticket_alert_active')==1)
 {	
 ///Email osticket admin for a new post reply

@@ -1,10 +1,11 @@
 <?php 
+global $current_user;
+get_currentuserinfo();
 $ticket_number=$_REQUEST['ticket'];
 $ticket_details=$ost_wpdb->get_row("SELECT $ost_email.name,$dept_table.dept_id,$dept_table.dept_name,$dept_table.email_id,$ost_email.email FROM $ticket_table 
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id
 INNER JOIN $ost_email ON $ost_email.dept_id=$dept_table.dept_id
 WHERE `number`=$ticket_number");
-//$getDeptemail=getDeptemail($ticket_number);
 $ticket_detail_dept_name=$ticket_details->name;
 $ticket_detail_dept_email=$ticket_details->email;
 $department_id=$ticket_details->dept_id;
@@ -13,7 +14,7 @@ $pid=0;
 $staffid=1; 
 $ticid=$_REQUEST['tic_id'];
 $thread_type="R";
-$poster=$_REQUEST['adname'];
+$poster=$current_user->user_login;
 $source="Web";
 $admin_response=@Format::stripslashes($_REQUEST['message']); ///from post to thread-table to variable to email
 $ipaddress=$_SERVER['REMOTE_ADDR'];
@@ -43,16 +44,6 @@ $top_id=$_REQUEST['ustopicid'];
 $dirname=$_REQUEST['sdirna'];
 $admin_reply=@Format::stripslashes($_REQUEST['adreply']); /// clean template from form to user email
 
-/*
-//Commented By Pratik Maniar On 21-06-2014 Start Here
-///Getting department info
-$deptid=$ost_wpdb->get_row("SELECT * FROM $dept_table WHERE dept_id=$ticket_detail_dept_id");
-$departid=$deptid->dept_id;
-$dept_name=$deptid->dept_name;
-$con_tab=$ost_wpdb->get_results("SELECT email FROM $dept_table Where dept_id= $departid");
-foreach($con_tab as $con_tab1)
-//Commented By Pratik Maniar On 21-06-2014 End Here
-*/
 ///Variable's for email templates
 $os_admin_email=$adem;
 $username=$usname;

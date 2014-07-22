@@ -3,7 +3,7 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
-Version: 1.1.1
+Version: 1.1.2
 Author: Key4ce
 Author URI: http://key4ce.eu
 License: GPLv3
@@ -195,7 +195,7 @@ function mb_database_install() {
    'updated' => current_time('mysql') 
    ) ); 
 
- $table_name_config = $wpdb->prefix . "ost_config";
+ $table_name_config = "ost_config";
 //SMTP Username record insert Start Here Added By Pratik Maniar
    $id = '';
    $namespace = "core";
@@ -273,7 +273,7 @@ function mb_uninstall()
     global $wpdb;
     $table = $wpdb->prefix."ost_emailtemp";
     $wpdb->query("DROP TABLE IF EXISTS $table");
-    $table_config = $wpdb->prefix."ost_config";
+    $table_config = "ost_config";
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_username'");
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_password'"); 	
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_host'"); 		

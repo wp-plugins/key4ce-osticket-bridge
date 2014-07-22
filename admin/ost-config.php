@@ -100,7 +100,7 @@ extract($config);
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Database Password:</label></td>                
-<td><input type="text" name="password" id="password" size="20" value="<?php echo $password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
+<td><input type="password" name="password" id="password" size="20" value="<?php echo $password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Landing Page Name:</label></td>                

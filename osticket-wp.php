@@ -58,22 +58,11 @@ $default_email_id=$ost_wpdb->get_var("SELECT value FROM `ost_config` WHERE `key`
 $default_email_id_data=$ost_wpdb->get_row("SELECT * FROM `ost_email` WHERE `email_id` =$default_email_id");
 //Added By Pratik Maniar on 01-05-2014 End Here
 
-//Commented By Pratik Maniar on 01-05-2014 Start Here
-	//$id_helptitle=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%helpdesk_title%');");
-	//$title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_helptitle");
-	//$title_name=$default_email_id_data->name;
-	//$title_name=$title_name->value;
-//Commented By Pratik Maniar on 01-05-2014 End Here
 $title_name=$default_email_id_data->name;
 $id_maxopen=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%max_open_tickets%');");
 $max_open_tickets=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_maxopen");
 $max_open_tickets=$max_open_tickets->value;
 
-//Commented By Pratik Maniar on 01-05-2014 Start Here
-	//$id_ademail=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
-	//$os_admin_email=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = //$id_ademail");
-	//$os_admin_email=$os_admin_email->value;
-// Commented By Pratik Maniar on 01-05-2014 Start Here 
 $os_admin_email=$default_email_id_data->email;
 
 $id_hidename=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%hide_staff_name%');");
@@ -110,7 +99,7 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.ph
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 
  } 
  elseif ($parurl=="" || $page_id_chk) {
-	if(@$_REQUEST['service']!='new')
+	if(@$_REQUEST['service']!='new' && $isactive==1)
 		{
 	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php'); 
 	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'); 

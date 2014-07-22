@@ -54,14 +54,11 @@ function getKeyValue($key)
 	$db=mysql_select_db($database,$link);
 	$res=mysql_query("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'",$link);
 	$checkUserID=mysql_fetch_array($res);
-	$getKeyvalue=$checkUserID['value'];
-	//$getKeyvalue=$ost_wpdb->get_row("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'");	
+	$getKeyvalue=$checkUserID['value'];	
 	return $getKeyvalue;
 }
 function wpetss_forum_text($text){
-	//$text = htmlspecialchars($text);
-
-	// convert links
+// convert links
     $text = " ".$text;
     $text = preg_replace('#(((f|ht){1}tps?://)[-a-zA-Z0-9@:;%_\+.~\#?&//=\[\]]+)#i', '<a href="\\1" target=_blank>\\1</a>', $text);
     $text = preg_replace('#([[:space:]()[{}])(www.[-a-zA-Z0-9@:;%_\+.~\#?&//=]+)#i', '\\1<a href="http://\\2" target=_blank>\\2</a>', $text);

@@ -18,7 +18,6 @@ $default_email_id_data=$ost_wpdb->get_row("SELECT * FROM `ost_email` WHERE `emai
 $default_email=$default_email_id_data->email;
 $defalt_name=$default_email_id_data->name;
 ?>
-
 <form name="ost-settings" action="admin.php?page=ost-settings" method="post">
 <input type="hidden" name="adname" value="<?php echo $admin_fname; ?> <?php echo $admin_lname; ?>"/>
 <table class="cofigtb">
@@ -65,7 +64,7 @@ else
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">SMTP Password</label></td>                
-<td><input type="text" name="smtp_password" id="smtp_password"  value="<?php echo $smtp_password; ?>"/>&nbsp;&nbsp;(Please enter smtp password.)</td>
+<td><input type="password" name="smtp_password" id="smtp_password"  value="<?php echo $smtp_password; ?>"/>&nbsp;&nbsp;(Please enter smtp password.)</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">SMTP Host</label></td>                

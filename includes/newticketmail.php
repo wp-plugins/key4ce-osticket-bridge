@@ -61,8 +61,6 @@ if (count ($result2) > 0) {
 	{
 	$wpdb->query("UPDATE ost_user SET name = ".$nam." WHERE default_email_id = '".$last_ost_user_email_id."'");	
 	}
-	///$wpdb->query ("UPDATE ost_user SET id = ".($row->ost_user + 1)." WHERE id = '".$usid."'");
-	///don't need to update user info, but keep here for later versions, if needed..
 } else {
 	$ost_wpdb->query ("INSERT INTO ost_user (id, default_email_id, name, created, updated) VALUES ('','".$last_ost_user_email_id."', '".$nam."', '".$cre."', '".$cre."')
 	");
@@ -97,21 +95,10 @@ foreach($topic_tab as $topic_tab1) { @$top=$topic_tab1->topic; }
 
 $config_table="ost_config";
 $staff_table="ost_staff";
-//$os_admin_email=$adem;
 
-//Commented By Pratik Maniar on 14-06-2014 Start Here
-
-/*
-@$deptid = $ost_wpdb->get_row("SELECT dept_id FROM $topic_table WHERE topic_id=$top_id");
-@$departid=$deptid->dept_id;
-$con_tab = $ost_wpdb->get_results("SELECT email FROM $staff_table Where dept_id=$departid");
-foreach($con_tab as $con_tab1)
-*/
-
-//Commented By Pratik Maniar on 14-06-2014 End Here
 
 ///Variable's for email templates
-//$os_admin_email=$adem;
+
 $username=$nam;
 $usermail=$em;
 $ticketid=$tic_ID;
@@ -132,9 +119,6 @@ $postsubmail=$postsubmail; /// subject in user email (todo's - add field input t
 $to=$usermail;
 eval("\$subject=\"$postsubmail\";");
 eval("\$message=\"$newtickettemp\";");
-//$headers = 'From: '.$title.' <' .$adem. ">\r\n";
-//add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-//wp_mail( $to, $subject, wpetss_forum_text($message), $headers);
 
 ///Email osticket admin - a new ticket has been created
 if(getKeyValue('ticket_alert_admin')==1 && getKeyValue('ticket_alert_active')==1)
