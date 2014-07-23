@@ -77,5 +77,4 @@ function wpetss_forum_text($text){
 	}
 	return $print_text;
 }
-
 ?>

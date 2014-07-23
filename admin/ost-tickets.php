@@ -1,9 +1,4 @@
 <?php
-/*
-Template Name: ost-tickets
-*/
-?>
-<?php 
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); 
 ?>
@@ -26,8 +21,6 @@ Template Name: ost-tickets
 <?php
 if($list_opt)
 {
-?>
-<?php
 	function ezDate($d) { 
         $ts = time() - strtotime(str_replace("-","/",$d));
         if($ts>31536000) $val = round($ts/31536000,0).' year'; 
@@ -73,8 +66,7 @@ if($list_opt)
 	echo '<div class="ticketPriority" style="background-color: Black;"><font color=white>Low</font></div>';
 	}
 	echo "</div><div id='ticket_list4'>".$list->dept_name."</div>";
-	?>
-	<?php
+
 	if ($list->updated=='0000-00-00 00:00:00') {
 		$date_str  = "".$list->created.""; }
 		else {

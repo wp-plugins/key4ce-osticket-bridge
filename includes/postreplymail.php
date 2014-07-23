@@ -1,10 +1,10 @@
-<?php 
+<?php
 /*
 Template Name: postreplymail.php
 */
 require_once('functions.php');
 ?>
-<?php 
+<?php
 global $current_user;
 get_currentuserinfo();
 $config_table="ost_config";

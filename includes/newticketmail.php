@@ -4,7 +4,7 @@ Template Name: newticketemail.php
 */
 require_once('functions.php');
 ?>
-<?php 
+<?php
 global $current_user;
 get_currentuserinfo();
 $wp_user_email_id=$current_user->user_email;

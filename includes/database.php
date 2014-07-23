@@ -3,7 +3,7 @@
 Template Name: db-settings-18.php
 */
 ?>
-<?php 
+<?php
 global $wpdb; 
 $ostemail = $wpdb->prefix . "ost_emailtemp"; 
 $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,updated FROM $ostemail where name = 'Admin-Response'"); 

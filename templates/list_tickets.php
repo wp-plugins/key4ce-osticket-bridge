@@ -15,7 +15,7 @@ if($list_opt) {
 <div id="ticket_menu4">Department</div>
 <div id="ticket_menu5">Date</div>
 </div>
-<?php 
+<?php
 	function ezDate($d) { 
         $ts = time() - strtotime(str_replace("-","/",$d)); 
         if($ts>31536000) $val = round($ts/31536000,0).' year'; 

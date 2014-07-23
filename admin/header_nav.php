@@ -3,7 +3,7 @@
 Template Name: header_nav
 */
 ?>
-<?php 
+<?php
 echo '<link rel="stylesheet" type="text/css" media="all" href="'.plugin_dir_url(__FILE__).'../css/stylesheet.css">';
 $parurl=$_SERVER['QUERY_STRING'];
 if($parurl=="page=ost-config") { $active1="active"; } 
@@ -19,7 +19,7 @@ if($parurl=="page=ost-tickets" || $parurl=="page=ost-tickets&service=list&status
   <li><a href="admin.php?page=ost-tickets" class="<?php echo $active4; ?>"><span>Support Tickets</span></a></li>
 </ul>
 <div style="padding-bottom:15px;"></div>
-<?php 
+<?php
 if($parurl=="page=ost-tickets") { 
 if (($newticket=="") || ($adminreply=="") || ($postconfirm==""))
     {

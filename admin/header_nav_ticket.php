@@ -3,7 +3,7 @@
 Template Name: header_nav
 */
 ?>
-<?php 
+<?php
 echo '<link rel="stylesheet" type="text/css" media="all" href="'.plugin_dir_url(__FILE__).'../css/stylesheet.css">';
 $parurl=$_SERVER['QUERY_STRING'];
 if($parurl=="page=ost-tickets" || $parurl=="page=ost-tickets&service=list&status=open") { $active1="active"; }
@@ -31,7 +31,7 @@ if($parurl=="page=ost-tickets&service=list&status=all") { $active4="active"; }
     
 </div>
 </div>
-<?php 
+<?php
 if($parurl=="page=ost-tickets") { 
 if (($newticket=="") || ($adminreply=="") || ($postconfirm==""))
     {

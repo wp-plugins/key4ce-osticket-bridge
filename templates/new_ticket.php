@@ -9,7 +9,7 @@ Template Name: new_ticket.php
 #message-tmce{height: 25px;}
 </style>
 <div id="thContainer">
-<?php 
+<?php
 if(isset($_REQUEST['create-ticket']))
 {?>
 
@@ -53,7 +53,7 @@ $user_id=$get_user_id[0];
 <div id="new_ticket_catagory_input">
 <select id="deptId" name="deptId">
 <option value="" selected="selected"> Select a Category </option>
-<?php 
+<?php
 	foreach($dept_opt as $dept) 
 	{ 
 	echo '<option value="'.$dept->dept_id .'">'.$dept->dept_name .'</option>'; 
@@ -80,7 +80,7 @@ $user_id=$get_user_id[0];
 
 <tr>
 <td class="nobd" align="center">
-<center> <?php 
+<center> <?php
 $content = '';
 $editor_id = 'message';
 $settings = array( 'media_buttons' => false );
