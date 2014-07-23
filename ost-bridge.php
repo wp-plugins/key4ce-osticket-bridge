@@ -69,6 +69,10 @@ function mb_admin_menu() {
 
 $config = get_option('os_ticket_config');
 extract($config);
+if (($database=="") || ($username=="") || ($password=="")) {
+    $page_title = 'Support/Request List';
+    $menu_title = 'Tickets';
+} else {
 $con = mysql_connect($host, $username, $password, true, 65536);
 mysql_select_db($database, $con);
 $result = mysql_query("SELECT number FROM ost_ticket WHERE status='open' AND isanswered='0'");
@@ -77,11 +81,11 @@ $num_rows = mysql_num_rows($result);
 	if ($num_rows > 0) {
     $menu_title = 'Tickets <span class="awaiting-mod"><span class="pending-count">' . $num_rows . '</span></span>';
 	} else {
-	$menu_title = 'Tickets'; }
+	$menu_title = 'Tickets'; } }
 	$capability = 'manage_options';
     $menu_slug = 'ost-tickets';
     $function = 'ost_tickets_page';
-    $position = '50';
+    $position = '51';
 	$icon_url = plugin_dir_url( __FILE__ ) . 'images/status.png';
 
     add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
@@ -108,11 +112,14 @@ $num_rows = mysql_num_rows($result);
     add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
 	// Hook into the 'wp_before_admin_bar_render' action
+if (($database=="") || ($username=="") || ($password=="")) {
+    add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
+    } else {
 if($num_rows > 0)
 add_action( 'wp_before_admin_bar_render', 'custom_toolbar_openticket', 998 );
 else
 add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
-} 
+} }
 
 function mb_admin_css() {
 echo '<link rel="stylesheet" type="text/css" media="all" href="'.plugin_dir_url(__FILE__).'css/admin-style.css">';
