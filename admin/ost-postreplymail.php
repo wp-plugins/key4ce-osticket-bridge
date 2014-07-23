@@ -1,4 +1,4 @@
-<?php 
+<?php
 global $current_user;
 get_currentuserinfo();
 $ticket_number=$_REQUEST['ticket'];

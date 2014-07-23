@@ -6,7 +6,6 @@ global $current_user;
 get_currentuserinfo();
 if ($ticketinfo->address==$current_user->user_email) {
 ?>
-
 <style>
 #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
 #message-html{height: 25px;}
@@ -20,7 +19,7 @@ if ($ticketinfo->address==$current_user->user_email) {
 </div>
 <div id="tic_info_box">
 <div id="tic_stat">Ticket Status:</div>
-<div id="tic_stat_info"><?php 
+<div id="tic_stat_info"><?php
 	if($ticketinfo->status=='closed') {
 	echo '<font color=red>Closed</font>';
 	} 

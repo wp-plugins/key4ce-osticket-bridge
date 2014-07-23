@@ -74,7 +74,7 @@ http://osticket.com/download
 
 == Changelog ==
 = 1.1.2 =
-- Shows submittee name in ticket threads
+- Shows name in ticket threads.
 - SMTP save field fix
 - Offline / Offline mode fix
 - Cleaned up legacy code

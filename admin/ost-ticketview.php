@@ -1,13 +1,9 @@
 <?php
-/*
-Template Name: ost-ticketview
-*/
-?>
-<?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); ?>
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); ?>
 <div class="wrap">
 <div class="headtitle">Reply to Support Request</div>
 <div style="clear: both"></div>
-<?php 
+<?php
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav_ticket.php'); 
 ?>
@@ -21,7 +17,7 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav_ticket.p
 <tr> 
 <td><b>Ticket Status:</b></td>
 <td><div>
-<?php 
+<?php
 	if($ticketinfo->status=='closed') {
 	echo '<font color=red>Closed</font>';
 	} 
@@ -64,7 +60,6 @@ if($ticketinfo->priority_id=='4') {
 	echo '<div style="color: Black;">Normal</div>';
 	}
  ?>
- 
 </div>
 </td>
 </tr>
@@ -117,11 +112,11 @@ if($ticketinfo->priority_id=='4') {
 <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
 <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
 <input type="hidden" name="adreply" value="<?php echo $adminreply; ?>"/>
-<center><?php 
+<center><?php
 $content = '';
 $editor_id = 'message';
 $settings = array( 'media_buttons' => false );
-wp_editor( $content, $editor_id , $settings );?> </center>
+wp_editor( $content, $editor_id , $settings );?></center>
 </td>
 </tr>
 <tr>

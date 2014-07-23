@@ -1,4 +1,4 @@
-<?php 
+<?php
 # ==============================================================================================
 # Connect to the database for the Email Templates - used in ost-emailtemp & ost-postreplymail
 # ==============================================================================================
@@ -325,8 +325,7 @@ $ost_wpdb->update($ost_useremail, array('address'=>$os_admin_email), array('user
 ?>
 <p align="center"><i>Stand by while your <font color="green"><b>Settings</b></font> are being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-sett.js';?>"></script></center></p>
 <?php } ?>
-
-<?php 
+<?php
 # ==============================================================================================
 # Admin Post To Ticket Thread - used in ost-ticketveiw
 # ==============================================================================================
@@ -346,7 +345,7 @@ if(isset($_REQUEST['ost-post-reply'])) {
 </script>
 <?php } } ?>
 
-<?php 
+<?php
 # ==============================================================================================
 # Admin Post To Ticket Email Template w/message included - used in ost-emailtemp
 # ==============================================================================================
@@ -358,8 +357,7 @@ $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), ar
 ?>
 <p align="center"><i>Stand by while your <font color="green"><b>Admin Response Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
-
-<?php 
+<?php
 # ==============================================================================================
 # New Ticket Email Template - sent to user w/message included - used in ost-emailtemp
 # ============================================================================================== 
@@ -371,8 +369,7 @@ $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), arra
 ?>
 <p align="center"><i>Stand by while your <font color="green"><b>New Ticket Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
-
-<?php 
+<?php
 # ==============================================================================================
 # Post Confirmation Email Template - sent to user w/message included - used in ost-emailtemp
 # ============================================================================================== 
@@ -384,4 +381,3 @@ $wpdb->update($ostemail, array('text'=>$form_postconfirmed,'updated'=>$etdate), 
 ?>
 <p align="center"><i>Stand by while your <font color="green"><b>User Post Confirmation Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
-

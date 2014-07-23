@@ -25,9 +25,7 @@ $admin_response="Staff Message"
 <div style="clear: both"></div>
 <?php 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' ); 
-
 ?>
-
 <!--New Ticket Email Template-->
 <div style="padding-left:15px;padding-bottom:5px;padding-top:10px;"><b>*New Ticket Email Template</b>&nbsp;&raquo;&nbsp;<a href="javascript:doMenu('main2');" id="xmain2">[Open]</a>&nbsp;&nbsp;We suggest using this template in the user confirmation email below.</div>
 <div style="clear: both"></div>
@@ -46,7 +44,6 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
 </div>
 </form>
 </div>
-
 <!--Admin Ticket Reply Email Template-->
 <div style="padding-left:15px;padding-bottom:5px;padding-top:40px;"><b>*Admin Response Email Template</b>&nbsp;&raquo;&nbsp;<a href="javascript:doMenu('main4');" id="xmain4">[Open]</a>&nbsp;&nbsp;We suggest using this template in your post reply to user below.</div>
 <div style="clear: both"></div>
