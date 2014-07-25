@@ -4,7 +4,7 @@ Template Name: list_tickets.php
 */
 ?>
 <?php
-if($list_opt) { 
+if(@$list_opt) { 
 ?>
 <form name="osticket" id="osticket" method="post">
 <div class="cofigmenu">

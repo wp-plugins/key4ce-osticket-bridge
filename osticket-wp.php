@@ -27,17 +27,17 @@ $poconsubmail=$poconsubmail->subject;
 
 $ost_wpdb = new wpdb($username, $password, $database, $host);
 global $current_user;
-$config_table="ost_config";
-$dept_table="ost_department";
-$topic_table="ost_help_topic";
-$ticket_table="ost_ticket";
-$ticket_event_table="ost_ticket_event";
-$priority_table="ost_ticket_priority";
-$thread_table="ost_ticket_thread";
-$ticket_cdata="ost_ticket__cdata";
-$ost_user="ost_user";
-$ost_staff="ost_staff";
-$ost_useremail="ost_user_email";
+$config_table=$prefix."config";
+$dept_table=$prefix."department";
+$topic_table=$prefix."help_topic";
+$ticket_table=$prefix."ticket";
+$ticket_event_table=$prefix."ticket_event";
+$priority_table=$prefix."ticket_priority";
+$thread_table=$prefix."ticket_thread";
+$ticket_cdata=$prefix."ticket__cdata";
+$ost_user=$prefix."user";
+$ost_staff=$prefix."staff";
+$ost_useremail=$prefix."user_email";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
 $version=$config['version'];
@@ -54,8 +54,8 @@ $isactive=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_tabl
 $isactive=$isactive->value;
 
 //Added By Pratik Maniar on 01-05-2014 Start Here
-$default_email_id=$ost_wpdb->get_var("SELECT value FROM `ost_config` WHERE `key` LIKE 'default_email_id'");
-$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM `ost_email` WHERE `email_id` =$default_email_id");
+$default_email_id=$ost_wpdb->get_var("SELECT value FROM ".$prefix."config WHERE `key` LIKE 'default_email_id'");
+$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM ".$prefix."email WHERE `email_id` =$default_email_id");
 //Added By Pratik Maniar on 01-05-2014 End Here
 
 $title_name=$default_email_id_data->name;
@@ -127,6 +127,6 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'
 );
 ?><div><br /><br /> <h3>Sorry, you must first log in to view your tickets. If you do not have a account yet you can <a style="color: #2991D6;" href="<?php echo wp_registration_url(); ?>">register here</a>. </h3>
 <br /><br />
-<?php wp_login_form( $login_args ); ?>
+<?php wp_login_form(@$login_args); ?>
 </div>
 <?php } ?>

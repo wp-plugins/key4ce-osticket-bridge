@@ -3,7 +3,7 @@
 Template Name: db-settings-18.php
 */
 ?>
-<?php
+<?php 
 global $wpdb; 
 $ostemail = $wpdb->prefix . "ost_emailtemp"; 
 $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,updated FROM $ostemail where name = 'Admin-Response'"); 
@@ -20,7 +20,7 @@ $ntname='New-Ticket';
 $user_name=$current_user->user_login; 
 $e_address=$current_user->user_email;
 /*Add user id of ticket instead of wordpress */
-$selectuser_id = mysql_query("SELECT user_id FROM `ost_user_email` WHERE `address` = '".$e_address."'");
+$selectuser_id = mysql_query("SELECT user_id FROM ".$prefix."user_email WHERE `address` = '".$e_address."'");
 $get_user_id = mysql_fetch_row($selectuser_id);
 $user_id=$get_user_id[0];
 
@@ -32,12 +32,12 @@ $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'"); 
 
 //////Ticket Info
-$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 //////Thread Info
 $threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
-	inner join ost_user_email on ost_user_email.user_id = $ticket_table.user_id
+	inner join ".$prefix."user_email on ".$prefix."user_email.user_id = $ticket_table.user_id
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC"); 
 $search="";
@@ -48,7 +48,10 @@ $search=@$_REQUEST['tq'];
 if(isset($_POST['action']))
 $arr = explode('.', $_POST['action']);
 if(!$status_opt && ($status_opt!="all")) {
-	$status_opt='open';
+	if($ticket_count_open > 0)
+		$status_opt='open';
+	else
+		$status_opt='closed';
     }
 if(!$status_opt && ($status_opt=="all")) 
 	$status_opt='';
@@ -58,11 +61,13 @@ if($status_opt=="open") {
 elseif($status_opt=="closed") {
 	$status_opt='closed';
 	}
+if($user_id!="")        
+{
+$sql="";
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id, $ticket_table.status,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority_id, $dept_table.dept_name
       FROM $ticket_table
-      LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = ost_ticket.ticket_id
-      INNER JOIN $dept_table ON $dept_table.dept_id = $ticket_table.dept_id
-      WHERE $ticket_table.user_id =$user_id";
+      LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+      INNER JOIN $dept_table ON $dept_table.dept_id = $ticket_table.dept_id WHERE $ticket_table.user_id =$user_id";
 if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && $search=="")
@@ -93,4 +98,5 @@ $currentpage = 1;
 $offset = ($currentpage - 1) * $rowsperpage; 
 $sql.=" LIMIT $offset, $rowsperpage";  
 $list_opt = $ost_wpdb->get_results($sql); 
+}
 ?>

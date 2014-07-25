@@ -12,14 +12,18 @@ Template Name: ost-config
 <div style="clear: both"></div>
 <?php
 	if(isset($_REQUEST['submit'])) {
-	$host=$_REQUEST['host'];
-	$database=$_REQUEST['database'];
-	$username=$_REQUEST['username'];
-	$password=$_REQUEST['password'];
-	$supportpage=$_REQUEST['supportpage'];
-	$version=$_REQUEST['version'];
+	@$host=$_REQUEST['host'];
+	@$database=$_REQUEST['database'];
+	@$username=$_REQUEST['username'];
+	@$password=$_REQUEST['password'];
+        if($_REQUEST['prefix']=="")
+            @$prefix="ost_";
+        else
+            @$prefix=$_REQUEST['prefix'];
+	@$supportpage=$_REQUEST['supportpage'];
+	@$version=$_REQUEST['version'];
                 
-	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'supportpage'=>$supportpage,'version'=>$version);
+	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'prefix'=>$prefix,'supportpage'=>$supportpage,'version'=>$version);
               
 	if (($_REQUEST['host']=="") || ($_REQUEST['database']=="") || ($_REQUEST['username']=="") || ($_REQUEST['supportpage']=="") )
 	{
@@ -30,19 +34,21 @@ Template Name: ost-config
 	$current_user = wp_get_current_user();
 	$new_page_title = $supportpage;
 	$new_page_name = $supportpage;
-	
-			wp_insert_post(
-			array(
-				'comment_status'	=>	'closed',
-				'ping_status'		=>	'closed',
-				'post_author'		=>	$current_user->ID,
-				'post_name'			=>	$supportpage,
-				'post_title'		=>	$supportpage,
-				'post_content' 		=> '[addosticket]', 
-				'post_status'		=>	'publish',
-				'post_type'			=>	'page'
-	)
-		);
+		global $wpdb;
+		$found = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_content='[addosticket]' AND post_status='publish'");		
+		if ($found == 0)
+		{ 
+		wp_insert_post(array('comment_status'		=>'closed',
+						'ping_status'		=>'closed',
+						'post_author'		=>$current_user->ID,
+						'post_name'		=>$supportpage,
+						'post_title'		=>$supportpage,
+						'post_content' 		=> '[addosticket]', 
+						'post_status'		=>'publish',
+						'post_type'		=>'page'
+					));
+		}
+			
 	
 	update_option('os_ticket_config', $config);
 	$config = get_option('os_ticket_config');
@@ -50,7 +56,7 @@ Template Name: ost-config
 	$con = mysql_connect($host, $username, $password, true, 65536) or die("cannot connect");
 	mysql_select_db($database, $con) or die("cannot use database");
 	mysql_query("
-	CREATE TABLE IF NOT EXISTS ost_ticket__cdata (
+	CREATE TABLE IF NOT EXISTS ".$prefix."ticket__cdata (
   	ticket_id int(11) unsigned NOT NULL DEFAULT '0',
   	subject mediumtext,
   	priority mediumtext,
@@ -61,7 +67,7 @@ Template Name: ost-config
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);
 	global $ost;
-	$ticket_cdata="ost_ticket__cdata";
+	$ticket_cdata=$prefix."ticket__cdata";
 	$osinstall="osTicket Installed!";
 	$osticid=1;
 	$prior="Normal";
@@ -88,19 +94,23 @@ extract($config);
 <table class="cofigtb">
 <tr>
 <td class="config_td"><label class="config_label">Host Name:</label></td>                
-<td><input type="text" name="host" id="host" size="20" value="<?php echo $host;?>"/>&nbsp;&nbsp;( Normally this is localhost )</td>
+<td><input type="text" name="host" id="host" size="20" value="<?php echo @$host;?>"/>&nbsp;&nbsp;( Normally this is localhost )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Database Name:</label></td>                
-<td><input type="text" name="database" id="database" size="20" value="<?php echo $database;?>"/>&nbsp;&nbsp;( osTicket Database Name Goes Here )</td>
+<td><input type="text" name="database" id="database" size="20" value="<?php echo @$database;?>"/>&nbsp;&nbsp;( osTicket Database Name Goes Here )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Database Username:</label></td>                
-<td><input type="text" name="username" id="username" size="20" value="<?php echo $username;?>"/>&nbsp;&nbsp;( osTicket Database Username Goes Here )</td>
+<td><input type="text" name="username" id="username" size="20" value="<?php echo @$username;?>"/>&nbsp;&nbsp;( osTicket Database Username Goes Here )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Database Password:</label></td>                
-<td><input type="password" name="password" id="password" size="20" value="<?php echo $password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
+<td><input type="password" name="password" id="password" size="20" value="<?php echo @$password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
+</tr>
+<tr>
+<td class="config_td"><label class="config_label">Database Prefix:</label></td>                
+<td><input type="text" name="prefix" id="prefix" size="20" value="<?php echo @$prefix;?>"/>&nbsp;&nbsp;( osTicket Database Prefix Goes Here )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Landing Page Name:</label></td>                

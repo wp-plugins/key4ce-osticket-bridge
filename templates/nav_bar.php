@@ -32,7 +32,7 @@ else
     echo "<div style=\"display: table; width: 100%;\">";
 	echo "<div id='search_ticket' style='display: table-row;'>"; 
 	echo "<div id='search_box' style='display: table-cell;'>";
-    if(isset($service) && $service=='new' OR $service=='view') { 
+    if(isset($service) && $service=='new' || $service=='view') { 
  	echo "<a class=\"blue but\" href=".$service_list.">View Tickets</a>";
     } else { 
    	echo "<a class=\"blue but\" href=".$service_new.">Create Ticket</a>"; 

@@ -26,7 +26,7 @@ function generateID()
 	$ost_wpdb = new wpdb($username, $password, $database, $host);	
 	$link=mysql_connect($host,$username,$password);
 	$db=mysql_select_db($database,$link);
-	$res=mysql_query("SELECT count(*) as count from ost_ticket WHERE number = '$id'",$link);
+	$res=mysql_query("SELECT count(*) as count from ".$prefix."ticket WHERE number = '$id'",$link);
 	$checkUserID=mysql_fetch_array($res);
 	$count_no=$checkUserID['count'];
 	if($count_no > 0)
@@ -52,7 +52,7 @@ function getKeyValue($key)
 	$ost_wpdb = new wpdb($username, $password, $database, $host);	
 	$link=mysql_connect($host,$username,$password);
 	$db=mysql_select_db($database,$link);
-	$res=mysql_query("SELECT value FROM `ost_config` WHERE `key` LIKE '$key'",$link);
+	$res=mysql_query("SELECT value FROM ".$prefix."config WHERE `key` LIKE '$key'",$link);
 	$checkUserID=mysql_fetch_array($res);
 	$getKeyvalue=$checkUserID['value'];	
 	return $getKeyvalue;

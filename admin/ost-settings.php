@@ -10,15 +10,16 @@ Template Name: ost-settings
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav.php' ); ?>
 <div id="tboxwh" class="pg1">Some simple plugin settings for Wordpress.</div>
 <div style="clear: both"></div>
-<?php
+<?php 
+
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
-$default_email_id=$ost_wpdb->get_var("SELECT value FROM `ost_config` WHERE `key` LIKE 'default_email_id'");
-$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM `ost_email` WHERE `email_id` =$default_email_id");
+$default_email_id=$ost_wpdb->get_var("SELECT value FROM ".$prefix."config WHERE `key` LIKE 'default_email_id'");
+$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM ".$prefix."email WHERE `email_id` =$default_email_id");
 $default_email=$default_email_id_data->email;
 $defalt_name=$default_email_id_data->name;
 ?>
 <form name="ost-settings" action="admin.php?page=ost-settings" method="post">
-<input type="hidden" name="adname" value="<?php echo $admin_fname; echo $admin_lname; ?>"/>
+<input type="hidden" name="adname" value="<?php echo $admin_fname; ?> <?php echo $admin_lname; ?>"/>
 <table class="cofigtb">
 <tr>
 <td class="config_td"><label class="config_label">Support Center Status:</label></td>
@@ -46,7 +47,7 @@ Note: If email polling, login to: osTicket->Emails->Templates->Response/Reply Te
 <tr>
 <td class="config_td"><label class="config_label">SMTP Status</label></td>                
 <td>
-<?php
+<?php 
 if($smtp_status=="enable")
 	$enable="selected";
 else

@@ -25,7 +25,7 @@ and a confirmation email is being sent to you at: <font color=green><?php echo $
 <center>Thank you for contacting us!</center>
 </p>
 <?php } else {
-$selectuser_id = mysql_query("SELECT user_id FROM `ost_user_email` WHERE `address` = '".$current_user->user_email."'");
+$selectuser_id = mysql_query("SELECT user_id FROM ".$prefix."user_email WHERE `address` = '".$current_user->user_email."'");
 $get_user_id = mysql_fetch_row($selectuser_id);
 $user_id=$get_user_id[0];
 ?>

@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1
 Tested up to: 3.9
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -26,6 +26,7 @@ adding new features, fixing old bugs and security flaws.
 
 = Fixes/ new Features: =
 
+* osTicket prefix field
 * Shortcode Implementation to avoid Theme issues
 * Reply Separator Tag fix
 * New design for both Admin and Client end
@@ -73,6 +74,12 @@ http://osticket.com/download
 4. Shows how the Wordpress admin views the ticket.
 
 == Changelog ==
+= 1.1.3 =
+- Added database Prefix field
+- Fixed mysql bugs
+- Fixed first time user issue.
+- Headers already sent fixed.
+
 = 1.1.2 =
 - Shows name in ticket threads.
 - SMTP save field fix
@@ -109,6 +116,9 @@ http://osticket.com/download
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
 == Upgrade Notice ==
+= 1.1.3 =
+Database Prefix field added, and mysql bugs fixed.
+
 = 1.1.2 =
 Minor update: Cleaned up legacy code and fixed:smtp fields and offline mode
 

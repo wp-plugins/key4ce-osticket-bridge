@@ -3,7 +3,7 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
-Version: 1.1.2
+Version: 1.1.3
 Author: Key4ce
 Author URI: http://key4ce.eu
 License: GPLv3
@@ -75,7 +75,7 @@ if (($database=="") || ($username=="") || ($password=="")) {
 } else {
 $con = mysql_connect($host, $username, $password, true, 65536);
 mysql_select_db($database, $con);
-$result = mysql_query("SELECT number FROM ost_ticket WHERE status='open' AND isanswered='0'");
+$result = mysql_query("SELECT number FROM ".$prefix."ticket WHERE status='open' AND isanswered='0'");
 $num_rows = mysql_num_rows($result);
     $page_title = 'Support/Request List';
 	if ($num_rows > 0) {
@@ -131,10 +131,11 @@ $host='localhost';
 $database='';
 $username='';
 $password='';
+$prefix='';
 $supportpage='Support';
-$version='18';
+@$version='18';
 
-$config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'supportpage'=>$supportpage,'version'=>$version);
+$config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'prefix'=>$prefix,'supportpage'=>$supportpage,'version'=>$version);
 update_option( 'os_ticket_config', $config);
 }
 
@@ -202,7 +203,7 @@ function mb_database_install() {
    'updated' => current_time('mysql') 
    ) ); 
 
- $table_name_config = "ost_config";
+ $table_name_config = $prefix."config";
 //SMTP Username record insert Start Here Added By Pratik Maniar
    $id = '';
    $namespace = "core";

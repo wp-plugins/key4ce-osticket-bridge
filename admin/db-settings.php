@@ -29,19 +29,19 @@ $config = get_option('os_ticket_config');
 extract($config);
 $ost_wpdb = new wpdb($username, $password, $database, $host);
 global $ost;
-$config_table="ost_config";
-$dept_table="ost_department";
-$topic_table="ost_help_topic";
-$ost_email="ost_email";
-$email_temp_table="ost_email_template";
-$ticket_table="ost_ticket";
-$ticket_event_table="ost_ticket_event";
-$thread_table="ost_ticket_thread";
-$priority_table="ost_ticket_priority";
-$ticket_cdata="ost_ticket__cdata";
-$staff_table="ost_staff";
-$ost_user="ost_user";
-$ost_useremail="ost_user_email";
+$config_table=$prefix."config";
+$dept_table=$prefix."department";
+$topic_table=$prefix."help_topic";
+$ost_email=$prefix."email";
+$email_temp_table=$prefix."email_template";
+$ticket_table=$prefix."ticket";
+$ticket_event_table=$prefix."ticket_event";
+$thread_table=$prefix."ticket_thread";
+$priority_table=$prefix."ticket_priority";
+$ticket_cdata=$prefix."ticket__cdata";
+$staff_table=$prefix."staff";
+$ost_user=$prefix."user";
+$ost_useremail=$prefix."user_email";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
 $version=$config['version'];
@@ -183,7 +183,7 @@ $admin_lname=$admin_info->lastname;
 
 $id_hidename=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%hide_staff_name%');");
 $hidename=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_hidename");
-$hidename=$hidename->value;
+@$hidename=$hidename->value;
 
 $id_replysep=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%reply_separator%');");
 $reply_sep=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_replysep");
@@ -212,8 +212,8 @@ $ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WH
 # ==============================================================================================
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
-$ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM `ost_ticket` 
-INNER JOIN $dept_table ON $dept_table.dept_id=ost_ticket.dept_id 
+$ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table 
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
 INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id
 INNER JOIN $thread_table ON $thread_table.ticket_id=$ticket_table.ticket_id
 INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id
@@ -300,11 +300,11 @@ $smtp_port=$_POST['smtp_port'];
 //SMTP Setting Changes Post Variables End Here Added By Pratik Maniar
 $max_open_tickets=$_POST['max_open_tickets'];
 $reply_sep=$_POST['reply_sep'];
-$hidename=$_POST['hidename'];
-$os_admin_email=$_POST['admin_email'];
-$admin_fname=$_POST['admin_fname'];
-$admin_lname=$_POST['admin_lname'];
-$adfullname=$_POST['adname'];
+$hidename=@$_POST['hidename'];
+$os_admin_email=@$_POST['admin_email'];
+$admin_fname=@$_POST['admin_fname'];
+$admin_lname=@$_POST['admin_lname'];
+$adfullname=@$_POST['adname'];
 $ost_wpdb->update($config_table, array('value'=>$online), array('id'=>$id_isonline), array('%d'));
 $ost_wpdb->update($config_table, array('value'=>$title_name), array('id'=>$id_helptitle), array('%s'));
 //SMTP Setting Changes Query Start Here Added By Pratik Maniar
