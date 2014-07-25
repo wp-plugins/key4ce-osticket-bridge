@@ -5,7 +5,7 @@ Template Name: db-settings-18.php
 ?>
 <?php 
 global $wpdb; 
-$ostemail = $wpdb->prefix . "ost_emailtemp"; 
+$ostemail = $wpdb->keyost_prefix . "ost_emailtemp"; 
 $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,updated FROM $ostemail where name = 'Admin-Response'"); 
 $adminreply=$adminreply->text;
 $arname='Admin-Response';
@@ -20,7 +20,7 @@ $ntname='New-Ticket';
 $user_name=$current_user->user_login; 
 $e_address=$current_user->user_email;
 /*Add user id of ticket instead of wordpress */
-$selectuser_id = mysql_query("SELECT user_id FROM ".$prefix."user_email WHERE `address` = '".$e_address."'");
+$selectuser_id = mysql_query("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
 $get_user_id = mysql_fetch_row($selectuser_id);
 $user_id=$get_user_id[0];
 
@@ -37,7 +37,7 @@ $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.numbe
 $threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
-	inner join ".$prefix."user_email on ".$prefix."user_email.user_id = $ticket_table.user_id
+	inner join ".$keyost_prefix."user_email on ".$keyost_prefix."user_email.user_id = $ticket_table.user_id
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC"); 
 $search="";

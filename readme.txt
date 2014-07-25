@@ -26,7 +26,7 @@ adding new features, fixing old bugs and security flaws.
 
 = Fixes/ new Features: =
 
-* osTicket prefix field
+* osTicket keyost_prefix field
 * Shortcode Implementation to avoid Theme issues
 * Reply Separator Tag fix
 * New design for both Admin and Client end
@@ -75,7 +75,7 @@ http://osticket.com/download
 
 == Changelog ==
 = 1.1.3 =
-- Added database Prefix field
+- Added database keyost_prefix field
 - Fixed mysql bugs
 - Fixed first time user issue.
 - Headers already sent fixed.
@@ -118,7 +118,7 @@ http://osticket.com/download
 
 == Upgrade Notice ==
 = 1.1.3 =
-Database Prefix field added, and mysql bugs fixed.
+Database keyost_prefix field added, and mysql bugs fixed.
 
 = 1.1.2 =
 Minor update: Cleaned up legacy code and fixed:smtp fields and offline mode
