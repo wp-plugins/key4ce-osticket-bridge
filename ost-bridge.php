@@ -69,19 +69,27 @@ function mb_admin_menu() {
 
 $config = get_option('os_ticket_config');
 extract($config);
-if (($database=="") || ($username=="") || ($password=="")) {
+if (($database=="") || ($username=="") || ($password=="") || ($keyost_prefix=="")) {
     $page_title = 'Support/Request List';
     $menu_title = 'Tickets';
 } else {
 $con = mysql_connect($host, $username, $password, true, 65536);
+if (mysqli_connect_errno()) {
+    $page_title = 'Support/Request List';
+    $menu_title = 'Tickets';
+} else {
 mysql_select_db($database, $con);
-$result = mysql_query("SELECT number FROM ".$prefix."ticket WHERE status='open' AND isanswered='0'");
+$result = mysql_query("SELECT number FROM ".$keyost_prefix."ticket WHERE status='open' AND isanswered='0'");
+if (empty($result)) {
+	   $num_rows = '0';
+} else {
 $num_rows = mysql_num_rows($result);
+}
     $page_title = 'Support/Request List';
 	if ($num_rows > 0) {
     $menu_title = 'Tickets <span class="awaiting-mod"><span class="pending-count">' . $num_rows . '</span></span>';
 	} else {
-	$menu_title = 'Tickets'; } }
+	$menu_title = 'Tickets'; } } }
 	$capability = 'manage_options';
     $menu_slug = 'ost-tickets';
     $function = 'ost_tickets_page';
@@ -131,17 +139,16 @@ $host='localhost';
 $database='';
 $username='';
 $password='';
-$prefix='';
+$keyost_prefix='ost_';
 $supportpage='Support';
-@$version='18';
 
-$config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'prefix'=>$prefix,'supportpage'=>$supportpage,'version'=>$version);
+$config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage);
 update_option( 'os_ticket_config', $config);
 }
 
 function mb_table_install() {
 global $wpdb;
-$table_name = $wpdb->prefix . "ost_emailtemp"; 
+$table_name = $wpdb->keyost_prefix . "ost_emailtemp"; 
    
 $sql = "CREATE TABLE $table_name (
 id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -159,7 +166,7 @@ dbDelta( $sql );
 
 function mb_database_install() {
    global $wpdb;
-   $table_name = $wpdb->prefix . "ost_emailtemp";
+   $table_name = $wpdb->keyost_prefix . "ost_emailtemp";
    $id = '1';
    $name = "Admin-Response";
    $subject = "Ticket ID [#\$ticketid]";
@@ -203,7 +210,7 @@ function mb_database_install() {
    'updated' => current_time('mysql') 
    ) ); 
 
- $table_name_config = $prefix."config";
+ $table_name_config = $keyost_prefix."config";
 //SMTP Username record insert Start Here Added By Pratik Maniar
    $id = '';
    $namespace = "core";
@@ -279,7 +286,7 @@ function mb_uninstall()
 {
     delete_option('os_ticket_config');
     global $wpdb;
-    $table = $wpdb->prefix."ost_emailtemp";
+    $table = $wpdb->keyost_prefix."ost_emailtemp";
     $wpdb->query("DROP TABLE IF EXISTS $table");
     $table_config = "ost_config";
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_username'");

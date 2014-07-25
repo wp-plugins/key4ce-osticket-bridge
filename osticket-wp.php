@@ -11,7 +11,7 @@ extract($config);
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); ?>
 <?php
 global $wpdb;
-$ostemail = $wpdb->prefix . "ost_emailtemp"; 
+$ostemail = $wpdb->keyost_prefix . "ost_emailtemp"; 
 $newticket=$wpdb->get_row("SELECT id,name,$ostemail.subject,$ostemail.text,created,updated FROM $ostemail where name = 'New-Ticket'"); 
 $newticket=$newticket->text;
 
@@ -27,20 +27,19 @@ $poconsubmail=$poconsubmail->subject;
 
 $ost_wpdb = new wpdb($username, $password, $database, $host);
 global $current_user;
-$config_table=$prefix."config";
-$dept_table=$prefix."department";
-$topic_table=$prefix."help_topic";
-$ticket_table=$prefix."ticket";
-$ticket_event_table=$prefix."ticket_event";
-$priority_table=$prefix."ticket_priority";
-$thread_table=$prefix."ticket_thread";
-$ticket_cdata=$prefix."ticket__cdata";
-$ost_user=$prefix."user";
-$ost_staff=$prefix."staff";
-$ost_useremail=$prefix."user_email";
+$config_table=$keyost_prefix."config";
+$dept_table=$keyost_prefix."department";
+$topic_table=$keyost_prefix."help_topic";
+$ticket_table=$keyost_prefix."ticket";
+$ticket_event_table=$keyost_prefix."ticket_event";
+$priority_table=$keyost_prefix."ticket_priority";
+$thread_table=$keyost_prefix."ticket_thread";
+$ticket_cdata=$keyost_prefix."ticket__cdata";
+$ost_user=$keyost_prefix."user";
+$ost_staff=$keyost_prefix."staff";
+$ost_useremail=$keyost_prefix."user_email";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
-$version=$config['version'];
 $category=@$_GET['cat'];
 $status_opt=@$_GET['status'];
 $ticket=@$_GET['ticket'];
@@ -54,8 +53,8 @@ $isactive=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_tabl
 $isactive=$isactive->value;
 
 //Added By Pratik Maniar on 01-05-2014 Start Here
-$default_email_id=$ost_wpdb->get_var("SELECT value FROM ".$prefix."config WHERE `key` LIKE 'default_email_id'");
-$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM ".$prefix."email WHERE `email_id` =$default_email_id");
+$default_email_id=$ost_wpdb->get_var("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE 'default_email_id'");
+$default_email_id_data=$ost_wpdb->get_row("SELECT * FROM ".$keyost_prefix."email WHERE `email_id` =$default_email_id");
 //Added By Pratik Maniar on 01-05-2014 End Here
 
 $title_name=$default_email_id_data->name;

@@ -3,7 +3,7 @@
 # Connect to the database for the Email Templates - used in ost-emailtemp & ost-postreplymail
 # ==============================================================================================
 global $wpdb; 
-$ostemail = $wpdb->prefix . "ost_emailtemp"; 
+$ostemail = $wpdb->keyost_prefix . "ost_emailtemp"; 
 $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,updated FROM $ostemail where name = 'Admin-Response'"); 
 $adminreply=$adminreply->text;
 $arname='Admin-Response';
@@ -29,22 +29,21 @@ $config = get_option('os_ticket_config');
 extract($config);
 $ost_wpdb = new wpdb($username, $password, $database, $host);
 global $ost;
-$config_table=$prefix."config";
-$dept_table=$prefix."department";
-$topic_table=$prefix."help_topic";
-$ost_email=$prefix."email";
-$email_temp_table=$prefix."email_template";
-$ticket_table=$prefix."ticket";
-$ticket_event_table=$prefix."ticket_event";
-$thread_table=$prefix."ticket_thread";
-$priority_table=$prefix."ticket_priority";
-$ticket_cdata=$prefix."ticket__cdata";
-$staff_table=$prefix."staff";
-$ost_user=$prefix."user";
-$ost_useremail=$prefix."user_email";
+$config_table=$keyost_prefix."config";
+$dept_table=$keyost_prefix."department";
+$topic_table=$keyost_prefix."help_topic";
+$ost_email=$keyost_prefix."email";
+$email_temp_table=$keyost_prefix."email_template";
+$ticket_table=$keyost_prefix."ticket";
+$ticket_event_table=$keyost_prefix."ticket_event";
+$thread_table=$keyost_prefix."ticket_thread";
+$priority_table=$keyost_prefix."ticket_priority";
+$ticket_cdata=$keyost_prefix."ticket__cdata";
+$staff_table=$keyost_prefix."staff";
+$ost_user=$keyost_prefix."user";
+$ost_useremail=$keyost_prefix."user_email";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
-$version=$config['version'];
 $category=@$_GET['cat'];
 $status_opt=@$_GET['status'];
 $ticket=@$_GET['ticket'];
@@ -59,7 +58,7 @@ $id_helptitle=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_tab
 $title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_helptitle");
 $title_name=$title_name->value;
 
-$table_name_config = $prefix."config";
+$table_name_config = $keyost_prefix."config";
 // STMP Status Start Here By Pratik Maniar
 $count_smtp_status=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
 if($count_smtp_status == 0)

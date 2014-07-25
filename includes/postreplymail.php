@@ -7,8 +7,8 @@ require_once('functions.php');
 <?php
 global $current_user;
 get_currentuserinfo();
-$config_table=$prefix."config";
-$staff_table=$prefix."staff";
+$config_table=$keyost_prefix."config";
+$staff_table=$keyost_prefix."staff";
 $pid=0;
 $staffid=0;
 $source="Web";
@@ -128,7 +128,7 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 	else
 	{
 		//If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code Start Here
-		$getGroups=$ost_wpdb->get_results("SELECT * FROM ".$prefix."group_dept_access WHERE `dept_id` =$dep_id");
+		$getGroups=$ost_wpdb->get_results("SELECT * FROM ".$keyost_prefix."group_dept_access WHERE `dept_id` =$dep_id");
 		foreach($getGroups as $group)
 		{
 			$group_id=$group->group_id;

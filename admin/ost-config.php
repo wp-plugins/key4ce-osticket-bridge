@@ -16,14 +16,13 @@ Template Name: ost-config
 	@$database=$_REQUEST['database'];
 	@$username=$_REQUEST['username'];
 	@$password=$_REQUEST['password'];
-        if($_REQUEST['prefix']=="")
-            @$prefix="ost_";
+        if($_REQUEST['keyost_prefix']=="")
+            @$keyost_prefix="ost_";
         else
-            @$prefix=$_REQUEST['prefix'];
+            @$keyost_prefix=$_REQUEST['keyost_prefix'];
 	@$supportpage=$_REQUEST['supportpage'];
-	@$version=$_REQUEST['version'];
                 
-	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'prefix'=>$prefix,'supportpage'=>$supportpage,'version'=>$version);
+	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage);
               
 	if (($_REQUEST['host']=="") || ($_REQUEST['database']=="") || ($_REQUEST['username']=="") || ($_REQUEST['supportpage']=="") )
 	{
@@ -56,7 +55,7 @@ Template Name: ost-config
 	$con = mysql_connect($host, $username, $password, true, 65536) or die("cannot connect");
 	mysql_select_db($database, $con) or die("cannot use database");
 	mysql_query("
-	CREATE TABLE IF NOT EXISTS ".$prefix."ticket__cdata (
+	CREATE TABLE IF NOT EXISTS ".$keyost_prefix."ticket__cdata (
   	ticket_id int(11) unsigned NOT NULL DEFAULT '0',
   	subject mediumtext,
   	priority mediumtext,
@@ -67,7 +66,7 @@ Template Name: ost-config
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);
 	global $ost;
-	$ticket_cdata=$prefix."ticket__cdata";
+	$ticket_cdata=$keyost_prefix."ticket__cdata";
 	$osinstall="osTicket Installed!";
 	$osticid=1;
 	$prior="Normal";
@@ -109,8 +108,8 @@ extract($config);
 <td><input type="password" name="password" id="password" size="20" value="<?php echo @$password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Database Prefix:</label></td>                
-<td><input type="text" name="prefix" id="prefix" size="20" value="<?php echo @$prefix;?>"/>&nbsp;&nbsp;( osTicket Database Prefix Goes Here )</td>
+<td class="config_td"><label class="config_label">Database keyost_prefix:</label></td>                
+<td><input type="text" name="keyost_prefix" id="keyost_prefix" size="20" value="<?php echo @$keyost_prefix;?>"/>&nbsp;&nbsp;( osTicket Database keyost_prefix Goes Here )</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Landing Page Name:</label></td>                
