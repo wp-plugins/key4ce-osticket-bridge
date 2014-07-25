@@ -59,7 +59,7 @@ $id_helptitle=$ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_tab
 $title_name=$ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_helptitle");
 $title_name=$title_name->value;
 
-$table_name_config = "ost_config";
+$table_name_config = $prefix."config";
 // STMP Status Start Here By Pratik Maniar
 $count_smtp_status=$ost_wpdb->get_var("SELECT count(*) FROM $config_table WHERE $config_table.key like ('%smtp_status%');");
 if($count_smtp_status == 0)
