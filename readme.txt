@@ -79,6 +79,7 @@ http://osticket.com/download
 - Fixed mysql bugs
 - Fixed first time user issue.
 - Headers already sent fixed.
+- Creating multiple ticket pages on save has been resolved.
 
 = 1.1.2 =
 - Shows name in ticket threads.
