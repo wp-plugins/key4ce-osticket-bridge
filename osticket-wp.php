@@ -11,7 +11,7 @@ extract($config);
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); ?>
 <?php
 global $wpdb;
-$ostemail = $wpdb->keyost_prefix . "ost_emailtemp"; 
+$ostemail = $wpdb->prefix . "ost_emailtemp"; 
 $newticket=$wpdb->get_row("SELECT id,name,$ostemail.subject,$ostemail.text,created,updated FROM $ostemail where name = 'New-Ticket'"); 
 $newticket=$newticket->text;
 

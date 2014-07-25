@@ -148,7 +148,7 @@ update_option( 'os_ticket_config', $config);
 
 function mb_table_install() {
 global $wpdb;
-$table_name = $wpdb->keyost_prefix . "ost_emailtemp"; 
+$table_name = $wpdb->prefix . "ost_emailtemp"; 
    
 $sql = "CREATE TABLE $table_name (
 id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -166,7 +166,7 @@ dbDelta( $sql );
 
 function mb_database_install() {
    global $wpdb;
-   $table_name = $wpdb->keyost_prefix . "ost_emailtemp";
+   $table_name = $wpdb->prefix . "ost_emailtemp";
    $id = '1';
    $name = "Admin-Response";
    $subject = "Ticket ID [#\$ticketid]";
@@ -286,7 +286,7 @@ function mb_uninstall()
 {
     delete_option('os_ticket_config');
     global $wpdb;
-    $table = $wpdb->keyost_prefix."ost_emailtemp";
+    $table = $wpdb->prefix."ost_emailtemp";
     $wpdb->query("DROP TABLE IF EXISTS $table");
     $table_config = "ost_config";
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_username'");
