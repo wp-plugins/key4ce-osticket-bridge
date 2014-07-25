@@ -1,0 +1,675 @@
+
+/********* Main container - used in all pages **********/
+#ost_container {
+	width: auto;
+	min-width:660px;
+	margin: 20px 20px 20px 20px;
+	background-color: #fff;
+	font-size: 100%;
+}
+/********* Welcome Page **********/
+#welcome {
+	margin: 10px;
+	text-align: left;
+	font-size: 23px;
+	color: #00AEEF;
+	font-weight: bold;
+}
+#welcome_st {
+	padding-left:15px;
+	text-align: left;
+	font-size: 100%;
+	line-height: 16px;
+	color: #666;
+	font-weight: normal;
+}
+table.welcome {
+	width: 95%;
+	margin: 20px;
+	text-align: left;
+	font-size: 100%;
+	line-height: 18px;
+	color: #666;
+	font-weight: normal;
+}
+.nobd {
+	border: 0;
+}
+table.welcome .ticket {
+	padding: 10px;
+	text-align: left;
+	font-size: 20px;
+}
+table.welcome .par1 {
+	padding: 5px;
+	text-align: left;
+	font-size: 100%;
+}
+table.welcome .par2 {
+	text-align: center;
+	font-size: 100%;
+	color: #009933;
+	font-weight: bold;
+}
+/********* Login Register Forgot Page **********/
+#login_Reg  {
+	width: 90%;
+	margin-top:18px;
+	margin-bottom:10px;
+	margin-left:auto;
+	margin-right:auto;
+}
+table.login  {
+	width: 96%;
+	margin-left:20px;
+	margin-right:auto;
+	border: 1px solid #0299d2;
+	border-collapse: collapse;
+}
+table.register  {
+	width: 96%;
+	margin-left:20px;
+	margin-right:auto;
+	border: 1px solid #0a0;
+	border-collapse: collapse;
+}
+table.forgot  {
+	width: 96%;
+	margin-left:20px;
+	margin-right:auto;
+	border: 1px solid #a00;
+	border-collapse: collapse;
+}
+table.login td {
+	padding:7px;
+	color: #666;
+	font-size: 100%;
+	font-weight: normal;
+	font-family: arial, sans-serif;
+	vertical-align: middle;
+}
+table.register td {
+	padding:7px;
+	color: #666;
+	font-size: 100%;
+	font-weight: normal;
+	font-family: arial, sans-serif;
+	vertical-align: middle;
+}
+table.forgot td {
+	padding:7px;
+	color: #666;
+	font-size: 100%;
+	font-weight: normal;
+	font-family: arial, sans-serif;
+	vertical-align: middle;
+}
+/********* Top osT Nav Bar **********/
+#ost_bar {
+	width: auto !important;
+	margin: 15px 20px 10px 20px;
+	height: 30px;
+	background-color: #eee;
+	border-top: 2px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	font-family: arial, sans-serif;
+}
+#ost_bar li {
+	list-style: none;
+	display: inline;
+}
+#ost_bar li a {
+	display: block;
+	width: auto;
+	float: left;
+	line-height: 25px;
+	text-align: center;
+	text-decoration: none;
+	padding: 3px 10px 0 32px;
+	color: #000;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	background-position: 10px 50%;
+	background-repeat: no-repeat;
+}
+#ost_bar li a:hover {
+	color: #0054a6;
+	text-decoration: none;
+}
+#ost_bar li a.home {
+	background-image: url('../images/home.png');
+}
+#ost_bar li a.closed {
+	background-image: url('../images/tix_closed.png');
+}
+#ost_bar li a.new {
+	background-image: url('../images/new.png');
+}
+#ost_bar li a.status {
+	background-image: url('../images/status.png');
+}
+#ost_bar li a.tickets {
+	background-image: url('../images/ticket.gif');
+}
+#ost_bar li a.logout {
+	background-image: url('../images/error.png');
+	float: right;
+}
+/********* Search Page **********/
+#search_ticket {
+	padding-top: 15px;
+	padding-bottom: 12px;
+	margin: 0px 20px 0px 20px;
+}
+#search_box {
+    width: 100%;
+}
+#search_opcl {
+	padding-top: 7px;
+    white-space:nowrap;
+}
+/********* Button's Welcome Page - Input - Texteara **********/
+.but,
+.but:visited {
+  background: #222;
+  display: inline-block;
+  font-size: 16px;
+  padding: 8px 16px 6px 16px;
+  width: auto;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  position: relative;
+  cursor: pointer;
+  font-family: helvetica, arial, sans-serif;
+}
+.green.but,
+.green.but:visited {
+  background-color: #91bd09;
+  text-decoration: none;
+}
+.green.but:hover {
+  background-color: #749a02;
+  text-decoration: none;
+}
+.blue.but,
+.blue.but:visited {
+  background-color: #00AEEF;
+  text-decoration: none;
+}
+.blue.but:hover {
+  background-color: #0299d2;
+  text-decoration: none;
+}
+textarea {
+	padding:5px; 
+	border:2px solid #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 75%;
+}
+textarea:focus {
+	border-color:#ddd; 
+}
+
+
+input[type=password] {
+	padding:5px; 
+	border:2px solid #ccc; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-family: helvetica, arial, sans-serif;
+}
+input[type=text].ost:focus {
+	border-color:#ddd; 
+}
+input[type=password]:focus {
+	border-color:#ddd; 
+}
+input[readonly], input[readonly="readonly"], input[readonly="true"] {
+    background-color: #ddd;
+}
+
+/********* No Tickets **********/
+#no_tics {
+	padding-top: 30px;
+	padding-bottom: 50px;
+	text-align: center;
+}
+/********* List All Tickets **********/
+.cofigmenu {
+	width: 100%;
+	display: table;
+}
+#ticket_menu {
+	display: table-row;
+	width: 100%;
+	padding: 10px;
+	background-color: #dfdfdf;
+	font-weight: bold;
+	color: #666;
+	font-family: arial;
+}
+
+#ticket_menu1 {
+	display: table-cell;
+	width: 100px;
+	margin: 10px 0px 10px 15px;
+	padding: 10px;
+	border-top:2px solid #d6d5d5;
+	border-bottom:1px solid #d6d5d5;
+
+}
+#ticket_menu2 {
+	display: table-cell;
+	margin: 10px 0px 10px 0px;
+	width:auto;
+	padding: 10px;
+	border-top:2px solid #d6d5d5;
+	border-bottom:1px solid #d6d5d5;
+
+}
+#ticket_menu3 {
+	display: table-cell;
+	width: 150px;
+	margin: 10px 0px 10px 0px;
+	padding: 10px;
+	border-top:2px solid #d6d5d5;
+	border-bottom:1px solid #d6d5d5;
+}
+#ticket_menu4 {
+	display: table-cell;
+	width: 150px;
+	margin: 10px 0px 10px 0px;
+	padding: 10px;
+	border-top:2px solid #d6d5d5;
+	border-bottom:1px solid #d6d5d5;
+
+}
+#ticket_menu5 {
+	display: table-cell;
+	width: 100px;
+	margin: 10px 0px 10px 0px;
+	padding: 10px;
+	border-top:2px solid #d6d5d5;
+	border-bottom:1px solid #d6d5d5;
+	
+}
+#ticket_list:nth-child(odd) {
+	background-color:#ededed;
+}
+#ticket_list:hover {
+	background-color: #f9f8f8;
+	cursor: pointer;
+}
+#ticket_list {
+	display: table-row;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0px;
+	width: 100%;
+	font-family: arial;
+}
+
+#ticket_list1 {
+	width: 100px;
+	padding: 10px;
+	display: table-cell;
+	border-bottom:1px solid #e0e0e0;
+}
+#ticket_list1 a {
+	color: #666;
+	font-weight: normal;
+}
+#ticket_list1 a:hover {
+	color: #0054a6;
+	text-decoration: none;
+}
+#ticket_list2 {
+	display: table-cell;
+	padding: 10px;
+	border-bottom:1px solid #e0e0e0;
+}
+#ticket_list3 {
+	width: 150px;
+	display: table-cell;
+    padding: 10px;
+    font-weight: bold;
+	border-bottom:1px solid #e0e0e0;
+}
+#ticket_list4 {
+	width: 150px;
+	display: table-cell;
+	padding: 10px;
+	border-bottom:1px solid #e0e0e0;
+}
+#ticket_list5 {
+	width: 100px;
+	display: table-cell;
+	padding: 10px;
+	border-bottom:1px solid #e0e0e0;
+}
+/********* Ticket Pagination **********/
+#list_pagination {
+	padding-top:10px;
+	padding-bottom:15px;
+	text-align: center
+}
+/********* Ticket View & Post Replies **********/
+#ticket_view {
+	margin: 20px 20px 20px 20px;
+	padding-left:10px;
+}
+#tic_number {
+	padding-right:10px;
+	font-size: 160%;
+	font-weight: normal;
+	color: #00AEEF;
+	float: left;
+}
+#tic_icon {
+	
+	padding-top:5px;
+}
+#tic_info_box {
+	background: #F4FAFF;
+	margin: 0px 20px 0px 20px;
+	width: auto;
+	border:1px solid #e0e0e0;
+	padding: 10px;
+}
+#tic_stat {
+	font-weight: bold;
+	width: 18%;
+	float: left;
+}
+#tic_stat_info {
+	font-weight: normal;
+	width: 35%;
+	float: left;
+}
+#tic_name {
+	font-weight: bold;
+	width: 10%;
+	float: left;
+}
+#tic_name_user {
+	font-weight: normal;
+	width: 25%;
+	float: left;
+}
+#tic_dept {
+	font-weight: bold;
+	width: 18%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_dept_info {
+	font-weight: normal;
+	width: 35%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_email {
+	font-weight: bold;
+	width: 10%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_email_user {
+	font-weight: normal;
+	width: 30%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_created {
+	font-weight: bold;
+	width: 18%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_created_date {
+	font-weight: normal;
+	width: 35%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_phone {
+	font-weight: bold;
+	width: 10%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_phone_info {
+	font-weight: normal;
+	width: 25%;
+	float: left;
+	padding-top: 5px;
+}
+#tic_sub {
+	margin: 20px 20px 20px 20px;
+	width: auto;
+	border:1px solid #e0e0e0;
+	padding: 10px;
+}
+#tic_subject {
+	color: #666;
+	font-weight: bold;
+	font-size: 120%;
+	width: 11%;
+	float: left;
+}
+#tic_subject_info {
+	color: #000;
+	font-family: arial;
+	font-weight: normal;
+	font-size: 110%;
+	padding-top: 2px;
+	width: auto;
+	float: left;
+}
+#tic_thread_img_box {
+	margin: 0px 20px 0px 20px;
+	width: auto;
+}
+#tic_post {
+	margin: 20px 10px 10px 0px;
+	width: 100%;
+	float: left;
+}
+#tic_post_reply {
+	color: #666;
+	font-weight: bold;
+	font-size: 120%;
+	width: 21%;
+	float: left;
+}
+#tic_post_detail {
+	color: #666;
+	font-weight: normal;
+	font-size: 110%;
+	width: 79%;
+	padding-top:10px;
+	float: left;
+}
+#ticketThread table {
+	margin-top: 10px;
+}
+#ticketThread table th {
+	text-align: left;
+	border-bottom: 1px solid #aaa;
+	font-size: 12px;
+	padding: 5px;
+}
+#ticketThread table th span {
+	font-weight: normal;
+	color: #888;
+	padding-left: 10px;
+	padding-right: 5px;
+	float:right;
+}
+#ticketThread table td {
+	padding: 5px;
+}
+#ticketThread .M th {
+	background: #d8efff;
+}
+#ticketThread .R th {
+	background: #ddd;
+}
+.Icon {
+	width: auto;
+	padding-left: 20px;
+	background-position: top left;
+	background-repeat: no-repeat;
+	color: #006699;
+	text-decoration: none;
+}
+a.refresh {
+	display: block;
+	width: auto;
+	float: right;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	padding: 0 10px 0 28px;
+	border: 1px solid #aaa;
+	margin-left: 10px;
+	color: #333;
+	background-position: 5px 50%;
+	background-repeat: no-repeat;
+	background-image: url('../images/refresh.png');
+}
+.Icon.refresh {
+	background-image: url('../images/refresh.gif');
+}
+.Icon.thread {
+	font-weight: bold;
+	font-size: 1.3em;
+	font-family: arial;
+	background-image: url('../images/thread.gif?1319556657');
+}
+/********* New Ticket Submit **********/
+#thContainer {
+	margin: 0 20px;
+	height: auto !important;
+}
+#new_ticket {
+	margin: 20px 20px 20px 20px;
+	padding-left:10px;
+}
+#new_ticket_text1 {
+	font-size: 160%;
+	font-weight: normal;
+	color: #00AEEF;
+	float: left;
+}
+#new_ticket_text2 {
+	padding-top:20px;
+	font-weight: normal;
+	color: #000;
+	float: left;
+}
+#new_ticket_name {
+	padding-top:20px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_name_input {
+	padding-top:17px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_email {
+	padding-top:10px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_email_input {
+	padding-top:7px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_subject {
+	padding-top:20px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_subject_input {
+	padding-top:17px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_catagory {
+	padding-top:15px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_catagory_input {
+	padding-top:12px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_priority {
+	padding-top:10px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_priority_input {
+	padding-top:7px;
+	width: 75%;
+	float: left;
+}
+.error {
+	color: #FF0000;
+}
+#msg_notice {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #0a0;
+  background: url('../images/ok.png') 10px 50% no-repeat #e0ffe0;
+}
+#msg_warning {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #f26522;
+  background: url('../images/alert.png') 10px 50% no-repeat #ffffdd;
+}
+#msg_warning_err {
+  margin: 0px 20px 20px 20px;
+  font-weight: normal;
+  text-align: center;
+  color: #000;
+}
+#msg_error {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #a00;
+  background: url('../images/error.png') 10px 50% no-repeat #fff0f0;
+}
