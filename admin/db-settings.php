@@ -3,7 +3,7 @@
 # Connect to the database for the Email Templates - used in ost-emailtemp & ost-postreplymail
 # ==============================================================================================
 global $wpdb; 
-$ostemail = $wpdb->keyost_prefix . "ost_emailtemp"; 
+$ostemail = $wpdb->prefix . "ost_emailtemp"; 
 $adminreply=$wpdb->get_row("SELECT id,name,subject,$ostemail.text,created,updated FROM $ostemail where name = 'Admin-Response'"); 
 $adminreply=$adminreply->text;
 $arname='Admin-Response';

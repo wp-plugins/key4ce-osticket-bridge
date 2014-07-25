@@ -123,7 +123,7 @@ wp_editor( $content, $editor_id , $settings );?></center>
 <td align="center">
 <?php
 	if($ticketinfo->status=='closed') {
-	echo '<center><label><input type="checkbox" name="open_ticket_status" id="open_ticket_status" value="open">&nbsp;&nbsp;<font color=green>Reopen</font> Ticket On Reply</label></center>';
+	echo '<center><label><input type="checkbox" name="open_ticket_status" id="open_ticket_status" value="open" checked>&nbsp;&nbsp;<font color=green>Reopen</font> Ticket On Reply</label></center>';
 	} elseif ($ticketinfo->status=='open') {
 	echo '<center><label><input type="checkbox" name="close_ticket_status" id="close_ticket_status" value="closed">&nbsp;&nbsp;<font color=red>Close</font> Ticket On Reply</label></center>';
 	}
