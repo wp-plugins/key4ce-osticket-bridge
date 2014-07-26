@@ -36,5 +36,4 @@ $new_query_string = http_build_query($params);
 echo " <a href='?".$new_query_string."'>>></a> "; 
 } 
 } 
-?>
-</div>
+?></div>

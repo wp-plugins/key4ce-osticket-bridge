@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1
 Tested up to: 3.9
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,13 @@ http://osticket.com/download
 4. Shows how the Wordpress admin views the ticket.
 
 == Changelog ==
+= 1.1.4 =
+- Prefix fix for existing plugin users
+- mysql DB errors fixed
+- RevSlider conflict fixed
+- Activate / Deactivate warning messages fixed.
+- If wrong database info blank page issue fixed.
+
 = 1.1.3 =
 - Added database keyost_prefix field
 - Fixed mysql bugs
@@ -117,6 +124,9 @@ http://osticket.com/download
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
 == Upgrade Notice ==
+= 1.1.4 =
+Urgent update fixing multiple issues caused by update 1.1.3.
+
 = 1.1.3 =
 Database keyost_prefix field added, and mysql bugs fixed.
 

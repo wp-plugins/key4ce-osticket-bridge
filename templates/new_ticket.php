@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: new_ticket.php
-*/
+/* Template Name: new_ticket.php */
 ?>
 <style>
 #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}

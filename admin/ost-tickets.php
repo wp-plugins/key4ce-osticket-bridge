@@ -1,6 +1,6 @@
 <?php
-	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
-    require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); 
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); 
 ?>
 <div class="wrap">
 <div class="headtitle">Support/Request List</div>

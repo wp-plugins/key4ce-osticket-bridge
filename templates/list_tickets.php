@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: list_tickets.php
-*/
+/* Template Name: list_tickets.php */
 ?>
 <?php
 if(@$list_opt) { 

@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: view_ticket.php
-*/
+/* Template Name: view_ticket.php */
 global $current_user;
 get_currentuserinfo();
 if ($ticketinfo->address==$current_user->user_email) {
@@ -149,4 +147,4 @@ wp_editor( $content, $editor_id , $settings );?></center>
 </div>
 <div class="clear" style="padding: 10px;"></div>
 <?php } else { ?>
-    <div style="width: 100%; margin: 20px; font-size: 20px;" align="center">No such ticket available. </div> <?php } ?>
+<div style="width: 100%; margin: 20px; font-size: 20px;" align="center">No such ticket available. </div> <?php } ?>

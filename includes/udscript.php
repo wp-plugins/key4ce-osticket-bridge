@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: udscript
-*/
+/* Template Name: udscript */
 ?>
 <script language="JavaScript">
 <!--

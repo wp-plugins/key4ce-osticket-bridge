@@ -1,7 +1,5 @@
 <?php
-/*
-Template Name: pagination.php
-*/
+/* Template Name: pagination.php */
 ?>
 <div id="list_pagination">
 <?php
@@ -35,5 +33,4 @@ $params = array_merge($_GET, array("currentpage" => $totalpages));
 $new_query_string = http_build_query($params); 
 echo " <a href='?".$new_query_string."'>>></a> "; 
 } } 
-?>
-</div>
+?></div>

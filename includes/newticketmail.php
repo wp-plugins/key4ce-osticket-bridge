@@ -223,6 +223,5 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 		}
 		//If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code End Here
 	}	
-}
-//Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 End Here
+}//Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 End Here
 ?>

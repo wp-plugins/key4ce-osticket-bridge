@@ -3,14 +3,11 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
-Version: 1.1.3
+Version: 1.1.4
 Author: Key4ce
 Author URI: http://key4ce.eu
 License: GPLv3
-*/
-?>
-<?php
-/*
+
 Copyright (C) 2014  Key4ce
 
 This program is distributed in the hope that it will be useful,
@@ -44,7 +41,7 @@ function addtemplate()
 
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/osticket-wp.php');
 }
-add_shortcode('addosticket', 'addtemplate');	
+add_shortcode('addosticket', 'addtemplate');
 function custom_toolbar_openticket() {
 	global $wp_admin_bar;	
 	$wp_admin_bar->add_menu(array(
@@ -73,13 +70,13 @@ if (($database=="") || ($username=="") || ($password=="") || ($keyost_prefix==""
     $page_title = 'Support/Request List';
     $menu_title = 'Tickets';
 } else {
-$con = mysql_connect($host, $username, $password, true, 65536);
+@$con = mysql_connect($host, $username, $password, true, 65536);
 if (mysqli_connect_errno()) {
     $page_title = 'Support/Request List';
     $menu_title = 'Tickets';
 } else {
-mysql_select_db($database, $con);
-$result = mysql_query("SELECT number FROM ".$keyost_prefix."ticket WHERE status='open' AND isanswered='0'");
+@mysql_select_db($database, $con);
+$result = mysql_query("SELECT number FROM ".@$keyost_prefix."ticket WHERE status='open' AND isanswered='0'");
 if (empty($result)) {
 	   $num_rows = '0';
 } else {
@@ -123,7 +120,7 @@ $num_rows = mysql_num_rows($result);
 if (($database=="") || ($username=="") || ($password=="")) {
     add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
     } else {
-if($num_rows > 0)
+if(@$num_rows > 0)
 add_action( 'wp_before_admin_bar_render', 'custom_toolbar_openticket', 998 );
 else
 add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
@@ -148,9 +145,12 @@ update_option( 'os_ticket_config', $config);
 
 function mb_table_install() {
 global $wpdb;
+$sql="";
 $table_name = $wpdb->prefix . "ost_emailtemp"; 
-   
-$sql = "CREATE TABLE $table_name (
+ if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+    //table is not created. you may create the table here.
+    $sql ="DROP TABLE IF EXISTS ".$table_name.";\n";
+     $sql .= "CREATE TABLE $table_name (
 id mediumint(9) NOT NULL AUTO_INCREMENT,
 name varchar(32) NOT NULL,
 subject varchar(255) NOT NULL DEFAULT '',
@@ -159,15 +159,18 @@ created datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 updated datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 UNIQUE KEY id (id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-
+}   
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-dbDelta( $sql );
+dbDelta($sql);
 }
 
 function mb_database_install() {
    global $wpdb;
+  
    $table_name = $wpdb->prefix . "ost_emailtemp";
-   $id = '1';
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name)
+    {
+        $id = '1';
    $name = "Admin-Response";
    $subject = "Ticket ID [#\$ticketid]";
    $text = "";
@@ -209,78 +212,7 @@ function mb_database_install() {
    'created' => current_time('mysql'), 
    'updated' => current_time('mysql') 
    ) ); 
-
- $table_name_config = $keyost_prefix."config";
-//SMTP Username record insert Start Here Added By Pratik Maniar
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_username";  
-   $rows_affected = $wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-//SMTP Username record insert End Here Added By Pratik Maniar
-//SMTP Username record insert Start Here Added By Pratik Maniar
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_password";  
-   $rows_affected = $wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-//SMTP Username record insert End Here Added By Pratik Maniar
-//SMTP Username record insert Start Here Added By Pratik Maniar
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_host";  
-   $rows_affected = $wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-//SMTP Username record insert End Here Added By Pratik Maniar
-//SMTP Username record insert Start Here Added By Pratik Maniar
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_port";  
-   $rows_affected = $wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-//SMTP Username record insert End Here Added By Pratik Maniar
-//SMTP Username record insert Start Here Added By Pratik Maniar
-   $id = '';
-   $namespace = "core";
-   $key = "smtp_status";  
-   $rows_affected = $wpdb->insert( 
-   $table_name_config, 
-   array( 
-   'id' => $id,
-   'namespace' => $namespace,
-   'key' => $key,
-   'value' => '', 
-   'updated' => current_time('mysql') 
-   ) );
-//SMTP Username record insert End Here Added By Pratik Maniar
+    }  
 }
 function mb_uninstall() 
 {
@@ -353,5 +285,4 @@ extract($config);
     }
   }
 }
-
 ?>

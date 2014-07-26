@@ -81,7 +81,6 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
 </div>
 </form>
 </div>
-
 <div style="padding-top:40px;"></div>
 <div style="clear: both"></div>
 </div><!--End wrap-->

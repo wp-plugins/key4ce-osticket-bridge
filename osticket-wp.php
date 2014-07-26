@@ -127,5 +127,4 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php'
 ?><div><br /><br /> <h3>Sorry, you must first log in to view your tickets. If you do not have a account yet you can <a style="color: #2991D6;" href="<?php echo wp_registration_url(); ?>">register here</a>. </h3>
 <br /><br />
 <?php wp_login_form(@$login_args); ?>
-</div>
-<?php } ?>
+</div><?php } ?>
