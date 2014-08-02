@@ -168,8 +168,8 @@ function mb_database_install() {
    global $wpdb;
   
    $table_name = $wpdb->prefix . "ost_emailtemp";
-    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name)
-    {
+   // if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name)
+   // {
         $id = '1';
    $name = "Admin-Response";
    $subject = "Ticket ID [#\$ticketid]";
@@ -212,7 +212,7 @@ function mb_database_install() {
    'created' => current_time('mysql'), 
    'updated' => current_time('mysql') 
    ) ); 
-    }  
+   // }  
 }
 function mb_uninstall() 
 {
