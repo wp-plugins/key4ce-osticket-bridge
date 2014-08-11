@@ -19,10 +19,9 @@ $ntname='New-Ticket';
 
 $user_name=$current_user->user_login; 
 $e_address=$current_user->user_email;
-/*Add user id of ticket instead of wordpress */
-$selectuser_id = mysql_query("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
-$get_user_id = mysql_fetch_row($selectuser_id);
-$user_id=$get_user_id[0];
+/*Add user id of ticket instead of wordpress start here */
+$user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
+/*Add user id of ticket instead of wordpress end here*/
 
 
 $getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='open'"); 
