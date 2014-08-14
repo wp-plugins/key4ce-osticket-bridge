@@ -23,9 +23,9 @@ and a confirmation email is being sent to you at: <font color=green><?php echo $
 <center>Thank you for contacting us!</center>
 </p>
 <?php } else {
-$selectuser_id = mysql_query("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$current_user->user_email."'");
-$get_user_id = mysql_fetch_row($selectuser_id);
-$user_id=$get_user_id[0];
+/*Add user id of ticket instead of wordpress start here */
+$user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$current_user->user_email."'");
+/*Add user id of ticket instead of wordpress end here*/
 ?>
 <div id="new_ticket">
 <div id="new_ticket_text1">Open a New Ticket</div>
