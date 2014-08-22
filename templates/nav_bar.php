@@ -52,5 +52,7 @@ else
 	echo '<div style="clear: both"></div>'; 
 	echo '</div>'; 
     echo '</div><hr style="border-color:#D5E5EE; border-width: 3px; height: 3px;">';
+    wp_enqueue_script('ost-bridge-validate',plugins_url('../js/validate.js', __FILE__));
+
 ?>
-<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/validate.js';?>"></script>
+

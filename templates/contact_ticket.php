@@ -1,15 +1,39 @@
 <?php
-/* Template Name: new_ticket.php */
+@session_start();
+/* Template Name: contact_ticket.php */
+$config = get_option('os_ticket_config');
+extract($config);
+$ost_wpdb = new wpdb($username, $password, $database, $host);
+global $current_user;
+$config_table=$keyost_prefix."config";
+$dept_table=$keyost_prefix."department";
+$topic_table=$keyost_prefix."help_topic";
+$ticket_table=$keyost_prefix."ticket";
+$ticket_event_table=$keyost_prefix."ticket_event";
+$priority_table=$keyost_prefix."ticket_priority";
+$thread_table=$keyost_prefix."ticket_thread";
+$ticket_cdata=$keyost_prefix."ticket__cdata";
+$ost_user=$keyost_prefix."user";
+$ost_staff=$keyost_prefix."staff";
+$ost_useremail=$keyost_prefix."user_email";
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/versionData.php'); 
+require_once(WP_PLUGIN_DIR .'/key4ce-osticket-bridge/osticket-wp.php' );
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/contact_nav_bar.php'); 
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/lib/captcha/simple-php-captcha.php');  
+$url = plugins_url();
 ?>
 <style>
 #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
 #message-html{height: 25px;}
 #message-tmce{height: 25px;}
 </style>
+<script language="javascript" src="<?php echo $url.'/key4ce-osticket-bridge/js/validate.js'; ?>"></script>
 <div id="thContainer">
 <?php
-if(isset($_REQUEST['create-ticket']))
-{?>
+if(isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &&  $_REQUEST["magicword"]!="" && strtolower($_SESSION ["captcha"]["code"])==strtolower($_REQUEST["magicword"]))
+{
+$_SESSION['captcha'] = simple_php_captcha();
+?>
 
 <div class="clear" style="padding: 5px;"></div>
 <p id="msg_notice">A new request has been created successfully!</p>
@@ -22,30 +46,27 @@ and a confirmation email is being sent to you at: <font color=green><?php echo $
 <br />
 <center>Thank you for contacting us!</center>
 </p>
-<?php } else {
-$selectuser_id = mysql_query("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$current_user->user_email."'");
-$get_user_id = mysql_fetch_row($selectuser_id);
-$user_id=$get_user_id[0];
+<?php
+ } else {
+$_SESSION['captcha'] = simple_php_captcha();
+if(isset($_REQUEST['magicword']))
+	echo "<div style='color: red;font-weight: bold;'>Please enter valid captcha</div>";
 ?>
 <div id="new_ticket">
 <div id="new_ticket_text1">Open a New Ticket</div>
 <div style="clear: both"></div>
 <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
 <div style="clear: both"></div>
-<form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket();">
-<input type="hidden" name="usid" value="<?php echo $user_id; //echo $current_user->ID; ?>"/>
-<input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
-<input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
-<input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
-<input type="hidden" name="newtickettemp" value="<?php echo $newticket; ?>"/>
-<div id="new_ticket_name">Username:</div>
-<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" readonly="true" size="30" value="<?php echo $current_user->user_login; ?>"></div>
+<form id="ContactticketForm" name="contactticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormContactTicket();">
+<div id="new_ticket_name">Full Name:</div>
+<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" size="30" value="<?php echo $_POST['cur-name']; ?>"></div>
 <div style="clear: both"></div>
 <div id="new_ticket_email">Your Email:</div>
-<div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" readonly="true" size="30" value="<?php echo $current_user->user_email; ?>"></div>
+<div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" size="30" value="<?php echo $_POST['email']; ?>"></div>
 <div style="clear: both"></div>
 <div id="new_ticket_subject">Subject:</div>
-<div id="new_ticket_subject_input"><input class="ost" id="subject" type="text" name="subject" size="35"/><font class="error">&nbsp;*</font></div>
+<div id="new_ticket_subject_input">
+<input class="ost" id="subject" type="text" name="subject" size="35" value="<?php echo $_POST['subject']; ?>"><font class="error">&nbsp;*</font></div>
 <div style="clear: both"></div>
 <div id="new_ticket_catagory">Catagories:</div>
 <div id="new_ticket_catagory_input">
@@ -79,15 +100,20 @@ $user_id=$get_user_id[0];
 <tr>
 <td class="nobd" align="center">
 <center> <?php
-$content = '';
+$content = $_POST['message'];
 $editor_id = 'message';
 $settings = array( 'media_buttons' => false );
 wp_editor( $content, $editor_id , $settings );?> </center>
 <div class="clear" style="padding: 5px;"></div></td>
 </tr>
+<tr><td style="text-align: center;">
+<?php echo '<img src="' . $_SESSION['captcha']['image_src'] . '" alt="CAPTCHA code">'; ?>
+<br/><br/>
+<input name="magicword" type="text">
+</td></tr>
 <tr>
 <td class="nobd" align="center">
-<p align="center" style="padding-top: 5px;"><input type="submit" name="create-ticket" value="Create Ticket">
+<p align="center" style="padding-top: 5px;"><input type="submit" name="create-contact-ticket" value="Create Ticket">
 &nbsp;&nbsp;<input type="reset" value="Reset"></p>
 </form>
 </td>

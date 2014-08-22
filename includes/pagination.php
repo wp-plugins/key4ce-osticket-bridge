@@ -5,12 +5,14 @@ Template Name: pagination.php
 ?>
 <div id="list_pagination">
 <?php
-$currentpage="";
-$totalpages="";
+//$currentpage="";
+//$totalpages="";
 $params = array_merge($_GET, array("currentpage" => "1")); 
 $new_query_string = http_build_query($params); 
 if ($currentpage > 1) { 
+	
 echo " <a href='?".$new_query_string."'><<</a> "; 
+
 $prevpage = $currentpage - 1; 
 $params = array_merge($_GET, array("currentpage" => $prevpage )); 
 $new_query_string = http_build_query($params); 

@@ -22,7 +22,9 @@ Template Name: ost-config
             @$keyost_prefix=$_REQUEST['keyost_prefix'];
 	@$supportpage=$_REQUEST['supportpage'];
                 
-	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage);
+	@$contactticketpage=$_REQUEST['contactticketpage'];
+	@$thankyoupage=$_REQUEST['thankyoupage'];
+	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage,'contactticketpage'=>$contactticketpage,'thankyoupage'=>$thankyoupage);
               
 	if (($_REQUEST['host']=="") || ($_REQUEST['database']=="") || ($_REQUEST['username']=="") || ($_REQUEST['supportpage']=="") )
 	{
@@ -30,12 +32,10 @@ Template Name: ost-config
 	}
 	else
 	{
-	$current_user = wp_get_current_user();
-	$new_page_title = $supportpage;
-	$new_page_name = $supportpage;
+	$current_user = wp_get_current_user();	
 		global $wpdb;
-		$found = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_content='[addosticket]' AND post_status='publish'");		
-		if ($found == 0)
+		$osticketpagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_content='[addosticket]' AND post_status='publish'");		
+		if ($osticketpagecheck == 0)
 		{ 
 		wp_insert_post(array('comment_status'		=>'closed',
 						'ping_status'		=>'closed',
@@ -47,8 +47,32 @@ Template Name: ost-config
 						'post_type'		=>'page'
 					));
 		}
-			
-	
+		$contactticketpagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_content='[addoscontact]' AND post_status='publish'");		
+		if ($contactticketpagecheck == 0)
+		{ 
+		wp_insert_post(array('comment_status'		=>'closed',
+						'ping_status'		=>'closed',
+						'post_author'		=>$current_user->ID,
+						'post_name'		=>get_the_title($contactticketpage),
+						'post_title'		=>get_the_title($contactticketpage),
+						'post_content' 		=> '[addoscontact]', 
+						'post_status'		=>'publish',
+						'post_type'		=>'page'
+					));
+		}			
+		$thankyoupagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_title='Thank you' AND post_status='publish'");		
+		if ($thankyoupagecheck == 0)
+		{ 
+		wp_insert_post(array('comment_status'=>'closed',
+					'ping_status'		=>'closed',
+					'post_author'		=>$current_user->ID,
+					'post_name'		=>get_the_title($thankyoupage),
+					'post_title'		=>get_the_title($thankyoupage),
+					'post_content' 		=> 'Thank you', 
+					'post_status'		=>'publish',
+					'post_type'		=>'page'
+					));
+		}	
 	update_option('os_ticket_config', $config);
 	$config = get_option('os_ticket_config');
 	extract($config);
@@ -113,7 +137,60 @@ extract($config);
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Landing Page Name:</label></td>                
-<td><input type="text" name="supportpage" id="supportpage" size="20" value="<?php echo $supportpage;?>"/>&nbsp;&nbsp;( Create this page...read <b>Landing Page Note</b> above! )</td>
+<td>
+<input type="text" name="supportpage" id="supportpage" size="20" value="<?php echo $supportpage;?>"/>&nbsp;&nbsp;( Create this page...read <b>Landing Page Note</b> above! )</td>
+</tr>
+<tr>
+<td class="config_td"><label class="config_label">Contact Ticket Page:</label></td>                
+<td>
+<select name="contactticketpage" id="contactticketpage">
+<?php $args = array(
+	'sort_order' => 'ASC',
+	'sort_column' => 'post_title',
+	'hierarchical' => 5,	
+	'child_of' => 0,
+	'parent' => -1,
+	'offset' => 0,
+	'post_type' => 'page',
+	'post_status' => 'publish'
+); 
+$pages = get_pages($args); 
+foreach($pages as $page)
+{
+	if($contactticketpage==$page->ID)
+		$selectedpage="selected='selected'";
+	else
+		$selectedpage="";
+?><option value="<?php echo $page->ID;?>" <?php echo $selectedpage;?>><?php echo $page->post_title; ?></option>
+<?php	} ?>
+</select>&nbsp;&nbsp;(Select contact ticket page)
+</td>
+</tr>
+<tr>
+<td class="config_td"><label class="config_label">Thank You Page:</label></td>                
+<td>
+<select name="thankyoupage" id="thankyoupage">
+<?php $args = array(
+	'sort_order' => 'ASC',
+	'sort_column' => 'post_title',
+	'hierarchical' => 5,	
+	'child_of' => 0,
+	'parent' => -1,
+	'offset' => 0,
+	'post_type' => 'page',
+	'post_status' => 'publish'
+); 
+$pages = get_pages($args); 
+foreach($pages as $page)
+{
+	if($thankyoupage==$page->ID)
+		$selectedpage="selected='selected'";
+	else
+		$selectedpage="";
+?><option value="<?php echo $page->ID;?>" <?php echo $selectedpage;?>><?php echo $page->post_title; ?></option>
+<?php	} ?>
+</select>&nbsp;&nbsp;(Select thank you page)
+</td>
 </tr>
 </table>
 <div style="padding: 30px;">
@@ -121,4 +198,5 @@ extract($config);
 </div>
 </form>
 </div><!--End of wrap-->
-<script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/fade.js';?>"></script>
+<?php wp_enqueue_script('ost-bridge-fade',plugins_url('../js/fade.js',__FILE__));?>
+

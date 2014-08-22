@@ -3,7 +3,7 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
-Version: 1.1.4
+Version: 1.1.5
 Author: Key4ce
 Author URI: http://key4ce.eu
 License: GPLv3
@@ -35,22 +35,41 @@ if(false !== strpos($file, 'ost-bridge'))
 return $actions; 
 }
 add_filter('plugin_action_links', 'mb_settings_link', 2, 2);
-
 function addtemplate()
 {
-
-	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/osticket-wp.php');
+	 ob_start();
+      require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/osticket-wp.php');
+	$ticketpage = ob_get_clean();
+	 return $ticketpage;
+	
 }
-add_shortcode('addosticket', 'addtemplate');
-function custom_toolbar_openticket() {
-	global $wp_admin_bar;	
-	$wp_admin_bar->add_menu(array(
-		'id'     => 'opensupport',
+//add_shortcode('addosticket', 'addtemplate');
+define('OST_SHORTCODE_ADDOSTICKET', 'addosticket');
+add_shortcode(OST_SHORTCODE_ADDOSTICKET, 'addtemplate');
+ function custom_toolbar_openticket() {
+ 	global $wp_admin_bar;	
+ 	$wp_admin_bar->add_menu(array('id' => 'opensupport',
 	        'title' => sprintf(__('Open Tickets')),			
 		'href' => get_admin_url(null,'admin.php?page=ost-tickets&service=list&status=open'),
 	));
-   
+ } 
+function addcontact()
+{
+	 ob_start();
+       	require_once(WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/contact_ticket.php');
+	$contact_ticket = ob_get_clean();
+	 return $contact_ticket;
 }
+add_shortcode('addoscontact', 'addcontact');
+//function custom_toolbar_openticket() {
+//	global $wp_admin_bar;	
+//	$wp_admin_bar->add_menu(array(
+//		'id'     => 'opensupport',
+//	        'title' => sprintf(__('Open Tickets')),			
+//		'href' => get_admin_url(null,'admin.php?page=ost-tickets&service=list&status=open'),
+//	));
+//   
+//}
 // Hook into the 'wp_before_admin_bar_render' action
 function custom_toolbar_supportticket() {
 	global $wp_admin_bar;	
@@ -127,7 +146,7 @@ add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
 } }
 
 function mb_admin_css() {
-echo '<link rel="stylesheet" type="text/css" media="all" href="'.plugin_dir_url(__FILE__).'css/admin-style.css">';
+wp_enqueue_style('ost-bridge-admin', plugin_dir_url(__FILE__).'css/admin-style.css">');
 }
 
 function mb_install()
@@ -142,7 +161,28 @@ $supportpage='Support';
 $config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage);
 update_option( 'os_ticket_config', $config);
 }
+// Looks for a shortcode within the current post's content.
+// Optimized for shortcodes that don't have parameters.
+function ost_has_shortcode_without_params($shortcode = '') {
+  global $post;
 
+  if (!$shortcode || $post == null) {  
+    return false;  
+  }
+
+  if (stripos($post->post_content, '[' . $shortcode . ']') === false) {
+    return false;
+  }
+
+  return true;
+}
+// User must be logged in to view pages that use the shortcode
+function ost_enforce_login_action() {
+  if(ost_has_shortcode_without_params(OST_SHORTCODE_ADDOSTICKET) && !is_user_logged_in()) {
+    auth_redirect();
+  }
+}
+add_action('wp', 'ost_enforce_login_action');
 function mb_table_install() {
 global $wpdb;
 $sql="";

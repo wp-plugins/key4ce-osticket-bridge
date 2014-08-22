@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1
 Tested up to: 3.9
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,6 +23,7 @@ adding new features, fixing old bugs and security flaws.
 * You can use both osTicket scp, reply to email OR use Wordpress for all tickets
 * Integrates with your Wordpress users
 * Good workflow of Open, Answered and Closed tickets.
+* Contact form shortcode
 
 = Fixes/ new Features: =
 
@@ -47,6 +48,10 @@ This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 * Make sure that osTicket is installed
 * Make sure that your osTicket version is 1.8 or 1.9
 * osTicket can be downloaded from http://osticket.com/download
+
+Shortcodes:
+[addosticket]  for After login  Ticket listing and Creation of tickets
+[addoscontact  For a contact style form with captcha.
 
 1. Install key4ce-osticket-bridge folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
@@ -74,6 +79,13 @@ http://osticket.com/download
 4. Shows how the Wordpress admin views the ticket.
 
 == Changelog ==
+= 1.1.5 =
+- Shortcode for Contact style form with captcha
+- Shortcode placement fix for ticket list and ticket create
+- CSS/ JS inclusion fix ** Submitted by sldayo **
+- Login Redirect ** Submitted by sldayo **
+
+
 = 1.1.4 =
 - Prefix fix for existing plugin users
 - mysql DB errors fixed
@@ -124,6 +136,9 @@ http://osticket.com/download
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
 == Upgrade Notice ==
+= 1.1.5 =
+Shortcode fixes, css/js inclusion fixes, new Contact style shortcode
+
 = 1.1.4 =
 Urgent update fixing multiple issues caused by update 1.1.3.
 

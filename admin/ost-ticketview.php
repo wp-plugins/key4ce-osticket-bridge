@@ -141,4 +141,4 @@ wp_editor( $content, $editor_id , $settings );?></center>
 </tr>
 </table>
 </div><!--End wrap-->
-<script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/fade.js';?>"></script>
+<?php wp_enqueue_script('ost-bridge-fade',plugins_url('../js/fade.js',__FILE__));?>

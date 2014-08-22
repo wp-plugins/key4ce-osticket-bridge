@@ -23,7 +23,6 @@ $e_address=$current_user->user_email;
 $user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
 /*Add user id of ticket instead of wordpress end here*/
 
-
 $getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='open'"); 
 
 $ticket_count=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id'"); 
