@@ -53,7 +53,6 @@ if(isset($_REQUEST['magicword']))
 	echo "<div style='color: red;font-weight: bold;'>Please enter valid captcha</div>";
 ?>
 <div id="new_ticket">
-<div id="new_ticket_text1">Open a New Ticket</div>
 <div style="clear: both"></div>
 <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
 <div style="clear: both"></div>
