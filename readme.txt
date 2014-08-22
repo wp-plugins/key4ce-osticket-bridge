@@ -51,7 +51,7 @@ This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 
 Shortcodes:
 [addosticket]  for After login  Ticket listing and Creation of tickets
-[addoscontact  For a contact style form with captcha.
+[addoscontact]  For a contact style form with captcha.
 
 1. Install key4ce-osticket-bridge folder to the /wp-content/plugins/ directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
