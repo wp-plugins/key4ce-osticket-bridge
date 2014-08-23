@@ -5,7 +5,7 @@ Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
 Version: 1.1.5
 Author: Key4ce
-Author URI: http://key4ce.eu
+Author URI: http://key4ce.com
 License: GPLv3
 
 Copyright (C) 2014  Key4ce

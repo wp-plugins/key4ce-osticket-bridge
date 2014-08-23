@@ -48,6 +48,7 @@ This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 * Make sure that osTicket is installed
 * Make sure that your osTicket version is 1.8 or 1.9
 * osTicket can be downloaded from http://osticket.com/download
+* Our plugin will make use of Department alert & Email settings. Please set them carefuly in osTicket settings.
 
 Shortcodes:
 [addosticket]  for After login  Ticket listing and Creation of tickets
@@ -58,7 +59,7 @@ Shortcodes:
 3. Plugin settings are located in Dashboard--> Tickets --> osT-Config
 4. Plugin settings are located in Dashboard--> Tickets --> Settings
 5. Plugin settings are located in Dashboard--> Tickets--> Email Templates
-6. You can use the shortcode: [addosticket]
+6. You can use the shortcode: [addosticket] and [addoscontact] However please make sure you select the shortcode pages in the Settings page.
 
 
 == Frequently Asked Questions ==
@@ -82,8 +83,8 @@ http://osticket.com/download
 = 1.1.5 =
 - Shortcode for Contact style form with captcha
 - Shortcode placement fix for ticket list and ticket create
-- CSS/ JS inclusion fix ** Submitted by sldayo **
-- Login Redirect ** Submitted by sldayo **
+- CSS/ JS inclusion fix ** Submitted by Steffen André Langnes **
+- Login Redirect ** Submitted by Steffen André Langnes **
 
 
 = 1.1.4 =
