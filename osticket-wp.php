@@ -124,6 +124,7 @@ if (is_user_logged_in()) {
         <?php
     } else {
         if (get_the_ID() == $contactticketpage) {
+            wp_enqueue_style('ost-bridge', plugins_url('css/style.css',__FILE__));
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/contactticketmail.php');
         } else {
             throw new Exception('Should not happen: User is not logged in');
