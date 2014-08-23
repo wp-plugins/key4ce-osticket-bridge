@@ -101,7 +101,7 @@ wp_editor( $content, $editor_id , $settings );?> </center>
 </td></tr>
 <tr>
 <td class="nobd" align="center">
-<p align="center" style="padding-top: 5px;"><input type="submit" name="create-contact-ticket" value="Create Ticket">
+<p align="center" style="padding-top: 5px;"><input type="submit" name="create-contact-ticket" value="Submit">
 &nbsp;&nbsp;<input type="reset" value="Reset"></p>
 </form>
 </td>
