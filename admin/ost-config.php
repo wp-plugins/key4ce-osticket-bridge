@@ -47,8 +47,8 @@ Template Name: ost-config
 						'post_type'		=>'page'
 					));
 		}
-		$contactticketpagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_content='[addoscontact]' AND post_status='publish'");		
-		if ($contactticketpagecheck == 0)
+		$contactticketpagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE `post_content` LIKE '%[addoscontact]%' AND post_status='publish'");			
+		if ($contactticketpagecheck <= 0)
 		{ 
 		wp_insert_post(array('comment_status'		=>'closed',
 						'ping_status'		=>'closed',
@@ -59,7 +59,8 @@ Template Name: ost-config
 						'post_status'		=>'publish',
 						'post_type'		=>'page'
 					));
-		}			
+		}
+		/*			
 		$thankyoupagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_title='Thank you' AND post_status='publish'");		
 		if ($thankyoupagecheck == 0)
 		{ 
@@ -72,7 +73,8 @@ Template Name: ost-config
 					'post_status'		=>'publish',
 					'post_type'		=>'page'
 					));
-		}	
+		}
+		*/	
 	update_option('os_ticket_config', $config);
 	$config = get_option('os_ticket_config');
 	extract($config);

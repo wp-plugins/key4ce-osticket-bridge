@@ -53,7 +53,6 @@ if(isset($_REQUEST['magicword']))
 	echo "<div style='color: red;font-weight: bold;'>Please enter valid captcha</div>";
 ?>
 <div id="new_ticket">
-<div style="clear: both"></div>
 <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
 <div style="clear: both"></div>
 <form id="ContactticketForm" name="contactticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormContactTicket();">
@@ -62,10 +61,6 @@ if(isset($_REQUEST['magicword']))
 <div style="clear: both"></div>
 <div id="new_ticket_email">Your Email:</div>
 <div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" size="30" value="<?php echo $_POST['email']; ?>"></div>
-<div style="clear: both"></div>
-<div id="new_ticket_subject">Subject:</div>
-<div id="new_ticket_subject_input">
-<input class="ost" id="subject" type="text" name="subject" size="35" value="<?php echo $_POST['subject']; ?>"><font class="error">&nbsp;*</font></div>
 <div style="clear: both"></div>
 <div id="new_ticket_catagory">Catagories:</div>
 <div id="new_ticket_catagory_input">
@@ -78,20 +73,14 @@ if(isset($_REQUEST['magicword']))
         } 
 ?>
 </select><font class="error">&nbsp;*</font></div>
-<div style="clear: both"></div>
-<div id="new_ticket_priority">Priority:</div>
-<div id="new_ticket_priority_input"><select id="priority" name="priorityId">
-<option value="" selected="selected"> Select a Priority </option>
-<?php
-	foreach($pri_opt as $priority) 
-	{ 
-	echo '<option value="'.$priority->priority_id .'">'.$priority->priority_desc .'</option>'; 
-	} 
-?>
-</select><font class="error">&nbsp;*</font></div>
+
+<input type="hidden" value="2" name="priorityId" id="priority"/>
+<div id="new_ticket_subject">Subject:</div>
+<div id="new_ticket_subject_input">
+<input class="ost" id="subject" type="text" name="subject" style="width: 100%;" value="<?php echo $_POST['subject']; ?>"></div>
 <div style="clear: both"></div>
 </div>
-<table class="welcome nobd" align="center" width="95%" cellpadding="3" cellspacing="3" border="0">
+<table class="welcome nobd" align="center" cellpadding="3" cellspacing="3" border="0">
 <tr>
 <td class="nobd" align="center"><div align="center" style="padding-bottom: 5px;">To best assist you, please be specific and detailed in your message<font class="error">&nbsp;*</font></div></td>
 </tr>

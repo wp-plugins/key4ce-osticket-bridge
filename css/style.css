@@ -24,7 +24,7 @@
 	font-weight: normal;
 }
 table.welcome {
-	width: 95%;
+	width: 100%;
 	margin: 20px;
 	text-align: left;
 	font-size: 100%;
@@ -32,6 +32,11 @@ table.welcome {
 	color: #666;
 	font-weight: normal;
 }
+
+table.welcome #wp-message-wrap {
+	width: 100%;
+}
+
 .nobd {
 	border: 0;
 }
@@ -561,11 +566,11 @@ a.refresh {
 }
 /********* New Ticket Submit **********/
 #thContainer {
-	margin: 0 20px;
+	margin: 0px;
 	height: auto !important;
 }
 #new_ticket {
-	margin: 20px 20px 20px 20px;
+	margin: 0px;
 	padding-left:10px;
 }
 #new_ticket_text1 {
@@ -575,7 +580,6 @@ a.refresh {
 	float: left;
 }
 #new_ticket_text2 {
-	padding-top:20px;
 	font-weight: normal;
 	color: #000;
 	float: left;
