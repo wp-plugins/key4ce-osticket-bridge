@@ -18,7 +18,7 @@ adding new features, fixing old bugs and security flaws.
 
 = Basic Features: =
 
-* Compatible with osTicket 1.8 and 1.9
+* Compatible with osTicket 1.9.x
 * POP / IMAP functionality stays intact
 * You can use both osTicket scp, reply to email OR use Wordpress for all tickets
 * Integrates with your Wordpress users
@@ -46,7 +46,7 @@ This plugin is powered by Key4ce - IT Professionals :: http://www.key4ce.com
 == Installation ==
 
 * Make sure that osTicket is installed
-* Make sure that your osTicket version is 1.8 or 1.9
+* Make sure that your osTicket version is 1.9.x (all subversions should work).
 * osTicket can be downloaded from http://osticket.com/download
 * Our plugin will make use of Department alert & Email settings. Please set them carefuly in osTicket settings.
 
@@ -67,8 +67,8 @@ Shortcodes:
 Can be anywhere, just make sure you know it's Database settings and fill them in accodringly in osT-Config page.
 
 = What version of osTicket can i use? =
-osTicket v1.8 and v1.9
-Recommended version is 1.9.
+osTicket v1.9.x (all 1.9 subversions are supported)
+We always recommend the latest osticket version.
 
 = Where can I download the tested osTicket versions? =
 http://osticket.com/download
