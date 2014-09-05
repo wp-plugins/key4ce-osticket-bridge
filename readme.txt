@@ -8,7 +8,7 @@ Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket v1.8 and 1.9
+Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket 1.9.x (all versions)
 
 == Description ==
 This is a rebuild of the original OSTicket WP Bridge plugin.
