@@ -89,7 +89,7 @@ http://osticket.com/download
 - HTML Email Template
 - Admin and Department Signature in Email template (based up on osTicket signature)
 - Mass delete/ Close tickets from Admin ticket listing
-- Fixed names in ticket threat
+- Fixed names in ticket thread
 - Fixed time equal to osTicket settings.
 - Tested with Wordpress 4.0
 
