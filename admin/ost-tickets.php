@@ -2,19 +2,21 @@
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); 
 if(isset($_POST['delete']))
-{	
-	$delete_ticket_list=$_POST['tickets'];	
-	$i=0;
-	foreach($delete_ticket_list as $delete_ticket)
-	{				
-		$ost_wpdb->query("DELETE FROM $ticket_table WHERE ticket_id =".$delete_ticket);
-		$ost_wpdb->query("DELETE FROM $thread_table WHERE ticket_id =".$delete_ticket);	
-		$ost_wpdb->query("DELETE FROM $ticket_cdata WHERE ticket_id =".$delete_ticket);
-		$ost_wpdb->query("DELETE FROM $ost_ticket_attachment WHERE ticket_id =".$delete_ticket);				
-		$i++;
-	}
-	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i records has been deleted successfully</div>";
-	echo "<script>window.location.href=location.href;</script>";	
+{ 
+ $delete_ticket_list=$_POST['tickets']; 
+ $i=0;
+ foreach($delete_ticket_list as $delete_ticket)
+ {      
+  $ost_wpdb->query("DELETE FROM $ticket_table WHERE ticket_id =".$delete_ticket);
+  $ost_wpdb->query("DELETE FROM $thread_table WHERE ticket_id =".$delete_ticket); 
+  $ost_wpdb->query("DELETE FROM $ticket_cdata WHERE ticket_id =".$delete_ticket);
+  $file_id = $ost_wpdb->get_var("SELECT file_id from $ost_ticket_attachment WHERE ticket_id = '$delete_ticket'"); 
+  $ost_wpdb->query("DELETE FROM $ost_file WHERE id =".$file_id);
+  $ost_wpdb->query("DELETE FROM $ost_ticket_attachment WHERE ticket_id =".$delete_ticket);    
+  $i++;
+ }
+ echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i records has been deleted successfully</div>";
+ echo "<script>window.location.href=location.href;</script>"; 
 }
 if(isset($_POST['close']))
 {		
