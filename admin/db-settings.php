@@ -42,6 +42,8 @@ $ticket_cdata=$keyost_prefix."ticket__cdata";
 $staff_table=$keyost_prefix."staff";
 $ost_user=$keyost_prefix."user";
 $ost_useremail=$keyost_prefix."user_email";
+$ost_ticket_attachment=$keyost_prefix."ticket_attachment";
+$ost_file=$keyost_prefix."file";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
 $category=@$_GET['cat'];
@@ -203,10 +205,23 @@ $ticketreply=$ticketreply->body;
 # ==============================================================================================
 # Collecting info needed for ticket count & search box
 # ==============================================================================================
-$ticket_count_all = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table ORDER BY ticket_id DESC");
-$ticket_count_open = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE status='open' AND isanswered='0'");
-$ticket_count_answered = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE status='open' AND isanswered='1'");
-$ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE status='closed'");
+$ticket_count_all = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id");
+
+$ticket_count_open = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='0'");
+
+
+$ticket_count_answered = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='1'");
+
+
+$ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='closed'");
 
 # ==============================================================================================
 # Collecting info for threads listed in ost-ticketview
@@ -220,7 +235,7 @@ LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHE
 $threadinfo=$ost_wpdb->get_results("
 	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
-	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
+	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id		
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC");
 
@@ -248,7 +263,7 @@ elseif($status_opt=="answered") {
 	$isanswered='1'; }
 elseif($status_opt=="closed") {
 	$status_opt='closed';
-	$isanswered='1'; }
+	}
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id, $ticket_table.status,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority_id, $dept_table.dept_name
 FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
@@ -256,7 +271,11 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id";
 if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && @$search=="")
-$sql.=" and $ticket_table.status = '".$status_opt."' and $ticket_table.isanswered = '".$isanswered."' ";
+{
+	$sql.=" and $ticket_table.status = '".$status_opt."'";
+	if($isanswered!="")
+		$sql.= " and $ticket_table.isanswered = '".$isanswered."'";			
+}
 if(@$search && (@$search!=""))
 $sql.=" and ($ticket_table.number like '%".$search."%' or $ticket_table.status like '%".$search."%' or $ticket_cdata.subject like '%".$search."%' or $dept_table.dept_name like '%".$search."%')";
 $sql.=" GROUP BY $ticket_table.ticket_id";  

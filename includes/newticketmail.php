@@ -5,6 +5,43 @@ Template Name: newticketemail.php
 require_once('functions.php');
 ?>
 <?php
+if($_FILES['file']['name']!="")
+{
+$allowed_filetypes=getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
+$max_file_size=getKeyValue('max_file_size'); //Return max file size from Osticket configuration
+$fullpath = $_SERVER['DOCUMENT_ROOT'];
+$aryfullpath = explode('/', $fullpath, -1);
+$fullfinalpath = implode('/', $aryfullpath);
+
+$generateHashKey = generateHashKey(33);
+$generateHashSignature = generateHashSignature(33);
+$dir_name = substr($generateHashKey, 0, 1);
+$structure = $fullfinalpath . "/attachments/" . $dir_name;
+  if (!is_dir($structure))
+  {
+  	mkdir($structure,0355);
+  } 
+$alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+$strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+$allowedExts=explode(",",$strplc);
+$temp = explode(".", $_FILES["file"]["name"]);
+$extension = end($temp); //return uploaded file extension
+$newfilename = $generateHashKey;
+$realfilename=$_FILES["file"]["name"];
+$filetype=$_FILES["file"]["type"];	
+$filesize=$_FILES["file"]["size"];	
+if (($_FILES["file"]["size"] < $max_file_size) && in_array($extension, $allowedExts)) 
+ {   		   
+    if ($_FILES["file"]["error"] > 0)
+    {
+        echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
+    } 
+    else 
+    {
+            move_uploaded_file($_FILES["file"]["tmp_name"], $structure."/".$newfilename);       
+    }
+}
+}
 global $current_user;
 get_currentuserinfo();
 $wp_user_email_id=$current_user->user_email;
@@ -22,7 +59,7 @@ $staff_id=0;
 $team_id=0;
 $usid=$_REQUEST['usid'];
 $em=$_REQUEST['email'];
-$nam=$current_user->user_login;
+$nam=$current_user->display_name;
 $nam=preg_replace('/[^\p{L}\p{N}\s]/u', '',$nam);
 $adem=$_REQUEST['ademail'];
 $title=$_REQUEST['stitle'];
@@ -82,12 +119,26 @@ $stat="created";
 $staf="SYSTEM";
 $annulled=0;
 $ost_wpdb->insert($ticket_event_table, array('ticket_id' => $lastid,'staff_id' => $staff_id,'team_id' => $team_id,'dept_id' => $dep_id,'topic_id' => $top_id,'state' => $stat,'staff' => $staf,'annulled' => $annulled,'timestamp' => $cre), array('%d','%d','%d','%d','%d','%s','%s','%s','%s'));
-
+if($_FILES['file']['name']!="")
+{
+// File Table Entry Code Start Here By Pratik Maniar on 29/08/2014
+$ost_wpdb->insert($keyost_prefix."file", array('ft' => 'T','bk' => 'F','type' => $filetype,'size' => $filesize,'key' => $generateHashKey,'signature' => $generateHashSignature,'name' => $realfilename,'attrs' => '','created'=>$cre), 
+array('%s','%s','%s','%s','%s','%s','%s','%s','%s'));
+$file_id = $ost_wpdb->insert_id;
+// File Table Entry Code End Here By Pratik Maniar on 29/08/2014
+}
 $pid=0;	    
 $thread_type="M";
 
 $ost_wpdb->insert($thread_table, array('pid' => $pid,'ticket_id' => $lastid,'staff_id' => $staff_id,'thread_type' => $thread_type,'poster' => $nam,'source' => $sour,'title' => "",'body' => wpetss_forum_text($user_message),'ip_address' => $ip_add,'created' => $cre), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
-
+$thread_id = $ost_wpdb->insert_id;
+if($_FILES['file']['name']!="")
+{
+// File Attachment Table Entry Code Start Here By Pratik Maniar on 29/08/2014
+$ost_wpdb->insert($keyost_prefix."ticket_attachment", array('ticket_id' => $lastid,'file_id' => $file_id,'ref_id' => $thread_id,'inline' => '0','created'=>$cre), 
+array('%d','%d','%d','%d','%s'));
+// File Attachment Table Entry Code End Here By Pratik Maniar on 29/08/2014
+}
 $ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid,'subject' => $sub,'priority' => $priordesc,'priority_id' => $pri_id), array('%d','%s','%s','%d'));
 
 @$topic_tab = $ost_wpdb->get_results("SELECT topic_id, topic FROM $topic_table WHERE topic_id=@$top_id");

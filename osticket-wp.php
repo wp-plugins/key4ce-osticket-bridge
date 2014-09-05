@@ -38,6 +38,8 @@ if (is_user_logged_in()) {
         $ost_user = $keyost_prefix . "user";
         $ost_staff = $keyost_prefix . "staff";
         $ost_useremail = $keyost_prefix . "user_email";
+  	$ost_ticket_attachment=$keyost_prefix."ticket_attachment";
+	$ost_file=$keyost_prefix."file";
         $directory = $config['supportpage'];
         $dirname = strtolower($directory);
         $category = @$_GET['cat'];
@@ -98,6 +100,10 @@ if (is_user_logged_in()) {
                 include WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/message.php';
                 echo $warning2;
             }
+        }
+	 if (isset($_GET['service']) && $_GET['service'] == 'download')
+        {
+            require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/download.php');
         }
         if (isset($_GET['service']) && $_GET['service'] == 'view')
         {

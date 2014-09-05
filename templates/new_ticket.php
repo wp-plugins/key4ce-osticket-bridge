@@ -1,6 +1,39 @@
 <?php
 /* Template Name: new_ticket.php */
+$alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+$strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+$allowedExts=explode(",",$strplc);
+function add_quotes($str) {
+    return sprintf("'%s'", $str);
+}
+$extimp =  implode(',', array_map('add_quotes',$allowedExts));
+$finalary= "'". $extimp."'";
 ?>
+<script type="text/javascript">
+function checkFile(fieldObj)
+    {
+        var FileName  = fieldObj.value;
+        var FileExt = FileName.substr(FileName.lastIndexOf('.')+1);
+        var FileSize = fieldObj.files[0].size;
+        var FileSizeMB = (FileSize/10485760).toFixed(2);		
+	var FileExts =  new Array(<?php echo $extimp; ?>);	
+       if ((FileSize > <?php echo getKeyValue('max_file_size'); ?>))
+        {
+	    alert("Please make sure your file is less than <?php echo (getKeyValue('max_file_size')* .0009765625) * .0009765625; ?>MB.");
+	    document.getElementById('file').value = "";	   
+            return false;
+        }	
+	if(FileExts.indexOf(FileExt) < 0)
+	{
+	    error = "Please make sure your file extension should be : \n";	
+	    error += FileExts;	  
+	    alert(error);
+	    document.getElementById('file').value = "";	   
+            return false;
+	}
+	return true;       	
+    }
+</script>
 <style>
 #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
 #message-html{height: 25px;}
@@ -39,7 +72,7 @@ $user_id=$get_user_id[0];
 <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
 <input type="hidden" name="newtickettemp" value="<?php echo $newticket; ?>"/>
 <div id="new_ticket_name">Username:</div>
-<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" readonly="true" size="30" value="<?php echo $current_user->user_login; ?>"></div>
+<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" readonly="true" size="30" value="<?php echo $current_user->display_name; ?>"></div>
 <div style="clear: both"></div>
 <div id="new_ticket_email">Your Email:</div>
 <div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" readonly="true" size="30" value="<?php echo $current_user->user_email; ?>"></div>
@@ -85,6 +118,13 @@ $settings = array( 'media_buttons' => false );
 wp_editor( $content, $editor_id , $settings );?> </center>
 <div class="clear" style="padding: 5px;"></div></td>
 </tr>
+<?php if(getKeyValue('allow_attachments')==1) { 
+?>
+<tr>
+<td class="nobd"><span style="color:#000;">Attachments:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="file" id="file" onchange="return checkFile(this);">
+&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 12px;">Max file upload size : <?php echo (getKeyValue('max_file_size')* .0009765625) * .0009765625; ?>MB</span></td>
+</tr>
+<?php } ?>
 <tr>
 <td class="nobd" align="center">
 <p align="center" style="padding-top: 5px;"><input type="submit" name="create-ticket" value="Create Ticket">
@@ -96,3 +136,4 @@ wp_editor( $content, $editor_id , $settings );?> </center>
 </div>
 <?php } ?>
 <div class="clear" style="padding: 10px;"></div>
+

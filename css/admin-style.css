@@ -71,9 +71,6 @@
 	
 	font-size: 16px;
 }
-td {
-	height:40px;
-}
 td.note {
 	height:5px;
 }
@@ -125,21 +122,23 @@ textarea:focus {
 }
 .cofigmenu {
 	width: 100%;
-	display: table;
+	/*display: table;*/
 }
 #ticket_menu {
 	display: table-row;
-	width: 100%;
+	/*width: 100%;*/
 	padding: 10px;
 	background-color: #dfdfdf;
 	font-weight: bold;
 	color: #666;
 	font-family: arial;
 }
-
+#ticket_menu0 {
+    width: 10%;
+	}
 #ticket_menu1 {
 	display: table-cell;
-	width: 100px;
+	  width: 10%;
 	margin: 10px 0px 10px 15px;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
@@ -149,7 +148,7 @@ textarea:focus {
 #ticket_menu2 {
 	display: table-cell;
 	margin: 10px 0px 10px 0px;
-	width:auto;
+	width: 63%;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
 	border-bottom:1px solid #d6d5d5;
@@ -157,7 +156,7 @@ textarea:focus {
 }
 #ticket_menu3 {
 	display: table-cell;
-	width: 150px;
+	width: 10%;
 	margin: 10px 0px 10px 0px;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
@@ -165,7 +164,7 @@ textarea:focus {
 }
 #ticket_menu4 {
 	display: table-cell;
-	width: 150px;
+	width: 10%;
 	margin: 10px 0px 10px 0px;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
@@ -174,7 +173,7 @@ textarea:focus {
 }
 #ticket_menu5 {
 	display: table-cell;
-	width: 100px;
+	width: 10%;
 	margin: 10px 0px 10px 0px;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
@@ -185,13 +184,22 @@ textarea:focus {
 #ticket_list:nth-child(odd) {
 	background-color:#ededed;
 }
+#ticket_list0
+{
+    background-color: #ededed;
+    border-bottom: 1px solid #e0e0e0;
+    float: left;
+    height: 38px;   
+     line-height: 38px;	
+}
 #ticket_list {
 	display: table-row;
 	border-collapse: collapse;
 	border-spacing: 0;
 	margin: 0px;
-	width: 100%;
+	width: 90%;
 	font-family: arial;
+	line-height: 18px;
 }
 
 #ticket_list:hover {
@@ -216,6 +224,7 @@ textarea:focus {
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;
+	width: 63%;
 }
 #ticket_list3 {
 	width: 150px;
@@ -229,7 +238,7 @@ textarea:focus {
 	border-bottom:1px solid #e0e0e0;
 }
 #ticket_list5 {
-	width: 100px;
+	width: 120px;
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;
@@ -386,6 +395,9 @@ a.refresh {
 }
 .Icon.refresh {
 	background-image: url('../images/refresh.gif');
+}
+.Icon.attachment {
+	background-image: url('../images/attachment.png');
 }
 .Icon.thread {
 	font-weight: bold;

@@ -3,7 +3,7 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: http://key4ce.com/osticket-bridge
 Description: Integrate osTicket (v1.8) or (v1.9) into wordpress. including user integration and scp
-Version: 1.1.5
+Version: 1.2.0
 Author: Key4ce
 Author URI: http://key4ce.com
 License: GPLv3
@@ -95,11 +95,17 @@ if (mysqli_connect_errno()) {
     $menu_title = 'Tickets';
 } else {
 @mysql_select_db($database, $con);
-$result = mysql_query("SELECT number FROM ".@$keyost_prefix."ticket WHERE status='open' AND isanswered='0'");
+$dept_table=$keyost_prefix."department";
+$ticket_table=$keyost_prefix."ticket";
+$ticket_cdata=$keyost_prefix."ticket__cdata";
+$result = mysql_query("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='0'");
+$data=mysql_fetch_array($result);
 if (empty($result)) {
 	   $num_rows = '0';
 } else {
-$num_rows = mysql_num_rows($result);
+	$num_rows=$data[0];
 }
     $page_title = 'Support/Request List';
 	if ($num_rows > 0) {

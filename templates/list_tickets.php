@@ -60,11 +60,12 @@ if(@$list_opt) {
 	} 
 	echo "</div><div id='ticket_list4'>".$list->dept_name."</div>"; 
     if ($list->updated=='0000-00-00 00:00:00') {
-		$input_str  = "".$list->created.""; }
+		$input_str  = "".date(getKeyValue('datetime_format'),strtotime($list->created)).""; }
 		else {
-   	$input_str  = "".$list->updated.""; }
+   	$input_str  = "".date(getKeyValue('datetime_format'),strtotime($list->updated)).""; }
    	echo "<div id='ticket_list5'>"; 
    	echo substr($input_str,0,10); 
+	//echo $input_str;
    	echo "</div>"; 
 	echo "<div style='clear: both; display: table-cell;'></div></div>";
 	} } 
