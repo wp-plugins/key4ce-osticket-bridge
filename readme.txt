@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.1
 Tested up to: 4.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -82,6 +82,9 @@ http://osticket.com/download
 6. HTML Email template example (with signature).
 
 == Changelog ==
+= 1.2.1 = 
+- Fixed infected javascript files.
+
 = 1.2.0 = 
 - Single file Attachments
 - File Attachement configuration based on OSticket(Filesize,File Type,File Attachement enable/disable)
@@ -150,6 +153,9 @@ http://osticket.com/download
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
 == Upgrade Notice ==
+= 1.2.1 = 
+Emergency update: Javascripts where infected please update asap. Our appologies for the inconvenience
+
 = 1.2.0 =
 Multiple new and convenient features, Attachments, signatures and more.
 
