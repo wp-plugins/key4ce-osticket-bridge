@@ -11,7 +11,6 @@ Template Name: ost-settings
 <div id="tboxwh" class="pg1">Some simple plugin settings for Wordpress.</div>
 <div style="clear: both"></div>
 <?php 
-
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
 $default_email_id=$ost_wpdb->get_var("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE 'default_email_id'");
 $default_email_id_data=$ost_wpdb->get_row("SELECT * FROM ".$keyost_prefix."email WHERE `email_id` =$default_email_id");

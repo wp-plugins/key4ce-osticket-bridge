@@ -24,16 +24,11 @@ function generateID()
 	$config = get_option('os_ticket_config');
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);	
-	$link=mysql_connect($host,$username,$password);
-	$db=mysql_select_db($database,$link);
-	$res=mysql_query("SELECT count(*) as count from ".$keyost_prefix."ticket WHERE number = '$id'",$link);
-	$checkUserID=mysql_fetch_array($res);
-	$count_no=$checkUserID['count'];
+	$count_no=$ost_wpdb->get_var("SELECT count(*) as count from ".$keyost_prefix."ticket WHERE number = '$id'");
 	if($count_no > 0)
 	{
 	return generateID();
 	}
-	
 	return $id;
 }
 function truncate($string, $max = 50, $replacement = '')
@@ -50,12 +45,16 @@ function getKeyValue($key)
 	$config = get_option('os_ticket_config');
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);	
-	$link=mysql_connect($host,$username,$password);
-	$db=mysql_select_db($database,$link);
-	$res=mysql_query("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE '$key'",$link);
-	$checkUserID=mysql_fetch_array($res);
-	$getKeyvalue=$checkUserID['value'];	
+	$getKeyvalue=$ost_wpdb->get_var("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE '$key'");
 	return $getKeyvalue;
+}
+function getPluginValue($plugin)
+{	
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$getPluginValue=$ost_wpdb->get_var("SELECT isactive FROM ".$keyost_prefix."plugin WHERE `name` = '$plugin' AND isphar='1'");
+	return $getPluginValue;
 }
 function wpetss_forum_text($text){
 // convert links

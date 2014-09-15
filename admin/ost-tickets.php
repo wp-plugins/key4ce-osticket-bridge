@@ -2,21 +2,21 @@
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php' );
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); 
 if(isset($_POST['delete']))
-{ 
- $delete_ticket_list=$_POST['tickets']; 
- $i=0;
- foreach($delete_ticket_list as $delete_ticket)
- {      
-  $ost_wpdb->query("DELETE FROM $ticket_table WHERE ticket_id =".$delete_ticket);
-  $ost_wpdb->query("DELETE FROM $thread_table WHERE ticket_id =".$delete_ticket); 
-  $ost_wpdb->query("DELETE FROM $ticket_cdata WHERE ticket_id =".$delete_ticket);
-  $file_id = $ost_wpdb->get_var("SELECT file_id from $ost_ticket_attachment WHERE ticket_id = '$delete_ticket'"); 
-  $ost_wpdb->query("DELETE FROM $ost_file WHERE id =".$file_id);
-  $ost_wpdb->query("DELETE FROM $ost_ticket_attachment WHERE ticket_id =".$delete_ticket);    
-  $i++;
- }
- echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i records has been deleted successfully</div>";
- echo "<script>window.location.href=location.href;</script>"; 
+{	
+	$delete_ticket_list=$_POST['tickets'];	
+	$i=0;
+	foreach($delete_ticket_list as $delete_ticket)
+	{				
+		$ost_wpdb->query("DELETE FROM $ticket_table WHERE ticket_id =".$delete_ticket);
+		$ost_wpdb->query("DELETE FROM $thread_table WHERE ticket_id =".$delete_ticket);	
+		$ost_wpdb->query("DELETE FROM $ticket_cdata WHERE ticket_id =".$delete_ticket);
+		$file_id = $ost_wpdb->get_var("SELECT file_id from $ost_ticket_attachment WHERE ticket_id = '$delete_ticket'");	
+		$ost_wpdb->query("DELETE FROM $ost_file WHERE id =".$file_id);
+		$ost_wpdb->query("DELETE FROM $ost_ticket_attachment WHERE ticket_id =".$delete_ticket);				
+		$i++;
+	}
+	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been deleted successfully</div>";
+	echo "<script>window.location.href=location.href;</script>";	
 }
 if(isset($_POST['close']))
 {		
@@ -27,7 +27,7 @@ if(isset($_POST['close']))
 		$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
 		$i++;
 	}
-	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i records has been closed successfully</div>";
+	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been closed successfully</div>";
 	echo "<script>window.location.href=location.href;</script>";	
 }
 if(isset($_POST['reopen']))
@@ -39,7 +39,7 @@ if(isset($_POST['reopen']))
 		$ost_wpdb->update($ticket_table, array('status'=>'open'), array('ticket_id'=>$reopen_ticket), array('%s'));
 		$i++;
 	}
-	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i records has been closed successfully</div>";
+	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been re-opened successfully</div>";
 	echo "<script>window.location.href=location.href;</script>";	
 }	
 ?>
@@ -62,7 +62,6 @@ function checkAll(ele) {
      }
  }
 </script>
-
 <form name="ticketview" id="ticketview" method="post" onSubmit="if(!confirm('Are you sure you want to continue?')){return false;}">
 <div class="wrap">
 <div class="headtitle">Support/Request List</div>
@@ -71,7 +70,6 @@ function checkAll(ele) {
 	<div style="clear: both"></div>
 <div align="center" style="padding-top:20px;"></div>
 <div style="clear: both"></div>
-
 <div class="cofigmenu">
 <div id="ticket_menu">
 <div id="ticket_menu0" style="width: 16px;"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
@@ -132,12 +130,11 @@ if($list_opt)
 	echo "</div><div id='ticket_list4'>".$list->dept_name."</div>";
 
 	if ($list->updated=='0000-00-00 00:00:00') {
-		$date_str  = "".date(getKeyValue('datetime_format'),strtotime($list->created)).""; }
+		$date_str  = "".$list->created.""; }
 		else {
-   	$date_str  = "".date(getKeyValue('datetime_format'),strtotime($list->updated)).""; }
+   	$date_str  = "".$list->updated.""; }
    	echo "<div id='ticket_list5'>";
    	echo truncate($date_str,10,'');
-	//echo $date_str;
    	echo "</div>";
 	echo "<div style='clear: both; display: table-cell;'></div></div>";
 	} }
@@ -147,17 +144,16 @@ if($list_opt)
 	}
 ?>
 </div>
-
 <div align="center" style="padding-top:15px;"></div>
 <div style="clear: both"></div>
 <div><input type="submit" name="delete" value="Delete">
-<?php if($_REQUEST['status']=="closed") { ?>
-<input type="submit" name="reopen" value="Reopen">
-<?php } else if ($_REQUEST['status']=="all") {?>
+<?php if(@$_REQUEST['status']=="open" || @$_REQUEST['status']=="answered") { ?>
+<input type="submit" name="close" value="Close">
+<?php } else if (@$_REQUEST['status']=="all") {?>
 <input type="submit" name="close" value="Close">
 <input type="submit" name="reopen" value="Reopen">
 <?php } else {?>
-<input type="submit" name="close" value="Close">
+<input type="submit" name="reopen" value="Reopen">
 <?php } ?>
 </div>
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/pagination.php' ); ?>

@@ -73,9 +73,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
 	");
         $last_ost_user_id = $ost_wpdb->insert_id;
     }
-
 ////End of new user info user_email_id email_id
-
     $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status' => $stat, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 
     $lastid = $ost_wpdb->insert_id;
@@ -90,24 +88,19 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 
     $ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid, 'subject' => $sub, 'priority' => $priordesc, 'priority_id' => $pri_id), array('%d', '%s', '%s', '%d'));
-
     @$topic_tab = $ost_wpdb->get_results("SELECT topic_id, topic FROM $topic_table WHERE topic_id=@$top_id");
-
     foreach ($topic_tab as $topic_tab1) {
         @$top = $topic_tab1->topic;
     }
-
     $config_table = $keyost_prefix . "config";
     $staff_table = $keyost_prefix . "staff";
-
-
 ///Variable's for email templates
     $username_arr = explode('@', $em);
     $username = $username_arr[0];
     $usermail = $em;
     $ticketid = $tic_ID;
     $user_message = $user_message; ///from post form - now becomes a variable & message
-    $ostitle = "Support";
+    $ostitle = $title;
     @$edate = $date;
     $dname = $directory;
     $siteurl = get_permalink();

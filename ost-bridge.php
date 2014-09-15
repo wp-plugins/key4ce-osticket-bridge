@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Key4ce osTicket Bridge
-Plugin URI: http://key4ce.com/osticket-bridge
-Description: Integrate osTicket v1.9.x into wordpress. including user integration and scp
-Version: 1.2.1
+Plugin URI: http://key4ce.com/projects/key4ce-osticket-bridge
+Description: Integrate osTicket (v1.9.x) into wordpress. including user integration and scp
+Version: 1.2.2
 Author: Key4ce
 Author URI: http://key4ce.com
 License: GPLv3
@@ -43,7 +43,6 @@ function addtemplate()
 	 return $ticketpage;
 	
 }
-//add_shortcode('addosticket', 'addtemplate');
 define('OST_SHORTCODE_ADDOSTICKET', 'addosticket');
 add_shortcode(OST_SHORTCODE_ADDOSTICKET, 'addtemplate');
  function custom_toolbar_openticket() {
@@ -61,15 +60,6 @@ function addcontact()
 	 return $contact_ticket;
 }
 add_shortcode('addoscontact', 'addcontact');
-//function custom_toolbar_openticket() {
-//	global $wp_admin_bar;	
-//	$wp_admin_bar->add_menu(array(
-//		'id'     => 'opensupport',
-//	        'title' => sprintf(__('Open Tickets')),			
-//		'href' => get_admin_url(null,'admin.php?page=ost-tickets&service=list&status=open'),
-//	));
-//   
-//}
 // Hook into the 'wp_before_admin_bar_render' action
 function custom_toolbar_supportticket() {
 	global $wp_admin_bar;	
@@ -80,33 +70,24 @@ function custom_toolbar_supportticket() {
 	));
    
 }
-
 function mb_admin_menu() { 
-
 $config = get_option('os_ticket_config');
 extract($config);
 if (($database=="") || ($username=="") || ($password=="") || ($keyost_prefix=="")) {
     $page_title = 'Support/Request List';
     $menu_title = 'Tickets';
 } else {
-@$con = mysql_connect($host, $username, $password, true, 65536);
-if (mysqli_connect_errno()) {
+$ost_wpdb = new wpdb($username, $password, $database, $host);	
+if (isset($ost_wpdb->error) ){
     $page_title = 'Support/Request List';
     $menu_title = 'Tickets';
 } else {
-@mysql_select_db($database, $con);
 $dept_table=$keyost_prefix."department";
 $ticket_table=$keyost_prefix."ticket";
 $ticket_cdata=$keyost_prefix."ticket__cdata";
-$result = mysql_query("SELECT COUNT(*) FROM $ticket_table
+$num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='0'");
-$data=mysql_fetch_array($result);
-if (empty($result)) {
-	   $num_rows = '0';
-} else {
-	$num_rows=$data[0];
-}
     $page_title = 'Support/Request List';
 	if ($num_rows > 0) {
     $menu_title = 'Tickets <span class="awaiting-mod"><span class="pending-count">' . $num_rows . '</span></span>';
@@ -117,30 +98,24 @@ if (empty($result)) {
     $function = 'ost_tickets_page';
     $position = '51';
 	$icon_url = plugin_dir_url( __FILE__ ) . 'images/status.png';
-
     add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
-
     $sub_menu_title = 'Email Tickets';
     add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
-
     $submenu_page_title = 'Settings';
     $submenu_title = 'Settings';
     $submenu_slug = 'ost-settings';
     $submenu_function = 'ost_settings_page';
     add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
-	
 	$submenu_page_title = 'osT-Config';
     $submenu_title = 'osT-Config';
     $submenu_slug = 'ost-config';
     $submenu_function = 'ost_config_page';
     add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function); 
-	
 	$submenu_page_title = 'Email Templates';
     $submenu_title = 'Email Templates';
     $submenu_slug = 'ost-emailtemp';
     $submenu_function = 'ost_emailtemp_page';
     add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
-	
 	// Hook into the 'wp_before_admin_bar_render' action
 if (($database=="") || ($username=="") || ($password=="")) {
     add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
@@ -150,11 +125,9 @@ add_action( 'wp_before_admin_bar_render', 'custom_toolbar_openticket', 998 );
 else
 add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
 } }
-
 function mb_admin_css() {
 wp_enqueue_style('ost-bridge-admin', plugin_dir_url(__FILE__).'css/admin-style.css">');
 }
-
 function mb_install()
 {
 $host='localhost';
@@ -163,7 +136,6 @@ $username='';
 $password='';
 $keyost_prefix='ost_';
 $supportpage='Support';
-
 $config=array('host'=>$host,'database'=>$database,'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage);
 update_option( 'os_ticket_config', $config);
 }
@@ -273,7 +245,6 @@ function mb_uninstall()
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_port'"); 
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_status'"); 	
 }
-
 function ost_config_page() {
     if (!current_user_can('manage_options'))
     {
@@ -281,7 +252,6 @@ function ost_config_page() {
     }
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-config.php' );
 }
-
 function ost_settings_page() {
 $config = get_option('os_ticket_config');
 extract($config);
@@ -296,7 +266,6 @@ extract($config);
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-settings.php' );
     }
 }
-
 function ost_emailtemp_page() {
 $config = get_option('os_ticket_config');
 extract($config);
@@ -311,7 +280,6 @@ extract($config);
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-emailtemp.php' );
     }
 }
-
 function ost_tickets_page() {
 $config = get_option('os_ticket_config');
 extract($config);

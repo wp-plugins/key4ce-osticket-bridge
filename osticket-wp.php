@@ -5,7 +5,7 @@
 if (is_user_logged_in()) {
     $config = get_option('os_ticket_config');
     extract($config);
-    wp_enqueue_style('ost-bridge', plugins_url('css/style.css',__FILE__));
+    wp_enqueue_style('ost-bridge', plugins_url('css/style.css', __FILE__));
     ?>
     <div id="ost_container"><!--ost_container Start-->
         <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' ); ?>
@@ -38,8 +38,8 @@ if (is_user_logged_in()) {
         $ost_user = $keyost_prefix . "user";
         $ost_staff = $keyost_prefix . "staff";
         $ost_useremail = $keyost_prefix . "user_email";
-  	$ost_ticket_attachment=$keyost_prefix."ticket_attachment";
-	$ost_file=$keyost_prefix."file";
+        $ost_ticket_attachment = $keyost_prefix . "ticket_attachment";
+        $ost_file = $keyost_prefix . "file";
         $directory = $config['supportpage'];
         $dirname = strtolower($directory);
         $category = @$_GET['cat'];
@@ -53,12 +53,10 @@ if (is_user_logged_in()) {
         $id_isonline = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%isonline%');");
         $isactive = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_isonline");
         $isactive = $isactive->value;
-
 //Added By Pratik Maniar on 01-05-2014 Start Here
         $default_email_id = $ost_wpdb->get_var("SELECT value FROM " . $keyost_prefix . "config WHERE `key` LIKE 'default_email_id'");
         $default_email_id_data = $ost_wpdb->get_row("SELECT * FROM " . $keyost_prefix . "email WHERE `email_id` =$default_email_id");
 //Added By Pratik Maniar on 01-05-2014 End Here
-
         $title_name = $default_email_id_data->name;
         $id_maxopen = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%max_open_tickets%');");
         $max_open_tickets = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_maxopen");
@@ -80,17 +78,16 @@ if (is_user_logged_in()) {
             if (isset($_REQUEST['create-ticket'])) {
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/newticketmail.php');
             }
-            if (isset($_REQUEST['create-contact-ticket']))
-	    {
-		require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/contactticketmail.php');		                
+            if (isset($_REQUEST['create-contact-ticket'])) {
+                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/contactticketmail.php');
             }
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/versionData.php');
-		if(get_the_ID() != $contactticketpage)
-		{
-            require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/nav_bar.php');
-		}
+            if (get_the_ID() != $contactticketpage) {
+                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/nav_bar.php');
+            }
         }
-        if (isset($_GET['service']) && $_GET['service'] == 'new') {
+        if (isset($_GET['service']) && $_GET['service'] == 'new') 
+		{
             if ($max_open_tickets == 0 or $getNumOpenTickets < $max_open_tickets) {
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/new_ticket.php');
             } elseif ($getNumOpenTickets == $max_open_tickets) {
@@ -101,36 +98,32 @@ if (is_user_logged_in()) {
                 echo $warning2;
             }
         }
-	 if (isset($_GET['service']) && $_GET['service'] == 'download')
-        {
+        if (isset($_GET['service']) && $_GET['service'] == 'download') {
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/download.php');
         }
-        if (isset($_GET['service']) && $_GET['service'] == 'view')
-        {
+        if (isset($_GET['service']) && $_GET['service'] == 'view') {
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/view_ticket.php');
-        }
-        elseif (isset($_REQUEST['service']) && $_REQUEST['service'] == 'list')
-        {
+        } elseif (isset($_REQUEST['service']) && $_REQUEST['service'] == 'list') {
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
-        } 
-	elseif ($parurl == "" || $page_id_chk) 
-        {
-            if (@$_REQUEST['service'] != 'new' && $isactive == 1)
-            {		
-		if(get_the_ID() != $contactticketpage)
-		{
-                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
-                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
-		}
+        } elseif ($parurl == "" || $page_id_chk) {
+            if (@$_REQUEST['service'] != 'new' && $isactive == 1) {
+                if (get_the_ID() != $contactticketpage) {
+                    require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
+                    require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
+                }
             }
         }
+		 else if(@$_REQUEST['currentpage']){
+                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
+                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
+            }
         ?>
     </div><!--ost_container End-->
         <?php
     } else {
         if (get_the_ID() == $contactticketpage) {
-            wp_enqueue_style('ost-bridge', plugins_url('css/style.css',__FILE__));
+            wp_enqueue_style('ost-bridge', plugins_url('css/style.css', __FILE__));
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/contactticketmail.php');
         } else {
             throw new Exception('Should not happen: User is not logged in');

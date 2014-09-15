@@ -358,7 +358,7 @@ input[readonly], input[readonly="readonly"], input[readonly="true"] {
 	border-bottom:1px solid #e0e0e0;
 }
 #ticket_list5 {
-	width: 120px;
+	width: 100px;
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;

@@ -102,11 +102,9 @@ die();
 }
 if(isset($_POST['h']) && $_POST['id']!="" && $_POST['service']=="download")
 {
-$fullpath = $_SERVER['DOCUMENT_ROOT'];
-$aryfullpath = explode('/', $fullpath, -1);
-$fullfinalpath = implode('/', $aryfullpath);
+$fullfinalpath = $_POST['filepath'];
 $dir_name = substr($_POST['key'], 0, 1);
-$finalpath = $fullfinalpath . "/attachments/" . $dir_name."/".$_POST['key'];
+$finalpath = $fullfinalpath . "/" . $dir_name."/".$_POST['key'];
 output_file($finalpath, ''.$_POST['name'].'',$_POST['type']);
 exit;
 }

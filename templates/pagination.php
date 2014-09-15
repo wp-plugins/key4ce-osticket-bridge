@@ -3,8 +3,6 @@
 ?>
 <div id="list_pagination">
 <?php
-$currentpage="";
-$totalpages="";
 $params = array_merge($_GET, array("currentpage" => "1")); 
 $new_query_string = http_build_query($params); 
 if ($currentpage > 1) { 

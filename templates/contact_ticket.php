@@ -39,8 +39,7 @@ $_SESSION['captcha'] = simple_php_captcha();
 <p id="msg_notice">A new request has been created successfully!</p>
 <p align="center">
 <br />
-<i>We are currently notifing the selected department staff...</i><br />
-and a confirmation email is being sent to you at: <font color=green><?php echo $current_user->user_email; ?></font>
+ <i>We are currently notifying the selected department staff...</i>
 <br /><br />
 <center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/timerbar.js';?>"></script></center>
 <br />

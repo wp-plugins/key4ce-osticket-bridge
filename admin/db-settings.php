@@ -285,7 +285,8 @@ else if(isset($_POST['action']) && $arr[0]=='desc')
 $sql.=" ORDER BY $arr[1] DESC, $ticket_table.updated DESC";
 else
 $sql.=" ORDER BY $ticket_table.ticket_id DESC";
-@$numrows=mysql_num_rows(mysql_query($sql));
+$ost_wpdb->get_results($sql);
+@$numrows = $ost_wpdb->num_rows;
 $rowsperpage = 10;
 $totalpages = ceil($numrows / $rowsperpage);
 if (isset($_REQUEST['currentpage']) && is_numeric($_REQUEST['currentpage'])) {

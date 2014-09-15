@@ -1,41 +1,4 @@
 <?php
-if($_FILES['file']['name']!="")
-{
-$alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-$strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-$fullpath = $_SERVER['DOCUMENT_ROOT'];
-$aryfullpath = explode('/', $fullpath, -1);
-$fullfinalpath = implode('/', $aryfullpath);
-
-$generateHashKey = generateHashKey(33);
-$generateHashSignature = generateHashSignature(33);
-$dir_name = substr($generateHashKey, 0, 1);
-$structure = $fullfinalpath . "/attachments/" . $dir_name;
-  if (!is_dir($structure))
-  {
-  	mkdir($structure,0355);
-  } 
-$alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-$strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-$allowedExts=explode(",",$strplc);
-$temp = explode(".", $_FILES["file"]["name"]);
-$extension = end($temp); //return uploaded file extension
-$newfilename = $generateHashKey;
-$realfilename=$_FILES["file"]["name"];
-$filetype=$_FILES["file"]["type"];	
-$filesize=$_FILES["file"]["size"];	
-if (($_FILES["file"]["size"] < $max_file_size) && in_array($extension, $allowedExts)) 
- {   		   
-    if ($_FILES["file"]["error"] > 0)
-    {
-        echo "Return Code: " . $_FILES["file"]["error"] . "<br>";
-    } 
-    else 
-    {
-            move_uploaded_file($_FILES["file"]["tmp_name"], $structure."/".$newfilename);       
-    }
-}
-}
 global $current_user;
 get_currentuserinfo();
 $ticket_number=$_REQUEST['ticket'];
@@ -56,7 +19,7 @@ $pid=0;
 $staffid=1; 
 $ticid=$_REQUEST['tic_id'];
 $thread_type="R";
-$poster=$current_user->display_name;
+$poster=$current_user->user_login;
 $source="Web";
 $admin_response=@Format::stripslashes($_REQUEST['message']); ///from post to thread-table to variable to email
 $ipaddress=$_SERVER['REMOTE_ADDR'];
@@ -64,21 +27,58 @@ $date=date("Y-m-d, g:i:s", strtotime("-5 hour")); ///EST (todo's - add option to
 
 $ost_wpdb->insert($thread_table, array('pid'=>$pid,'ticket_id'=>$ticid,'staff_id'=>$staffid,'thread_type'=>$thread_type,'poster'=>$poster,'source'=>$source,'title'=>"",'body'=>wpetss_forum_text($admin_response),'ip_address'=>$ipaddress,'created'=>$date), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
 $thread_id = $ost_wpdb->insert_id;
-if($_FILES['file']['name']!="")
-{
-// File Table Entry Code Start Here By Pratik Maniar on 01/09/2014
-$ost_wpdb->insert($keyost_prefix."file", array('ft' => 'T','bk' => 'F','type' => $filetype,'size' => $filesize,'key' => $generateHashKey,'signature' => $generateHashSignature,'name' => $realfilename,'attrs' => '','created'=>$date), 
-array('%s','%s','%s','%s','%s','%s','%s','%s','%s'));
-$file_id = $ost_wpdb->insert_id;
-// File Table Entry Code End Here By Pratik Maniar on 01/09/2014
 
-// File Attachment Table Entry Code Start Here By Pratik Maniar on 01/09/2014
+// File Table Entry Code Start Here By Pratik Maniar on 02/08/2014 
+if (!empty($_FILES['file']['name'][0])) 
+{   
+   $fileids=array();
+   for ($i = 0; $i < count($_FILES['file']['name']); $i++) 
+    { 
+    $allowed_filetypes = getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
+    $max_file_size = getKeyValue('max_file_size'); //Return max file size from Osticket configuration
+    $fullfinalpath= getKeyValue('uploadpath');
+    $generateHashKey = generateHashKey(33);
+    $generateHashSignature = generateHashSignature(33);
+    $dir_name = substr($generateHashKey, 0, 1);
+    $structure = $fullfinalpath."/".$dir_name;
+    if (!is_dir($structure)) {
+        mkdir($structure, 0355);
+    }
+    $alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+    $strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+    $allowedExts = explode(",", $strplc);
+    $temp = explode(".", $_FILES['file']['name'][$i]);
+    $extension = end($temp); //return uploaded file extension
+    $newfilename = $generateHashKey;
+    $realfilename = $_FILES['file']['name'][$i];
+    $filetype = $_FILES["file"]["type"][$i];
+    $filesize = $_FILES["file"]["size"][$i];
+    if (($_FILES["file"]["size"][$i] < $max_file_size) && in_array($extension, $allowedExts)) {
+        if ($_FILES["file"]["error"][$i] > 0) {
+            echo "Return Code: " . $_FILES["file"]["error"][$i] . "<br>";
+        } else {
+            move_uploaded_file($_FILES["file"]["tmp_name"][$i], $structure . "/" . $newfilename);
+        }
+    }
+     $ost_wpdb->insert($keyost_prefix . "file", array('ft' => 'T', 'bk' => 'F', 'type' => $filetype, 
+        'size' => $filesize, 'key' => $generateHashKey, 'signature' => $generateHashSignature,
+        'name' => $realfilename, 'attrs' => '', 'created' => $date), array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+    $file_id = $ost_wpdb->insert_id;
+    array_push($fileids, $file_id);
+    }       
+}
+// File Table Entry Code End Here By Pratik Maniar on 02/08/2014 
+ if (!empty($_FILES['file']['name'][0]))
+{   
+    foreach($fileids as $file_id)
+    {
+// File Attachment Table Entry Code Start Here By Pratik Maniar on 02/08/2014 
 $ost_wpdb->insert($keyost_prefix."ticket_attachment", array('ticket_id' => $ticid,'file_id' => $file_id,'ref_id' => $thread_id,'inline' => '0','created'=>$date), 
 array('%d','%d','%d','%d','%s'));
-// File Attachment Table Entry Code End Here By Pratik Maniar on 01/09/2014
+// File Attachment Table Entry Code End Here By Pratik Maniar on 02/08/2014 
+
+    }
 }
-
-
 /* Added by Pratik Maniar Start Here On 28-04-2014*/
 $ost_wpdb->query($ost_wpdb->prepare("UPDATE $ticket_table SET isanswered = 1 WHERE number = %s",$ticket_number));
 /* Added by Pratik Maniar End Here On 28-04-2014*/
@@ -88,7 +88,6 @@ if(isset($_REQUEST['close_ticket_status'])) {
 $ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$ticid), array('%s')); } 
 if(isset($_REQUEST['open_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status'=>'open'), array('ticket_id'=>$ticid), array('%s')); }
-
 ///post from form
 $usticketid=$_REQUEST['usticketid'];
 $usname=$_REQUEST['usname'];
@@ -104,24 +103,19 @@ $admin_reply=@Format::stripslashes($_REQUEST['adreply']); /// clean template fro
 
 ///Variable's for email templates
 $os_admin_email=$adem;
-$username=$current_user->display_name;
+$username=$usname;
 $usermail=$usemail;
 $ticketid=$usticketid;
-$admin_response=str_replace("\r","<br />",$admin_response);
-//$admin_response=$admin_response;
-//$admin_response=str_replace("\n","<br />",$admin_response);
-//$admin_response=nl2br($admin_response); ///from post form - now becomes a variable & message
-//$admin_response = str_replace( "\n", '<br />', $admin_response); 
+$admin_response=$admin_response; ///from post form - now becomes a variable & message
+$admin_response=nl2br($admin_response);
 $ostitle=$title;
 $edate=$date;
 $dname=$directory;
 $siteurl=site_url()."/$dirname/";
 $ticketurl=site_url()."/$dirname/?service=view&ticket=$ticketid";
 $postsubmail=$postsubmail; /// subject in user email (todo's - add field input to WP Email Templates)
-
 ///Send user the posted message (using aval() --> not sending login info so it's ok to use)
 $to=$usemail;
-//eval("\$subject=\"$postsubmail\";");
 eval("\$subject=\"$ussubject\";");
 eval("\$message=\"$admin_reply\";");
 if($smtp_status=="enable")
@@ -154,17 +148,14 @@ $phpmailer->Send();
 }
 else
 {
-
-$phpmailer->isHTML(true); 
 $phpmailer->CharSet = 'UTF-8';
 $phpmailer->setFrom("$ticket_detail_dept_email", "$ticket_detail_dept_name");
 $phpmailer->addReplyTo("$ticket_detail_dept_email", "$ticket_detail_dept_name");
+$phpmailer->addAddress($to);
 add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 $phpmailer->Subject = $subject;
-$phpmailer->Body    = wpetss_forum_text($message);    
-$phpmailer->MsgHTML('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' .$message);
+$phpmailer->MsgHTML('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $message);
 $phpmailer->AltBody = 'This is a plain-text message body';
-$phpmailer->addAddress($to);
 $phpmailer->send();
 }
 ?>

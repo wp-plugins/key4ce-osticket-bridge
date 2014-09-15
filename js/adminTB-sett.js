@@ -1,6 +1,4 @@
-/*
-Copyright (C) 2000 Free Software Foundation, Inc. See LICENSE.txt
-*/// Timer Bar - Version 1.2
+// Timer Bar - Version 1.2
 // Author: Brian Gosselin of http://scriptasylum.com
 // RELEASE INFO:
 // V 1.0 - INTIAL RELEASE

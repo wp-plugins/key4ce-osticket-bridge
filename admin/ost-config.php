@@ -59,38 +59,22 @@ Template Name: ost-config
 						'post_status'		=>'publish',
 						'post_type'		=>'page'
 					));
-		}
-		/*			
-		$thankyoupagecheck = $wpdb->get_var("SELECT count(*) as no FROM $wpdb->posts WHERE post_title='Thank you' AND post_status='publish'");		
-		if ($thankyoupagecheck == 0)
-		{ 
-		wp_insert_post(array('comment_status'=>'closed',
-					'ping_status'		=>'closed',
-					'post_author'		=>$current_user->ID,
-					'post_name'		=>get_the_title($thankyoupage),
-					'post_title'		=>get_the_title($thankyoupage),
-					'post_content' 		=> 'Thank you', 
-					'post_status'		=>'publish',
-					'post_type'		=>'page'
-					));
-		}
-		*/	
+		}	
 	update_option('os_ticket_config', $config);
 	$config = get_option('os_ticket_config');
 	extract($config);
-	@$con = mysql_connect($host, $username, $password, true, 65536) or die("Please enter proper username or password. Application can not connect to database.");
-	mysql_select_db($database, $con) or die("Please enter proper database name. Application can not connect to database.");
-	mysql_query("
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);
+	
+	$ost_wpdb->query($wpdb->prepare("
 	CREATE TABLE IF NOT EXISTS ".$keyost_prefix."ticket__cdata (
   	ticket_id int(11) unsigned NOT NULL DEFAULT '0',
   	subject mediumtext,
   	priority mediumtext,
   	priority_id bigint(20) DEFAULT NULL,
   	PRIMARY KEY (ticket_id)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
-	$config = get_option('os_ticket_config');
-	extract($config);
-	$ost_wpdb = new wpdb($username, $password, $database, $host);
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;"));
 	global $ost;
 	$ticket_cdata=$keyost_prefix."ticket__cdata";
 	$osinstall="osTicket Installed!";

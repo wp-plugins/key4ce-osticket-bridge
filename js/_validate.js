@@ -1,6 +1,3 @@
-/*
-Copyright (C) 2000 Free Software Foundation, Inc. See LICENSE.txt
-*/
 function validateFormNewTicket()
 {
 var x=document.forms["newticket"]["cur-name"].value;
