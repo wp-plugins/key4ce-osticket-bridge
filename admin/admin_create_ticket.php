@@ -1,25 +1,70 @@
 <?php
-/* Template Name: new_ticket.php */
+/* Template Name: admin-create-ticket.php */
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php');
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php'); 
+$dept_opt = $ost_wpdb->get_results("SELECT dept_name,dept_id FROM $dept_table where ispublic=1");
+wp_enqueue_script('ost-bridge-validate',plugins_url('../js/validate.js', __FILE__));
 $alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
 $strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
 $allowedExts = explode(",", $strplc);
 function add_quotes($str) {
     return sprintf("'%s'", $str);
 }
-
 $extimp = implode(',', array_map('add_quotes', $allowedExts));
 $finalary = "'" . $extimp . "'";
 ?>
+<?php 
+$args = array(
+	'blog_id'      => $GLOBALS['blog_id'],
+	'role'         => '',
+	'meta_key'     => '',
+	'meta_value'   => '',
+	'meta_compare' => '',
+	'meta_query'   => array(),
+	'include'      => array(),
+	'exclude'      => array(),
+	'orderby'      => 'login',
+	'order'        => 'ASC',
+	'offset'       => '',
+	'search'       => '',
+	'number'       => '',
+	'count_total'  => false,
+	'fields'       => 'all',
+	'who'          => ''
+ );
+//$getKeyvalue=$ost_wpdb->get_results("SELECT name,address FROM ".$keyost_prefix."user usr INNER JOIN " . $keyost_prefix . "user_email usremail ON usremail.id=usr.default_email_id",ARRAY_A);
+global $wpdb;
+$getKeyvalue=$wpdb->get_results("SELECT user_nicename,user_email FROM ".$wpdb->prefix."users",ARRAY_A);
+$data=json_encode($getKeyvalue);
+?>
+<script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/jquery.js'; ?>"></script>
+<script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/jquery.autocomplete.js'; ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo plugin_dir_url(__FILE__) . '../css/jquery.autocomplete.css'; ?>" />
+<script>
+$(document).ready(function(){
+var data = <?php echo $data; ?>;
+$("#username").autocomplete(data, {
+  formatItem: function(item) {
+    //return item.name;
+    return item.user_nicename;	
+  }
+}).result(function(event, item) {
+  //document.getElementById('email').value=item.address;
+	document.getElementById('email').value=item.user_email;
+});
+});
+</script>
 <script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/jquery_1_7_2.js'; ?>"></script>
 <script type="text/javascript">
-    $(function() {
-        var addDiv = $('#addinput');
-        var i = $('#addinput p').size() + 1;
-        var MaxFileInputs = <?php echo getKeyValue('max_user_file_uploads'); ?>;
-        $('#addNew').live('click', function() {
+var j=jQuery.noConflict();
+    j(function() {
+        var addDiv = j('#addinput');
+        var i = j('#addinput p').size() + 1;
+        var MaxFileInputs = <?php echo getKeyValue('max_staff_file_uploads'); ?>;
+        j('#addNew').live('click', function() {
             if (i <= MaxFileInputs)
             {
-                $('<p><span style="color:#000;">Attachment ' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew">Remove</a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo (getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
+                j('<p><span style="color:#000;">Attachment ' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew">Remove</a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo (getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
                 i++;
             }
             else
@@ -30,9 +75,9 @@ $finalary = "'" . $extimp . "'";
             return false;
         });
 
-        $('#remNew').live('click', function() {
+        j('#remNew').live('click', function() {
             if (i > 2) {
-                $(this).parents('p').remove();
+                j(this).parents('p').remove();
                 i--;
             }
             return false;
@@ -72,40 +117,25 @@ $finalary = "'" . $extimp . "'";
     #message-tmce{height: 25px;}
 </style>
 <div id="thContainer">
-    <?php
-    if (isset($_REQUEST['create-ticket'])) {
-        ?>
-
-        <div class="clear" style="padding: 5px;"></div>
-        <p id="msg_notice">A new request has been created successfully!</p>
-        <p align="center">
-            <br />
-            <i>We are currently notifying the selected department staff...</i>
-        </p><br /><br />
-        <center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/timerbar.js'; ?>"></script></center>
-        <br />
-        <center>Thank you for contacting us!</center>
-    </p>
-<?php
-} else {
-$user_id=$ost_wpdb->get_var("SELECT user_id FROM " . $keyost_prefix . "user_email WHERE `address` = '" . $current_user->user_email . "'");
-    ?>
     <div id="new_ticket">
-        <div id="new_ticket_text1">Open a New Ticket</div>
+        <div id="new_ticket_text1" style="  margin-bottom: 10px;margin-top: 15px;">Create A New Ticket</div>
         <div style="clear: both"></div>
         <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
         <div style="clear: both"></div>
         <form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket();">
-            <input type="hidden" name="usid" value="<?php echo $user_id;  ?>"/>
-            <input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
-            <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
-            <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
-            <input type="hidden" name="newtickettemp" value="<?php echo $newticket; ?>"/>
+            
+			<input type="hidden" name="usid" value="<?php //echo $user_id;  ?>"/>
+            <input type="hidden" name="ademail" value="<?php //echo $os_admin_email; ?>"/>
+            <input type="hidden" name="stitle" value="<?php //echo $title_name; ?>"/>
+            <input type="hidden" name="sdirna" value="<?php //echo $dirname; ?>"/>
+            <input type="hidden" name="newtickettemp" value="<?php //echo $newticket; ?>"/>
             <div id="new_ticket_name">Username:</div>
-            <div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" readonly="true" size="30" value="<?php echo $current_user->user_login; ?>"></div>
+            <div id="new_ticket_name_input">
+			<input name="username" type="text" id="username" size="20"/>
+			</div>
             <div style="clear: both"></div>
             <div id="new_ticket_email">Your Email:</div>
-            <div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" readonly="true" size="30" value="<?php echo $current_user->user_email; ?>"></div>
+            <div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email"></div>
             <div style="clear: both"></div>
             <div id="new_ticket_subject">Subject:</div>
             <div id="new_ticket_subject_input"><input class="ost" id="subject" type="text" name="subject" size="35"/><font class="error">&nbsp;*</font></div>
@@ -169,11 +199,9 @@ if (getKeyValue('allow_attachments') == 1) {
 	?>
         <tr>
             <td class="nobd" align="center">
-                <p align="center" style="padding-top: 5px;"><input type="submit" name="create-ticket" value="Create Ticket">
+                <p align="center" style="padding-top: 5px;"><input type="submit" name="create-admin-ticket" value="Create Ticket">
                     &nbsp;&nbsp;<input type="reset" value="Reset"></p>
             </td>
         </tr>
     </table></form>
     </div>
-<?php } ?>
-<div class="clear" style="padding: 10px;"></div>

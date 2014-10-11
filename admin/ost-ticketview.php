@@ -194,7 +194,7 @@ foreach ($threadinfo as $thread_info) {
                     <input type="hidden" name="usdepartment" value="<?php echo $ticketinfo->dept_name; ?>"/>
                     <input type="hidden" name="uscategories" value="<?php echo $ticketinfo->topic; ?>"/>
                     <input type="hidden" name="ussubject" value="<?php echo $ticketinfo->subject; ?>"/>
-                    <input type="hidden" name="ustopicid" value="<?php echo $ticketinfo->topic_id; ?>"/>
+                    <input type="hidden" name="ustopicid" value="<?php //echo $ticketinfo->topic_id; ?>"/>
                     <input type="hidden" name="ademail" value="<?php echo $os_admin_email; ?>"/>
                     <input type="hidden" name="adname" value="<?php echo $admin_fname; ?> <?php echo $admin_lname; ?>"/>
                     <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
@@ -209,8 +209,11 @@ foreach ($threadinfo as $thread_info) {
                 $settings = array('media_buttons' => false);
                 wp_editor($content, $editor_id, $settings);
                 ?>
-                        <?php if (getKeyValue('allow_attachments') == 1 && getPluginValue('Attachments on the filesystem')==1) {
-                            ?>
+      <?php 
+if (getKeyValue('allow_attachments') == 1) {
+	if(getPluginValue('Attachments on the filesystem')==1)
+	{
+        ?>
             <tr><td>
                     <div id="addinput">
                         <p>
@@ -218,12 +221,14 @@ foreach ($threadinfo as $thread_info) {
                         </p>
                     </div>
                 </td></tr>
-				  <?php } else
+    <?php } else
 	{
 	?>
 	 <tr><td>Attachments on the Filesystem plugin can be downloaded here: <a href="http://osticket.com/download/go?dl=plugin%2Fstorage-fs.phar" title="Attachement Filesystem Plugin" target="_blank">Attachement Filesystem Plugin</a></td></tr>
 	<?php
-	}?>
+	}
+	}
+	?>
         <tr>
             <td align="center">
         <?php

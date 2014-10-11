@@ -215,21 +215,26 @@ $strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes
                     ?></center>
                 </td>
                 </tr>
-    <?php if (getKeyValue('allow_attachments') == 1 && getPluginValue('Attachments on the filesystem')==1) {
+    <?php 
+if (getKeyValue('allow_attachments') == 1) {
+	if(getPluginValue('Attachments on the filesystem')==1)
+	{
         ?>
-                    <tr><td>
-                            <div id="addinput">
-                                <p>
-                                    <span style="color:#000;">Attachment 1:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="addNew">Add</a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo (getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span>
-                                </p>
-                            </div>
-                        </td></tr>
-                        <?php } else
+            <tr><td>
+                    <div id="addinput">
+                        <p>
+                            <span style="color:#000;">Attachment 1:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="addNew">Add</a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo (getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span>
+                        </p>
+                    </div>
+                </td></tr>
+    <?php } else
 	{
 	?>
 	 <tr><td>Attachments on the Filesystem plugin can be downloaded here: <a href="http://osticket.com/download/go?dl=plugin%2Fstorage-fs.phar" title="Attachement Filesystem Plugin" target="_blank">Attachement Filesystem Plugin</a></td></tr>
 	<?php
-	}?>
+	}
+	}
+	?>
                 <tr>
                     <td class="nobd" align="center"><div class="clear" style="padding: 5px;"></div>
                         <?php

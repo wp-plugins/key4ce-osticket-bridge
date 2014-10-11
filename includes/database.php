@@ -30,6 +30,7 @@ $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'"); 
 
 //////Ticket Info
+
 $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 //////Thread Info
 $threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
@@ -38,6 +39,7 @@ $threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.
 	inner join ".$keyost_prefix."user_email on ".$keyost_prefix."user_email.user_id = $ticket_table.user_id
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC"); 
+	
 $search="";
 if(isset($_REQUEST['search']))
 {
@@ -45,11 +47,11 @@ $search=@$_REQUEST['tq'];
 }
 if(isset($_POST['action']))
 $arr = explode('.', $_POST['action']);
-if(!$status_opt && ($status_opt!="all")) {
+if(!@$status_opt && (@$status_opt!="all")) {
 	if($ticket_count_open > 0)
-		$status_opt='open';
+		@$status_opt='open';
 	else
-		$status_opt='closed';
+		@$status_opt='closed';
     }
 if(!$status_opt && ($status_opt=="all")) 
 	$status_opt='';
@@ -66,7 +68,7 @@ $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $
       FROM $ticket_table
       LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
       INNER JOIN $dept_table ON $dept_table.dept_id = $ticket_table.dept_id WHERE $ticket_table.user_id =$user_id";
-if($category && ($category!="all"))
+if(@$category && (@$category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && $search=="")
 $sql.=" and $ticket_table.status = '".$status_opt."'";

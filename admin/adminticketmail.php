@@ -1,14 +1,12 @@
 <?php
 /*
-  Template Name: newticketemail.php
+  Template Name: adminticketemail.php
  */
-require_once('functions.php');
+require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php'); 
 ?>
 <?php
-global $current_user;
-get_currentuserinfo();
-$wp_user_email_id = $current_user->user_email;
-
+$user_id=$ost_wpdb->get_var("SELECT user_id FROM " . $keyost_prefix . "user_email WHERE `address` = '" . $_REQUEST['email'] . "'");
+$wp_user_email_id = $_REQUEST['email'];
 $tic_ID = generateID();
 $checkUserID = $ost_wpdb->get_results("SELECT number from $ticket_table WHERE number = '$tic_ID'");
 if (count($checkUserID) > 0) {
@@ -20,9 +18,9 @@ $pri_id = $_REQUEST['priorityId'];
 @$top_id = $_REQUEST['topicId'];
 $staff_id = 0;
 $team_id = 0;
-$usid = $_REQUEST['usid'];
+$usid = $user_id;
 $em = $_REQUEST['email'];
-$nam = $current_user->user_login;
+$nam = $_REQUEST['username'];
 $nam = preg_replace('/[^\p{L}\p{N}\s]/u', '', $nam);
 $adem = $_REQUEST['ademail'];
 $title = $_REQUEST['stitle'];
@@ -190,8 +188,7 @@ if (getKeyValue('ticket_alert_admin') == 1 && getKeyValue('ticket_alert_active')
     $adminmessage.="Your friendly Customer Support System ";
     $headers = 'From: ' . $title . ' <' . $adem . ">\r\n";
     add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-	wp_mail("maniarpratik@gmail.com", $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
-    //wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
+    wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
 }
 //Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 Start Here
 ///Email osticket Department - a new ticket has been created
@@ -259,4 +256,69 @@ if (getKeyValue('ticket_alert_dept_members') == 1 && getKeyValue('ticket_alert_a
         //If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code End Here
     }
 }//Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 End Here
+//Email Notification to Customer Added by Pratik Maniar on 10-09-2014 start Here
+
+//Added By Pratik Maniar On 14-06-2014 Code End Here To Avoid Auto generate by Department Emails
+    $subject = "New Support Ticket";
+    $usermessage = "Hello $nam ,<br />Your ticket has been created.<br /><br />";
+    $usermessage.="Ticket ID #" . $ticketid . "";
+    $usermessage.="<br />----------------------<br />";
+    $usermessage.="Email: " . $usermail . "<br />";
+    $usermessage.="Priority: " . $priordesc . "<br />";
+    $usermessage.="Department: " . $dept_name . "<br />";
+    $usermessage.="Subject: " . $sub . "<br />";
+    $usermessage.="<br />----------------------<br />";
+    $usermessage.="Message: " . $user_message . "";
+    $usermessage.="<br />----------------------<br /><br />";
+    $usermessage.="To respond to the ticket, please login to the support ticket system.";
+    $usermessage.="<br /><br />";
+    $usermessage.="" . site_url() . "";
+    $usermessage.="<br />";
+    $usermessage.="Your friendly Customer Support System ";
+//Email Notification to Customer Added by Pratik Maniar on 10-09-2014 end Here
+$dept_user_details = $ost_wpdb->get_row("SELECT $ost_email.name,$ost_email.email FROM $dept_table INNER JOIN $ost_email ON $dept_table.email_id=$ost_email.email_id WHERE $dept_table.dept_id=$dep_id");
+$dept_user_name = $dept_user_details->name;
+$dept_user_email = $dept_user_details->email;
+if($smtp_status=="enable")
+	$SMTPAuth="true";
+else
+	$SMTPAuth="false";	
+require_once ABSPATH . WPINC . '/class-phpmailer.php';
+require_once ABSPATH . WPINC . '/class-smtp.php';
+$phpmailer = new PHPMailer();
+if($smtp_status=="enable")
+{
+$phpmailer = new PHPMailer();
+$phpmailer->SMTPAuth =true;
+$phpmailer->Username = $smtp_username;
+$phpmailer->Password = $smtp_password;
+$phpmailer->isHTML(true); 
+$phpmailer->CharSet = 'UTF-8';
+$phpmailer->IsSMTP(true); // telling the class to use SMTP
+$phpmailer->Host  =$smtp_host; // SMTP server
+$phpmailer->Port=$smtp_port;
+$phpmailer->From =  "$dept_user_name";
+$phpmailer->FromName = "$dept_user_email";
+add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+$phpmailer->Subject    =$subject;
+$phpmailer->Body       = wpetss_forum_text($usermessage);                      //HTML Body
+$phpmailer->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+$phpmailer->MsgHTML('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $usermessage);
+$phpmailer->AddAddress($to);
+$phpmailer->Send();
+}
+else
+{
+$phpmailer->CharSet = 'UTF-8';
+$phpmailer->setFrom($dept_user_email, $dept_user_name);
+$phpmailer->addReplyTo($dept_user_email, $dept_user_name);
+add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+$phpmailer->Subject = $subject;
+$phpmailer->Body       = wpetss_forum_text($usermessage);   
+$phpmailer->MsgHTML('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $usermessage);
+$phpmailer->AltBody = 'This is a plain-text message body';
+$phpmailer->AddAddress($wp_user_email_id);
+$phpmailer->send();
+}
+
 ?>

@@ -408,3 +408,119 @@ a.refresh {
 	font-family: arial;
 	background-image: url('../images/thread.gif?1319556657');
 }
+/* Admin Create New Ticket CSS Start Here*/
+
+/********* New Ticket Submit **********/
+#thContainer {
+	margin: 0px;
+	height: auto !important;
+}
+#new_ticket {
+	margin: 0px;
+	padding-left:10px;
+}
+#new_ticket_text1 {
+	font-size: 160%;
+	font-weight: normal;
+	color: #00AEEF;
+	float: left;
+}
+#new_ticket_text2 {
+	font-weight: normal;
+	color: #000;
+	float: left;
+}
+#new_ticket_name {
+	padding-top:20px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_name_input {
+	padding-top:17px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_email {
+	padding-top:10px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_email_input {
+	padding-top:7px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_subject {
+	padding-top:20px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_subject_input {
+	padding-top:17px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_catagory {
+	padding-top:15px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_catagory_input {
+	padding-top:12px;
+	width: 75%;
+	float: left;
+}
+#new_ticket_priority {
+	padding-top:10px;
+	font-weight: normal;
+	color: #000;
+	width: 15%;
+	float: left;
+}
+#new_ticket_priority_input {
+	padding-top:7px;
+	width: 75%;
+	float: left;
+}
+.error {
+	color: #FF0000;
+}
+#msg_notice {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #0a0;
+  background: url('../images/ok.png') 10px 50% no-repeat #e0ffe0;
+}
+#msg_warning {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #f26522;
+  background: url('../images/alert.png') 10px 50% no-repeat #ffffdd;
+}
+#msg_warning_err {
+  margin: 0px 20px 20px 20px;
+  font-weight: normal;
+  text-align: center;
+  color: #000;
+}
+#msg_error {
+  margin: 20px 20px 20px 20px;
+  padding: 5px 10px 5px 36px;
+  height: auto !important;
+  line-height: 16px;
+  border: 1px solid #a00;
+  background: url('../images/error.png') 10px 50% no-repeat #fff0f0;
+}
+/* Admin create new ticket css end here*/

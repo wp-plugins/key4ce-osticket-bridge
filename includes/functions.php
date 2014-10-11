@@ -92,4 +92,12 @@ function generateHashSignature($length = 10) {
     }
     return $randomString;
 }
+function getUserEmail($id)
+{	
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$getUserEmail=$ost_wpdb->get_var("SELECT address FROM ".$keyost_prefix."user_email WHERE `id` = '$id'");
+	return $getUserEmail;
+}
 ?>

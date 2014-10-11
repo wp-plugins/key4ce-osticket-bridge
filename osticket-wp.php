@@ -36,6 +36,7 @@ if (is_user_logged_in()) {
         $thread_table = $keyost_prefix . "ticket_thread";
         $ticket_cdata = $keyost_prefix . "ticket__cdata";
         $ost_user = $keyost_prefix . "user";
+	$ost_email = $keyost_prefix . "email";
         $ost_staff = $keyost_prefix . "staff";
         $ost_useremail = $keyost_prefix . "user_email";
         $ost_ticket_attachment = $keyost_prefix . "ticket_attachment";
@@ -101,6 +102,7 @@ if (is_user_logged_in()) {
         if (isset($_GET['service']) && $_GET['service'] == 'download') {
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/download.php');
         }
+		 
         if (isset($_GET['service']) && $_GET['service'] == 'view') {
             require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/view_ticket.php');
         } elseif (isset($_REQUEST['service']) && $_REQUEST['service'] == 'list') {

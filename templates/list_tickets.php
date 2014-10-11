@@ -1,12 +1,44 @@
 <?php
 /* Template Name: list_tickets.php */
 ?>
+<script type="text/javascript">
+function checkAll(ele) {
+     var checkboxes = document.getElementsByTagName('input');
+     if (ele.checked) {
+         for (var i = 0; i < checkboxes.length; i++) {
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = true;
+             }
+         }
+     } else {
+         for (var i = 0; i < checkboxes.length; i++) {
+             console.log(i)
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = false;
+             }
+         }
+     }
+ }
+</script>
 <?php
+if(isset($_POST['close']))
+{		
+	$close_ticket_list=$_POST['tickets'];
+	$i=0;
+	foreach($close_ticket_list as $close_ticket)
+	{				
+		$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
+		$i++;
+	}
+	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been closed successfully</div>";
+	echo "<script>window.location.href=location.href;</script>";	
+}
 if(@$list_opt) { 
 ?>
-<form name="osticket" id="osticket" method="post">
-<div class="cofigmenu">
+<form name="osticket" id="osticket" method="post" onSubmit="if(!confirm('Are you sure you want to continue?')){return false;}">
+<div class="">
 <div id="ticket_menu">
+<div id="ticket_menu0"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
 <div id="ticket_menu1">Ticket #</div>
 <div id="ticket_menu2">Subject</div>
 <div id="ticket_menu3">Status</div>
@@ -45,7 +77,8 @@ if(@$list_opt) {
 		$ticket_view=get_permalink()."?service=view&ticket=".$list->number;
 		$ticket_tr="?service=view&ticket=".$list->number;
 	}
-	@$sub_str=Format::stripslashes($list->subject); 			
+	@$sub_str=Format::stripslashes($list->subject); 		
+	echo "<div id='ticket_list0' style='float: left;line-height: 45px;'><input type='checkbox' name='tickets[]' value='".$list->ticket_id."'></div>";	
 	echo "<div id='ticket_list' onclick=\"location.href='$ticket_view';\">"; 
 	echo "<div id='ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
 	echo "<div id='ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='ticket_list3'>"; 
@@ -74,4 +107,10 @@ if(@$list_opt) {
 	} 
 ?>
 </div>
+
+<?php 
+if(@$_REQUEST['status']!="closed" && count($list_opt)>0) 
+{?>
+<div style=" margin-left: 13px;margin-top: 15px;"><input type="submit" name="close" value="Close"></div>
+<?php }?>
 </form>

@@ -12,6 +12,7 @@ if($parurl=="page=ost-tickets&service=list&status=closed") { $active3="active"; 
 if($parurl=="page=ost-tickets&service=list&status=all") { $active4="active"; }
 ?>
 <div style="padding-top:0px; width: 100%; display:table;">
+    <div style="display:table-cell; width:150px;"><div class="button-primary"><a style="color: white; text-decoration: none;" href="admin.php?page=ost-create-ticket">Create Ticket</a></div></div>
 <div style="display:table-cell;">
 <ul class="adostmenu" style="width: 100%; max-width: 500px">
  <li><a href="admin.php?page=ost-tickets&service=list&status=open" class="<?php echo $active1; ?>"><span>Open (<?php echo "$ticket_count_open"; ?>)</span></a></li>

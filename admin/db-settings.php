@@ -363,7 +363,25 @@ if(isset($_REQUEST['ost-post-reply'])) {
   }, 5050);
 </script>
 <?php } } ?>
-
+<?php
+# ==============================================================================================
+# Admin Post To Ticket Thread - used in ost-ticketveiw
+# ==============================================================================================
+if(isset($_REQUEST['create-admin-ticket'])) { 
+	if (($_REQUEST['message']==""))
+	{
+	echo '<div id="failed"><b>Error:</b> Message field cannot be empty, if you are closing the ticket, then enter: "Closing Ticket" in post a reply.</div><div style="clear: both"></div>';
+	} else {
+	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/adminticketmail.php' );
+?>
+<div id="succes" class="fade"><?php echo "Ticket created successfully...Stand by: for auto refresh!";?></div>
+<div style="clear: both"></div>
+<script type="text/javascript" charset="utf-8">
+  window.setTimeout(function() {
+    parent.location = "admin.php?page=ost-tickets&service=list&status=open";
+  }, 5050);
+</script>
+<?php } } ?>
 <?php
 # ==============================================================================================
 # Admin Post To Ticket Email Template w/message included - used in ost-emailtemp

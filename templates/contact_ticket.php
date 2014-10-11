@@ -21,6 +21,9 @@ require_once(WP_PLUGIN_DIR .'/key4ce-osticket-bridge/osticket-wp.php' );
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/contact_nav_bar.php'); 
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/lib/captcha/simple-php-captcha.php');  
 $url = plugins_url();
+$default_email_id = $ost_wpdb->get_var("SELECT value FROM " . $keyost_prefix . "config WHERE `key` LIKE 'default_email_id'");
+$default_email_id_data = $ost_wpdb->get_row("SELECT name FROM " . $keyost_prefix . "email WHERE `email_id` =$default_email_id");
+$title_name = $default_email_id_data->name;
 ?>
 <style>
 #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
@@ -55,11 +58,14 @@ if(isset($_REQUEST['magicword']))
 <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
 <div style="clear: both"></div>
 <form id="ContactticketForm" name="contactticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormContactTicket();">
+            <input type="hidden" name="stitle" value="<?php echo $title_name; ?>"/>
+            <input type="hidden" name="sdirna" value="<?php echo $dirname; ?>"/>
+            <input type="hidden" name="newtickettemp" value="<?php echo $newticket; ?>"/>
 <div id="new_ticket_name">Full Name:</div>
-<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" size="30" value="<?php echo $_POST['cur-name']; ?>"></div>
+<div id="new_ticket_name_input"><input class="ost" id="cur-name" type="text" name="cur-name" size="30"></div>
 <div style="clear: both"></div>
 <div id="new_ticket_email">Your Email:</div>
-<div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" size="30" value="<?php echo $_POST['email']; ?>"></div>
+<div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email" size="30"></div>
 <div style="clear: both"></div>
 <div id="new_ticket_catagory">Catagories:</div>
 <div id="new_ticket_catagory_input">
@@ -76,7 +82,7 @@ if(isset($_REQUEST['magicword']))
 <input type="hidden" value="2" name="priorityId" id="priority"/>
 <div id="new_ticket_subject">Subject:</div>
 <div id="new_ticket_subject_input">
-<input class="ost" id="subject" type="text" name="subject" style="width: 100%;" value="<?php echo $_POST['subject']; ?>"></div>
+<input class="ost" id="subject" type="text" name="subject" style="width: 100%;"></div>
 <div style="clear: both"></div>
 </div>
 <table class="welcome nobd" align="center" cellpadding="3" cellspacing="3" border="0">
@@ -87,7 +93,7 @@ if(isset($_REQUEST['magicword']))
 <tr>
 <td class="nobd" align="center">
 <center> <?php
-$content = $_POST['message'];
+$content = @$_POST['message'];
 $editor_id = 'message';
 $settings = array( 'media_buttons' => false );
 wp_editor( $content, $editor_id , $settings );?> </center>

@@ -70,6 +70,26 @@ function custom_toolbar_supportticket() {
 	));
    
 }
+	// Ticket Count Short Code Start Here Added By Pratik Maniar
+function addopenticketcount()
+{
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$num_rows=0;
+	$dept_table=$keyost_prefix."department";
+	$ticket_table=$keyost_prefix."ticket";
+	$ticket_cdata=$keyost_prefix."ticket__cdata";
+	$current_user = wp_get_current_user();
+	$e_address=$current_user->user_email;
+	$user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
+	$num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND ost_ticket.user_id='$user_id'");
+	return $num_rows;
+}
+add_shortcode('addosopenticketcount', 'addopenticketcount');
+// Ticket Count Short Code End Here Added By Pratik Maniar
 function mb_admin_menu() { 
 $config = get_option('os_ticket_config');
 extract($config);
@@ -101,6 +121,13 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticke
     add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
     $sub_menu_title = 'Email Tickets';
     add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
+    	// Added By Pratik Maniar on 21/09/2014 code start here
+	$submenu_page_title = 'Create Ticket';
+    $submenu_title = 'Create Ticket';
+    $submenu_slug = 'ost-create-ticket';
+    $submenu_function = 'ost_create_ticket';
+    add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+	// Added By Pratik Maniar on 21/09/2014 code end here
     $submenu_page_title = 'Settings';
     $submenu_title = 'Settings';
     $submenu_slug = 'ost-settings';
@@ -116,6 +143,7 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticke
     $submenu_slug = 'ost-emailtemp';
     $submenu_function = 'ost_emailtemp_page';
     add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+	
 	// Hook into the 'wp_before_admin_bar_render' action
 if (($database=="") || ($username=="") || ($password=="")) {
     add_action( 'wp_before_admin_bar_render', 'custom_toolbar_supportticket', 999 );
@@ -245,6 +273,13 @@ function mb_uninstall()
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_port'"); 
     $wpdb->query("DELETE FROM $table_config WHERE `namespace`='core' and `key`='smtp_status'"); 	
 }
+function ost_create_ticket() {
+    if (!current_user_can('manage_options'))
+    {
+      wp_die( __('You do not have sufficient permissions to access this page.') );
+    }
+    require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/admin_create_ticket.php' );
+}
 function ost_config_page() {
     if (!current_user_can('manage_options'))
     {
@@ -252,6 +287,7 @@ function ost_config_page() {
     }
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-config.php' );
 }
+
 function ost_settings_page() {
 $config = get_option('os_ticket_config');
 extract($config);
@@ -294,7 +330,11 @@ extract($config);
     if(isset($_REQUEST['service']) && $_REQUEST['service']=='view') 
     { 
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-ticketview.php' );
-    } else { 
+    }
+else  if(isset($_REQUEST['service']) && $_REQUEST['service']=='admin-create-ticket') { 
+    require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/admin_create_ticket.php' );
+    }	
+	else { 
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-tickets.php' );
     }
   }

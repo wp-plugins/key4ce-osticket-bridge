@@ -146,6 +146,7 @@ if($list_opt)
 </div>
 <div align="center" style="padding-top:15px;"></div>
 <div style="clear: both"></div>
+<?php if(count($list_opt) > 0) { ?>
 <div><input type="submit" name="delete" value="Delete">
 <?php if(@$_REQUEST['status']=="open" || @$_REQUEST['status']=="answered") { ?>
 <input type="submit" name="close" value="Close">
@@ -156,6 +157,7 @@ if($list_opt)
 <input type="submit" name="reopen" value="Reopen">
 <?php } ?>
 </div>
+<?php } ?>
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/pagination.php' ); ?>
 </div><!--End wrap-->
 </form>

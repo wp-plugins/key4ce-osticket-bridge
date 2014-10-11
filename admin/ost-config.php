@@ -16,10 +16,7 @@ Template Name: ost-config
 	@$database=$_REQUEST['database'];
 	@$username=$_REQUEST['username'];
 	@$password=$_REQUEST['password'];
-        if($_REQUEST['keyost_prefix']=="")
-            @$keyost_prefix="ost_";
-        else
-            @$keyost_prefix=$_REQUEST['keyost_prefix'];
+    @$keyost_prefix=$_REQUEST['keyost_prefix'];
 	@$supportpage=$_REQUEST['supportpage'];
                 
 	@$contactticketpage=$_REQUEST['contactticketpage'];
@@ -66,15 +63,14 @@ Template Name: ost-config
 	$config = get_option('os_ticket_config');
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);
-	
 	$ost_wpdb->query($wpdb->prepare("
-	CREATE TABLE IF NOT EXISTS ".$keyost_prefix."ticket__cdata (
+	CREATE TABLE IF NOT EXISTS %s(
   	ticket_id int(11) unsigned NOT NULL DEFAULT '0',
   	subject mediumtext,
   	priority mediumtext,
   	priority_id bigint(20) DEFAULT NULL,
   	PRIMARY KEY (ticket_id)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;"));
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;",$keyost_prefix."ticket__cdata"));
 	global $ost;
 	$ticket_cdata=$keyost_prefix."ticket__cdata";
 	$osinstall="osTicket Installed!";

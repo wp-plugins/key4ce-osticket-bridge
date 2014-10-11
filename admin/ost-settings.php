@@ -53,8 +53,8 @@ else
 	$disable="selected";
 ?>
 <select name="smtp_status" id="smtp_status">
-<option value="enable" <?php echo $enable;?>>Enable</option>
-<option value="disable" <?php echo $disable;?>>Disable</option>
+<option value="enable" <?php echo @$enable;?>>Enable</option>
+<option value="disable" <?php echo @$disable;?>>Disable</option>
 </select>&nbsp;&nbsp;(Please select smtp status.)</td>
 </tr>
 <tr>

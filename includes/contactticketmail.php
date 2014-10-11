@@ -11,7 +11,7 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/versionData.php'
 <?php
 global $current_user;
 get_currentuserinfo();
-$wp_user_email_id = $_REQUEST['email'];
+$wp_user_email_id = @$_REQUEST['email'];
 //$wp_user_email_id="pratik.emiprotech@gmail.com";
 $tic_ID = generateID();
 $checkUserID = $ost_wpdb->get_results("SELECT number from $ticket_table WHERE number = '$tic_ID'");
@@ -21,21 +21,21 @@ if (count($checkUserID) > 0) {
 $id_ademail = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%default_email_id%');");
 $os_admin_email = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_ademail");
 $os_admin_email_id = $os_admin_email->value;
-$os_admin_email_address = $ost_wpdb->get_row("SELECT email,name FROM ost_email where email_id=" . $os_admin_email_id . "");
-$dep_id = $_REQUEST['deptId'];
+$os_admin_email_address = $ost_wpdb->get_row("SELECT email,name FROM " . $keyost_prefix . "email where email_id=" . $os_admin_email_id . "");
+$dep_id = @$_REQUEST['deptId'];
 $sla_id = 1;
-$pri_id = $_REQUEST['priorityId'];
+$pri_id = 2;
 @$top_id = $_REQUEST['topicId'];
 $staff_id = 0;
 $team_id = 0;
-$usid = $_REQUEST['usid'];
-$em = $_REQUEST['email'];
-$fullname = $_REQUEST['cur-name'];
+$usid = @$_REQUEST['usid'];
+$em = @$_REQUEST['email'];
+$fullname = @$_REQUEST['cur-name'];
 $username_arr = explode('@', $em);
 $nam = preg_replace('/[^\p{L}\p{N}\s]/u', '', $username_arr[0]);
 $adem = $os_admin_email_address->email;
 $title = $os_admin_email_address->name;
-$dirname = $_REQUEST['sdirna'];
+$dirname = @$_REQUEST['sdirna'];
 @$sub = Format::stripslashes($_REQUEST['subject']);
 @$newtickettemp = Format::stripslashes($_REQUEST['newtickettemp']);
 $ip_add = $_SERVER['REMOTE_ADDR'];
@@ -47,7 +47,7 @@ $las_msg = date("Y-m-d, g:i:s", strtotime("-5 hour"));
 $cre = date("Y-m-d, g:i:s", strtotime("-5 hour"));
 @$user_message = Format::stripslashes($_REQUEST['message']);
 $prid = $ost_wpdb->get_row("SELECT priority_desc FROM $priority_table WHERE priority_id=$pri_id");
-$priordesc = $prid->priority_desc;
+$priordesc = "Normal";
 if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) && $_REQUEST["magicword"] != "" && strtolower($_SESSION ["captcha"]["code"])==strtolower($_REQUEST["magicword"])) {
 // Added by Pratik Maniar on 29-04-2014 Start Here
     $dept_details = $ost_wpdb->get_row("SELECT dept_id,dept_name FROM $dept_table WHERE dept_id=$dep_id");
@@ -58,9 +58,6 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     if (count($result1) > 0) {
         $last_ost_user_email_id = $ost_wpdb->get_var("SELECT id, user_id, address FROM " . $keyost_prefix . "user_email WHERE address = '" . $wp_user_email_id . "'");
     } else {
-
-        if ($usid == "")
-            $usid = 0;
         $ost_wpdb->query("INSERT INTO " . $keyost_prefix . "user_email (id, user_id, address) VALUES ('','" . $usid . "','" . $wp_user_email_id . "')");
         @$last_ost_user_email_id = $ost_wpdb->insert_id;
     }
@@ -72,6 +69,11 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
         $ost_wpdb->query("INSERT INTO " . $keyost_prefix . "user (id, default_email_id, name, created, updated) VALUES ('','" . $last_ost_user_email_id . "', '" . $nam . "', '" . $cre . "', '" . $cre . "')
 	");
         $last_ost_user_id = $ost_wpdb->insert_id;
+    if ($usid == "")
+        $ost_wpdb->query("UPDATE " . $keyost_prefix . "user_email SET user_id=$last_ost_user_id where id=$last_ost_user_email_id");
+		
+		
+		
     }
 ////End of new user info user_email_id email_id
     $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status' => $stat, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
@@ -102,7 +104,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     $user_message = $user_message; ///from post form - now becomes a variable & message
     $ostitle = $title;
     @$edate = $date;
-    $dname = $directory;
+    $dname = @$directory;
     $siteurl = get_permalink();
     if (isset($_REQUEST['page_id']))
         $ticketurl = get_permalink() . "?service=view&ticket=$ticketid";
@@ -122,6 +124,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
         $id_ademail = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
         $os_admin_email = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
         $os_admin_email_admin = $os_admin_email->value;
+		//$os_admin_email_admin = "maniarpratik@gmail.com";
 //Added By Pratik Maniar On 14-06-2014 Code End Here To Avoid Auto generate by Department Emails
         $subject = "New Support Ticket";
         $adminmessage = "Hello Admin,<br />A new ticket has been created.<br /><br />";
