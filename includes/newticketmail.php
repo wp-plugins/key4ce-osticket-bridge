@@ -190,8 +190,7 @@ if (getKeyValue('ticket_alert_admin') == 1 && getKeyValue('ticket_alert_active')
     $adminmessage.="Your friendly Customer Support System ";
     $headers = 'From: ' . $title . ' <' . $adem . ">\r\n";
     add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-	wp_mail("maniarpratik@gmail.com", $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
-    //wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
+    wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
 }
 //Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 Start Here
 ///Email osticket Department - a new ticket has been created

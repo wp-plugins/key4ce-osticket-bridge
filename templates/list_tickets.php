@@ -38,7 +38,9 @@ if(@$list_opt) {
 <form name="osticket" id="osticket" method="post" onSubmit="if(!confirm('Are you sure you want to continue?')){return false;}">
 <div class="">
 <div id="ticket_menu">
+<?php if($keyost_usercloseticket==1) { ?>
 <div id="ticket_menu0"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
+<?php } ?>
 <div id="ticket_menu1">Ticket #</div>
 <div id="ticket_menu2">Subject</div>
 <div id="ticket_menu3">Status</div>
@@ -78,6 +80,7 @@ if(@$list_opt) {
 		$ticket_tr="?service=view&ticket=".$list->number;
 	}
 	@$sub_str=Format::stripslashes($list->subject); 		
+	if($keyost_usercloseticket==1)
 	echo "<div id='ticket_list0' style='float: left;line-height: 45px;'><input type='checkbox' name='tickets[]' value='".$list->ticket_id."'></div>";	
 	echo "<div id='ticket_list' onclick=\"location.href='$ticket_view';\">"; 
 	echo "<div id='ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
@@ -109,8 +112,10 @@ if(@$list_opt) {
 </div>
 
 <?php 
+if($keyost_usercloseticket==1) 
+{
 if(@$_REQUEST['status']!="closed" && count($list_opt)>0) 
 {?>
 <div style=" margin-left: 13px;margin-top: 15px;"><input type="submit" name="close" value="Close"></div>
-<?php }?>
+<?php } }?>
 </form>

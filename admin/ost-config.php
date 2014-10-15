@@ -17,11 +17,11 @@ Template Name: ost-config
 	@$username=$_REQUEST['username'];
 	@$password=$_REQUEST['password'];
     @$keyost_prefix=$_REQUEST['keyost_prefix'];
+	@$keyost_usercloseticket = ($_REQUEST['keyost_usercloseticket']=="on") ? '1' : '0';
 	@$supportpage=$_REQUEST['supportpage'];
-                
 	@$contactticketpage=$_REQUEST['contactticketpage'];
 	@$thankyoupage=$_REQUEST['thankyoupage'];
-	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'supportpage'=>$supportpage,'contactticketpage'=>$contactticketpage,'thankyoupage'=>$thankyoupage);
+	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'keyost_usercloseticket'=>$keyost_usercloseticket,'supportpage'=>$supportpage,'contactticketpage'=>$contactticketpage,'thankyoupage'=>$thankyoupage);
               
 	if (($_REQUEST['host']=="") || ($_REQUEST['database']=="") || ($_REQUEST['username']=="") || ($_REQUEST['supportpage']=="") )
 	{
@@ -116,6 +116,10 @@ extract($config);
 <tr>
 <td class="config_td"><label class="config_label">Database Prefix:</label></td>                
 <td><input type="text" name="keyost_prefix" id="keyost_prefix" size="20" value="<?php echo @$keyost_prefix;?>"/>&nbsp;&nbsp;( osTicket Database Prefix Goes Here )</td>
+</tr>
+<tr>
+<td class="config_td"><label class="config_label">Enable Closing Ticket By User:</label></td>                
+<td><input type="checkbox" name="keyost_usercloseticket" id="keyost_usercloseticket" <?php echo (@$keyost_usercloseticket=="1") ? 'checked' : ''; ?>/>&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td class="config_td"><label class="config_label">Landing Page Name:</label></td>                

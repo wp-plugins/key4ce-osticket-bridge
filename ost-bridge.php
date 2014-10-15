@@ -3,7 +3,7 @@
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: https://key4ce.com/projects/key4ce-osticket-bridge
 Description: Integrate osTicket (v1.9.x) into wordpress. including user integration and scp
-Version: 1.2.3
+Version: 1.2.4
 Author: Key4ce
 Author URI: https://key4ce.com
 License: GPLv3
@@ -86,7 +86,10 @@ function addopenticketcount()
 	$num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND ost_ticket.user_id='$user_id'");
-	return $num_rows;
+	if($num_rows > 0)
+		return $num_rows;
+	else
+		return 0;
 }
 add_shortcode('addosopenticketcount', 'addopenticketcount');
 // Ticket Count Short Code End Here Added By Pratik Maniar
@@ -121,8 +124,8 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticke
     add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
     $sub_menu_title = 'Email Tickets';
     add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
-    	// Added By Pratik Maniar on 21/09/2014 code start here
-	$submenu_page_title = 'Create Ticket';
+    // Added By Pratik Maniar on 21/09/2014 code start here
+    $submenu_page_title = 'Create Ticket';
     $submenu_title = 'Create Ticket';
     $submenu_slug = 'ost-create-ticket';
     $submenu_function = 'ost_create_ticket';

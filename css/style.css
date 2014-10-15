@@ -264,10 +264,13 @@ input[readonly], input[readonly="readonly"], input[readonly="true"] {
 	color: #666;
 	font-family: arial;
 }
-
+#ticket_menu0{ 
+	float: left;
+    margin-top: 10px;
+}
 #ticket_menu1 {
 	display: table-cell;
-	width: 100px;
+	  width: 10%;
 	margin: 10px 0px 10px 15px;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
@@ -277,7 +280,7 @@ input[readonly], input[readonly="readonly"], input[readonly="true"] {
 #ticket_menu2 {
 	display: table-cell;
 	margin: 10px 0px 10px 0px;
-	width:auto;
+	 width: 50%;
 	padding: 10px;
 	border-top:2px solid #d6d5d5;
 	border-bottom:1px solid #d6d5d5;
@@ -341,13 +344,14 @@ input[readonly], input[readonly="readonly"], input[readonly="true"] {
 }
 #ticket_list2 {
 	display: table-cell;
-	padding: 10px;
+	 padding: 10px 10px 10px 5px;
 	border-bottom:1px solid #e0e0e0;
+	width: 50%;
 }
 #ticket_list3 {
 	width: 150px;
 	display: table-cell;
-    padding: 10px;
+   padding: 10px 10px 10px 20px;
     font-weight: bold;
 	border-bottom:1px solid #e0e0e0;
 }
@@ -679,3 +683,5 @@ a.refresh {
   border: 1px solid #a00;
   background: url('../images/error.png') 10px 50% no-repeat #fff0f0;
 }
+
+

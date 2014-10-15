@@ -120,6 +120,11 @@ if (is_user_logged_in()) {
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
             }
+	else
+	{
+	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
+                require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
+	}
         ?>
     </div><!--ost_container End-->
         <?php
