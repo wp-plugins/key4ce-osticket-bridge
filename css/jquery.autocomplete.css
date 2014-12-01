@@ -1,4 +1,4 @@
-.ac_results {
+.key4ce_ac_results {
 	padding: 0px;
 	border: 1px solid black;
 	background-color: white;
@@ -6,7 +6,7 @@
 	z-index: 99999;
 }
 
-.ac_results ul {
+.key4ce_ac_results ul {
 	width: 100%;
 	list-style-position: outside;
 	list-style: none;
@@ -14,7 +14,7 @@
 	margin: 0;
 }
 
-.ac_results li {
+.key4ce_ac_results li {
 	margin: 0px;
 	padding: 2px 5px;
 	cursor: default;
@@ -34,15 +34,15 @@
 	overflow: hidden;
 }
 
-.ac_loading {
+.key4ce_ac_loading {
 	background: white url('indicator.gif') right center no-repeat;
 }
 
-.ac_odd {
+.key4ce_ac_odd {
 	background-color: #eee;
 }
 
-.ac_over {
+.key4ce_ac_over {
 	background-color: #A0A0A0;
 	color: white;
 }

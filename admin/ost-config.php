@@ -4,11 +4,11 @@ Template Name: ost-config
 */
 ?>
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/udscript.php' ); ?>
-<div class="wrap">
-<div class="headtitle">osTicket Data Configuration</div>
+<div class="key4ce_wrap">
+<div class="key4ce_headtitle">osTicket Data Configuration</div>
 <div style="clear: both"></div>
 <?php require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav.php' ); ?>
-<div id="tboxwh" class="pg1">View or edit your OSTicket database information, you should already have osTicket installed to your server, view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required below.<div style="padding:4px;"></div><b>Landing Page Name:</b> The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin will create this page. <b>Note:</b> If this page exists it will be over written, also this cannot be the same name as your osTicket folder.</div>
+<div id="key4ce_tboxwh" class="key4ce_pg1">View or edit your OSTicket database information, you should already have osTicket installed to your server, view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required below.<div style="padding:4px;"></div><b>Landing Page Name:</b> The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin will create this page. <b>Note:</b> If this page exists it will be over written, also this cannot be the same name as your osTicket folder.</div>
 <div style="clear: both"></div>
 <?php
 	if(isset($_REQUEST['submit'])) {
@@ -17,12 +17,12 @@ Template Name: ost-config
 	@$username=$_REQUEST['username'];
 	@$password=$_REQUEST['password'];
     @$keyost_prefix=$_REQUEST['keyost_prefix'];
+	@$keyost_version=$_REQUEST['keyost_version'];
 	@$keyost_usercloseticket = ($_REQUEST['keyost_usercloseticket']=="on") ? '1' : '0';
 	@$supportpage=$_REQUEST['supportpage'];
 	@$contactticketpage=$_REQUEST['contactticketpage'];
 	@$thankyoupage=$_REQUEST['thankyoupage'];
-	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'keyost_usercloseticket'=>$keyost_usercloseticket,'supportpage'=>$supportpage,'contactticketpage'=>$contactticketpage,'thankyoupage'=>$thankyoupage);
-              
+	$config=array('host'=>$host, 'database'=>$database, 'username'=>$username,'password'=>$password,'keyost_prefix'=>$keyost_prefix,'keyost_version'=>$keyost_version,'keyost_usercloseticket'=>$keyost_usercloseticket,'supportpage'=>$supportpage,'contactticketpage'=>$contactticketpage,'thankyoupage'=>$thankyoupage);          
 	if (($_REQUEST['host']=="") || ($_REQUEST['database']=="") || ($_REQUEST['username']=="") || ($_REQUEST['supportpage']=="") )
 	{
 	echo '<div id="failed"><b>Error:</b> All fields are required below for the database...</div><div style="clear: both"></div>';
@@ -87,7 +87,7 @@ Template Name: ost-config
 	} 
 
 ?>
-<div id="succes" class="fade"><?php echo "Your settings saved successfully...Thank you!";?></div>
+<div id="key4ce_succes" class="key4ce_fade"><?php echo "Your settings saved successfully...Thank you!";?></div>
 <div style="clear: both"></div>
 <?php
 }
@@ -96,40 +96,55 @@ $config = get_option('os_ticket_config');
 extract($config);
 ?>
 <form name="mbform" action="admin.php?page=ost-config" method="post">
-<table class="cofigtb">
+<table class="key4ce_cofigtb">
 <tr>
-<td class="config_td"><label class="config_label">Host Name:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Host Name:</label></td>                
 <td><input type="text" name="host" id="host" size="20" value="<?php echo @$host;?>"/>&nbsp;&nbsp;( Normally this is localhost )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Database Name:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Database Name:</label></td>                
 <td><input type="text" name="database" id="database" size="20" value="<?php echo @$database;?>"/>&nbsp;&nbsp;( osTicket Database Name Goes Here )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Database Username:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Database Username:</label></td>                
 <td><input type="text" name="username" id="username" size="20" value="<?php echo @$username;?>"/>&nbsp;&nbsp;( osTicket Database Username Goes Here )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Database Password:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Database Password:</label></td>                
 <td><input type="password" name="password" id="password" size="20" value="<?php echo @$password;?>"/>&nbsp;&nbsp;( osTicket Database Password Goes Here )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Database Prefix:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Database Prefix:</label></td>                
 <td><input type="text" name="keyost_prefix" id="keyost_prefix" size="20" value="<?php echo @$keyost_prefix;?>"/>&nbsp;&nbsp;( osTicket Database Prefix Goes Here )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Enable Closing Ticket By User:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Osticket Version:</label></td>                
+<td>
+<?php 
+if($keyost_version==194)
+		$keyost_version_194="selected='selected'";
+	else
+		$keyost_version_19="selected='selected'";
+?>
+<select name="keyost_version" id="keyost_version">
+<option value="19" <?php echo $keyost_version_19; ?>>Ver. <=1.9.4</option>
+<option value="194" <?php echo $keyost_version_194; ?>>Ver. >=1.9.4</option>
+</select>&nbsp;&nbsp;(Select Osticket Version)
+</td>
+</tr>
+<tr>
+<td class="key4ce_config_td"><label class="key4ce_config_label">Enable Closing Ticket By User:</label></td>                
 <td><input type="checkbox" name="keyost_usercloseticket" id="keyost_usercloseticket" <?php echo (@$keyost_usercloseticket=="1") ? 'checked' : ''; ?>/>&nbsp;&nbsp;</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Landing Page Name:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Landing Page Name:</label></td>                
 <td>
 <input type="text" name="supportpage" id="supportpage" size="20" value="<?php echo $supportpage;?>"/>&nbsp;&nbsp;( Create this page...read <b>Landing Page Note</b> above! )</td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Contact Ticket Page:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Contact Ticket Page:</label></td>                
 <td>
-<select name="contactticketpage" id="contactticketpage">
+<select name="contactticketpage" id="key4ce_contactticketpage">
 <?php $args = array(
 	'sort_order' => 'ASC',
 	'sort_column' => 'post_title',
@@ -153,9 +168,9 @@ foreach($pages as $page)
 </td>
 </tr>
 <tr>
-<td class="config_td"><label class="config_label">Thank You Page:</label></td>                
+<td class="key4ce_config_td"><label class="key4ce_config_label">Thank You Page:</label></td>                
 <td>
-<select name="thankyoupage" id="thankyoupage">
+<select name="thankyoupage" id="key4ce_thankyoupage">
 <?php $args = array(
 	'sort_order' => 'ASC',
 	'sort_column' => 'post_title',
@@ -180,7 +195,7 @@ foreach($pages as $page)
 </tr>
 </table>
 <div style="padding: 30px;">
-<input type="submit" name="submit" class="button-primary" value="Save Changes" />
+<input type="submit" name="submit" class="key4ce_button-primary" value="Save Changes" />
 </div>
 </form>
 </div><!--End of wrap-->

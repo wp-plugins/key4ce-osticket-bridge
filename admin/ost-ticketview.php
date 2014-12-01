@@ -7,7 +7,6 @@ $allowedExts = explode(",", $strplc);
 function add_quotes($str) {
     return sprintf("'%s'", $str);
 }
-
 $extimp = implode(',', array_map('add_quotes', $allowedExts));
 $finalary = "'" . $extimp . "'";
 ?>
@@ -67,19 +66,19 @@ $finalary = "'" . $extimp . "'";
         return true;
     }
 </script>
-<div class="wrap">
-    <div class="headtitle">Reply to Support Request</div>
+<div class="key4ce_wrap">
+    <div class="key4ce_headtitle">Reply to Support Request</div>
     <div style="clear: both"></div>
     <?php
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/db-settings.php');
     require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/header_nav_ticket.php');
     ?>
-    <div id="ticket_view">
-        <div id="tic_number">Ticket ID #<?php echo $ticketinfo->number; ?></div>
-        <div id="tic_icon"><a href="admin.php?page=ost-tickets&service=view&ticket=<?php echo $ticketinfo->number; ?>" title="Reload"><span class="Icon refresh"></span></a><span class="preply">&darr; <a href="#post">Post Reply</a></span></div>
+    <div id="key4ce_ticket_view">
+        <div id="key4ce_tic_number">Ticket ID #<?php echo $ticketinfo->number; ?></div>
+        <div id="key4ce_tic_icon"><a href="admin.php?page=ost-tickets&service=view&ticket=<?php echo $ticketinfo->number; ?>" title="Reload"><span class="Icon refresh"></span></a><span class="preply">&darr; <a href="#post">Post Reply</a></span></div>
         <div style="clear: both"></div>
     </div>
-    <div id="tic_info_box">
+    <div id="key4ce_tic_info_box">
         <table>
             <tr> 
                 <td><b>Ticket Status:</b></td>
@@ -127,16 +126,16 @@ $finalary = "'" . $extimp . "'";
         </table>
     </div>
     <div style="clear: both"></div>
-    <div id="tic_sub">
-        <div id="tic_subject">Subject:</div>
-        <div id="tic_subject_info"><?php echo $ticketinfo->subject; ?></div>
+    <div id="key4ce_tic_sub">
+        <div id="key4ce_tic_subject">Subject:</div>
+        <div id="key4ce_tic_subject_info"><?php echo $ticketinfo->subject; ?></div>
         <div style="clear: both"></div>
     </div>
-    <div id="tic_thread_img_box">
-        <div><span class="Icon thread">Ticket Thread</span></div>
+    <div id="key4ce_tic_thread_img_box">
+        <div><span class="key4ce_Icon key4ce_thread">Ticket Thread</span></div>
         <div style="clear: both"></div>
     </div>
-    <div id="ticketThread">
+    <div id="key4ce_ticketThread">
 <?php
 foreach ($threadinfo as $thread_info) {
    $file_ids=$ost_wpdb->get_results("SELECT file_id from $ost_ticket_attachment WHERE `ref_id` ='$thread_info->id'");
@@ -166,7 +165,7 @@ foreach ($threadinfo as $thread_info) {
 <input type="hidden" name="name" value="<?php echo $filedetails->name; ?>"/>
 <input type="hidden" name="h" value="<?php echo session_id(); ?>"/>
 <input type="hidden" name="filepath" value="<?php echo getKeyValue('uploadpath'); ?>"/>
-<span class="Icon attachment"></span><input type="submit" name="download" value="<?php echo $filedetails->name; ?>">
+<span class="key4ce_Icon key4ce_attachment"></span><input type="submit" name="download" value="<?php echo $filedetails->name; ?>">
 </form>
 <?php 
 	}
@@ -178,8 +177,8 @@ foreach ($threadinfo as $thread_info) {
                 <?php } ?>
         <div style="clear: both"></div>
     </div>
-    <div id="tic_post">
-        <div id="tic_post_reply">Post a Reply</div>
+    <div id="key4ce_tic_post">
+        <div id="key4ce_tic_post_reply">Post a Reply</div>
         <div style="clear: both"></div>
     </div>
     <form name="ost-post-reply" id="ost-reply" action="admin.php?page=ost-tickets&service=view&ticket=<?php echo $ticketinfo->number; ?>" method="post" enctype="multipart/form-data">
@@ -248,8 +247,8 @@ if (getKeyValue('allow_attachments') == 1) {
         </tr>
         <tr>
             <td align="center">        
-            <input type="submit" name="ost-post-reply" value="Post Reply" class="button-primary" />&nbsp;&nbsp;
-            <input type="button" value="Cancel - Go Back" class="button-primary" onClick="history.go(-1)"/>               
+            <input type="submit" name="ost-post-reply" value="Post Reply" class="key4ce_button-primary" />&nbsp;&nbsp;
+            <input type="button" value="Cancel - Go Back" class="key4ce_button-primary" onClick="history.go(-1)"/>               
         </td>
         </tr>
     </table>

@@ -27,6 +27,7 @@ if (is_user_logged_in()) {
 
         $ost_wpdb = new wpdb($username, $password, $database, $host);
         global $current_user;
+		
         $config_table = $keyost_prefix . "config";
         $dept_table = $keyost_prefix . "department";
         $topic_table = $keyost_prefix . "help_topic";
@@ -40,6 +41,8 @@ if (is_user_logged_in()) {
         $ost_staff = $keyost_prefix . "staff";
         $ost_useremail = $keyost_prefix . "user_email";
         $ost_ticket_attachment = $keyost_prefix . "ticket_attachment";
+		$ost_ticket_status=$keyost_prefix."ticket_status";
+		
         $ost_file = $keyost_prefix . "file";
         $directory = $config['supportpage'];
         $dirname = strtolower($directory);
@@ -120,13 +123,13 @@ if (is_user_logged_in()) {
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
             }
-/*	else
+	/* Remove comment for Nginx Query String Issue
+	else
 	{
 	 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/list_tickets.php');
                 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/templates/pagination.php');
 	}
- * 
- */
+	*/
         ?>
     </div><!--ost_container End-->
         <?php

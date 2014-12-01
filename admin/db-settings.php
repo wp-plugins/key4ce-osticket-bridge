@@ -23,7 +23,7 @@ $poconsubmail=$wpdb->get_row("SELECT id,name,$ostemail.subject,text,created,upda
 $poconsubmail=$poconsubmail->subject;
 
 # ==============================================================================================
-# Open os_ticket_config in wp_options so we can connect to osTicket v1.8+
+# Open os_ticket_config in wp_options so we can connect to osTicket v1.9+
 # ==============================================================================================
 $config = get_option('os_ticket_config');
 extract($config);
@@ -43,6 +43,7 @@ $staff_table=$keyost_prefix."staff";
 $ost_user=$keyost_prefix."user";
 $ost_useremail=$keyost_prefix."user_email";
 $ost_ticket_attachment=$keyost_prefix."ticket_attachment";
+$ost_ticket_status=$keyost_prefix."ticket_status";
 $ost_file=$keyost_prefix."file";
 $directory=$config['supportpage'];
 $dirname = strtolower($directory);
@@ -208,7 +209,29 @@ $ticketreply=$ticketreply->body;
 $ticket_count_all = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id");
+if($keyost_version==194)
+{
+$ticket_count_open = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id
+WHERE $ost_ticket_status.state='open' AND $ticket_table.isanswered='0'");
 
+$ticket_count_answered = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id
+WHERE $ost_ticket_status.state='open' AND $ticket_table.isanswered='1'");
+
+
+$ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id
+WHERE $ost_ticket_status.state='closed'");
+}
+else
+{
 $ticket_count_open = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='0'");
@@ -222,16 +245,23 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticke
 $ticket_count_closed = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='closed'");
-
+}
 # ==============================================================================================
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
-$ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table 
+if($keyost_version=="194")
+{
+$ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ost_ticket_status.state as status,$ticket_cdata.priority,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table 
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
 INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id
 INNER JOIN $thread_table ON $thread_table.ticket_id=$ticket_table.ticket_id
 INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id = $ticket_table.status_id
 LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+}
+else{
+$ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+}
 $threadinfo=$ost_wpdb->get_results("
 	SELECT $thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
@@ -264,15 +294,34 @@ elseif($status_opt=="answered") {
 elseif($status_opt=="closed") {
 	$status_opt='closed';
 	}
+if($keyost_version=="194")
+{
+$sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority, $dept_table.dept_name
+FROM $ticket_table
+LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id = $ticket_table.status_id";
+}
+else
+{
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id, $ticket_table.status,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority_id, $dept_table.dept_name
 FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id";
+}
 if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && @$search=="")
 {
-	$sql.=" and $ticket_table.status = '".$status_opt."'";
+	if($keyost_version=="194")
+	{
+		$sql.=" and $ost_ticket_status.state = '".$status_opt."'";
+	}
+	else
+	{
+		$sql.=" and $ticket_table.status = '".$status_opt."'";
+	}
+	
 	if($isanswered!="")
 		$sql.= " and $ticket_table.isanswered = '".$isanswered."'";			
 }
@@ -355,7 +404,7 @@ if(isset($_REQUEST['ost-post-reply'])) {
 	} else {
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-postreplymail.php' );
 ?>
-<div id="succes" class="fade"><?php echo "Thread updated successfully...Stand by: for auto refresh!";?></div>
+<div id="key4ce_succes" class="key4ce_fade"><?php echo "Thread updated successfully...Stand by: for auto refresh!";?></div>
 <div style="clear: both"></div>
 <script type="text/javascript" charset="utf-8">
   window.setTimeout(function() {
@@ -374,7 +423,7 @@ if(isset($_REQUEST['create-admin-ticket'])) {
 	} else {
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/adminticketmail.php' );
 ?>
-<div id="succes" class="fade"><?php echo "Ticket created successfully...Stand by: for auto refresh!";?></div>
+<div id="key4ce_succes" class="key4ce_fade"><?php echo "Ticket created successfully...Stand by: for auto refresh!";?></div>
 <div style="clear: both"></div>
 <script type="text/javascript" charset="utf-8">
   window.setTimeout(function() {
@@ -392,7 +441,7 @@ $form_admintreply=Format::stripslashes($_POST['form_admintreply']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), array('name'=>$arname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="green"><b>Admin Response Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i>Stand by while your <font color="key4ce_green"><b>Admin Response Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
 <?php
 # ==============================================================================================
@@ -404,7 +453,7 @@ $form_newticket=@Format::stripslashes($_POST['form_newticket']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), array('name'=>$ntname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="green"><b>New Ticket Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i>Stand by while your <font color="key4ce_green"><b>New Ticket Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
 <?php
 # ==============================================================================================
@@ -416,5 +465,5 @@ $form_postconfirmed=Format::stripslashes($_POST['form_postconfirmed']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_postconfirmed,'updated'=>$etdate), array('name'=>$pcname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="green"><b>User Post Confirmation Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i>Stand by while your <font color="key4ce_green"><b>User Post Confirmation Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>

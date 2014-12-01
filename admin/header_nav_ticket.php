@@ -11,10 +11,13 @@ if($parurl=="page=ost-tickets&service=list&status=answered") { $active2="active"
 if($parurl=="page=ost-tickets&service=list&status=closed") { $active3="active"; } 
 if($parurl=="page=ost-tickets&service=list&status=all") { $active4="active"; }
 ?>
+<style>
+	.key4ce_createticket{-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;background:#1e8cbe;padding: 5px;text-align: center;width: 100px;}
+</style>
 <div style="padding-top:0px; width: 100%; display:table;">
-    <div style="display:table-cell; width:150px;"><div class="button-primary"><a style="color: white; text-decoration: none;" href="admin.php?page=ost-create-ticket">Create Ticket</a></div></div>
+    <div style="display:table-cell;float: left;margin-left: 10px;width: 70px;"><div class="key4ce_createticket"><a style="color: white; text-decoration: none;" href="admin.php?page=ost-create-ticket">Create Ticket</a></div></div>
 <div style="display:table-cell;">
-<ul class="adostmenu" style="width: 100%; max-width: 500px">
+<ul class="key4ce_adostmenu" style="width: 100%; max-width: 500px">
  <li><a href="admin.php?page=ost-tickets&service=list&status=open" class="<?php echo $active1; ?>"><span>Open (<?php echo "$ticket_count_open"; ?>)</span></a></li>
   <li><a href="admin.php?page=ost-tickets&service=list&status=answered" class="<?php echo $active2; ?>"><span>Answered (<?php echo "$ticket_count_answered"; ?>)</span></a></li>
   <li><a href="admin.php?page=ost-tickets&service=list&status=closed" class="<?php echo $active3; ?>"><span>Closed (<?php echo "$ticket_count_closed"; ?>)</span></a></li>
@@ -22,12 +25,12 @@ if($parurl=="page=ost-tickets&service=list&status=all") { $active4="active"; }
 </ul>
 </div>
 <div style="vertical-align:middle; display:table-cell; width:400px;">
-<div id='search_box' style="float:right;">
+<div id='key4ce_search_box' style="float:right;">
 	<form name='search' method='POST' enctype='multipart/form-data' onsubmit='return validateFormSearch()'>
 	Search&nbsp;
 	<input type='hidden' name='service' value='list'> 
 	<input type='text' name='tq' id='tq' value="<?php @$_REQUEST['tq'] ?>">&nbsp;&nbsp;
-	<input type='submit' name='search' class='button-primary' value='Go >>'>
+	<input type='submit' name='search' class='key4ce_button-primary' value='Go >>'>
 	</form></div>
     
 </div>

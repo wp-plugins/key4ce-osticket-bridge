@@ -1,6 +1,14 @@
 <?php
-$ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='open'"); 
-$ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'");
+if($keyost_version=="194")
+{
+	$ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
+    $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='closed'"); 
+}
+else	
+{
+	$ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='open'"); 
+    $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'");
+}
 $status="";
 $open="";
 $closed="";
@@ -30,23 +38,23 @@ else
 	else if($ticket_count_closed > 0)
 		$closed='selected';
     echo "<div style=\"display: table; width: 100%;\">";
-	echo "<div id='search_ticket' style='display: table-row;'>"; 
-	echo "<div id='search_box' style='display: table-cell;'>";
+	echo "<div id='key4ce_search_ticket' style='display: table-row;'>"; 
+	echo "<div id='key4ce_search_box' style='display: table-cell;'>";
     if(isset($service) && $service=='new' || $service=='view') { 
- 	echo "<a class=\"blue but\" href=".$service_list.">View Tickets</a>";
+ 	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_list.">View Tickets</a>";
     } else { 
-   	echo "<a class=\"blue but\" href=".$service_new.">Create Ticket</a>"; 
+   	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_new.">Create Ticket</a>"; 
     }
 	echo "</div>"; 
     echo "<form name='search' method='POST' enctype='multipart/form-data' onsubmit='return validateFormSearch()'>";
-	echo "<div id='search_opcl' table-cell;>
+	echo "<div id='key4ce_search_opcl' table-cell;>
 	<select onchange='this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);'>	
 	<option value=$service_list&status=open $open>Open / Answered ({$ticket_count_open})</option>
 	<option value=$service_list&status=closed $closed>Closed ({$ticket_count_closed})</option>
 	</select>&nbsp;&nbsp;
 	<input type='hidden' name='service' value='list'>
 	<input type='hidden' name='afterticket' id='afterticket' value='$service_list'>
-	<input class='ost' type='text' placeholder='Search...' size='20' name='tq' id='tq' value=". @$_REQUEST['tq'].">&nbsp;&nbsp;
+	<input class='key4ce_ost' type='text' placeholder='Search...' size='20' name='tq' id='tq' value=". @$_REQUEST['tq'].">&nbsp;&nbsp;
 	<input type='submit' style='margin-left: -10px;' name='search' value='Go >>'>";
 	echo "</form></div>"; 
 	echo '<div style="clear: both"></div>'; 

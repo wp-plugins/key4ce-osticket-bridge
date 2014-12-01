@@ -3,7 +3,7 @@
 Template Name: pagination.php
 */
 ?>
-<div id="list_pagination">
+<div id="key4ce_list_pagination">
 <?php
 $params = array_merge($_GET, array("currentpage" => "1")); 
 $new_query_string = http_build_query($params); 

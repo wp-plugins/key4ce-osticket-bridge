@@ -87,7 +87,19 @@ if (!empty($_FILES['file']['name'][0]))
 /* Added by Pratik Maniar Start Here On 28-04-2014*/
 $ost_wpdb->query($ost_wpdb->prepare("UPDATE $ticket_table SET isanswered = 0 WHERE number = %d",$usticketid));
 /* Added by Pratik Maniar End Here On 28-04-2014*/
+if($keyost_version==194)
+{
+if(isset($_REQUEST['reply_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id' => '1'), array('ticket_id' => $ticid), array('%s')); } 
 
+if(isset($_REQUEST['close_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id' => '3'), array('ticket_id' => $ticid), array('%s')); } 
+
+if(isset($_REQUEST['open_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id' => '1'), array( 'ticket_id' => $ticid), array('%s')); } 
+}
+else
+{
 if(isset($_REQUEST['reply_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status' => 'open'), array('ticket_id' => $ticid), array('%s')); } 
 
@@ -96,6 +108,8 @@ $ost_wpdb->update($ticket_table, array('status' => 'closed'), array('ticket_id' 
 
 if(isset($_REQUEST['open_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status' => 'open'), array( 'ticket_id' => $ticid), array('%s')); } 
+}
+
 
 ///Variable's for email templates
 $username=$usname;
@@ -118,7 +132,6 @@ if(getKeyValue('ticket_alert_admin')==1 && getKeyValue('ticket_alert_active')==1
 {	
 ///Email osticket admin for a new post reply
 $to=$os_admin_email;
-$subject="User Posted Reply";
 $adminmessage="Hello Admin,<br />";
 $adminmessage.="User (".$usname.") has posted to a support ticket thread.";
 $adminmessage.="<br /><br />";
@@ -135,7 +148,7 @@ $adminmessage.="".site_url()."<br />";
 $adminmessage.="Your friendly Customer Support System";
 $headers = 'From: '.$title.' <' .$adem. ">\r\n";
 add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-wp_mail( $to, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$adminmessage), $headers);
+wp_mail( $to, $ussubject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$adminmessage), $headers);
 }
 //Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 Start Here
 ///Email osticket Department - a new ticket has been created
@@ -150,14 +163,13 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 			$staff_firstname=$staff->firstname;
 			$staff_lastname=$staff->lastname;
 			$staff_email=$staff->email;
-			$subject=$subject;
 			$deptmessage="Hello $staff_firstname $staff_lastname,<br />A new ticket has been created.<br /><br />";
 			$deptmessage.="Ticket ID #".$ticketid."";
 			$deptmessage.="<br />----------------------<br />";
 			$deptmessage.="Name: ".$username."<br />";
 			$deptmessage.="Email: ".$usermail."<br />"; 
 			$deptmessage.="Department: ".$dept_name."<br />";
-			$deptmessage.="Subject: ".$subject."<br />";
+			$deptmessage.="Subject: ".$ussubject."<br />";
 			$deptmessage.="<br />----------------------<br />";
 			$deptmessage.="Message: ".$user_message."";
 			$deptmessage.="<br />----------------------<br /><br />";
@@ -168,7 +180,7 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 			$deptmessage.="Your friendly Customer Support System ";
 			$headers = 'From: '.$ostitle.' <' .$adem. ">\r\n";
 			add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-			wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$deptmessage), $headers);
+			wp_mail($staff_email, $ussubject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$deptmessage), $headers);
 		}
 	}
 	else
@@ -184,14 +196,13 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 				$staff_firstname=$staff->firstname;
 				$staff_lastname=$staff->lastname;
 				$staff_email=$staff->email;
-				$subject=$subject;
 				$deptmessage="Hello $staff_firstname $staff_lastname,<br />A new ticket has been created.<br /><br />";
 				$deptmessage.="Ticket ID #".$ticketid."";
 				$deptmessage.="<br />----------------------<br />";
 				$deptmessage.="Name: ".$username."<br />";
 				$deptmessage.="Email: ".$usermail."<br />"; 
 				$deptmessage.="Department: ".$dept_name."<br />";
-				$deptmessage.="Subject: ".$subject."<br />";
+				$deptmessage.="Subject: ".$ussubject."<br />";
 				$deptmessage.="<br />----------------------<br />";
 				$deptmessage.="Message: ".$user_message."";
 				$deptmessage.="<br />----------------------<br /><br />";
@@ -202,7 +213,7 @@ if(getKeyValue('ticket_alert_dept_members')==1 && getKeyValue('ticket_alert_acti
 				$deptmessage.="Your friendly Customer Support System ";
 				$headers = 'From: '.$ostitle.' <' .$adem. ">\r\n";
 				add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-				wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$deptmessage), $headers);
+				wp_mail($staff_email,$ussubject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>'.$deptmessage), $headers);
 			}
 	
 		}

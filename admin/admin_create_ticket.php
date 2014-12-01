@@ -32,18 +32,22 @@ $args = array(
 	'fields'       => 'all',
 	'who'          => ''
  );
-//$getKeyvalue=$ost_wpdb->get_results("SELECT name,address FROM ".$keyost_prefix."user usr INNER JOIN " . $keyost_prefix . "user_email usremail ON usremail.id=usr.default_email_id",ARRAY_A);
+
 global $wpdb;
-$getKeyvalue=$wpdb->get_results("SELECT user_nicename,user_email FROM ".$wpdb->prefix."users",ARRAY_A);
-$data=json_encode($getKeyvalue);
+$WPusersData=$wpdb->get_results("SELECT user_nicename,user_email FROM ".$wpdb->prefix."users",ARRAY_A);
+$wpusers=json_encode($WPusersData);
+
+$OsticketUsersData=$ost_wpdb->get_results("SELECT name,address FROM ".$keyost_prefix."user usr INNER JOIN " . $keyost_prefix . "user_email usremail ON usremail.id=usr.default_email_id",ARRAY_A);
+$osticketusers=json_encode($OsticketUsersData);
 ?>
 <script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/jquery.js'; ?>"></script>
 <script language="javascript" src="<?php echo plugin_dir_url(__FILE__) . '../js/jquery.autocomplete.js'; ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo plugin_dir_url(__FILE__) . '../css/jquery.autocomplete.css'; ?>" />
 <script>
 $(document).ready(function(){
-var data = <?php echo $data; ?>;
-$("#username").autocomplete(data, {
+//WP Users Data
+var wpusers = <?php echo $wpusers; ?>;
+$("#wpusers").autocomplete(wpusers, {
   formatItem: function(item) {
     //return item.name;
     return item.user_nicename;	
@@ -51,6 +55,18 @@ $("#username").autocomplete(data, {
 }).result(function(event, item) {
   //document.getElementById('email').value=item.address;
 	document.getElementById('email').value=item.user_email;
+});
+
+//OSticket Users Data
+var osticketusers = <?php echo $osticketusers; ?>;
+$("#osticketusers").autocomplete(osticketusers, {
+  formatItem: function(item) {
+    return item.name;
+    //return item.user_nicename;	
+  }
+}).result(function(event, item) {
+  document.getElementById('email').value=item.address;
+	//document.getElementById('email').value=item.user_email;
 });
 });
 </script>
@@ -110,38 +126,83 @@ var j=jQuery.noConflict();
         }
         return true;
     }
+$(document).ready(function() {
+   $('input[type="radio"]').click(function() {
+       if($(this).attr('id') == 'radio1')
+	   {
+	      document.getElementById('email').value="";
+		  $("#email").attr('readonly','readonly');
+                  $('#new_ticket_name_wpuser').css("display", "block");
+		  $('#new_ticket_name_osticketuser').css("display", "none");
+		  $('#new_ticket_name_username').css("display", "none");
+		  //$( "#addusername" ).empty();
+		  //$( "#addusername" ).append("WP Username: <input name='username' type='text' id='wpusers' size='20' />");
+	   }
+	   else if($(this).attr('id') == 'radio2')
+	   {
+	    document.getElementById('email').value="";
+		  $("#email").attr('readonly','readonly');
+                  $('#new_ticket_name_wpuser').css("display", "none");
+		  $('#new_ticket_name_osticketuser').css("display", "block");
+		  $('#new_ticket_name_username').css("display", "none");
+		  //$( "#addusername" ).empty();
+		  //$('#addusername').append("Osticket Username: <input name='username' type='text' id='osticketusers' size='20' />");
+	   }
+	   else if($(this).attr('id') == 'radio3')
+	   {
+		   document.getElementById('email').value="";	
+		  $('#new_ticket_name_wpuser').css("display", "none");
+                  $('#new_ticket_name_osticketuser').css("display", "none");	
+		  $('#new_ticket_name_username').css("display", "block");
+		  //$( "#addusername" ).empty();
+		  //$('#addusername').append("Username: <input name='username' type='text' id='username' size='20' />");
+	   }
+   });
+});
 </script>
+
 <style>
-    #wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
-    #message-html{height: 25px;}
-    #message-tmce{height: 25px;}
+    #key4ce_wp-message-wrap{border:2px solid #CCCCCC;border-radius: 5px;padding: 5px;width: 75%;}
+    #key4ce_message-html{height: 25px;}
+    #key4ce_message-tmce{height: 25px;}
+    #new_ticket_name_wpuser,#new_ticket_name_osticketuser,#new_ticket_name_username {display:none;}
+    #element{float: left;margin-top: 10px;}
+    .selectusertype{ float: left;margin-top: 10px;width: 175px;color:#000;font-weight:normal;}
+    .usertype{color: #000;float: left;font-weight: normal;margin-top: 8px;width: 175px;}
 </style>
-<div id="thContainer">
-    <div id="new_ticket">
-        <div id="new_ticket_text1" style="  margin-bottom: 10px;margin-top: 15px;">Create A New Ticket</div>
+<div id="key4ce_thContainer">
+    <div id="key4ce_new_ticket">
+        <div id="key4ce_new_ticket_text1" style="  margin-bottom: 10px;margin-top: 15px;">Create A New Ticket</div>
         <div style="clear: both"></div>
         <div id="new_ticket_text2">Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!</em></div>
         <div style="clear: both"></div>
-        <form id="ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket();">
+        <form id="key4ce_ticketForm" name="newticket" method="post" enctype="multipart/form-data" onsubmit="return validateFormNewTicket();">
             
 			<input type="hidden" name="usid" value="<?php //echo $user_id;  ?>"/>
             <input type="hidden" name="ademail" value="<?php //echo $os_admin_email; ?>"/>
             <input type="hidden" name="stitle" value="<?php //echo $title_name; ?>"/>
             <input type="hidden" name="sdirna" value="<?php //echo $dirname; ?>"/>
             <input type="hidden" name="newtickettemp" value="<?php //echo $newticket; ?>"/>
-            <div id="new_ticket_name">Username:</div>
-            <div id="new_ticket_name_input">
-			<input name="username" type="text" id="username" size="20"/>
+			<div class="selectusertype">Select User Type : </div>
+			<div id="element">
+			<span style="font-weight: bold;">WP Users </span><input type="radio" name="radio" value="radio1" id="radio1">
+			<span style="font-weight: bold;">Osticket Users </span><input type="radio" name="radio" value="radio2" id="radio2">
+			<span style="font-weight: bold;">Username</span><input type="radio" name="radio" value="radio3" id="radio3">
 			</div>
+			<div style="clear: both"></div>
+            <div id="new_ticket_name_wpuser" style="font-weight: bold;margin-top: 8px;"><span class="usertype">WP Username: </span><input name="username" type="text" id="wpusers" size="20"/></div>
+			<div id="new_ticket_name_osticketuser" style="font-weight: bold;margin-top: 8px;"><span class="usertype">Osticket Username: </span><input name="username" type="text" id="osticketusers" size="20"/></div>
+			<div id="new_ticket_name_username" style="font-weight: bold;margin-top: 8px;"><span class="usertype">Username: </span><input name="username" type="text" id="username" size="20"/></div>
+			
             <div style="clear: both"></div>
-            <div id="new_ticket_email">Your Email:</div>
-            <div id="new_ticket_email_input"><input class="ost" id="email" type="text" name="email"></div>
+            <div id="key4ce_new_ticket_email">Your Email:</div>
+            <div id="key4ce_new_ticket_email_input"><input class="ost" id="email" type="text" name="email"></div>
             <div style="clear: both"></div>
-            <div id="new_ticket_subject">Subject:</div>
-            <div id="new_ticket_subject_input"><input class="ost" id="subject" type="text" name="subject" size="35"/><font class="error">&nbsp;*</font></div>
+            <div id="key4ce_new_ticket_subject">Subject:</div>
+            <div id="key4ce_new_ticket_subject_input"><input class="ost" id="subject" type="text" name="subject" size="35"/><font class="error">&nbsp;*</font></div>
             <div style="clear: both"></div>
-            <div id="new_ticket_catagory">Catagories:</div>
-            <div id="new_ticket_catagory_input">
+            <div id="key4ce_new_ticket_catagory">Catagories:</div>
+            <div id="key4ce_new_ticket_catagory_input">
                 <select id="deptId" name="deptId">
                     <option value="" selected="selected"> Select a Category </option>
                     <?php
@@ -151,31 +212,31 @@ var j=jQuery.noConflict();
                     ?>
                 </select><font class="error">&nbsp;*</font></div>
             <div style="clear: both"></div>
-            <div id="new_ticket_priority">Priority:</div>
-            <div id="new_ticket_priority_input"><select id="priority" name="priorityId">
+            <div id="key4ce_new_ticket_priority">Priority:</div>
+            <div id="key4ce_new_ticket_priority_input"><select id="key4ce_priority" name="priorityId">
                     <option value="" selected="selected"> Select a Priority </option>
                     <?php
                     foreach ($pri_opt as $priority) {
                         echo '<option value="' . $priority->priority_id . '">' . $priority->priority_desc . '</option>';
                     }
                     ?>
-                </select><font class="error">&nbsp;*</font></div>
+                </select><font class="key4ce_error">&nbsp;*</font></div>
             <div style="clear: both"></div>
     
-    <table class="welcome nobd" align="center" width="95%" cellpadding="3" cellspacing="3" border="0">
+    <table class="key4ce_welcome key4ce_nobd" align="center" width="95%" cellpadding="3" cellspacing="3" border="0">
         <tr>
-            <td class="nobd" align="center"><div align="center" style="padding-bottom: 5px;">To best assist you, please be specific and detailed in your message<font class="error">&nbsp;*</font></div></td>
+            <td class="key4ce_nobd" align="center"><div align="center" style="padding-bottom: 5px;">To best assist you, please be specific and detailed in your message<font class="error">&nbsp;*</font></div></td>
         </tr>
 
         <tr>
-            <td class="nobd" align="center">
+            <td class="key4ce_nobd" align="center">
         <center> <?php
             $content = '';
             $editor_id = 'message';
             $settings = array('media_buttons' => false);
             wp_editor($content, $editor_id, $settings);
             ?> </center>
-        <div class="clear" style="padding: 5px;"></div></td>
+        <div class="key4ce_clear" style="padding: 5px;"></div></td>
         </tr>
     <?php 
 if (getKeyValue('allow_attachments') == 1) {
@@ -198,7 +259,7 @@ if (getKeyValue('allow_attachments') == 1) {
 	}
 	?>
         <tr>
-            <td class="nobd" align="center">
+            <td class="key4ce_nobd" align="center">
                 <p align="center" style="padding-top: 5px;"><input type="submit" name="create-admin-ticket" value="Create Ticket">
                     &nbsp;&nbsp;<input type="reset" value="Reset"></p>
             </td>

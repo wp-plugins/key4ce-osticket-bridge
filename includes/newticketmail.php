@@ -5,6 +5,8 @@
 require_once('functions.php');
 ?>
 <?php
+$config = get_option('os_ticket_config');
+extract($config);
 global $current_user;
 get_currentuserinfo();
 $wp_user_email_id = $current_user->user_email;
@@ -30,7 +32,14 @@ $dirname = $_REQUEST['sdirna'];
 @$sub = Format::stripslashes($_REQUEST['subject']);
 @$newtickettemp = Format::stripslashes($_REQUEST['newtickettemp']);
 $ip_add = $_SERVER['REMOTE_ADDR'];
-$stat = "open";
+if($keyost_version==194)
+{
+$ticketstate = "1";
+}
+else{
+$ticketstate = "open";
+}
+
 $sour = "Web";
 $isoverdue = 0;
 $isans = 0;
@@ -70,9 +79,24 @@ if (count($result2) > 0) {
 
 ////End of new user info user_email_id email_id
 if (count($result1) > 0) {
-    $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $usid, 'user_email_id' => $usid, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $usid, 'ip_address' => $ip_add, 'status' => $stat, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+if($keyost_version==194)
+{
+	 $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $usid, 'user_email_id' => $usid,'status_id' => $ticketstate,'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $usid, 'ip_address' => $ip_add, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+}
+else
+{
+ $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $usid, 'user_email_id' => $usid, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $usid, 'ip_address' => $ip_add, 'status' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+}
+   
 } else {
-    $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status' => $stat, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+if($keyost_version==194)
+{
+  $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'status_id' => $ticketstate,'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status_id' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+}
+else{
+  $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+}
+  
 }
 $lastid = $ost_wpdb->insert_id;
 $stat = "created";
@@ -132,7 +156,14 @@ $thread_id = $ost_wpdb->insert_id;
 // File Attachment Table Entry Code End Here By Pratik Maniar on 29/08/2014
     }
 }
+if($keyost_version==194)
+{
+$ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid, 'subject' => $sub, 'priority' =>$pri_id), array('%d', '%s',	'%d'));
+}
+else
+{
 $ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid, 'subject' => $sub, 'priority' => $priordesc, 'priority_id' => $pri_id), array('%d', '%s', '%s', '%d'));
+}
 @$topic_tab = $ost_wpdb->get_results("SELECT topic_id, topic FROM $topic_table WHERE topic_id=@$top_id");
 foreach ($topic_tab as $topic_tab1) {
     @$top = $topic_tab1->topic;
@@ -140,8 +171,6 @@ foreach ($topic_tab as $topic_tab1) {
 
 $config_table = $keyost_prefix . "config";
 $staff_table = $keyost_prefix . "staff";
-
-
 ///Variable's for email templates
 
 $username = $nam;

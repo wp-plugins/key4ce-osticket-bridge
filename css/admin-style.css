@@ -1,16 +1,16 @@
-.headtitle {
+.key4ce_headtitle {
 	font-size: 20px;
 	font-weight: bold;
 	padding: 10px 0px 20px 0px;
 	color: #666;
 }
-.headtitleerror {
+.key4ce_headtitleerror {
 	font-size: 20px;
 	font-weight: bold;
 	padding: 20px 0px 20px 2px;
 	color: #666;
 }
-#tboxwh {
+#key4ce_tboxwh {
 	border:solid 2px #ccc;
 	background-color: #fff;
 	-moz-border-radius: 7px;
@@ -20,7 +20,7 @@
 	margin: 0px 10px 20px 10px;
 	overflow:auto;
 }
-#tboxyl {
+#key4ce_tboxyl {
 	border:solid 2px #ddd;
 	background-color: #FFFFF7;
 	-moz-border-radius: 7px;
@@ -30,14 +30,14 @@
 	margin: 0px 10px 20px 10px;
 	overflow:auto;
 }
-.pg1 {
+.key4ce_pg1 {
 	text-align: left;
 	font-size: 100%;
 	color: #666;
 	font-weight: normal;
 	padding: 10px;
 }
-#succes {
+#key4ce_succes {
   margin: 10px 20px 20px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;
@@ -45,7 +45,7 @@
   border: 1px solid #0a0;
   background: url('../images/ok.png') 10px 50% no-repeat #e0ffe0;
 }
-#failed {
+#key4ce_failed {
   margin: 10px 20px 20px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;
@@ -53,7 +53,7 @@
   border: 1px solid #a00;
   background: url('../images/error.png') 10px 50% no-repeat #fff0f0;
 }
-#warning {
+#key4ce_warning {
   margin: 10px 20px 30px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;
@@ -61,13 +61,13 @@
   border: 1px solid #f26522;
   background: url('../images/alert.png') 10px 50% no-repeat #ffffdd;
 }
-.cofigtb {
+.key4ce_cofigtb {
 	width: auto !important;
 	margin: 0px 10px 20px 30px;
 	border: 1px solid #ccc;
 	padding:5px;
 }
-.config_label {
+.key4ce_config_label {
 	
 	font-size: 16px;
 }
@@ -80,11 +80,11 @@ td.note {
 td.cgnote {
 	height:1px;
 }
-.config_td {
+.key4ce_config_td {
 	width:200px;
 	height:40px;
 }
-#tboxgr {
+#key4ce_tboxgr {
 	border:solid 2px #ccc;
 	background-color: #eee;
 	-moz-border-radius: 7px;
@@ -106,28 +106,28 @@ textarea {
 textarea:focus {
 	border-color:#ddd; 
 }
-.ticlinks {	
+.key4ce_ticlinks {	
 	font-size: 1.0em;
 	color: #666;
 	font-weight: normal;
 }
-.ticlinks a {	
+.key4ce_ticlinks a {	
 	font-size: 1.0em;
 	font-weight: normal;
 }
-.ticlinks a:hover {	
+.key4ce_ticlinks a:hover {	
 	text-decoration: none;
 }
-#search_box {
+#key4ce_search_box {
 	padding-left: 20px;
 	width: auto !important;
 	float: left;
 }
-.cofigmenu {
+.key4ce_cofigmenu {
 	width: 100%;
 	/*display: table;*/
 }
-#ticket_menu {
+#key4ce_ticket_menu {
 	display: table-row;
 	/*width: 100%;*/
 	padding: 10px;
@@ -136,10 +136,10 @@ textarea:focus {
 	color: #666;
 	font-family: arial;
 }
-#ticket_menu0 {
+#key4ce_ticket_menu0 {
     width: 10%;
 	}
-#ticket_menu1 {
+#key4ce_ticket_menu1 {
 	display: table-cell;
 	  width: 10%;
 	margin: 10px 0px 10px 15px;
@@ -148,7 +148,7 @@ textarea:focus {
 	border-bottom:1px solid #d6d5d5;
 
 }
-#ticket_menu2 {
+#key4ce_ticket_menu2 {
 	display: table-cell;
 	margin: 10px 0px 10px 0px;
 	width: 63%;
@@ -157,7 +157,7 @@ textarea:focus {
 	border-bottom:1px solid #d6d5d5;
 
 }
-#ticket_menu3 {
+#key4ce_ticket_menu3 {
 	display: table-cell;
 	width: 10%;
 	margin: 10px 0px 10px 0px;
@@ -165,7 +165,7 @@ textarea:focus {
 	border-top:2px solid #d6d5d5;
 	border-bottom:1px solid #d6d5d5;
 }
-#ticket_menu4 {
+#key4ce_ticket_menu4 {
 	display: table-cell;
 	width: 10%;
 	margin: 10px 0px 10px 0px;
@@ -174,7 +174,7 @@ textarea:focus {
 	border-bottom:1px solid #d6d5d5;
 
 }
-#ticket_menu5 {
+#key4ce_ticket_menu5 {
 	display: table-cell;
 	width: 10%;
 	margin: 10px 0px 10px 0px;
@@ -184,10 +184,10 @@ textarea:focus {
 	
 }
 
-#ticket_list:nth-child(odd) {
+#key4ce_ticket_list:nth-child(odd) {
 	background-color:#ededed;
 }
-#ticket_list0
+#key4ce_ticket_list0
 {
     background-color: #ededed;
     border-bottom: 1px solid #e0e0e0;
@@ -195,7 +195,7 @@ textarea:focus {
     height: 38px;   
      line-height: 38px;	
 }
-#ticket_list {
+#key4ce_ticket_list {
 	display: table-row;
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -205,54 +205,54 @@ textarea:focus {
 	line-height: 18px;
 }
 
-#ticket_list:hover {
+#key4ce_ticket_list:hover {
 	background-color: #f9f8f8;
 	cursor: pointer;
 }
-#ticket_list1 {
+#key4ce_ticket_list1 {
 	width: 100px;
 	padding: 10px;
 	display: table-cell;
 	border-bottom:1px solid #e0e0e0;
 }
-#ticket_list1 a {
+#key4ce_ticket_list1 a {
 	color: #666;
 	font-weight: normal;
 }
-#ticket_list1 a:hover {
+#key4ce_ticket_list1 a:hover {
 	color: #0054a6;
 	text-decoration: none;
 }
-#ticket_list2 {
+#key4ce_ticket_list2 {
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;
 	width: 63%;
 }
-#ticket_list3 {
+#key4ce_ticket_list3 {
 	width: 150px;
 	display: table-cell;
 	border-bottom:1px solid #e0e0e0;
 }
-#ticket_list4 {
+#key4ce_ticket_list4 {
 	width: 150px;
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;
 }
-#ticket_list5 {
+#key4ce_ticket_list5 {
 	width: 100px;
 	display: table-cell;
 	padding: 10px;
 	border-bottom:1px solid #e0e0e0;
 }
 
-#list_pagination {
+#key4ce_list_pagination {
 	padding-top:10px;
 	padding-bottom:15px;
 	text-align: center
 }
-#ticket_view {
+#key4ce_ticket_view {
 	border:solid 2px #ccc;
 	background-color: #fff;
 	-moz-border-radius: 7px;
@@ -263,47 +263,47 @@ textarea:focus {
 	padding:10px;
 	overflow:auto;
 }
-#tic_number {
+#key4ce_tic_number {
 	padding-right:10px;
 	font-size: 160%;
 	font-weight: normal;
 	color: #00AEEF;
 	float: left;
 }
-#tic_icon {
+#key4ce_tic_icon {
 	
 	padding-top:2px;
 }
-.preply   {
+.key4ce_preply   {
 	padding-right:10px;
 	font-size: 100%;
 	font-weight: normal;
 	color: #ccc;
 	float: right;
 }
-.preply a {
+.key4ce_preply a {
 	
 	color: #ccc;
 	
 }
-#tic_info_box table {
+#key4ce_tic_info_box table {
 	background: #F4FAFF;
 	margin: 0px 20px 0px 32px;
 	width: 92%;
 	border:1px solid #e0e0e0;
 	padding: 10px;
 }
-#tic_info_box td {
+#key4ce_tic_info_box td {
 	height:20px;
 	width: 50px;
 	
 }
-#tic_info_box div {
+#key4ce_tic_info_box div {
 	height:20px;
 	width: 200px;
 	float: left;
 }
-#tic_sub {
+#key4ce_tic_sub {
 	border:1px solid #e0e0e0;
 	background-color: #eee;
 	-moz-border-radius: 7px;
@@ -314,14 +314,14 @@ textarea:focus {
 	padding:10px;
 	overflow:auto;
 }
-#tic_subject {
+#key4ce_tic_subject {
 	color: #666;
 	font-weight: bold;
 	font-size: 120%;
 	width: 11%;
 	float: left;
 }
-#tic_subject_info {
+#key4ce_tic_subject_info {
 	color: #666;
 	font-family: arial;
 	font-weight: normal;
@@ -329,16 +329,16 @@ textarea:focus {
 	width: auto;
 	float: left;
 }
-#tic_thread_img_box {
+#key4ce_tic_thread_img_box {
 	margin: 0px 20px 0px 20px;
 	width: auto;
 }
-#tic_post {
+#key4ce_tic_post {
 	margin: 20px 10px 10px 0px;
 	width: 100%;
 	float: left;
 }
-#tic_post_reply {
+#key4ce_tic_post_reply {
 	color: #666;
 	font-weight: bold;
 	font-size: 120%;
@@ -349,31 +349,31 @@ textarea:focus {
 
 
 
-#ticketThread table th {
+#key4ce_ticketThread table th {
 	text-align: left;
 	border-bottom: 1px solid #aaa;
 	font-size: 12px;
 	padding: 5px;
 	background: #FFFFED;
 }
-#ticketThread table th span {
+#key4ce_ticketThread table th span {
 	font-weight: normal;
 	color: #888;
 	padding-right: 10px;
 	float:right;
 }
-#ticketThread td {
+#key4ce_ticketThread td {
 	height:20px;
 	padding: 5px;
 	background: #fff;
 }
-#ticketThread .M th {
+#key4ce_ticketThread .M th {
 	background: #C6D7FF;
 }
-#ticketThread .R th {
+#key4ce_ticketThread .R th {
 	background: #FFE0B2;
 }
-.Icon {
+.key4ce_Icon {
 	width: auto;
 	padding-left: 20px;
 	background-position: top left;
@@ -381,7 +381,7 @@ textarea:focus {
 	color: #006699;
 	text-decoration: none;
 }
-a.refresh {
+a.key4ce_refresh {
 	display: block;
 	width: auto;
 	float: right;
@@ -396,13 +396,13 @@ a.refresh {
 	background-repeat: no-repeat;
 	background-image: url('../images/refresh.png');
 }
-.Icon.refresh {
+.key4ce_Icon.key4ce_refresh {
 	background-image: url('../images/refresh.gif');
 }
-.Icon.attachment {
+.key4ce_Icon.key4ce_attachment {
 	background-image: url('../images/attachment.png');
 }
-.Icon.thread {
+.key4ce_Icon.key4ce_thread {
 	font-weight: bold;
 	font-size: 1.3em;
 	font-family: arial;
@@ -411,89 +411,89 @@ a.refresh {
 /* Admin Create New Ticket CSS Start Here*/
 
 /********* New Ticket Submit **********/
-#thContainer {
+#key4ce_thContainer {
 	margin: 0px;
 	height: auto !important;
 }
-#new_ticket {
+#key4ce_new_ticket {
 	margin: 0px;
 	padding-left:10px;
 }
-#new_ticket_text1 {
+#key4ce_new_ticket_text1 {
 	font-size: 160%;
 	font-weight: normal;
 	color: #00AEEF;
 	float: left;
 }
-#new_ticket_text2 {
+#key4ce_new_ticket_text2 {
 	font-weight: normal;
 	color: #000;
 	float: left;
 }
-#new_ticket_name {
+#key4ce_new_ticket_name {
 	padding-top:20px;
 	font-weight: normal;
 	color: #000;
 	width: 15%;
 	float: left;
 }
-#new_ticket_name_input {
+#key4ce_new_ticket_name_input {
 	padding-top:17px;
 	width: 75%;
 	float: left;
 }
-#new_ticket_email {
+#key4ce_new_ticket_email {
 	padding-top:10px;
 	font-weight: normal;
 	color: #000;
 	width: 15%;
 	float: left;
 }
-#new_ticket_email_input {
+#key4ce_new_ticket_email_input {
 	padding-top:7px;
 	width: 75%;
 	float: left;
 }
-#new_ticket_subject {
+#key4ce_new_ticket_subject {
 	padding-top:20px;
 	font-weight: normal;
 	color: #000;
 	width: 15%;
 	float: left;
 }
-#new_ticket_subject_input {
+#key4ce_new_ticket_subject_input {
 	padding-top:17px;
 	width: 75%;
 	float: left;
 }
-#new_ticket_catagory {
+#key4ce_new_ticket_catagory {
 	padding-top:15px;
 	font-weight: normal;
 	color: #000;
 	width: 15%;
 	float: left;
 }
-#new_ticket_catagory_input {
+#key4ce_new_ticket_catagory_input {
 	padding-top:12px;
 	width: 75%;
 	float: left;
 }
-#new_ticket_priority {
+#key4ce_new_ticket_priority {
 	padding-top:10px;
 	font-weight: normal;
 	color: #000;
 	width: 15%;
 	float: left;
 }
-#new_ticket_priority_input {
+#key4ce_new_ticket_priority_input {
 	padding-top:7px;
 	width: 75%;
 	float: left;
 }
-.error {
+.key4ce_error {
 	color: #FF0000;
 }
-#msg_notice {
+#key4ce_msg_notice {
   margin: 20px 20px 20px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;
@@ -501,7 +501,7 @@ a.refresh {
   border: 1px solid #0a0;
   background: url('../images/ok.png') 10px 50% no-repeat #e0ffe0;
 }
-#msg_warning {
+#key4ce_msg_warning {
   margin: 20px 20px 20px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;
@@ -509,13 +509,13 @@ a.refresh {
   border: 1px solid #f26522;
   background: url('../images/alert.png') 10px 50% no-repeat #ffffdd;
 }
-#msg_warning_err {
+#key4ce_msg_warning_err {
   margin: 0px 20px 20px 20px;
   font-weight: normal;
   text-align: center;
   color: #000;
 }
-#msg_error {
+#key4ce_msg_error {
   margin: 20px 20px 20px 20px;
   padding: 5px 10px 5px 36px;
   height: auto !important;

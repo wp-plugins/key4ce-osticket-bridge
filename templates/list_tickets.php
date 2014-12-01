@@ -27,7 +27,10 @@ if(isset($_POST['close']))
 	$i=0;
 	foreach($close_ticket_list as $close_ticket)
 	{				
-		$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
+		if($keyost_version==194)
+			$ost_wpdb->update($ticket_table, array('status_id'=>'3'), array('ticket_id'=>$close_ticket), array('%s'));
+		else
+			$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
 		$i++;
 	}
 	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been closed successfully</div>";
@@ -37,15 +40,15 @@ if(@$list_opt) {
 ?>
 <form name="osticket" id="osticket" method="post" onSubmit="if(!confirm('Are you sure you want to continue?')){return false;}">
 <div class="">
-<div id="ticket_menu">
+<div id="key4ce_ticket_menu">
 <?php if($keyost_usercloseticket==1) { ?>
-<div id="ticket_menu0"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
+<div id="key4ce_ticket_menu0"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
 <?php } ?>
-<div id="ticket_menu1">Ticket #</div>
-<div id="ticket_menu2">Subject</div>
-<div id="ticket_menu3">Status</div>
-<div id="ticket_menu4">Department</div>
-<div id="ticket_menu5">Date</div>
+<div id="key4ce_ticket_menu1">Ticket #</div>
+<div id="key4ce_ticket_menu2">Subject</div>
+<div id="key4ce_ticket_menu3">Status</div>
+<div id="key4ce_ticket_menu4">Department</div>
+<div id="key4ce_ticket_menu5">Date</div>
 </div>
 <?php
 	function ezDate($d) { 
@@ -81,10 +84,10 @@ if(@$list_opt) {
 	}
 	@$sub_str=Format::stripslashes($list->subject); 		
 	if($keyost_usercloseticket==1)
-	echo "<div id='ticket_list0' style='float: left;line-height: 45px;'><input type='checkbox' name='tickets[]' value='".$list->ticket_id."'></div>";	
-	echo "<div id='ticket_list' onclick=\"location.href='$ticket_view';\">"; 
-	echo "<div id='ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
-	echo "<div id='ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='ticket_list3'>"; 
+	echo "<div id='key4ce_ticket_list0' style='float: left;line-height: 45px;'><input type='checkbox' name='tickets[]' value='".$list->ticket_id."'></div>";	
+	echo "<div id='key4ce_ticket_list' onclick=\"location.href='$ticket_view';\">"; 
+	echo "<div id='key4ce_ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
+	echo "<div id='key4ce_ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='key4ce_ticket_list3'>"; 
 	if($list->status=='closed') { 
 	echo '<font color=red>Closed</font>'; 
 	} 
@@ -94,12 +97,12 @@ if(@$list_opt) {
 	elseif ($list->status=='open' && $list->isanswered=='1') { 
 	echo '<font color=orange>Answered</font>'; 
 	} 
-	echo "</div><div id='ticket_list4'>".$list->dept_name."</div>"; 
+	echo "</div><div id='key4ce_ticket_list4'>".$list->dept_name."</div>"; 
     if ($list->updated=='0000-00-00 00:00:00') {
 		$input_str  = "".$list->created.""; }
 		else {
    	$input_str  = "".$list->updated.""; }
-   	echo "<div id='ticket_list5'>"; 
+   	echo "<div id='key4ce_ticket_list5'>"; 
    	echo substr($input_str,0,10); 
    	echo "</div>"; 
 	echo "<div style='clear: both; display: table-cell;'></div></div>";

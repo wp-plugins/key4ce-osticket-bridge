@@ -5,7 +5,7 @@ $ticket_number=$_REQUEST['ticket'];
 $signature_type=$_REQUEST['signature'];
 $ticket_details=$ost_wpdb->get_row("SELECT $dept_table.dept_signature,$ost_email.name,$dept_table.dept_id,$dept_table.dept_name,$dept_table.email_id,$ost_email.email FROM $ticket_table 
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id
-INNER JOIN $ost_email ON $ost_email.dept_id=$dept_table.dept_id
+INNER JOIN $ost_email ON $ost_email.email_id=$dept_table.email_id
 WHERE `number`=$ticket_number");
 $ticket_detail_dept_name=$ticket_details->name;
 $ticket_detail_dept_email=$ticket_details->email;
@@ -82,12 +82,25 @@ array('%d','%d','%d','%d','%s'));
 /* Added by Pratik Maniar Start Here On 28-04-2014*/
 $ost_wpdb->query($ost_wpdb->prepare("UPDATE $ticket_table SET isanswered = 1 WHERE number = %s",$ticket_number));
 /* Added by Pratik Maniar End Here On 28-04-2014*/
+if($keyost_version==194)
+{
+if(isset($_REQUEST['reply_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id'=>'1'), array('ticket_id'=>$ticid), array('%s')); } 
+if(isset($_REQUEST['close_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id'=>'3'), array('ticket_id'=>$ticid), array('%s')); } 
+if(isset($_REQUEST['open_ticket_status'])) { 
+$ost_wpdb->update($ticket_table, array('status_id'=>'1'), array('ticket_id'=>$ticid), array('%s')); }
+}
+else
+{
 if(isset($_REQUEST['reply_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status'=>'open'), array('ticket_id'=>$ticid), array('%s')); } 
 if(isset($_REQUEST['close_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$ticid), array('%s')); } 
 if(isset($_REQUEST['open_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status'=>'open'), array('ticket_id'=>$ticid), array('%s')); }
+}
+
 ///post from form
 $usticketid=$_REQUEST['usticketid'];
 $usname=$_REQUEST['usname'];

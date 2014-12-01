@@ -2,8 +2,8 @@
 /*
 Plugin Name: Key4ce osTicket Bridge
 Plugin URI: https://key4ce.com/projects/key4ce-osticket-bridge
-Description: Integrate osTicket (v1.9.x) into wordpress. including user integration and scp
-Version: 1.2.4
+Description: Integrate osTicket (v1.9.3 - 1.9.4) into wordpress. including user integration and scp
+Version: 1.2.5
 Author: Key4ce
 Author URI: https://key4ce.com
 License: GPLv3
@@ -80,13 +80,24 @@ function addopenticketcount()
 	$dept_table=$keyost_prefix."department";
 	$ticket_table=$keyost_prefix."ticket";
 	$ticket_cdata=$keyost_prefix."ticket__cdata";
+	$ost_ticket_status=$keyost_prefix."ticket_status";
 	$current_user = wp_get_current_user();
 	$e_address=$current_user->user_email;
 	$user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
+	if($keyost_version>="194")
+	{
 	$num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
-LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
-INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND ost_ticket.user_id='$user_id'");
-	if($num_rows > 0)
+	LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+	INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
+	INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id
+	WHERE $ost_ticket_status.state='open' AND ost_ticket.user_id='$user_id'");
+	}
+	else
+	{
+	$num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
+	LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
+	INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND ost_ticket.user_id='$user_id'");
+	}	if($num_rows > 0)
 		return $num_rows;
 	else
 		return 0;
@@ -108,9 +119,12 @@ if (isset($ost_wpdb->error) ){
 $dept_table=$keyost_prefix."department";
 $ticket_table=$keyost_prefix."ticket";
 $ticket_cdata=$keyost_prefix."ticket__cdata";
+$ost_ticket_status=$keyost_prefix."ticket_status";
 $num_rows=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
-INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticket_table.status='open' AND $ticket_table.isanswered='0'");
+INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
+INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id
+WHERE $ost_ticket_status.state='open' AND $ticket_table.isanswered='0'");
     $page_title = 'Support/Request List';
 	if ($num_rows > 0) {
     $menu_title = 'Tickets <span class="awaiting-mod"><span class="pending-count">' . $num_rows . '</span></span>';
