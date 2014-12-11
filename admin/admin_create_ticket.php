@@ -151,8 +151,9 @@ $(document).ready(function() {
 	   else if($(this).attr('id') == 'radio3')
 	   {
 		   document.getElementById('email').value="";	
+		    $("#email").removeAttr('readonly','readonly');
 		  $('#new_ticket_name_wpuser').css("display", "none");
-                  $('#new_ticket_name_osticketuser').css("display", "none");	
+           $('#new_ticket_name_osticketuser').css("display", "none");	
 		  $('#new_ticket_name_username').css("display", "block");
 		  //$( "#addusername" ).empty();
 		  //$('#addusername').append("Username: <input name='username' type='text' id='username' size='20' />");

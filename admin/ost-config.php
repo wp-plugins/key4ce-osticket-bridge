@@ -63,27 +63,26 @@ Template Name: ost-config
 	$config = get_option('os_ticket_config');
 	extract($config);
 	$ost_wpdb = new wpdb($username, $password, $database, $host);
-	$ost_wpdb->query($wpdb->prepare("
-	CREATE TABLE IF NOT EXISTS %s(
-  	ticket_id int(11) unsigned NOT NULL DEFAULT '0',
-  	subject mediumtext,
-  	priority mediumtext,
-  	priority_id bigint(20) DEFAULT NULL,
-  	PRIMARY KEY (ticket_id)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;",$keyost_prefix."ticket__cdata"));
+	$ticket_cdata=$keyost_prefix.'ticket__cdata';
+	$crt_cdata="CREATE TABLE IF NOT EXISTS $ticket_cdata (
+  `ticket_id` int(11) unsigned NOT NULL DEFAULT '0',
+  `subject` mediumtext,
+  `priority` mediumtext,
+  PRIMARY KEY (`ticket_id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+	$ost_wpdb->query($crt_cdata);
 	global $ost;
 	$ticket_cdata=$keyost_prefix."ticket__cdata";
 	$osinstall="osTicket Installed!";
 	$osticid=1;
-	$prior="Normal";
-	$priorid=2;
+	$prior=2;
 	$result1=$ost_wpdb->get_results("SELECT ticket_id FROM $ticket_cdata WHERE subject = '".$osinstall."'");
 	if (count ($result1) > 0) { 
 	$row = current ($result1);
 	} else { 
 	$ost_wpdb->query ("
-	INSERT INTO $ticket_cdata (ticket_id,subject,priority,priority_id) 
-	VALUES ('".$osticid."', '".$osinstall."', '".$prior."', '".$priorid."')");
+	INSERT INTO $ticket_cdata (ticket_id,subject,priority) 
+	VALUES ('".$osticid."', '".$osinstall."', '".$prior."')");
 	} 
 
 ?>
@@ -121,14 +120,14 @@ extract($config);
 <td class="key4ce_config_td"><label class="key4ce_config_label">Osticket Version:</label></td>                
 <td>
 <?php 
-if($keyost_version==194)
-		$keyost_version_194="selected='selected'";
+if(@$keyost_version==194)
+		@$keyost_version_194="selected='selected'";
 	else
-		$keyost_version_19="selected='selected'";
+		@$keyost_version_19="selected='selected'";
 ?>
 <select name="keyost_version" id="keyost_version">
-<option value="19" <?php echo $keyost_version_19; ?>>Ver. <=1.9.4</option>
-<option value="194" <?php echo $keyost_version_194; ?>>Ver. >=1.9.4</option>
+<option value="19" <?php echo @$keyost_version_19; ?>>Ver. <=1.9.4</option>
+<option value="194" <?php echo @$keyost_version_194; ?>>Ver. >=1.9.4</option>
 </select>&nbsp;&nbsp;(Select Osticket Version)
 </td>
 </tr>

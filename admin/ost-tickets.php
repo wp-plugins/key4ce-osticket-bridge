@@ -118,21 +118,27 @@ if($list_opt)
 	echo "<div id='key4ce_ticket_list1'><a href='admin.php?page=ost-tickets&service=view&ticket=".$list->number."'>".$list->number."</a></div>";
 	echo "<div id='key4ce_ticket_list2'>".truncate($sub_str,60,'...')."</div>
 	<div id='key4ce_ticket_list3'>";
-	if($list->priority_id=='4') {
+	if($keyost_version==194)
+			$priority=$list->priority;
+	else	
+			$priority=$list->priority_id;
+	if($priority=='4') {
 	echo '<div class="key4ce_ticketPriority" style="background-color: Red;"><font color=white>Emergency</font></div>';
 	} 
-	elseif ($list->priority_id=='3') {
+	elseif ($priority=='3') {
 	echo '<div class="key4ce_ticketPriority" style="background-color: Orange;"><font color=white>High</font></div>';
 	}
-	elseif ($list->priority_id=='2') {
+	elseif ($priority=='2') {
 	echo '<div class="key4ce_ticketPriority" style="background-color: Green;"><font color=white>Normal</font></div>';
 	}
-    elseif ($list->priority_id=='') {
+    elseif ($priority=='') {
 	echo '<div class="key4ce_ticketPriority" style="background-color: Green;"><font color=white>Normal</font></div>';
 	}
-	elseif ($list->priority_id=='1') {
+	elseif ($priority=='1') {
 	echo '<div class="key4ce_ticketPriority" style="background-color: Black;"><font color=white>Low</font></div>';
 	}
+	
+	
 	echo "</div><div id='key4ce_ticket_list4'>".$list->dept_name."</div>";
 
 	if ($list->updated=='0000-00-00 00:00:00') {

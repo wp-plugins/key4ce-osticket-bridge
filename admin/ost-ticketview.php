@@ -108,15 +108,19 @@ $finalary = "'" . $extimp . "'";
                 <td><b>Priority:</b></td>
                 <td> 
                     <div><?php
-                        if ($ticketinfo->priority_id == '4') {
+						if($keyost_version==194)
+								$priority=$ticketinfo->priority;
+						else	
+								$priority=$ticketinfo->priority_id;
+                        if ($priority == '4') {
                             echo '<div style="color: Red;"><strong>Emergency</strong></div>';
-                        } elseif ($ticketinfo->priority_id == '3') {
+                        } elseif ($priority== '3') {
                             echo '<div style="color: Orange;"><strong>High</strong></div>';
-                        } elseif ($ticketinfo->priority_id == '2') {
+                        } elseif ($priority == '2') {
                             echo '<div style="color: Green;"><strong>Normal</strong></div>';
-                        } elseif ($ticketinfo->priority_id == '1') {
+                        } elseif ($priority == '1') {
                             echo '<div style="color: Black;">Low</div>';
-                        } elseif ($ticketinfo->priority_id == '') {
+                        } elseif ($priority == '') {
                             echo '<div style="color: Black;">Normal</div>';
                         }
                         ?>

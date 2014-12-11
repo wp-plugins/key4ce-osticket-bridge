@@ -25,7 +25,7 @@ $user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email 
 
 if($keyost_version==194)
 {
-$getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
+$getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
 $ticket_count=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id'"); 
 $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='closed'"); 
