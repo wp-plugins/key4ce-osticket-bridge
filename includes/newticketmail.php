@@ -11,10 +11,10 @@ global $current_user;
 get_currentuserinfo();
 $wp_user_email_id = $current_user->user_email;
 
-$tic_ID = generateID();
+$tic_ID = key4ce_generateID();
 $checkUserID = $ost_wpdb->get_results("SELECT number from $ticket_table WHERE number = '$tic_ID'");
 if (count($checkUserID) > 0) {
-    $tic_ID = generateID();
+    $tic_ID = key4ce_generateID();
 }
 $dep_id = $_REQUEST['deptId'];
 $sla_id = 1;
@@ -109,22 +109,22 @@ if (!empty($_FILES['file']['name'][0]))
    $fileids=array();
    for ($i = 0; $i < count($_FILES['file']['name']); $i++) 
     {    
-    $allowed_filetypes = getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
-    $max_file_size = getKeyValue('max_file_size'); //Return max file size from Osticket configuration
-    $fullfinalpath= getKeyValue('uploadpath');
-    $generateHashKey = generateHashKey(33);
-    $generateHashSignature = generateHashSignature(33);
-    $dir_name = substr($generateHashKey, 0, 1);
+    $allowed_filetypes = key4ce_getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
+    $max_file_size = key4ce_getKeyValue('max_file_size'); //Return max file size from Osticket configuration
+    $fullfinalpath= key4ce_getKeyValue('uploadpath');
+    $key4ce_generateHashKey = key4ce_generateHashKey(33);
+    $key4ce_generateHashSignature = key4ce_generateHashSignature(33);
+    $dir_name = substr($key4ce_generateHashKey, 0, 1);
     $structure = $fullfinalpath."/".$dir_name;
     if (!is_dir($structure)) {
         mkdir($structure, 0355);
     }
-   $alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-    $strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+   $alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+    $strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
     $allowedExts = explode(",", $strplc);
     $temp = explode(".", $_FILES['file']['name'][$i]);
     $extension = end($temp); //return uploaded file extension
-    $newfilename = $generateHashKey;
+    $newfilename = $key4ce_generateHashKey;
     $realfilename = $_FILES['file']['name'][$i];
     $filetype = $_FILES["file"]["type"][$i];
     $filesize = $_FILES["file"]["size"][$i];
@@ -136,7 +136,7 @@ if (!empty($_FILES['file']['name'][0]))
         }
     }
      $ost_wpdb->insert($keyost_prefix . "file", array('ft' => 'T', 'bk' => 'F', 'type' => $filetype, 
-        'size' => $filesize, 'key' => $generateHashKey, 'signature' => $generateHashSignature,
+        'size' => $filesize, 'key' => $key4ce_generateHashKey, 'signature' => $key4ce_generateHashSignature,
         'name' => $realfilename, 'attrs' => '', 'created' => $cre), array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
     $file_id = $ost_wpdb->insert_id;
     array_push($fileids, $file_id);
@@ -145,7 +145,7 @@ if (!empty($_FILES['file']['name'][0]))
 // File Table Entry Code End Here By Pratik Maniar on 29/08/2014  
 $pid = 0;
 $thread_type = "M";
-$ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+$ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => key4ce_wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 $thread_id = $ost_wpdb->insert_id;
  if (!empty($_FILES['file']['name'][0]))
 {   
@@ -194,7 +194,7 @@ eval("\$subject=\"$postsubmail\";");
 eval("\$message=\"$newtickettemp\";");
 
 ///Email osticket admin - a new ticket has been created
-if (getKeyValue('ticket_alert_admin') == 1 && getKeyValue('ticket_alert_active') == 1) {
+if (key4ce_getKeyValue('ticket_alert_admin') == 1 && key4ce_getKeyValue('ticket_alert_active') == 1) {
 //Added By Pratik Maniar On 14-06-2014 Code Start Here To Avoid Auto generate by Department Emails
     $id_ademail = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
     $os_admin_email = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
@@ -219,11 +219,11 @@ if (getKeyValue('ticket_alert_admin') == 1 && getKeyValue('ticket_alert_active')
     $adminmessage.="Your friendly Customer Support System ";
     $headers = 'From: ' . $title . ' <' . $adem . ">\r\n";
     add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-    wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
+    wp_mail($os_admin_email_admin, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
 }
 //Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 Start Here
 ///Email osticket Department - a new ticket has been created
-if (getKeyValue('ticket_alert_dept_members') == 1 && getKeyValue('ticket_alert_active') == 1) {
+if (key4ce_getKeyValue('ticket_alert_dept_members') == 1 && key4ce_getKeyValue('ticket_alert_active') == 1) {
     $staff_details = $ost_wpdb->get_results("SELECT email,firstname,lastname FROM $ost_staff WHERE `dept_id` =$dep_id");
     $department_staff = count($staff_details);
     if ($department_staff > 0) {
@@ -250,7 +250,7 @@ if (getKeyValue('ticket_alert_dept_members') == 1 && getKeyValue('ticket_alert_a
             $deptmessage.="Your friendly Customer Support System ";
             $headers = 'From: ' . $ostitle . ' <' . $adem . ">\r\n";
             add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-            wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
+            wp_mail($staff_email, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
         }
     } else {
         //If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code Start Here
@@ -281,7 +281,7 @@ if (getKeyValue('ticket_alert_dept_members') == 1 && getKeyValue('ticket_alert_a
                 $deptmessage.="Your friendly Customer Support System ";
                 $headers = 'From: ' . $ostitle . ' <' . $adem . ">\r\n";
                 add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-                wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
+                wp_mail($staff_email, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
             }
         }
         //If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code End Here

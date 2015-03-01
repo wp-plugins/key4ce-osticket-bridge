@@ -391,7 +391,7 @@ $ost_wpdb->update($staff_table, array('lastname'=>$admin_lname), array('staff_id
 $ost_wpdb->update($ost_user, array('name'=>$adfullname), array('id'=>1), array('%s'));
 $ost_wpdb->update($ost_useremail, array('address'=>$os_admin_email), array('user_id'=>1), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="green"><b>Settings</b></font> are being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-sett.js';?>"></script></center></p>
+<p align="center"><i><?php echo __("Stand by while your", 'key4ce-osticket-bridge'); ?><font color="green"><b><?php echo __("Settings", 'key4ce-osticket-bridge'); ?></b></font><?php echo __("are being updated...", 'key4ce-osticket-bridge'); ?></i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-sett.js';?>"></script></center></p>
 <?php } ?>
 <?php
 # ==============================================================================================
@@ -400,11 +400,11 @@ $ost_wpdb->update($ost_useremail, array('address'=>$os_admin_email), array('user
 if(isset($_REQUEST['ost-post-reply'])) { 
 	if (($_REQUEST['message']==""))
 	{
-	echo '<div id="failed"><b>Error:</b> Message field cannot be empty, if you are closing the ticket, then enter: "Closing Ticket" in post a reply.</div><div style="clear: both"></div>';
+	echo '<div id="failed"><b>'.__("Error:", 'key4ce-osticket-bridge').'</b>'.__("Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply.", 'key4ce-osticket-bridge').'</div><div style="clear: both"></div>';
 	} else {
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/ost-postreplymail.php' );
 ?>
-<div id="key4ce_succes" class="key4ce_fade"><?php echo "Thread updated successfully...Stand by: for auto refresh!";?></div>
+<div id="key4ce_succes" class="key4ce_fade"><?php echo __("Thread updated successfully...Stand by: for auto refresh!", 'key4ce-osticket-bridge'); ?></div>
 <div style="clear: both"></div>
 <script type="text/javascript" charset="utf-8">
   window.setTimeout(function() {
@@ -419,11 +419,11 @@ if(isset($_REQUEST['ost-post-reply'])) {
 if(isset($_REQUEST['create-admin-ticket'])) { 
 	if (($_REQUEST['message']==""))
 	{
-	echo '<div id="failed"><b>Error:</b> Message field cannot be empty, if you are closing the ticket, then enter: "Closing Ticket" in post a reply.</div><div style="clear: both"></div>';
+	echo '<div id="failed"><b>'.__("Error:", 'key4ce-osticket-bridge').'</b>'.__("Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply.", 'key4ce-osticket-bridge').'</div><div style="clear: both"></div>';
 	} else {
 	require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/admin/adminticketmail.php' );
 ?>
-<div id="key4ce_succes" class="key4ce_fade"><?php echo "Ticket created successfully...Stand by: for auto refresh!";?></div>
+<div id="key4ce_succes" class="key4ce_fade"><?php echo __("Ticket created successfully...Stand by: for auto refresh!", 'key4ce-osticket-bridge'); ?></div>
 <div style="clear: both"></div>
 <script type="text/javascript" charset="utf-8">
   window.setTimeout(function() {
@@ -441,7 +441,7 @@ $form_admintreply=Format::stripslashes($_POST['form_admintreply']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_admintreply,'updated'=>$etdate), array('name'=>$arname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="key4ce_green"><b>Admin Response Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i><?php echo __("Stand by while your", 'key4ce-osticket-bridge'); ?><font color="key4ce_green"><b><?php echo __("Admin Response Email", 'key4ce-osticket-bridge'); ?></b></font><?php echo __("is being updated...", 'key4ce-osticket-bridge'); ?></i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
 <?php
 # ==============================================================================================
@@ -453,7 +453,7 @@ $form_newticket=@Format::stripslashes($_POST['form_newticket']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_newticket,'updated'=>$etdate), array('name'=>$ntname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="key4ce_green"><b>New Ticket Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i><?php echo __("Stand by while your", 'key4ce-osticket-bridge'); ?><font color="key4ce_green"><b><?php echo __("New Ticket Email", 'key4ce-osticket-bridge'); ?></b></font><?php echo __("is being updated...", 'key4ce-osticket-bridge'); ?></i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>
 <?php
 # ==============================================================================================
@@ -465,5 +465,5 @@ $form_postconfirmed=Format::stripslashes($_POST['form_postconfirmed']);
 $etdate=date("Y-m-d, g:i:s");
 $wpdb->update($ostemail, array('text'=>$form_postconfirmed,'updated'=>$etdate), array('name'=>$pcname), array('%s'));
 ?>
-<p align="center"><i>Stand by while your <font color="key4ce_green"><b>User Post Confirmation Email</b></font> is being updated...</i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
+<p align="center"><i><?php echo __("Stand by while your", 'key4ce-osticket-bridge'); ?><font color="key4ce_green"><b><?php echo __("User Post Confirmation Email", 'key4ce-osticket-bridge'); ?></b></font><?php echo __("is being updated...", 'key4ce-osticket-bridge'); ?></i><br /><center><script language="javascript" src="<?php echo plugin_dir_url(__FILE__).'../js/adminTB-email.js';?>"></script></center></p>
 <?php } ?>

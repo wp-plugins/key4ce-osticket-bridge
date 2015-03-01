@@ -41,21 +41,21 @@ else
 	echo "<div id='key4ce_search_ticket' style='display: table-row;'>"; 
 	echo "<div id='key4ce_search_box' style='display: table-cell;'>";
     if(isset($service) && $service=='new' || $service=='view') { 
- 	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_list.">View Tickets</a>";
+ 	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_list.">". __("View Tickets", 'key4ce-osticket-bridge')."</a>";
     } else { 
-   	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_new.">Create Ticket</a>"; 
+   	echo "<a class=\"key4ce_blue key4ce_but\" href=".$service_new.">". __("Create Ticket", 'key4ce-osticket-bridge')."</a>"; 
     }
 	echo "</div>"; 
     echo "<form name='search' method='POST' enctype='multipart/form-data' onsubmit='return validateFormSearch()'>";
 	echo "<div id='key4ce_search_opcl' table-cell;>
 	<select onchange='this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);'>	
-	<option value=$service_list&status=open $open>Open / Answered ({$ticket_count_open})</option>
-	<option value=$service_list&status=closed $closed>Closed ({$ticket_count_closed})</option>
+	<option value=$service_list&status=open $open>".__('Open / Answered','key4ce-osticket-bridge')."({$ticket_count_open})</option>
+	<option value=$service_list&status=closed $closed>".__('Closed','key4ce-osticket-bridge')."({$ticket_count_closed})</option>
 	</select>&nbsp;&nbsp;
 	<input type='hidden' name='service' value='list'>
 	<input type='hidden' name='afterticket' id='afterticket' value='$service_list'>
-	<input class='key4ce_ost' type='text' placeholder='Search...' size='20' name='tq' id='tq' value=". @$_REQUEST['tq'].">&nbsp;&nbsp;
-	<input type='submit' style='margin-left: -10px;' name='search' value='Go >>'>";
+	<input class='key4ce_ost' type='text' placeholder=".__('Search...','key4ce-osticket-bridge')." size='20' name='tq' id='tq' value=". @$_REQUEST['tq'].">&nbsp;&nbsp;
+	<input type='submit' style='margin-left: -10px;' name='search' value=".__('Go', 'key4ce-osticket-bridge').">";
 	echo "</form></div>"; 
 	echo '<div style="clear: both"></div>'; 
 	echo '</div>'; 

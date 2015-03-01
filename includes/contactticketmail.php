@@ -12,10 +12,10 @@ require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/versionData.php'
 global $current_user;
 get_currentuserinfo();
 $wp_user_email_id = @$_REQUEST['email'];
-$tic_ID = generateID();
+$tic_ID = key4ce_generateID();
 $checkUserID = $ost_wpdb->get_results("SELECT number from $ticket_table WHERE number = '$tic_ID'");
 if (count($checkUserID) > 0) {
-    $tic_ID = generateID();
+    $tic_ID = key4ce_generateID();
 }
 $id_ademail = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%default_email_id%');");
 $os_admin_email = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id =$id_ademail");
@@ -97,7 +97,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     $pid = 0;
     $thread_type = "M";
 
-    $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+    $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => key4ce_wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 
     if($keyost_version==194)
 	{
@@ -136,7 +136,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     eval("\$message=\"$newtickettemp\";");
 
 ///Email osticket admin - a new ticket has been created
-    if (getKeyValue('ticket_alert_admin') == 1 && getKeyValue('ticket_alert_active') == 1) {
+    if (key4ce_getKeyValue('ticket_alert_admin') == 1 && key4ce_getKeyValue('ticket_alert_active') == 1) {
 //Added By Pratik Maniar On 14-06-2014 Code Start Here To Avoid Auto generate by Department Emails
         $id_ademail = $ost_wpdb->get_var("SELECT id FROM $config_table WHERE $config_table.key like ('%admin_email%');");
         $os_admin_email = $ost_wpdb->get_row("SELECT id,namespace,$config_table.key,$config_table.value,updated FROM $config_table where id = $id_ademail");
@@ -162,11 +162,11 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
         $adminmessage.="Your friendly Customer Support System ";
         $headers = "From: " . $title . "<" . $adem . ">\r\n";
         add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-        wp_mail($os_admin_email_admin, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
+        wp_mail($os_admin_email_admin, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $adminmessage), $headers);
     }
 //Email Notification to Department Of Staff Added by Pratik Maniar on 28-04-2014 Start Here
 ///Email osticket Department - a new ticket has been created
-    if (getKeyValue('ticket_alert_dept_members') == 1 && getKeyValue('ticket_alert_active') == 1) {
+    if (key4ce_getKeyValue('ticket_alert_dept_members') == 1 && key4ce_getKeyValue('ticket_alert_active') == 1) {
         $staff_details = $ost_wpdb->get_results("SELECT email,firstname,lastname FROM $ost_staff WHERE `dept_id` =$dep_id");
         $department_staff = count($staff_details);
         if ($department_staff > 0) {
@@ -193,7 +193,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
                 $deptmessage.="Your friendly Customer Support System ";
                 $headers = 'From: ' . $ostitle . ' <' . $adem . ">\r\n";
                 add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-                wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
+                wp_mail($staff_email, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
             }
         } else {
             //If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code Start Here
@@ -224,7 +224,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
                     $deptmessage.="Your friendly Customer Support System ";
                     $headers = 'From: ' . $ostitle . ' <' . $adem . ">\r\n";
                     add_filter('wp_mail_content_type', create_function('', 'return "text/html"; '));
-                    wp_mail($staff_email, $subject, wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
+                    wp_mail($staff_email, $subject, key4ce_wpetss_forum_text('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $deptmessage), $headers);
                 }
             }
             //If Department User Not Found System Will Send Email To Group Members Of Related Department Added By Pratik Maniar on 16-06-2014 Code End Here

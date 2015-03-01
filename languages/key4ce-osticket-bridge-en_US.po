@@ -1,0 +1,612 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: key4ce-osticket-bridge 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-06 13:46-0400\n"
+"PO-Revision-Date: 2015-02-21 22:18+0530\n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+"Language: en_US\n"
+
+#Listing Tickets
+#: mypluginindex.php:87 (it is just a line of note, to remind where our code
+#: appears)
+msgid "Tickets #"
+msgstr "Tickets #"
+
+msgid "No Records Found."
+msgstr "No Records Found."
+
+msgid "Tickets"
+msgstr "Tickets"
+
+msgid "Create Ticket"
+msgstr "Create Ticket"
+
+msgid "View Tickets"
+msgstr "View Tickets"
+
+msgid "Go >>"
+msgstr "Go >>"
+
+msgid "Search..."
+msgstr "Search..."
+
+msgid "Open / Answered"
+msgstr "Open / Answered"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "osT-Config"
+msgstr "osT-Config"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Answered"
+msgstr "Answered"
+
+msgid "Closed"
+msgstr "Closed"
+
+msgid "All"
+msgstr "All"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Priority"
+msgstr "Priority"
+
+msgid "Department"
+msgstr "Department"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Open Tickets"
+msgstr "Open Tickets"
+
+msgid "Create A New Ticket"
+msgstr "Create A New Ticket"
+
+msgid "Please fill in the form below to open a new ticket. All fields mark with [*] Are Required!"
+msgstr "Please fill in the form below to open a new ticket. All fields mark with [*] Are Required!"
+
+msgid "Select User Type"
+msgstr "Select User Type"
+
+msgid "WP Users"
+msgstr "WP Users"
+
+msgid "Osticket Users"
+msgstr "Osticket Users"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Your Email"
+msgstr "Your Email"
+
+msgid "Catagories"
+msgstr "Catagories"
+
+msgid "To best assist you, please be specific and detailed in your message *"
+msgstr "To best assist you, please be specific and detailed in your message *"
+
+msgid "Attachment"
+msgstr "Attachment"
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Max file upload size"
+msgstr "Max file upload size"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Some simple plugin settings for Wordpress."
+msgstr "Some simple plugin settings for Wordpress."
+
+msgid "Support Center Status:"
+msgstr "Support Center Status:"
+
+msgid "Helpdesk Name/Title:"
+msgstr "Helpdesk Name/Title:"
+
+msgid "SMTP Status"
+msgstr "SMTP Status"
+
+msgid "(Please select smtp status.)"
+msgstr "Please select smtp status.)"
+
+msgid "SMTP Username"
+msgstr "SMTP Username"
+
+msgid "SMTP Password"
+msgstr "SMTP Password"
+
+msgid "SMTP Host"
+msgstr "SMTP Host"
+
+msgid "SMTP Port"
+msgstr "SMTP Port"
+
+msgid "Please enter smtp username."
+msgstr "Please enter smtp username."
+
+msgid "Please enter smtp password."
+msgstr "Please enter smtp password."
+
+msgid "Please enter smtp host."
+msgstr "Please enter smtp host."
+
+msgid "Please enter smtp port."
+msgstr "Please enter smtp port."
+
+msgid "Save Settings"
+msgstr "Save Settings"
+
+msgid "View or edit your OSTicket database information, you should already have osTicket installed to your server, view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required below."
+msgstr "View or edit your OSTicket database information, you should already have osTicket installed to your server, view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required below."
+
+msgid "Landing Page Name: The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin will create this page. Note: If this page exists it will be over written, also this cannot be the same name as your osTicket folder."
+msgstr "Landing Page Name: The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin will create this page. Note: If this page exists it will be over written, also this cannot be the same name as your osTicket folder."
+
+msgid "Host Name:"
+msgstr "Host Name:"
+
+msgid "( Normally this is localhost )"
+msgstr "( Normally this is localhost )"
+
+msgid "Database Name:( osTicket Database Name Goes Here )"
+msgstr "Database Name:( osTicket Database Name Goes Here )"
+
+msgid "Database Name:"
+msgstr "Database Name:"
+
+msgid "( osTicket Database Username Goes Here )"
+msgstr "( osTicket Database Username Goes Here )"
+
+msgid "Database Password:"
+msgstr "Database Password:"
+
+msgid "( osTicket Database Password Goes Here )"
+msgstr "( osTicket Database Password Goes Here )"
+
+msgid "Database Prefix:"
+msgstr "Database Prefix:"
+
+msgid "( osTicket Database Prefix Goes Here )"
+msgstr "( osTicket Database Prefix Goes Here )"
+
+msgid "Osticket Version:"
+msgstr "Osticket Version:"
+
+msgid "(Select Osticket Version)"
+msgstr "(Select Osticket Version)"
+
+msgid "Enable Closing Ticket By User:"
+msgstr "Enable Closing Ticket By User:"
+
+msgid "Landing Page Name( Create this page...read Landing Page Note above! )"
+msgstr "Landing Page Name( Create this page...read Landing Page Note above! )"
+
+msgid "Contact Ticket Page:"
+msgstr "Contact Ticket Page:"
+
+msgid "(Select contact ticket page)"
+msgstr "(Select contact ticket page)"
+
+msgid "Thank You Page:"
+msgstr "Thank You Page:"
+
+msgid "(Select thank you page)"
+msgstr "(Select thank you page)"
+
+msgid "Save Changes"
+msgstr "Save Changes"
+
+msgid "Data Config"
+msgstr "Data Config"
+
+msgid "osT-Settings"
+msgstr "osT-Settings"
+
+msgid "Email Templates"
+msgstr "Email Templates"
+
+msgid "Support Tickets"
+msgstr "Support Tickets"
+
+msgid "Note: Each input field will have a suggested default template, you can place any text & use the variables listed below."
+msgstr "Note: Each input field will have a suggested default template, you can place any text & use the variables listed below."
+
+msgid "$Variables You can use In Email"
+msgstr "$Variables You can use In Email"
+
+msgid "New Ticket Email  [Close]"
+msgstr "New Ticket Email  [Close]"
+
+msgid "Save - New Ticket Email"
+msgstr "Save - New Ticket Email"
+
+msgid "Admin Response Email [Close]"
+msgstr "Admin Response Email [Close]"
+
+msgid "Save - Admin Response Email"
+msgstr "Save - Admin Response Email"
+
+msgid "User Post Confirmation Email [Close]"
+msgstr "User Post Confirmation Email [Close]"
+
+msgid "Save - User Post Confirmation Email"
+msgstr "Save - User Post Confirmation Email"
+
+msgid "Support/Request List"
+msgstr "Support/Request List"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Go"
+msgstr "Go"
+
+msgid "Date Create"
+msgstr "Date Create"
+
+msgid "User Email"
+msgstr "User Email"
+
+msgid "Ticket Thread"
+msgstr "Ticket Thread"
+
+msgid "Close Ticket On Reply"
+msgstr "Close Ticket On Reply"
+
+msgid "My signature"
+msgstr "My signature"
+
+msgid "Dept. Signature (Support)"
+msgstr "Dept. Signature (Support)"
+
+msgid "Post Reply"
+msgstr "Post Reply"
+
+msgid "Cancel - Go Back"
+msgstr "Cancel - Go Back"
+
+msgid "Ticket ID"
+msgstr "Ticket ID"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Ticket #"
+msgstr "Ticket #"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "%d record(s) has been closed successfully"
+msgstr "%d record(s) has been closed successfully"
+
+msgid "Are you sure you want to continue?"
+msgstr "Are you sure you want to continue?"
+
+msgid "A new request has been created successfully!"
+msgstr "A new request has been created successfully!"
+
+msgid "We are currently notifying the selected department staff..."
+msgstr "We are currently notifying the selected department staff..."
+
+msgid "Thank you for contacting us!"
+msgstr "Thank you for contacting us!"
+
+msgid "Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!"
+msgstr "Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!"
+
+msgid "Full Name:"
+msgstr "Full Name:"
+
+msgid "Your Email:"
+msgstr "Your Email:"
+
+msgid "Catagories:"
+msgstr "Catagories:"
+
+msgid "Select a Category"
+msgstr "Select a Category"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Open a New Ticket"
+msgstr "Open a New Ticket"
+
+msgid "Attachment 1:"
+msgstr "Attachment 1:"
+
+msgid "Max file upload size :"
+msgstr "Max file upload size :"
+
+msgid "Attachments on the Filesystem plugin can be downloaded here:"
+msgstr "Attachments on the Filesystem plugin can be downloaded here:"
+
+msgid "Attachement Filesystem Plugin"
+msgstr "Attachement Filesystem Plugin"
+
+msgid "You currently have the maximum amount allowed open:"
+msgstr "You currently have the maximum amount allowed open:"
+
+msgid "Visit your open tickets and see if any has been resolved, if so you can close any ticket(s) and submit a new one."
+msgstr "Visit your open tickets and see if any has been resolved, if so you can close any ticket(s) and submit a new one."
+
+msgid "View open tickets"
+msgstr "View open tickets"
+
+msgid "You are currently over the maximum amount allowed open:"
+msgstr "You are currently over the maximum amount allowed open:"
+
+msgid "Thank you for your interest in contacting us."
+msgstr "Thank you for your interest in contacting us."
+
+msgid "Our system is currently offline for maintenance, please check back later."
+msgstr "Our system is currently offline for maintenance, please check back later."
+
+msgid "1 or more of your email templates is not setup"
+msgstr "1 or more of your email templates is not setup"
+
+msgid "Click Here"
+msgstr "Click Here"
+
+msgid "osTicket Data Configuration"
+msgstr "osTicket Data Configuration"
+
+msgid "Error:"
+msgstr "Error:"
+
+msgid "All fields are required below for the database..."
+msgstr "All fields are required below for the database..."
+
+msgid "Your settings saved successfully...Thank you!"
+msgstr "Your settings saved successfully...Thank you!"
+
+msgid "Warning:"
+msgstr "Warning:"
+
+msgid "osTicket Settings"
+msgstr "osTicket Settings"
+
+msgid "(Active)"
+msgstr "(Active)"
+
+msgid "( offline will display maintenance message on website )"
+msgstr "( offline will display maintenance message on website )"
+
+msgid "( displayed in emails & welcome/user pages )"
+msgstr "( displayed in emails & welcome/user pages )"
+
+msgid "Maximum Open Tickets:"
+msgstr "Maximum Open Tickets:"
+
+msgid "Reply Separator Tag:"
+msgstr "Reply Separator Tag:"
+
+msgid "( should be blank - if you are email polling...read"
+msgstr "( should be blank - if you are email polling...read"
+
+msgid "[+]"
+msgstr "[+]"
+
+msgid " )"
+msgstr " )"
+
+msgid "Note: If email polling, login to: osTicket->Emails->Templates->Response/Reply Template remove %{ticket.client_link}"
+msgstr "Note: If email polling, login to: osTicket->Emails->Templates->Response/Reply Template remove %{ticket.client_link}"
+
+msgid "Replace with"
+msgstr "Replace with"
+
+msgid "%{ticket.number}"
+msgstr "%{ticket.number}"
+
+#------------------Email Template ost-emailtemp.php Start Here-----------------------------------
+msgid "The \"Email Templates\" sent from site to client: new tickets confirmations, user post confirmations & admin post replies."
+msgstr "The  \"Email Templates\" sent from site to client: new tickets confirmations, user post confirmations & admin post replies."
+
+msgid "\"$Variables\" You can use In Email"
+msgstr "\"$Variables\" You can use In Email"
+
+msgid "$username=\"User Name\""
+msgstr "$username=\"User Name\""
+
+msgid "$usermail=\"User Email\""
+msgstr "$usermail=\"User Email\""
+
+msgid "$ticketid=\"Ticket #\""
+msgstr "$ticketid=\"Ticket #\""
+
+msgid "$ticketurl=\"Ticket Url\""
+msgstr "$ticketurl=\"Ticket Url\""
+
+msgid "$ostitle=\"Support Title\""
+msgstr "$ostitle=\"Support Title\""
+
+msgid "$siteurl=\"Support Url\""
+msgstr "$siteurl=\"Support Url\""
+
+msgid "$dname=\"Landing Page\""
+msgstr "$dname=\"Landing Page\""
+
+msgid "$user_message=\"Users Message\""
+msgstr "$user_message=\"Users Message\""
+
+msgid "$admin_response=\"Staff Message\""
+msgstr "$admin_response=\"Staff Message\""
+
+msgid "$signature=\"Staff/ Department Signature\""
+msgstr "$signature=\"Staff/ Department Signature\""
+
+msgid "$ussubject=\"Ticket subject\""
+msgstr "$ussubject=\"Ticket subject\""
+
+msgid "*New Ticket Email Template"
+msgstr "*New Ticket Email Template"
+
+#------------------Email Template ost-emailtemp.php End Here half file remain-----------------------------------
+msgid "Stand by while your"
+msgstr "Stand by while your"
+
+msgid "are being updated..."
+msgstr "are being updated..."
+
+msgid "Thread updated successfully...Stand by: for auto refresh!"
+msgstr "Thread updated successfully...Stand by: for auto refresh!"
+
+msgid "Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply."
+msgstr "Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply."
+
+msgid "Admin Response Email"
+msgstr "Admin Response Email"
+
+msgid "New Ticket Email"
+msgstr "New Ticket Email"
+
+msgid "is being updated..."
+msgstr "is being updated..."
+
+msgid "User Post Confirmation Email"
+msgstr "User Post Confirmation Email"
+
+msgid "You have exceeds your file upload limit"
+msgstr "You have exceeds your file upload limit"
+
+msgid "Please make sure your file is less than"
+msgstr "Please make sure your file is less than"
+
+msgid "Please make sure your file extension should be :"
+msgstr "Please make sure your file extension should be :"
+
+msgid "Reply to Support Request"
+msgstr "Reply to Support Request"
+
+msgid "Post a Reply"
+msgstr "Post a Reply"
+
+msgid "Ticket On Reply"
+msgstr "Ticket On Reply"
+
+msgid "Dept. Signature"
+msgstr "Dept. Signature"
+
+msgid "%d record(s) has been re-opened successfully"
+msgstr "%d record(s) has been re-opened successfully"
+
+msgid "%d record(s) has been deleted successfully"
+msgstr "%d record(s) has been deleted successfully"
+
+msgid "Email Tickets"
+msgstr "Email Tickets"
+
+msgid "Ticket Status"
+msgstr "Ticket Status"
+
+msgid "Emergency"
+msgstr "Emergency"
+
+msgid "High"
+msgstr "High"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Low"
+msgstr "Low"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Select a Priority"
+msgstr "Select a Priority"
+
+msgid "WP Username"
+msgstr "WP Username"
+
+msgid "Osticket Username"
+msgstr "Osticket Username"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Maximum Open Tickets"
+msgstr "Maximum Open Tickets"
+
+msgid "Support Center Status"
+msgstr "Support Center Status"
+
+msgid "osTicket Email Templates"
+msgstr "osTicket Email Templates"
+
+msgid "Reopen"
+msgstr "Reopen"
+
+msgid "New Ticket Email Template"
+msgstr "New Ticket Email Template"
+
+msgid "We suggest using this template in the user confirmation email below."
+msgstr "We suggest using this template in the user confirmation email below."
+
+msgid "Admin Response Email Template"
+msgstr "Admin Response Email Template"
+
+msgid "We suggest using this template in your post reply to user below."
+msgstr "We suggest using this template in your post reply to user below."
+
+msgid "User Post Confirmation Email Template"
+msgstr "User Post Confirmation Email Template"
+
+msgid "Create Date"
+msgstr "Create Date"
+
+msgid "To best assist you, please be specific and detailed in your reply."
+msgstr "To best assist you, please be specific and detailed in your reply."
+
+msgid "No such ticket available."
+msgstr "No such ticket available."
+
+
+
+
+
+
+
+
+
+
+

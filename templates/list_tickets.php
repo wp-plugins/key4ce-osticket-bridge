@@ -33,22 +33,22 @@ if(isset($_POST['close']))
 			$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
 		$i++;
 	}
-	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>$i record(s) has been closed successfully</div>";
+	echo "<div style=' color: red;font-size: 15px;font-weight: bold;margin-top: 20px;text-align: center;'>"._e( "$i record(s) has been closed successfully", 'key4ce-osticket-bridge' )."</div>";
 	echo "<script>window.location.href=location.href;</script>";	
 }
 if(@$list_opt) { 
 ?>
-<form name="osticket" id="osticket" method="post" onSubmit="if(!confirm('Are you sure you want to continue?')){return false;}">
+<form name="osticket" id="osticket" method="post" onSubmit="if(!confirm('<?php echo __("Are you sure you want to continue?", 'key4ce-osticket-bridge'); ?>')){return false;}">
 <div class="">
 <div id="key4ce_ticket_menu">
 <?php if($keyost_usercloseticket==1) { ?>
 <div id="key4ce_ticket_menu0"><input type="checkbox"  onchange="checkAll(this)" name="chk[]"></div>
 <?php } ?>
-<div id="key4ce_ticket_menu1">Ticket #</div>
-<div id="key4ce_ticket_menu2">Subject</div>
-<div id="key4ce_ticket_menu3">Status</div>
-<div id="key4ce_ticket_menu4">Department</div>
-<div id="key4ce_ticket_menu5">Date</div>
+<div id="key4ce_ticket_menu1"><?php echo __("Tickets #", 'key4ce-osticket-bridge'); ?></div>
+<div id="key4ce_ticket_menu2"><?php echo __("Subject", 'key4ce-osticket-bridge'); ?></div>
+<div id="key4ce_ticket_menu3"><?php echo __("Status", 'key4ce-osticket-bridge'); ?></div>
+<div id="key4ce_ticket_menu4"><?php echo __("Department", 'key4ce-osticket-bridge'); ?></div>
+<div id="key4ce_ticket_menu5"><?php echo __("Date", 'key4ce-osticket-bridge'); ?></div>
 </div>
 <?php
 	function ezDate($d) { 
@@ -87,15 +87,15 @@ if(@$list_opt) {
 	echo "<div id='key4ce_ticket_list0' style='float: left;line-height: 45px;'><input type='checkbox' name='tickets[]' value='".$list->ticket_id."'></div>";	
 	echo "<div id='key4ce_ticket_list' onclick=\"location.href='$ticket_view';\">"; 
 	echo "<div id='key4ce_ticket_list1'><a href=$ticket_view>".$list->number."</a></div>"; 
-	echo "<div id='key4ce_ticket_list2'>".truncate($sub_str,60,'...')."</div><div id='key4ce_ticket_list3'>"; 
+	echo "<div id='key4ce_ticket_list2'>".key4ce_truncate($sub_str,60,'...')."</div><div id='key4ce_ticket_list3'>"; 
 	if($list->status=='closed') { 
-	echo '<font color=red>Closed</font>'; 
+	echo '<font color=red>'.__("Closed", 'key4ce-osticket-bridge').'</font>'; 
 	} 
 	elseif ($list->status=='open' && $list->isanswered=='0') { 
-	echo '<font color=green>Open</font>'; 
+	echo '<font color=green>'.__('Open', 'key4ce-osticket-bridge').'</font>'; 
     }
 	elseif ($list->status=='open' && $list->isanswered=='1') { 
-	echo '<font color=orange>Answered</font>'; 
+	echo '<font color=orange>'.__("Answered", 'key4ce-osticket-bridge').'</font>'; 
 	} 
 	echo "</div><div id='key4ce_ticket_list4'>".$list->dept_name."</div>"; 
     if ($list->updated=='0000-00-00 00:00:00') {
@@ -109,7 +109,7 @@ if(@$list_opt) {
 	} } 
 	else 
 	{ 
-	echo '</div><div style="display: table; width: 100%;"><div align="center" id="no_tics" style="margin-top: 25px; text-align: center; font-size: 12pt; width: 100%; display:table-cell; float: left;"> <strong> No Records Found. </strong></div>';
+	echo '</div><div style="display: table; width: 100%;"><div align="center" id="no_tics" style="margin-top: 25px; text-align: center; font-size: 12pt; width: 100%; display:table-cell; float: left;"> <strong>'.__("No Records Found.", 'key4ce-osticket-bridge').'</strong></div>';
 	} 
 ?>
 </div>
@@ -119,6 +119,6 @@ if($keyost_usercloseticket==1)
 {
 if(@$_REQUEST['status']!="closed" && count($list_opt)>0) 
 {?>
-<div style=" margin-left: 13px;margin-top: 15px;"><input type="submit" name="close" value="Close"></div>
+<div style=" margin-left: 13px;margin-top: 15px;"><input type="submit" name="close" value="<?php echo __('Close','key4ce-osticket-bridge'); ?>>"></div>
 <?php } }?>
 </form>

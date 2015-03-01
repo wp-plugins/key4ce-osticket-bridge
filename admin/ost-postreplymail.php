@@ -25,7 +25,7 @@ $admin_response=@Format::stripslashes($_REQUEST['message']); ///from post to thr
 $ipaddress=$_SERVER['REMOTE_ADDR'];
 $date=date("Y-m-d, g:i:s", strtotime("-5 hour")); ///EST (todo's - add option to WP osT-Settings)
 
-$ost_wpdb->insert($thread_table, array('pid'=>$pid,'ticket_id'=>$ticid,'staff_id'=>$staffid,'thread_type'=>$thread_type,'poster'=>$poster,'source'=>$source,'title'=>"",'body'=>wpetss_forum_text($admin_response),'ip_address'=>$ipaddress,'created'=>$date), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
+$ost_wpdb->insert($thread_table, array('pid'=>$pid,'ticket_id'=>$ticid,'staff_id'=>$staffid,'thread_type'=>$thread_type,'poster'=>$poster,'source'=>$source,'title'=>"",'body'=>key4ce_wpetss_forum_text($admin_response),'ip_address'=>$ipaddress,'created'=>$date), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
 $thread_id = $ost_wpdb->insert_id;
 
 // File Table Entry Code Start Here By Pratik Maniar on 02/08/2014 
@@ -34,22 +34,22 @@ if (!empty($_FILES['file']['name'][0]))
    $fileids=array();
    for ($i = 0; $i < count($_FILES['file']['name']); $i++) 
     { 
-    $allowed_filetypes = getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
-    $max_file_size = getKeyValue('max_file_size'); //Return max file size from Osticket configuration
-    $fullfinalpath= getKeyValue('uploadpath');
-    $generateHashKey = generateHashKey(33);
-    $generateHashSignature = generateHashSignature(33);
-    $dir_name = substr($generateHashKey, 0, 1);
+    $allowed_filetypes = key4ce_getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
+    $max_file_size = key4ce_getKeyValue('max_file_size'); //Return max file size from Osticket configuration
+    $fullfinalpath= key4ce_getKeyValue('uploadpath');
+    $key4ce_generateHashKey = key4ce_generateHashKey(33);
+    $key4ce_generateHashSignature = key4ce_generateHashSignature(33);
+    $dir_name = substr($key4ce_generateHashKey, 0, 1);
     $structure = $fullfinalpath."/".$dir_name;
     if (!is_dir($structure)) {
         mkdir($structure, 0355);
     }
-    $alowaray = explode(".",str_replace(' ', '',getKeyValue('allowed_filetypes')));
-    $strplc = str_replace(".", "",str_replace(' ', '',getKeyValue('allowed_filetypes')));
+    $alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+    $strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
     $allowedExts = explode(",", $strplc);
     $temp = explode(".", $_FILES['file']['name'][$i]);
     $extension = end($temp); //return uploaded file extension
-    $newfilename = $generateHashKey;
+    $newfilename = $key4ce_generateHashKey;
     $realfilename = $_FILES['file']['name'][$i];
     $filetype = $_FILES["file"]["type"][$i];
     $filesize = $_FILES["file"]["size"][$i];
@@ -61,7 +61,7 @@ if (!empty($_FILES['file']['name'][0]))
         }
     }
      $ost_wpdb->insert($keyost_prefix . "file", array('ft' => 'T', 'bk' => 'F', 'type' => $filetype, 
-        'size' => $filesize, 'key' => $generateHashKey, 'signature' => $generateHashSignature,
+        'size' => $filesize, 'key' => $key4ce_generateHashKey, 'signature' => $key4ce_generateHashSignature,
         'name' => $realfilename, 'attrs' => '', 'created' => $date), array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
     $file_id = $ost_wpdb->insert_id;
     array_push($fileids, $file_id);
@@ -153,7 +153,7 @@ $phpmailer->From =  "$ticket_detail_dept_email";
 $phpmailer->FromName = "$ticket_detail_dept_name";
 add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
 $phpmailer->Subject    =$subject;
-$phpmailer->Body       = wpetss_forum_text($message);                      //HTML Body
+$phpmailer->Body       = key4ce_wpetss_forum_text($message);                      //HTML Body
 $phpmailer->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 $phpmailer->MsgHTML('<div style="display: none;">-- do not reply below this line -- <br/><br/></div>' . $message);
 $phpmailer->AddAddress($to);

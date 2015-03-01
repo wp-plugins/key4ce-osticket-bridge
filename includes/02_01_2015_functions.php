@@ -18,7 +18,7 @@ class Format {
 	return $str;
 	} 
 }
-function key4ce_generateID()
+function generateID()
 {
 	$id=mt_rand(100000, 999999);	
 	$config = get_option('os_ticket_config');
@@ -27,11 +27,11 @@ function key4ce_generateID()
 	$count_no=$ost_wpdb->get_var("SELECT count(*) as count from ".$keyost_prefix."ticket WHERE number = '$id'");
 	if($count_no > 0)
 	{
-	return key4ce_generateID();
+	return generateID();
 	}
 	return $id;
 }
-function key4ce_truncate($string, $max = 50, $replacement = '')
+function truncate($string, $max = 50, $replacement = '')
 {
     if (strlen($string) <= $max)
     {
@@ -40,7 +40,7 @@ function key4ce_truncate($string, $max = 50, $replacement = '')
     $leave = $max - strlen ($replacement);
     return substr_replace($string, $replacement, $leave);
 }
-function key4ce_getKeyValue($key)
+function getKeyValue($key)
 {	
 	$config = get_option('os_ticket_config');
 	extract($config);
@@ -48,7 +48,7 @@ function key4ce_getKeyValue($key)
 	$getKeyvalue=$ost_wpdb->get_var("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE '$key'");
 	return $getKeyvalue;
 }
-function key4ce_getPluginValue($plugin)
+function getPluginValue($plugin)
 {	
 	$config = get_option('os_ticket_config');
 	extract($config);
@@ -56,7 +56,7 @@ function key4ce_getPluginValue($plugin)
 	$getPluginValue=$ost_wpdb->get_var("SELECT isactive FROM ".$keyost_prefix."plugin WHERE `name` = '$plugin' AND isphar='1'");
 	return $getPluginValue;
 }
-function key4ce_wpetss_forum_text($text){
+function wpetss_forum_text($text){
 // convert links
     $text = " ".$text;
     $text = preg_replace('#(((f|ht){1}tps?://)[-a-zA-Z0-9@:;%_\+.~\#?&//=\[\]]+)#i', '<a href="\\1" target=_blank>\\1</a>', $text);
@@ -76,7 +76,7 @@ function key4ce_wpetss_forum_text($text){
 	}
 	return $print_text;
 }
-function key4ce_generateHashKey($length = 10) {
+function generateHashKey($length = 10) {
     $characters = '-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -84,7 +84,7 @@ function key4ce_generateHashKey($length = 10) {
     }
     return $randomString;
 }
-function key4ce_generateHashSignature($length = 10) {
+function generateHashSignature($length = 10) {
     $characters = '-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
@@ -92,7 +92,7 @@ function key4ce_generateHashSignature($length = 10) {
     }
     return $randomString;
 }
-function key4ce_getUserEmail($id)
+function getUserEmail($id)
 {	
 	$config = get_option('os_ticket_config');
 	extract($config);
