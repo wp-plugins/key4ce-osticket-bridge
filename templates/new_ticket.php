@@ -89,6 +89,8 @@ $finalary = "'" . $extimp . "'";
 <?php
 } else {
 $user_id=$ost_wpdb->get_var("SELECT user_id FROM " . $keyost_prefix . "user_email WHERE `address` = '" . $current_user->user_email . "'");
+echo date_default_timezone_set('UTC')."<br>";
+echo date('d-m-Y g:i a',strtotime('+1 hours'));
     ?>
     <div id="key4ce_new_ticket">
         <div id="key4ce_new_ticket_text1"><?php echo __('Open a New Ticket','key4ce-osticket-bridge'); ?></div>
@@ -175,5 +177,6 @@ if (key4ce_getKeyValue('allow_attachments') == 1) {
         </tr>
     </table></form>
     </div>
+	
 <?php } ?>
 <div class="key4ce_clear" style="padding: 10px;"></div>

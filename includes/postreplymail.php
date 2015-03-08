@@ -25,7 +25,7 @@ $uscategories=$_REQUEST['uscategories'];
 $top_id=$_REQUEST['ustopicid'];
 $user_message=@Format::stripslashes($_REQUEST['message']);
 $ipaddress=$_SERVER['REMOTE_ADDR'];
-$date=date("Y-m-d, g:i:s", strtotime("-5 hour"));
+$date=date("Y-m-d g:i:s");
 $ticket_details=$ost_wpdb->get_row("SELECT * FROM $ticket_table WHERE number=$usticketid");
 $dep_id=$ticket_details->dept_id;
 
