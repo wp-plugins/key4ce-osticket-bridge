@@ -23,7 +23,7 @@ $poster=$current_user->user_login;
 $source="Web";
 $admin_response=@Format::stripslashes($_REQUEST['message']); ///from post to thread-table to variable to email
 $ipaddress=$_SERVER['REMOTE_ADDR'];
-$date=date("Y-m-d, g:i:s", strtotime("-5 hour")); ///EST (todo's - add option to WP osT-Settings)
+$date=date("Y-m-d g:i:s"); ///EST (todo's - add option to WP osT-Settings)
 
 $ost_wpdb->insert($thread_table, array('pid'=>$pid,'ticket_id'=>$ticid,'staff_id'=>$staffid,'thread_type'=>$thread_type,'poster'=>$poster,'source'=>$source,'title'=>"",'body'=>key4ce_wpetss_forum_text($admin_response),'ip_address'=>$ipaddress,'created'=>$date), array('%d','%d','%d','%s','%s','%s','%s','%s','%s','%s'));
 $thread_id = $ost_wpdb->insert_id;
