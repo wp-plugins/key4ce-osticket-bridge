@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: key4ce-osticket-bridge 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-09 12:25+0200\n"
-"PO-Revision-Date: 2015-03-10 13:23+0200\n"
+"POT-Creation-Date: 2015-03-12 08:57+0200\n"
+"PO-Revision-Date: 2015-03-12 14:29+0200\n"
 "Last-Translator: Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ar\n"
@@ -86,7 +86,7 @@ msgstr "اسم مستخدم Osticket "
 
 #: ../admin/admin_create_ticket.php:199 ../templates/new_ticket.php:109
 msgid "Your Email"
-msgstr "البريد الالكتروني"
+msgstr "بريدك الإلكتروني"
 
 #: ../admin/admin_create_ticket.php:202 ../admin/ost-tickets.php:86 ../admin/ost-ticketview.php:134
 #: ../templates/contact_ticket.php:83 ../templates/list_tickets.php:48 ../templates/new_ticket.php:112
@@ -138,7 +138,7 @@ msgstr "مرفقات هذه الإضافة يمكن تحميلها من هنا:"
 msgid "Attachement Filesystem Plugin"
 msgstr "إضافة الملفات المرفقة"
 
-#: ../admin/admin_create_ticket.php:264 ../admin/header_nav_ticket.php:18 ../ost-bridge.php:148
+#: ../admin/admin_create_ticket.php:264 ../admin/header_nav_ticket.php:18 ../ost-bridge.php:157
 #: ../templates/nav_bar.php:46 ../templates/new_ticket.php:174
 msgid "Create Ticket"
 msgstr "إنشاء بطاقة"
@@ -154,7 +154,7 @@ msgstr "إعادة تعيين الافتراضيات"
 msgid "Stand by while your"
 msgstr "انتظر قليلاً"
 
-#: ../admin/db-settings.php:394 ../ost-bridge.php:154
+#: ../admin/db-settings.php:394 ../ost-bridge.php:163
 msgid "Settings"
 msgstr "إعدادات"
 
@@ -203,11 +203,11 @@ msgstr "تكوين البيانات"
 msgid "osT-Settings"
 msgstr "إعدادات osT"
 
-#: ../admin/header_nav.php:18 ../ost-bridge.php:164
+#: ../admin/header_nav.php:18 ../ost-bridge.php:173
 msgid "Email Templates"
 msgstr "قوالب البريد"
 
-#: ../admin/header_nav.php:19 ../ost-bridge.php:70
+#: ../admin/header_nav.php:19 ../ost-bridge.php:79
 msgid "Support Tickets"
 msgstr "بطاقات الدعم"
 
@@ -223,7 +223,7 @@ msgstr "انقر هنا"
 #: ../admin/ost-emailtemp.php:69 ../admin/ost-ticketview.php:90 ../templates/list_tickets.php:95
 #: ../templates/view_ticket.php:90
 msgid "Open"
-msgstr "فتح"
+msgstr "مفتوحة"
 
 #: ../admin/header_nav_ticket.php:22 ../admin/ost-ticketview.php:92 ../templates/list_tickets.php:98
 #: ../templates/view_ticket.php:92
@@ -233,7 +233,7 @@ msgstr "تمت الإجابة"
 #: ../admin/header_nav_ticket.php:23 ../admin/ost-ticketview.php:88 ../templates/list_tickets.php:92
 #: ../templates/nav_bar.php:53 ../templates/view_ticket.php:88
 msgid "Closed"
-msgstr "مغلق"
+msgstr "مغلقة "
 
 #: ../admin/header_nav_ticket.php:24
 msgid "All"
@@ -381,7 +381,7 @@ msgstr "ملاحظة: كل حقل إدخال فيه قيم افتراضية مق
 
 #: ../admin/ost-emailtemp.php:13
 msgid "$Variables You can use In Email"
-msgstr "$Variables يمكنك استخدام المتغيرات في البريد الإلكتروني"
+msgstr "يمكنك استخدام المتغيرات $Variables في البريد الإلكتروني"
 
 #: ../admin/ost-emailtemp.php:15
 msgid "$username=\"User Name\""
@@ -461,7 +461,7 @@ msgstr "تأكيد قالب بريد الناشر"
 msgid "Save - User Post Confirmation Email"
 msgstr "حفظ - رسالة تأكيد مقالة المستخدم"
 
-#: ../admin/ost-settings.php:8 ../ost-bridge.php:319 ../ost-bridge.php:333
+#: ../admin/ost-settings.php:8 ../ost-bridge.php:328 ../ost-bridge.php:342
 msgid "osTicket Settings"
 msgstr " إعدادات osTicket"
 
@@ -607,7 +607,7 @@ msgstr "تم إعادة فتح %d سجل بنجاح"
 msgid "Are you sure you want to continue?"
 msgstr "هل أنت متأكد أنك تريد المتابعة ؟"
 
-#: ../admin/ost-tickets.php:76 ../ost-bridge.php:140 ../ost-bridge.php:142
+#: ../admin/ost-tickets.php:76 ../ost-bridge.php:149 ../ost-bridge.php:151
 msgid "Support/Request List"
 msgstr "الدعم/قائمة الطلبات"
 
@@ -618,11 +618,11 @@ msgstr "بطاقة"
 #: ../admin/ost-tickets.php:88 ../admin/ost-ticketview.php:100 ../templates/list_tickets.php:50
 #: ../templates/view_ticket.php:99
 msgid "Department"
-msgstr "قسم"
+msgstr "القسم"
 
 #: ../admin/ost-tickets.php:89 ../templates/list_tickets.php:51
 msgid "Date"
-msgstr "تاريخ"
+msgstr "التاريخ"
 
 #: ../admin/ost-tickets.php:129 ../admin/ost-ticketview.php:116 ../templates/view_ticket.php:114
 #: ../templates/view_ticket.php:128
@@ -707,27 +707,27 @@ msgstr "توقيع القسم"
 msgid "Cancel - Go Back"
 msgstr "إلغاء - عودة للخلف"
 
-#: ../ost-bridge.php:53
+#: ../ost-bridge.php:62
 msgid "Open Tickets"
 msgstr "فتح البطاقات"
 
-#: ../ost-bridge.php:132 ../ost-bridge.php:134
+#: ../ost-bridge.php:141 ../ost-bridge.php:143
 msgid "Tickets"
 msgstr "بطاقات"
 
-#: ../ost-bridge.php:142
+#: ../ost-bridge.php:151
 msgid "Email Tickets"
 msgstr "بطاقات البريد"
 
-#: ../ost-bridge.php:159
+#: ../ost-bridge.php:168
 msgid "osT-Config"
 msgstr "تكوين osT"
 
-#: ../ost-bridge.php:298 ../ost-bridge.php:305 ../ost-bridge.php:315 ../ost-bridge.php:329 ../ost-bridge.php:343
+#: ../ost-bridge.php:307 ../ost-bridge.php:314 ../ost-bridge.php:324 ../ost-bridge.php:338 ../ost-bridge.php:352
 msgid "You do not have sufficient permissions to access this page."
 msgstr "لا تملك صلاحيات الدخول لهذه الصفحة"
 
-#: ../ost-bridge.php:319 ../ost-bridge.php:333 ../ost-bridge.php:347
+#: ../ost-bridge.php:328 ../ost-bridge.php:342 ../ost-bridge.php:356
 msgid ""
 "<p><b>Error:</b> You must complete \"osTicket Data Configure\" before this page will display... <a href="
 "\"admin.php?page=ost-config\">click here</a></p>"
@@ -810,7 +810,7 @@ msgstr "عرض البطاقات"
 
 #: ../templates/nav_bar.php:52
 msgid "Open / Answered"
-msgstr "فتح / اجابة"
+msgstr "مفتوحة / مجابة "
 
 #: ../templates/nav_bar.php:57
 msgid "Search..."
@@ -842,7 +842,7 @@ msgstr "الاسم"
 
 #: ../templates/view_ticket.php:101
 msgid "Email"
-msgstr "البريد الالكتروني"
+msgstr "E-Mail"
 
 #: ../templates/view_ticket.php:107
 msgid "Create Date"
