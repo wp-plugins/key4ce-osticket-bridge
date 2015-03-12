@@ -30,7 +30,16 @@ register_uninstall_hook(__FILE__,'mb_uninstall');
 register_activation_hook(__FILE__,'mb_table_install');
 register_activation_hook(__FILE__,'mb_database_install');
 
-load_plugin_textdomain( 'key4ce-osticket-bridge', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+if ( ! defined( 'KEYOST_FILE' ) ) {
+	define( 'KEYOST_FILE', __FILE__ );
+}
+
+function keyost_load_textdomain() {
+	load_plugin_textdomain( 'key4ce-osticket-bridge', false, dirname( plugin_basename( KEYOST_FILE ) ) . '/languages/' );
+}
+
+add_action( 'init', 'keyost_load_textdomain', 1 );
+
 function mb_settings_link($actions, $file) {
 if(false !== strpos($file, 'ost-bridge'))
     $actions['settings'] = '<a href="admin.php?page=ost-config">Config</a>';
