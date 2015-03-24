@@ -27,7 +27,7 @@ if(isset($_POST['close']))
 	$i=0;
 	foreach($close_ticket_list as $close_ticket)
 	{				
-		if($keyost_version==194)
+		if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 			$ost_wpdb->update($ticket_table, array('status_id'=>'3'), array('ticket_id'=>$close_ticket), array('%s'));
 		else
 			$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));

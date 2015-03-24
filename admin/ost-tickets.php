@@ -25,7 +25,7 @@ if(isset($_POST['close']))
 	$i=0;
 	foreach($close_ticket_list as $close_ticket)
 	{				
-		if($keyost_version==194)
+		if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 			$ost_wpdb->update($ticket_table, array('status_id'=>'3'), array('ticket_id'=>$close_ticket), array('%s'));
 		else
 			$ost_wpdb->update($ticket_table, array('status'=>'closed'), array('ticket_id'=>$close_ticket), array('%s'));
@@ -41,7 +41,7 @@ if(isset($_POST['reopen']))
 	$i=0;
 	foreach($reopen_ticket_list as $reopen_ticket)
 	{				
-		if($keyost_version==194)
+		if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 			$ost_wpdb->update($ticket_table, array('status_id'=>'1'), array('ticket_id'=>$reopen_ticket), array('%s'));
 		else	
 			$ost_wpdb->update($ticket_table, array('status'=>'open'), array('ticket_id'=>$reopen_ticket), array('%s'));
@@ -121,7 +121,7 @@ if($list_opt)
 	echo "<div id='key4ce_ticket_list1'><a href='admin.php?page=ost-tickets&service=view&ticket=".$list->number."'>".$list->number."</a></div>";
 	echo "<div id='key4ce_ticket_list2'>".key4ce_truncate($sub_str,60,'...')."</div>
 	<div id='key4ce_ticket_list3'>";
-	if($keyost_version==194)
+	if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 			$priority=$list->priority;
 	else	
 			$priority=$list->priority_id;

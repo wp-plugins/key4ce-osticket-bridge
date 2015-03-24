@@ -1,7 +1,24 @@
 <?php
 /* Template Name: new_ticket.php */
-$alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
-$strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+
+if($keyost_version==193)
+{
+$attachement_status=key4ce_getKeyValue('allow_attachments');
+$max_user_file_uploads=key4ce_getKeyValue('max_user_file_uploads');
+$max_file_size=key4ce_getKeyValue('max_file_size');
+$fileextesnions=key4ce_getKeyValue('allowed_filetypes');
+}
+else
+{
+$fileconfig=key4ce_FileConfigValue();
+$filedata=json_decode($fileconfig);
+$attachement_status=$filedata->attachments;
+$max_user_file_uploads=$filedata->max;
+$max_file_size=$filedata->size;
+$fileextesnions=$filedata->extensions;
+}
+$alowaray = explode(".",str_replace(' ', '',$fileextesnions));
+$strplc = str_replace(".", "",str_replace(' ', '',$fileextesnions));
 $allowedExts = explode(",", $strplc);
 function add_quotes($str) {
     return sprintf("'%s'", $str);
@@ -15,11 +32,11 @@ $finalary = "'" . $extimp . "'";
     $(function() {
         var addDiv = $('#addinput');
         var i = $('#addinput p').size() + 1;
-        var MaxFileInputs = <?php echo key4ce_getKeyValue('max_user_file_uploads'); ?>;
+        var MaxFileInputs = <?php echo $max_user_file_uploads; ?>;
         $('#addNew').live('click', function() {
             if (i <= MaxFileInputs)
             {
-                $('<p><span style="color:#000;"><?php echo __("Attachment", 'key4ce-osticket-bridge'); ?> ' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew"><?php echo __("Remove", 'key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;"><?php echo __("Max file upload size", 'key4ce-osticket-bridge'); ?> : <?php echo (key4ce_getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
+                $('<p><span style="color:#000;"><?php echo __("Attachment", 'key4ce-osticket-bridge'); ?> ' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew"><?php echo __("Remove", 'key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;"><?php echo __("Max file upload size", 'key4ce-osticket-bridge'); ?> : <?php echo ($max_file_size * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
                 i++;
             }
             else
@@ -49,9 +66,9 @@ $finalary = "'" . $extimp . "'";
         var FileSize = fieldObj.files[0].size;
         var FileSizeMB = (FileSize / 10485760).toFixed(2);
         var FileExts = new Array(<?php echo $extimp; ?>);
-        if ((FileSize > <?php echo key4ce_getKeyValue('max_file_size'); ?>))
+        if ((FileSize > <?php echo $max_file_size; ?>))
         {
-            alert("<?php echo __("Please make sure your file is less than", 'key4ce-osticket-bridge'); ?> <?php echo (key4ce_getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB.");
+            alert("<?php echo __("Please make sure your file is less than", 'key4ce-osticket-bridge'); ?> <?php echo ($max_file_size* .0009765625) * .0009765625; ?>MB.");
             document.getElementById(FileId).value = "";
             return false;
         }
@@ -89,8 +106,6 @@ $finalary = "'" . $extimp . "'";
 <?php
 } else {
 $user_id=$ost_wpdb->get_var("SELECT user_id FROM " . $keyost_prefix . "user_email WHERE `address` = '" . $current_user->user_email . "'");
-echo date_default_timezone_set('UTC')."<br>";
-echo date('d-m-Y g:i a',strtotime('+1 hours'));
     ?>
     <div id="key4ce_new_ticket">
         <div id="key4ce_new_ticket_text1"><?php echo __('Open a New Ticket','key4ce-osticket-bridge'); ?></div>
@@ -149,15 +164,15 @@ echo date('d-m-Y g:i a',strtotime('+1 hours'));
             ?> </center>
         <div class="key4ce_clear" style="padding: 5px;"></div></td>
         </tr>
-    <?php 
-if (key4ce_getKeyValue('allow_attachments') == 1) {
+    <?php
+if ($attachement_status==1 || $attachement_status==true) {
 	if(key4ce_getPluginValue('Attachments on the filesystem')==1)
 	{
         ?>
             <tr><td>
                     <div id="addinput">
                         <p>
-                            <span style="color:#000;"><?php echo __('Attachment 1:','key4ce-osticket-bridge'); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="addNew"><?php echo __('Add','key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;"><?php echo __('Max file upload size :','key4ce-osticket-bridge'); ?><?php echo (key4ce_getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span>
+                            <span style="color:#000;"><?php echo __('Attachment 1:','key4ce-osticket-bridge'); ?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="addNew"><?php echo __('Add','key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;"><?php echo __('Max file upload size :','key4ce-osticket-bridge'); ?><?php echo ($max_file_size * .0009765625) * .0009765625; ?>MB</span>
                         </p>
                     </div>
                 </td></tr>

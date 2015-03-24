@@ -1,7 +1,25 @@
 <?php
 require_once( WP_PLUGIN_DIR . '/key4ce-osticket-bridge/includes/functions.php' );
- $alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
-    $strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+// Start File system changes
+if($keyost_version==193)
+{
+$attachement_status=key4ce_getKeyValue('allow_attachments');
+$max_user_file_uploads=key4ce_getKeyValue('max_user_file_uploads');
+$max_file_size=key4ce_getKeyValue('max_file_size');
+$fileextesnions=key4ce_getKeyValue('allowed_filetypes');
+}
+else
+{
+$fileconfig=key4ce_FileConfigValue();
+$filedata=json_decode($fileconfig);
+$attachement_status=$filedata->attachments;
+$max_user_file_uploads=$filedata->max;
+$max_file_size=$filedata->size;
+$fileextesnions=$filedata->extensions;
+}
+// End file system changes
+$alowaray = explode(".",str_replace(' ', '',$fileextesnions));
+$strplc = str_replace(".", "",str_replace(' ', '',$fileextesnions));
 $allowedExts = explode(",", $strplc);
 
 function add_quotes($str) {
@@ -19,7 +37,7 @@ $finalary = "'" . $extimp . "'";
         $('#addNew').live('click', function() {
             if (i <= MaxFileInputs)
             {
-                $('<p><span style="color:#000;"><?php echo __("Attachment", 'key4ce-osticket-bridge'); ?>' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew"><?php echo __("Remove", 'key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo (key4ce_getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
+                $('<p><span style="color:#000;"><?php echo __("Attachment", 'key4ce-osticket-bridge'); ?>' + i + ':</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" id="p_new_' + i + '" name="file[]" onchange="return checkFile(this);"/>&nbsp;&nbsp;&nbsp;<a href="#" id="remNew"><?php echo __("Remove", 'key4ce-osticket-bridge'); ?></a>&nbsp;&nbsp;&nbsp;<span style="color: red;font-size: 11px;">Max file upload size : <?php echo ($max_file_size * .0009765625) * .0009765625; ?>MB</span></p>').appendTo(addDiv);
                 i++;
             }
             else
@@ -51,7 +69,7 @@ $finalary = "'" . $extimp . "'";
         var FileExts = new Array(<?php echo $extimp; ?>);
         if ((FileSize > <?php echo key4ce_getKeyValue('max_file_size'); ?>))
         {
-            alert("<?php echo __("Please make sure your file is less than", 'key4ce-osticket-bridge'); ?><?php echo (key4ce_getKeyValue('max_file_size') * .0009765625) * .0009765625; ?>MB.");
+            alert("<?php echo __("Please make sure your file is less than", 'key4ce-osticket-bridge'); ?><?php echo ($max_file_size * .0009765625) * .0009765625; ?>MB.");
             document.getElementById(FileId).value = "";
             return false;
         }
@@ -108,7 +126,7 @@ $finalary = "'" . $extimp . "'";
                 <td><b><?php echo __("Priority", 'key4ce-osticket-bridge'); ?>:</b></td>
                 <td> 
                     <div><?php
-						if($keyost_version==194)
+						if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 								$priority=$ticketinfo->priority;
 						else	
 								$priority=$ticketinfo->priority_id;
@@ -213,7 +231,7 @@ foreach ($threadinfo as $thread_info) {
                 wp_editor($content, $editor_id, $settings);
                 ?>
       <?php 
-if (key4ce_getKeyValue('allow_attachments') == 1) {
+if ($attachement_status==1 || $attachement_status==true) {
 	if(key4ce_getPluginValue('Attachments on the filesystem')==1)
 	{
         ?>

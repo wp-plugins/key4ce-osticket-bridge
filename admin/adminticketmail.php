@@ -28,7 +28,7 @@ $dirname = $_REQUEST['sdirna'];
 @$sub = Format::stripslashes($_REQUEST['subject']);
 @$newtickettemp = Format::stripslashes($_REQUEST['newtickettemp']);
 $ip_add = $_SERVER['REMOTE_ADDR'];
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $ticketstate = "1";
 }
@@ -48,6 +48,27 @@ $priordesc = $prid->priority_desc;
 $dept_details = $ost_wpdb->get_row("SELECT dept_id,dept_name FROM $dept_table WHERE dept_id=$dep_id");
 $dept_name = $dept_details->dept_name;
 // Added by Pratik Maniar on 29-04-2014 End Here
+
+// Start File system changes
+if($keyost_version==193)
+{
+$attachement_status=key4ce_getKeyValue('allow_attachments');
+$max_user_file_uploads=key4ce_getKeyValue('max_user_file_uploads');
+$max_file_size=key4ce_getKeyValue('max_file_size');
+$fileextesnions=key4ce_getKeyValue('allowed_filetypes');
+}
+else
+{
+$fileconfig=key4ce_FileConfigValue();
+$filedata=json_decode($fileconfig);
+$attachement_status=$filedata->attachments;
+$max_user_file_uploads=$filedata->max;
+$max_file_size=$filedata->size;
+$fileextesnions=$filedata->extensions;
+}	
+// End file system changes
+
+
 /////New user info > check if user exists or create a new user...
 $result1 = $ost_wpdb->get_results("SELECT address FROM " . $keyost_prefix . "user_email WHERE address = '" . $wp_user_email_id . "'");
 if (count($result1) > 0) {
@@ -75,7 +96,7 @@ if (count($result2) > 0) {
 
 ////End of new user info user_email_id email_id
 if (count($result1) > 0) {
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
  $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $usid, 'user_email_id' => $usid, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $usid, 'ip_address' => $ip_add, 'status_id' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 }
@@ -85,7 +106,7 @@ else
 }
    
 } else {
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
  $ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status_id' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 }
@@ -101,13 +122,12 @@ $staf = "SYSTEM";
 $annulled = 0;
 $ost_wpdb->insert($ticket_event_table, array('ticket_id' => $lastid, 'staff_id' => $staff_id, 'team_id' => $team_id, 'dept_id' => $dep_id, 'topic_id' => $top_id, 'state' => $stat, 'staff' => $staf, 'annulled' => $annulled, 'timestamp' => $cre), array('%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s'));
 // File Table Entry Code Start Here By Pratik Maniar on 29/08/2014
+
 if (!empty($_FILES['file']['name'][0])) 
 {   
    $fileids=array();
    for ($i = 0; $i < count($_FILES['file']['name']); $i++) 
     {    
-    $allowed_filetypes = key4ce_getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
-    $max_file_size = key4ce_getKeyValue('max_file_size'); //Return max file size from Osticket configuration
     $fullfinalpath= key4ce_getKeyValue('uploadpath');
     $key4ce_generateHashKey = key4ce_generateHashKey(33);
     $key4ce_generateHashSignature = key4ce_generateHashSignature(33);
@@ -116,8 +136,8 @@ if (!empty($_FILES['file']['name'][0]))
     if (!is_dir($structure)) {
         mkdir($structure, 0355);
     }
-   $alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
-    $strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+   $alowaray = explode(".",str_replace(' ', '',$fileextesnions));
+    $strplc = str_replace(".", "",str_replace(' ', '',$fileextesnions));
     $allowedExts = explode(",", $strplc);
     $temp = explode(".", $_FILES['file']['name'][$i]);
     $extension = end($temp); //return uploaded file extension
@@ -153,7 +173,7 @@ $thread_id = $ost_wpdb->insert_id;
 // File Attachment Table Entry Code End Here By Pratik Maniar on 29/08/2014
     }
 }
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid, 'subject' => $sub, 'priority' =>$pri_id), array('%d', '%s',	'%d'));
 }

@@ -1,5 +1,5 @@
 <?php
-if($keyost_version=="194")
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 	$ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
     $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='closed'"); 

@@ -23,7 +23,7 @@ $e_address=$current_user->user_email;
 $user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
 /*Add user id of ticket instead of wordpress end here*/
 
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
 $ticket_count=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id'"); 
@@ -38,7 +38,7 @@ $ticket_count_open=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE 
 $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHERE user_id='$user_id' and status='closed'"); 
 }
 //////Ticket Info
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ost_ticket_status.state as status,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
 }
@@ -80,7 +80,7 @@ elseif($status_opt=="closed") {
 	}	
 if($user_id!="")        
 {
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $sql="";
 $sql="SELECT $ost_ticket_status.state as status,$ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority, $dept_table.dept_name
@@ -103,7 +103,7 @@ if(@$category && (@$category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && $search=="")
 {
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 	$sql.=" and $ost_ticket_status.state = '".$status_opt."'";
 else	
 	$sql.=" and $ticket_table.status = '".$status_opt."'";

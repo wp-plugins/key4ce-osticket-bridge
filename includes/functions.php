@@ -48,6 +48,8 @@ function key4ce_getKeyValue($key)
 	$getKeyvalue=$ost_wpdb->get_var("SELECT value FROM ".$keyost_prefix."config WHERE `key` LIKE '$key'");
 	return $getKeyvalue;
 }
+
+
 function key4ce_getPluginValue($plugin)
 {	
 	$config = get_option('os_ticket_config');
@@ -100,4 +102,15 @@ function key4ce_getUserEmail($id)
 	$getUserEmail=$ost_wpdb->get_var("SELECT address FROM ".$keyost_prefix."user_email WHERE `id` = '$id'");
 	return $getUserEmail;
 }
+//1.9.5.1 Functions
+function key4ce_FileConfigValue()
+{	
+	$config = get_option('os_ticket_config');
+	extract($config);
+	$ost_wpdb = new wpdb($username, $password, $database, $host);	
+	$getConfigValue=$ost_wpdb->get_var("SELECT configuration FROM ".$keyost_prefix."form_field WHERE `type` = 'thread' AND label='Issue Details' AND name='message'");
+	return $getConfigValue;
+	
+}
+
 ?>

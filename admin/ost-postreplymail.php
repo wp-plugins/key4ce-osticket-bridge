@@ -11,6 +11,24 @@ $ticket_detail_dept_name=$ticket_details->name;
 $ticket_detail_dept_email=$ticket_details->email;
 $signature=$ticket_details->dept_signature;
 $department_id=$ticket_details->dept_id;
+// Start File system changes
+$fileconfig=key4ce_FileConfigValue();
+$filedata=json_decode($fileconfig);
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==193)
+{
+$attachement_status=key4ce_getKeyValue('allow_attachments');
+$max_user_file_uploads=key4ce_getKeyValue('max_user_file_uploads');
+$max_file_size=key4ce_getKeyValue('max_file_size');
+$fileextesnions=key4ce_getKeyValue('allowed_filetypes');
+}
+else
+{
+$attachement_status=$filedata->attachments;
+$max_user_file_uploads=$filedata->max;
+$max_file_size=$filedata->size;
+$fileextesnions=$filedata->extensions;
+}	
+// End file system changes
 if($signature_type=="mine")
 	$signature = $ost_wpdb->get_var("SELECT signature FROM $staff_table WHERE email='".$current_user->user_email."'");
 else
@@ -34,8 +52,6 @@ if (!empty($_FILES['file']['name'][0]))
    $fileids=array();
    for ($i = 0; $i < count($_FILES['file']['name']); $i++) 
     { 
-    $allowed_filetypes = key4ce_getKeyValue('allowed_filetypes'); //Return allowed file types from Osticket configuration
-    $max_file_size = key4ce_getKeyValue('max_file_size'); //Return max file size from Osticket configuration
     $fullfinalpath= key4ce_getKeyValue('uploadpath');
     $key4ce_generateHashKey = key4ce_generateHashKey(33);
     $key4ce_generateHashSignature = key4ce_generateHashSignature(33);
@@ -44,8 +60,8 @@ if (!empty($_FILES['file']['name'][0]))
     if (!is_dir($structure)) {
         mkdir($structure, 0355);
     }
-    $alowaray = explode(".",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
-    $strplc = str_replace(".", "",str_replace(' ', '',key4ce_getKeyValue('allowed_filetypes')));
+    $alowaray = explode(".",str_replace(' ', '',$fileextesnions));
+    $strplc = str_replace(".", "",str_replace(' ', '',$fileextesnions));
     $allowedExts = explode(",", $strplc);
     $temp = explode(".", $_FILES['file']['name'][$i]);
     $extension = end($temp); //return uploaded file extension
@@ -82,7 +98,7 @@ array('%d','%d','%d','%d','%s'));
 /* Added by Pratik Maniar Start Here On 28-04-2014*/
 $ost_wpdb->query($ost_wpdb->prepare("UPDATE $ticket_table SET isanswered = 1 WHERE number = %s",$ticket_number));
 /* Added by Pratik Maniar End Here On 28-04-2014*/
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 if(isset($_REQUEST['reply_ticket_status'])) { 
 $ost_wpdb->update($ticket_table, array('status_id'=>'1'), array('ticket_id'=>$ticid), array('%s')); } 

@@ -120,14 +120,20 @@ extract($config);
 <td class="key4ce_config_td"><label class="key4ce_config_label"><?php echo __("Osticket Version:", 'key4ce-osticket-bridge'); ?></label></td>                
 <td>
 <?php 
-if(@$keyost_version==194)
-		@$keyost_version_194="selected='selected'";
-	else
-		@$keyost_version_19="selected='selected'";
+if(@$keyost_version==193)
+		@$keyost_version_193="selected='selected'";
+else if(@$keyost_version==194)
+		@$keyost_version_194="selected='selected'";		
+else if(@$keyost_version==195)
+		@$keyost_version_195="selected='selected'";
+else
+		@$keyost_version_1951="selected='selected'";
 ?>
 <select name="keyost_version" id="keyost_version">
-<option value="19" <?php echo @$keyost_version_19; ?>>Ver. <=1.9.4</option>
-<option value="194" <?php echo @$keyost_version_194; ?>>Ver. >=1.9.4</option>
+<option value="193" <?php echo @$keyost_version_193; ?>>Ver. 1.9.3</option>
+<option value="194" <?php echo @$keyost_version_194; ?>>Ver. 1.9.4</option>
+<option value="195" <?php echo @$keyost_version_195; ?>>Ver. 1.9.5</option>
+<option value="1951" <?php echo @$keyost_version_1951; ?>>Ver. >=1.9.5.1</option>
 </select>&nbsp;&nbsp;<?php echo __("(Select Osticket Version)", 'key4ce-osticket-bridge'); ?>
 </td>
 </tr>

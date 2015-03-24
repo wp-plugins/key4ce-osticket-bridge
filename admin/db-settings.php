@@ -209,7 +209,7 @@ $ticketreply=$ticketreply->body;
 $ticket_count_all = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id");
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $ticket_count_open = $ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table
 LEFT JOIN $ticket_cdata ON $ticket_cdata.ticket_id = $ticket_table.ticket_id
@@ -249,7 +249,7 @@ INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id WHERE $ticke
 # ==============================================================================================
 # Collecting info for threads listed in ost-ticketview
 # ==============================================================================================
-if($keyost_version=="194")
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $ticketinfo=$ost_wpdb->get_row("SELECT $thread_table.poster,$ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ost_ticket_status.state as status,$ticket_cdata.priority,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table 
 INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id 
@@ -294,7 +294,7 @@ elseif($status_opt=="answered") {
 elseif($status_opt=="closed") {
 	$status_opt='closed';
 	}
-if($keyost_version=="194")
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $sql="SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created, $ticket_table.updated, $ticket_table.ticket_id,$ticket_table.isanswered,$ticket_cdata.subject,$ticket_cdata.priority, $dept_table.dept_name
 FROM $ticket_table
@@ -313,7 +313,7 @@ if($category && ($category!="all"))
 $sql.=" and $topic_table.topic_id = '".$category."'";
 if($status_opt && ($status_opt!="all") && @$search=="")
 {
-	if($keyost_version=="194")
+	if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 	{
 		$sql.=" and $ost_ticket_status.state = '".$status_opt."'";
 	}
