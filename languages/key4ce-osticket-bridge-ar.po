@@ -1,0 +1,905 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: key4ce-osticket-bridge 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-09 12:25+0200\n"
+"PO-Revision-Date: 2015-03-10 13:23+0200\n"
+"Last-Translator: Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>\n"
+"Language-Team: none\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n"
+"%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../admin/admin_create_ticket.php:83 ../admin/ost-ticketview.php:22 ../templates/new_ticket.php:22
+#: ../templates/view_ticket.php:26 ../templates/view_ticket.php:244
+msgid "Attachment"
+msgstr "مرفق"
+
+#: ../admin/admin_create_ticket.php:83 ../admin/ost-ticketview.php:22 ../templates/new_ticket.php:22
+#: ../templates/view_ticket.php:26
+msgid "Remove"
+msgstr "إزالة"
+
+#: ../admin/admin_create_ticket.php:88 ../admin/ost-ticketview.php:27 ../templates/new_ticket.php:27
+#: ../templates/view_ticket.php:31
+msgid "You have exceeds your file upload limit"
+msgstr "لقد تجاوزت حد الرفع المسموح لك"
+
+#: ../admin/admin_create_ticket.php:115 ../admin/ost-ticketview.php:54 ../templates/new_ticket.php:54
+#: ../templates/view_ticket.php:58
+msgid "Please make sure your file is less than"
+msgstr "يرجى الـتأكد أن حجم الملف أقل من"
+
+#: ../admin/admin_create_ticket.php:121 ../admin/ost-ticketview.php:60 ../templates/new_ticket.php:60
+#: ../templates/view_ticket.php:64
+msgid "Please make sure your file extension should be :"
+msgstr "يرجى التأكد من أن امتداد الملف يجب أن يكون:"
+
+#: ../admin/admin_create_ticket.php:176
+msgid "Create A New Ticket"
+msgstr "إنشاء بطاقة جديدة"
+
+#: ../admin/admin_create_ticket.php:178 ../templates/contact_ticket.php:58 ../templates/new_ticket.php:98
+msgid ""
+"Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are "
+"Required!"
+msgstr "يرجى تعبئة النموذج أدناه لفتح بطاقة جديدة، جميع الحقول الملونة بالأحمر مطلوبة."
+
+#: ../admin/admin_create_ticket.php:187
+msgid "Select User Type :"
+msgstr "اختر نوع المستخدم: "
+
+#: ../admin/admin_create_ticket.php:189
+msgid "WP Users"
+msgstr "مستخدمي الوورد برس"
+
+#: ../admin/admin_create_ticket.php:190
+msgid "Osticket Users"
+msgstr "مستخدمي Osticket "
+
+#: ../admin/admin_create_ticket.php:191 ../admin/admin_create_ticket.php:196 ../admin/ost-ticketview.php:96
+#: ../templates/new_ticket.php:106
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: ../admin/admin_create_ticket.php:194
+msgid "WP Username"
+msgstr "اسم مستخدم الوورد برس"
+
+#: ../admin/admin_create_ticket.php:195
+msgid "Osticket Username"
+msgstr "اسم مستخدم Osticket "
+
+#: ../admin/admin_create_ticket.php:199 ../templates/new_ticket.php:109
+msgid "Your Email"
+msgstr "البريد الالكتروني"
+
+#: ../admin/admin_create_ticket.php:202 ../admin/ost-tickets.php:86 ../admin/ost-ticketview.php:134
+#: ../templates/contact_ticket.php:83 ../templates/list_tickets.php:48 ../templates/new_ticket.php:112
+#: ../templates/view_ticket.php:145
+msgid "Subject"
+msgstr "العنوان"
+
+#: ../admin/admin_create_ticket.php:205 ../templates/new_ticket.php:115
+msgid "Catagories"
+msgstr "التصنيفات"
+
+#: ../admin/admin_create_ticket.php:208 ../templates/contact_ticket.php:73 ../templates/new_ticket.php:118
+msgid "Select a Category"
+msgstr "اختر تصنيف"
+
+#: ../admin/admin_create_ticket.php:216 ../admin/ost-tickets.php:87 ../admin/ost-ticketview.php:108
+#: ../templates/view_ticket.php:109
+msgid "Priority"
+msgstr "الأولوية"
+
+#: ../admin/admin_create_ticket.php:218 ../templates/new_ticket.php:128
+msgid "Select a Priority"
+msgstr "اختر الأولولية"
+
+#: ../admin/admin_create_ticket.php:229
+msgid "To best assist you, please be specific and detailed in your message *"
+msgstr "لتقديم أفضل مساعدة لك، يرجى توضيح التفاصيل جيداً في الرسالة *"
+
+#: ../admin/admin_create_ticket.php:250 ../admin/ost-ticketview.php:223 ../templates/new_ticket.php:160
+msgid "Attachment 1:"
+msgstr "مرفق 1:"
+
+#: ../admin/admin_create_ticket.php:250 ../admin/ost-ticketview.php:223 ../templates/new_ticket.php:160
+#: ../templates/view_ticket.php:244
+msgid "Add"
+msgstr "إضافة"
+
+#: ../admin/admin_create_ticket.php:250 ../admin/ost-ticketview.php:223 ../templates/new_ticket.php:160
+#: ../templates/view_ticket.php:26 ../templates/view_ticket.php:244
+msgid "Max file upload size :"
+msgstr "الحد الأقصى لحجم الملف:"
+
+#: ../admin/admin_create_ticket.php:257 ../admin/ost-ticketview.php:230 ../templates/new_ticket.php:167
+msgid "Attachments on the Filesystem plugin can be downloaded here:"
+msgstr "مرفقات هذه الإضافة يمكن تحميلها من هنا:"
+
+#: ../admin/admin_create_ticket.php:257 ../admin/ost-ticketview.php:230 ../templates/new_ticket.php:167
+#: ../templates/view_ticket.php:251
+msgid "Attachement Filesystem Plugin"
+msgstr "إضافة الملفات المرفقة"
+
+#: ../admin/admin_create_ticket.php:264 ../admin/header_nav_ticket.php:18 ../ost-bridge.php:148
+#: ../templates/nav_bar.php:46 ../templates/new_ticket.php:174
+msgid "Create Ticket"
+msgstr "إنشاء بطاقة"
+
+#: ../admin/admin_create_ticket.php:265 ../templates/contact_ticket.php:110 ../templates/new_ticket.php:175
+#: ../templates/view_ticket.php:271
+msgid "Reset"
+msgstr "إعادة تعيين الافتراضيات"
+
+# ------------------Email Template ost-emailtemp.php End Here half file remain-----------------------------------
+#: ../admin/db-settings.php:394 ../admin/db-settings.php:444 ../admin/db-settings.php:456
+#: ../admin/db-settings.php:468
+msgid "Stand by while your"
+msgstr "انتظر قليلاً"
+
+#: ../admin/db-settings.php:394 ../ost-bridge.php:154
+msgid "Settings"
+msgstr "إعدادات"
+
+#: ../admin/db-settings.php:394
+msgid "are being updated..."
+msgstr "يتم تحديث ..."
+
+#: ../admin/db-settings.php:403 ../admin/db-settings.php:422 ../admin/ost-config.php:28
+msgid "Error:"
+msgstr "خطأ:"
+
+#: ../admin/db-settings.php:403 ../admin/db-settings.php:422
+msgid ""
+"Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply."
+msgstr "حقل الرسالة لا يمكن أن يكون فارغا, إن كنت تغلق البطاقة فأدخل: \"إغلاق البطاقة\" بحقل الرّد."
+
+#: ../admin/db-settings.php:407
+msgid "Thread updated successfully...Stand by: for auto refresh!"
+msgstr "تم تحديث الموضوع بنجاح.... انتظر قليلاً!"
+
+#: ../admin/db-settings.php:426
+msgid "Ticket created successfully...Stand by: for auto refresh!"
+msgstr "تم إنشاء البطاقة بنجاح.... انتظر قليلاً!"
+
+#: ../admin/db-settings.php:444 ../admin/ost-emailtemp.php:56
+msgid "Admin Response Email"
+msgstr "بريد رد المدير"
+
+#: ../admin/db-settings.php:444 ../admin/db-settings.php:456 ../admin/db-settings.php:468
+msgid "is being updated..."
+msgstr "جاري التحديث ..."
+
+#: ../admin/db-settings.php:456 ../admin/ost-emailtemp.php:38
+msgid "New Ticket Email"
+msgstr "بطاقة جديدة"
+
+#: ../admin/db-settings.php:468 ../admin/ost-emailtemp.php:75
+msgid "User Post Confirmation Email"
+msgstr "بريد تأكيد نشر المستخدم"
+
+#: ../admin/header_nav.php:16
+msgid "Data Config"
+msgstr "تكوين البيانات"
+
+#: ../admin/header_nav.php:17
+msgid "osT-Settings"
+msgstr "إعدادات osT"
+
+#: ../admin/header_nav.php:18 ../ost-bridge.php:164
+msgid "Email Templates"
+msgstr "قوالب البريد"
+
+#: ../admin/header_nav.php:19 ../ost-bridge.php:70
+msgid "Support Tickets"
+msgstr "بطاقات الدعم"
+
+#: ../admin/header_nav.php:26 ../admin/header_nav_ticket.php:42
+msgid "1 or more of your email templates is not setup"
+msgstr "واحد أو أكثر من قوالب البريد لم يتم إعداده"
+
+#: ../admin/header_nav.php:26 ../admin/header_nav_ticket.php:42
+msgid "Click Here"
+msgstr "انقر هنا"
+
+#: ../admin/header_nav_ticket.php:21 ../admin/ost-emailtemp.php:32 ../admin/ost-emailtemp.php:50
+#: ../admin/ost-emailtemp.php:69 ../admin/ost-ticketview.php:90 ../templates/list_tickets.php:95
+#: ../templates/view_ticket.php:90
+msgid "Open"
+msgstr "فتح"
+
+#: ../admin/header_nav_ticket.php:22 ../admin/ost-ticketview.php:92 ../templates/list_tickets.php:98
+#: ../templates/view_ticket.php:92
+msgid "Answered"
+msgstr "تمت الإجابة"
+
+#: ../admin/header_nav_ticket.php:23 ../admin/ost-ticketview.php:88 ../templates/list_tickets.php:92
+#: ../templates/nav_bar.php:53 ../templates/view_ticket.php:88
+msgid "Closed"
+msgstr "مغلق"
+
+#: ../admin/header_nav_ticket.php:24
+msgid "All"
+msgstr "الكل"
+
+#: ../admin/header_nav_ticket.php:30
+msgid "Search"
+msgstr "بحث"
+
+#: ../admin/header_nav_ticket.php:33
+msgid "Go >>"
+msgstr "اذهب >>"
+
+#: ../admin/header_nav_ticket.php:42
+msgid "Warning:"
+msgstr "تحذير:"
+
+#: ../admin/ost-config.php:8
+msgid "osTicket Data Configuration"
+msgstr "تكوين بيانات osTicket "
+
+#: ../admin/ost-config.php:11
+msgid ""
+"View or edit your OSTicket database information, you should already have osTicket installed to your server, "
+"view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required "
+"below."
+msgstr ""
+"عرض أو تعديل معلومات قاعدة بيانات OSTicket، يجب أن يكون OSTicket قد تم تنصيبه مسبقاً على مخدّمك، راجع الملف "
+"osticket-folder/include/ost-config.php و ابحث عن المتغيرات DBHOST، DBNAME ،DBUSER"
+
+#: ../admin/ost-config.php:11
+msgid ""
+"Landing Page Name: The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin "
+"will create this page. Note: If this page exists it will be over written, also this cannot be the same name as "
+"your osTicket folder."
+msgstr ""
+"اسم الصفحة الرئيسية: الصفحة الترحيبية يمكن أن تكون بأي اسم تريده: الدعم، المساعدة، اتصل بنا... إلخ ستقوم "
+"الإضافة بإنشاء هذه الصفحة في حالة عدم تواجدها. ملاحظة: في حال وجود الصفحة مسبقاً ستقوم الإضافة بالكتابة فوقها "
+"كذلك لا يمكن أن يكون اسمها بنفس اسم مجلد osTicket."
+
+#: ../admin/ost-config.php:28
+msgid "All fields are required below for the database..."
+msgstr "جميع الحقول أدناه مطلوبة لقاعدة البيانات..."
+
+#: ../admin/ost-config.php:89
+msgid "Your settings saved successfully...Thank you!"
+msgstr "تم حفظ إعداداتك بنجاح... شكراً لك"
+
+#: ../admin/ost-config.php:100
+msgid "Host Name:"
+msgstr "اسم المضيف:"
+
+#: ../admin/ost-config.php:101
+msgid "( Normally this is localhost )"
+msgstr "( عادة يكون localhost )"
+
+#: ../admin/ost-config.php:104
+msgid "Database Name:"
+msgstr "اسم قاعدة البيانات:"
+
+#: ../admin/ost-config.php:105
+msgid "( osTicket Database Name Goes Here )"
+msgstr "( اسم قاعدة بيانات osTicket هنا )"
+
+#: ../admin/ost-config.php:108
+msgid "Database Username:"
+msgstr "اسم المستخدم لقاعدة البيانات:"
+
+#: ../admin/ost-config.php:109
+msgid "( osTicket Database Username Goes Here )"
+msgstr "( اسم مستخدم قاعدة بيانات osTicket هنا )"
+
+#: ../admin/ost-config.php:112
+msgid "Database Password:"
+msgstr "كلمة المرور:"
+
+#: ../admin/ost-config.php:113
+msgid "( osTicket Database Password Goes Here )"
+msgstr "( كلمة مرور قاعدة بيانات osTicket هنا )"
+
+#: ../admin/ost-config.php:116
+msgid "Database Prefix:"
+msgstr "بادئة قاعدة البيانات:"
+
+#: ../admin/ost-config.php:117
+msgid "( osTicket Database Prefix Goes Here )"
+msgstr "( بادئة قاعدة البيانات osTicket هنا )"
+
+#: ../admin/ost-config.php:120
+msgid "Osticket Version:"
+msgstr "إصدار osTicket:"
+
+#: ../admin/ost-config.php:131
+msgid "(Select Osticket Version)"
+msgstr "(اختر إصدار Osticket)"
+
+#: ../admin/ost-config.php:135
+msgid "Enable Closing Ticket By User:"
+msgstr "تفعيل إغلاق البطاقة بواسطة المستخدم:"
+
+#: ../admin/ost-config.php:139
+msgid "Landing Page Name:"
+msgstr "اسم الصفحة الرئيسية:"
+
+#: ../admin/ost-config.php:141
+msgid "Landing Page Name( Create this page...read Landing Page Note above! )"
+msgstr "اسم الصفحة الرئيسية ( أنشئ هذه الصحفة... اقرأ حولها بالملاحظة أعلاه! )"
+
+#: ../admin/ost-config.php:144
+msgid "Contact Ticket Page:"
+msgstr "صفحة بطاقة الاتصال:"
+
+#: ../admin/ost-config.php:166
+msgid "(Select contact ticket page)"
+msgstr "(احتر صفحة بطاقة الاتصال)"
+
+#: ../admin/ost-config.php:170
+msgid "Thank You Page:"
+msgstr "صفحة الشكر:"
+
+#: ../admin/ost-config.php:192
+msgid "(Select thank you page)"
+msgstr "(اختر صفحة الشكر)"
+
+#: ../admin/ost-config.php:197
+msgid "Save Changes"
+msgstr "حفظ التعديلات"
+
+#: ../admin/ost-emailtemp.php:8
+msgid "osTicket Email Templates"
+msgstr "قوالب بريد osTicket "
+
+# ------------------Email Template ost-emailtemp.php Start Here-----------------------------------
+#: ../admin/ost-emailtemp.php:11
+msgid ""
+"The \"Email Templates\" sent from site to client: new tickets confirmations, user post confirmations & admin "
+"post replies."
+msgstr "\"قوالب البريد\" أرسلت من الموقع للزبون: تأكيدات البطاقات الجديدة و ملاحظات المستخدم و ردود المدير."
+
+#: ../admin/ost-emailtemp.php:11
+msgid ""
+"Note: Each input field will have a suggested default template, you can place any text & use the variables "
+"listed below."
+msgstr "ملاحظة: كل حقل إدخال فيه قيم افتراضية مقترحة، يمكنك وضع أي نص واستخدام المتغيرات المدرجة أدناه."
+
+#: ../admin/ost-emailtemp.php:13
+msgid "$Variables You can use In Email"
+msgstr "$Variables يمكنك استخدام المتغيرات في البريد الإلكتروني"
+
+#: ../admin/ost-emailtemp.php:15
+msgid "$username=\"User Name\""
+msgstr "$username=\"اسم المستخدم\""
+
+#: ../admin/ost-emailtemp.php:16
+msgid "$usermail=\"User Email\""
+msgstr "$usermail=\"بريد المستخدم\""
+
+#: ../admin/ost-emailtemp.php:17
+msgid "$ticketid=\"Ticket #\""
+msgstr "$ticketid=\"رقم البطاقة\""
+
+#: ../admin/ost-emailtemp.php:18
+msgid "$ticketurl=\"Ticket Url\""
+msgstr "$ticketurl=\"رابط البطاقة\""
+
+#: ../admin/ost-emailtemp.php:19
+msgid "$ostitle=\"Support Title\""
+msgstr "$ostitle=\"عنوان الدعم\""
+
+#: ../admin/ost-emailtemp.php:20
+msgid "$siteurl=\"Support Url\""
+msgstr "$siteurl=\"رابط الدعم\""
+
+#: ../admin/ost-emailtemp.php:21
+msgid "$dname=\"Landing Page\""
+msgstr "$dname=\"الصفحة الرئيسية\""
+
+#: ../admin/ost-emailtemp.php:22
+msgid "$user_message=\"Users Message\""
+msgstr "$user_message=\"رسالة المستخدمين\""
+
+#: ../admin/ost-emailtemp.php:23
+msgid "$admin_response=\"Staff Message\""
+msgstr "$admin_response=\"رسالة الموظف\""
+
+#: ../admin/ost-emailtemp.php:24
+msgid "$signature=\"Staff/ Department Signature\""
+msgstr "$signature=\"توقيع القسم/الموظف\""
+
+#: ../admin/ost-emailtemp.php:25
+msgid "$ussubject=\"Ticket subject\""
+msgstr "$ussubject=\"عنوان البطاقة\""
+
+#: ../admin/ost-emailtemp.php:32
+msgid "New Ticket Email Template"
+msgstr "قالب رسالة بطاقة جديدة"
+
+#: ../admin/ost-emailtemp.php:32 ../admin/ost-emailtemp.php:69
+msgid "We suggest using this template in the user confirmation email below."
+msgstr "نقترح عليك استخدام هذا القالب في رسالة تأكيد المستخدم أدناه."
+
+#: ../admin/ost-emailtemp.php:38 ../admin/ost-emailtemp.php:56 ../admin/ost-emailtemp.php:75
+#: ../admin/ost-tickets.php:167 ../admin/ost-tickets.php:169 ../admin/ost-tickets.php:174
+#: ../admin/ost-ticketview.php:241 ../templates/list_tickets.php:122 ../templates/view_ticket.php:263
+msgid "Close"
+msgstr "إغلاق"
+
+#: ../admin/ost-emailtemp.php:45
+msgid "Save - New Ticket Email"
+msgstr "حفظ - رسالة بطاقة جديدة"
+
+#: ../admin/ost-emailtemp.php:50
+msgid "Admin Response Email Template"
+msgstr "قالب بريد رد المشرف"
+
+#: ../admin/ost-emailtemp.php:50
+msgid "We suggest using this template in your post reply to user below."
+msgstr "نحن نقترح عليك استخدام هذا القالب في الرد على المقالة للمستخدم أدناه."
+
+#: ../admin/ost-emailtemp.php:69
+msgid "User Post Confirmation Email Template"
+msgstr "تأكيد قالب بريد الناشر"
+
+#: ../admin/ost-emailtemp.php:82
+msgid "Save - User Post Confirmation Email"
+msgstr "حفظ - رسالة تأكيد مقالة المستخدم"
+
+#: ../admin/ost-settings.php:8 ../ost-bridge.php:319 ../ost-bridge.php:333
+msgid "osTicket Settings"
+msgstr " إعدادات osTicket"
+
+#: ../admin/ost-settings.php:11
+msgid "Some simple plugin settings for Wordpress."
+msgstr "بعض إعدادات الإضافة البسيطة لوورد برس"
+
+#: ../admin/ost-settings.php:24
+msgid "Support Center Status:"
+msgstr "حالة مركز الدعم:"
+
+#: ../admin/ost-settings.php:25
+msgid "Online"
+msgstr "متصل"
+
+#: ../admin/ost-settings.php:25
+msgid "(Active)"
+msgstr "(نشط)"
+
+#: ../admin/ost-settings.php:25
+msgid "Offline"
+msgstr "غير متصل"
+
+#: ../admin/ost-settings.php:25
+msgid "( offline will display maintenance message on website )"
+msgstr "( غير متصل سيتم عرض رسالة الصيانة على الموقع )"
+
+#: ../admin/ost-settings.php:28
+msgid "Helpdesk Name/Title:"
+msgstr "الاسم/العنوان مكتب المساعدة:"
+
+#: ../admin/ost-settings.php:29
+msgid "( displayed in emails & welcome/user pages )"
+msgstr "( تم عرضه في البريد & ترحيب/صفحات المستخدم )"
+
+#: ../admin/ost-settings.php:32
+msgid "Maximum Open Tickets:"
+msgstr "الحد الأقصى للبطاقات المفتوحة:"
+
+#: ../admin/ost-settings.php:33
+msgid "( per/user - enter 0 for unlimited )"
+msgstr "( لكل مستخدم - أدخل 0 من أجل عدد لا نهائي )"
+
+#: ../admin/ost-settings.php:36
+msgid "Reply Separator Tag:"
+msgstr "وسم فاصل الرّد:"
+
+#: ../admin/ost-settings.php:37
+msgid "( should be blank - if you are email polling...read"
+msgstr "( يجب أن تكون فارغة - إن كنت رسالة اقتراع... اقرأ"
+
+#: ../admin/ost-settings.php:37
+msgid "[+]"
+msgstr "[+]"
+
+#: ../admin/ost-settings.php:37
+msgid " )"
+msgstr " )"
+
+#: ../admin/ost-settings.php:42
+msgid ""
+"Note: If email polling, login to: osTicket->Emails->Templates->Response/Reply Template remove %{ticket."
+"client_link}"
+msgstr ""
+"ملاحظة: إذا كان رسالة اقتراع، سجل دخول لـ: osTicket->رسائل->قوالب->إجابة/قالب رد و أزل %{ticket.client_link}"
+
+#: ../admin/ost-settings.php:43
+msgid "Replace with"
+msgstr "استبدال بـ"
+
+#: ../admin/ost-settings.php:43
+msgid "%{ticket.number}"
+msgstr "%{ticket.number}"
+
+#: ../admin/ost-settings.php:48
+msgid "SMTP Status"
+msgstr "حالة SMTP "
+
+#: ../admin/ost-settings.php:57
+msgid "Enable"
+msgstr "تفعيل"
+
+#: ../admin/ost-settings.php:58
+msgid "Disable"
+msgstr "تعطيل"
+
+#: ../admin/ost-settings.php:59
+msgid "(Please select smtp status.)"
+msgstr "(الرجاء تحديد حالة SMTP.)"
+
+#: ../admin/ost-settings.php:62
+msgid "SMTP Username"
+msgstr "اسم مستخدم SMTP "
+
+#: ../admin/ost-settings.php:63
+msgid "Please enter smtp username."
+msgstr "يرجى كتابة اسم مستخدم SMTP"
+
+#: ../admin/ost-settings.php:66
+msgid "SMTP Password"
+msgstr "كلمة مرور SMTP"
+
+#: ../admin/ost-settings.php:67
+msgid "Please enter smtp password."
+msgstr "يرجى ادخال كلمة مرور SMTP"
+
+#: ../admin/ost-settings.php:70
+msgid "SMTP Host"
+msgstr "مضيف SMTP"
+
+#: ../admin/ost-settings.php:71
+msgid "Please enter smtp host."
+msgstr "يرجى كتابة اسم مضيف SMTP"
+
+#: ../admin/ost-settings.php:74
+msgid "SMTP Port"
+msgstr "منفذ SMTP"
+
+#: ../admin/ost-settings.php:75
+msgid "Please enter smtp port."
+msgstr "يرجى كتابة منفذ SMTP"
+
+#: ../admin/ost-settings.php:79
+msgid "Save Settings"
+msgstr "حفظ الاعدادات"
+
+#: ../admin/ost-tickets.php:18
+#, php-format
+msgid "%d record(s) has been deleted successfully"
+msgstr "تم حذف %d سجل بنجاح"
+
+#: ../admin/ost-tickets.php:34
+#, php-format
+msgid "%d record(s) has been closed successfully"
+msgstr "تم إغلاق %d سجل بنجاح"
+
+#: ../admin/ost-tickets.php:50
+#, php-format
+msgid "%d record(s) has been re-opened successfully"
+msgstr "تم إعادة فتح %d سجل بنجاح"
+
+#: ../admin/ost-tickets.php:74 ../templates/list_tickets.php:41
+msgid "Are you sure you want to continue?"
+msgstr "هل أنت متأكد أنك تريد المتابعة ؟"
+
+#: ../admin/ost-tickets.php:76 ../ost-bridge.php:140 ../ost-bridge.php:142
+msgid "Support/Request List"
+msgstr "الدعم/قائمة الطلبات"
+
+#: ../admin/ost-tickets.php:85
+msgid "Ticket #"
+msgstr "بطاقة"
+
+#: ../admin/ost-tickets.php:88 ../admin/ost-ticketview.php:100 ../templates/list_tickets.php:50
+#: ../templates/view_ticket.php:99
+msgid "Department"
+msgstr "قسم"
+
+#: ../admin/ost-tickets.php:89 ../templates/list_tickets.php:51
+msgid "Date"
+msgstr "تاريخ"
+
+#: ../admin/ost-tickets.php:129 ../admin/ost-ticketview.php:116 ../templates/view_ticket.php:114
+#: ../templates/view_ticket.php:128
+msgid "Emergency"
+msgstr "عاجل"
+
+#: ../admin/ost-tickets.php:132 ../admin/ost-ticketview.php:118 ../templates/view_ticket.php:116
+#: ../templates/view_ticket.php:130
+msgid "High"
+msgstr "مرتفع"
+
+#: ../admin/ost-tickets.php:135 ../admin/ost-tickets.php:138 ../admin/ost-ticketview.php:120
+#: ../admin/ost-ticketview.php:124 ../templates/view_ticket.php:118 ../templates/view_ticket.php:122
+#: ../templates/view_ticket.php:132 ../templates/view_ticket.php:136
+msgid "Normal"
+msgstr "عادي"
+
+#: ../admin/ost-tickets.php:141 ../admin/ost-ticketview.php:122 ../templates/view_ticket.php:120
+#: ../templates/view_ticket.php:134
+msgid "Low"
+msgstr "منخفض"
+
+#: ../admin/ost-tickets.php:158 ../templates/list_tickets.php:112
+msgid "No Records Found."
+msgstr "لم يتم العثور على سجلات"
+
+#: ../admin/ost-tickets.php:165
+msgid "Delete"
+msgstr "حذف"
+
+#: ../admin/ost-tickets.php:170 ../admin/ost-tickets.php:172 ../admin/ost-ticketview.php:239
+#: ../templates/view_ticket.php:260
+msgid "Reopen"
+msgstr "إعادة فتح"
+
+#: ../admin/ost-ticketview.php:70
+msgid "Reply to Support Request"
+msgstr "رد على طلب الدعم"
+
+#: ../admin/ost-ticketview.php:77
+msgid "Ticket ID"
+msgstr "رقم البطاقة"
+
+#: ../admin/ost-ticketview.php:78 ../admin/ost-ticketview.php:254 ../templates/view_ticket.php:270
+msgid "Post Reply"
+msgstr "إضافة رد"
+
+#: ../admin/ost-ticketview.php:84 ../templates/view_ticket.php:85
+msgid "Ticket Status"
+msgstr "حالة البطاقة"
+
+#: ../admin/ost-ticketview.php:102
+msgid "User Email"
+msgstr "بريد المستخدم"
+
+#: ../admin/ost-ticketview.php:106
+msgid "Date Create"
+msgstr "تاريخ الإنشاء"
+
+#: ../admin/ost-ticketview.php:139 ../templates/view_ticket.php:150
+msgid "Ticket Thread"
+msgstr "موضوع البطاقة"
+
+#: ../admin/ost-ticketview.php:185 ../templates/view_ticket.php:201
+msgid "Post a Reply"
+msgstr "إضافة الرد"
+
+#: ../admin/ost-ticketview.php:239 ../admin/ost-ticketview.php:241 ../templates/view_ticket.php:260
+#: ../templates/view_ticket.php:263
+msgid "Ticket On Reply"
+msgstr "بطاقة رد"
+
+#: ../admin/ost-ticketview.php:248
+msgid "My signature"
+msgstr "توقيعي"
+
+#: ../admin/ost-ticketview.php:249
+msgid "Dept. Signature"
+msgstr "توقيع القسم"
+
+#: ../admin/ost-ticketview.php:255
+msgid "Cancel - Go Back"
+msgstr "إلغاء - عودة للخلف"
+
+#: ../ost-bridge.php:53
+msgid "Open Tickets"
+msgstr "فتح البطاقات"
+
+#: ../ost-bridge.php:132 ../ost-bridge.php:134
+msgid "Tickets"
+msgstr "بطاقات"
+
+#: ../ost-bridge.php:142
+msgid "Email Tickets"
+msgstr "بطاقات البريد"
+
+#: ../ost-bridge.php:159
+msgid "osT-Config"
+msgstr "تكوين osT"
+
+#: ../ost-bridge.php:298 ../ost-bridge.php:305 ../ost-bridge.php:315 ../ost-bridge.php:329 ../ost-bridge.php:343
+msgid "You do not have sufficient permissions to access this page."
+msgstr "لا تملك صلاحيات الدخول لهذه الصفحة"
+
+#: ../ost-bridge.php:319 ../ost-bridge.php:333 ../ost-bridge.php:347
+msgid ""
+"<p><b>Error:</b> You must complete \"osTicket Data Configure\" before this page will display... <a href="
+"\"admin.php?page=ost-config\">click here</a></p>"
+msgstr ""
+"<p><b>خطأ:</b> يجب إكمال إعدادات \"osTicket\" قبل عرض هذه الصفحة... <a href=\"admin.php?page=ost-config\">انقر "
+"هنا</a></p>"
+
+#: ../templates/contact_ticket.php:42 ../templates/new_ticket.php:80
+msgid "A new request has been created successfully!"
+msgstr "تم إنشاء الطلب الجديد بنجاح!"
+
+#: ../templates/contact_ticket.php:45 ../templates/new_ticket.php:83
+msgid "We are currently notifying the selected department staff..."
+msgstr "يجري حالياً تنبيه موظفي القسم المحدّد..."
+
+#: ../templates/contact_ticket.php:49 ../templates/new_ticket.php:87
+msgid "Thank you for contacting us!"
+msgstr "نشكرك لتواصلك معنا!"
+
+#: ../templates/contact_ticket.php:64
+msgid "Full Name:"
+msgstr "الاسم الكامل:"
+
+#: ../templates/contact_ticket.php:67
+msgid "Your Email:"
+msgstr "بريدك الإلكتروني:"
+
+#: ../templates/contact_ticket.php:70
+msgid "Catagories:"
+msgstr "التصنيفات:"
+
+#: ../templates/contact_ticket.php:90 ../templates/new_ticket.php:139
+msgid "To best assist you, please be specific and detailed in your message"
+msgstr "لتقديم أفضل مساعدة لكم، يرجى توضيح التفاصيل جيداً في الرسالة"
+
+#: ../templates/contact_ticket.php:109
+msgid "Submit"
+msgstr "إرسال"
+
+# Listing Tickets
+#: ../templates/list_tickets.php:47
+msgid "Tickets #"
+msgstr "بطاقات"
+
+#: ../templates/list_tickets.php:49
+msgid "Status"
+msgstr "الحالة"
+
+#: ../templates/message.php:7
+msgid "You currently have the maximum amount allowed open:"
+msgstr "أكبر قدر مسموح به من البطاقات المفتوحة هو:"
+
+#: ../templates/message.php:7 ../templates/message.php:8
+msgid ""
+"Visit your open tickets and see if any has been resolved, if so you can close any ticket(s) and submit a new "
+"one."
+msgstr ""
+"زيارة بطاقاتك المفتوحة ومعرفة ما إذا كان أياً منها قد تم حلها، إذا كان الأمر كذلك يمكنك إغلاق أي بطاقة وتقديم "
+"واحدة جديدة."
+
+#: ../templates/message.php:7 ../templates/message.php:8
+msgid "View open tickets"
+msgstr "عرض البطاقات المفتوحة"
+
+#: ../templates/message.php:8
+msgid "You are currently over the maximum amount allowed open:"
+msgstr "لقد وصلت لأكبر قدر مسموح به من البطاقات المفتوحة:"
+
+#: ../templates/message.php:9
+msgid "Thank you for your interest in contacting us."
+msgstr "شكرا لاهتمامك والاتصال بنا."
+
+#: ../templates/message.php:9
+msgid "Our system is currently offline for maintenance, please check back later."
+msgstr "النظام حالياً غير متصل للصيانة، يرجى العودة لاحقاً."
+
+#: ../templates/nav_bar.php:44
+msgid "View Tickets"
+msgstr "عرض البطاقات"
+
+#: ../templates/nav_bar.php:52
+msgid "Open / Answered"
+msgstr "فتح / اجابة"
+
+#: ../templates/nav_bar.php:57
+msgid "Search..."
+msgstr "بحث..."
+
+#: ../templates/nav_bar.php:58
+msgid "Go"
+msgstr "أذهب"
+
+#: ../templates/new_ticket.php:22
+msgid "Max file upload size"
+msgstr "الحد الأقصى لحجم الملف"
+
+#: ../templates/new_ticket.php:96
+msgid "Open a New Ticket"
+msgstr "فتح بطاقة جديدة"
+
+#: ../templates/new_ticket.php:126
+msgid "Priority:"
+msgstr "الأولوية:"
+
+#: ../templates/view_ticket.php:80
+msgid "Ticket ID #"
+msgstr "رقم البطاقة"
+
+#: ../templates/view_ticket.php:96
+msgid "Name"
+msgstr "الاسم"
+
+#: ../templates/view_ticket.php:101
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: ../templates/view_ticket.php:107
+msgid "Create Date"
+msgstr "تاريخ الانشاء"
+
+#: ../templates/view_ticket.php:202
+msgid "To best assist you, please be specific and detailed in your reply."
+msgstr "لتقديم أفضل مساعدة لكم، يرجى توضيح التفاصيل جيداً في ردكم."
+
+#: ../templates/view_ticket.php:251
+msgid "Attachments on the Filesystem plugin can be downloaded here :"
+msgstr "يمكنك تحميل إضافة ملفات النظام من هنا:"
+
+#: ../templates/view_ticket.php:272
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: ../templates/view_ticket.php:281
+msgid "No such ticket available."
+msgstr "لا تتوفر مثل هذه البطاقة."
+
+#~ msgid "Please fill in the form below to open a new ticket. All fields mark with [*] Are Required!"
+#~ msgstr ""
+#~ "يرجى تعبئة جمع الحقول أدناه لفتح بطاقة جديدة، جميع الحقول التي لها علامة (*) هي حقول مطلوب تعبئتها اجباريا"
+
+#~ msgid "Select User Type"
+#~ msgstr "اختر نوع المستخدم"
+
+#~ msgid "Database Name:( osTicket Database Name Goes Here )"
+#~ msgstr "اسم قاعدة البيانات :( اسم قاعدة البيانات osTicket هنا)"
+
+#~ msgid "New Ticket Email  [Close]"
+#~ msgstr "بطاقة إغلاق بريد  جديدة"
+
+#~ msgid "Admin Response Email [Close]"
+#~ msgstr "بريد رد المشرف (إغلاق)"
+
+#~ msgid "Save - Admin Response Email"
+#~ msgstr "حفظ - بريد رد  المشرف"
+
+#~ msgid "User Post Confirmation Email [Close]"
+#~ msgstr "تأكيد مقالة المستخدم"
+
+#~ msgid "Close Ticket On Reply"
+#~ msgstr "إغلاق بطاقة الرد"
+
+#~ msgid "Dept. Signature (Support)"
+#~ msgstr "توقيع قسم الدعم"
+
+#~ msgid "\"$Variables\" You can use In Email"
+#~ msgstr "/ يمكنك استخدام المتغيرات في البريد الإلكتروني"
+
+#~ msgid "*New Ticket Email Template"
+#~ msgstr "بطاقة قالب بريد جديد"
+
+#~ msgid "Maximum Open Tickets"
+#~ msgstr "الحد الأقصى للبطاقات المفتوحة"
+
+#~ msgid "Support Center Status"
+#~ msgstr "حالة مركز الدعم"

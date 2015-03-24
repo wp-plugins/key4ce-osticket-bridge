@@ -1,0 +1,605 @@
+# Dutch translations for Key4ce Bsticket Bridge package.
+# Copyright (C) 2015 Key4ce - IT Professionals
+# This file is distributed under the same license as the Key4ce Osticket Bridge package.
+# generated at 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: key4ce-osticket-bridge 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-06 13:46-0400\n"
+"PO-Revision-Date: 2015-02-21 22:18+0530\n"
+"Last-Translator: \n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+"Language: nl_NL\n"
+
+#Listing Tickets
+#: mypluginindex.php:87 (it is just a line of note, to remind where our code
+#: appears)
+msgid "Tickets #"
+msgstr "Tickets #"
+
+msgid "No Records Found."
+msgstr "Geen tickets gevonden."
+
+msgid "Tickets"
+msgstr "Tickets"
+
+msgid "Create Ticket"
+msgstr "Nieuwe ticket aanmaken"
+
+msgid "View Tickets"
+msgstr "Tickets weergeven"
+
+msgid "Go >>"
+msgstr "Zoek"
+
+msgid "Search..."
+msgstr "Zoeken..."
+
+msgid "Open / Answered"
+msgstr "Open / Beantwoord"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "osT-Config"
+msgstr "osT-Config"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Answered"
+msgstr "Beantwoord"
+
+msgid "Closed"
+msgstr "Gesloten"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Subject"
+msgstr "Onderwerp"
+
+msgid "Priority"
+msgstr "Prioriteit"
+
+msgid "Department"
+msgstr "Afdeling"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Delete"
+msgstr "Verwijder"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Open Tickets"
+msgstr "Open Tickets"
+
+msgid "Create A New Ticket"
+msgstr "Nieuwe ticket aanmaken"
+
+msgid "Please fill in the form below to open a new ticket. All fields mark with [*] Are Required!"
+msgstr "Voer het onderstaand formulier in om een nieuwe ticket aan te maken. Alle velden gemarkeerd met een [*] zijn verplicht!"
+
+msgid "Select User Type"
+msgstr "Selecteer Gebruikers type"
+
+msgid "WP Users"
+msgstr "WP Gebruikers"
+
+msgid "Osticket Users"
+msgstr "Osticket Gebruikers"
+
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Your Email"
+msgstr "Uw e-mail"
+
+msgid "Catagories"
+msgstr "Categorieën"
+
+msgid "To best assist you, please be specific and detailed in your message *"
+msgstr "Om u zo goed mogelijk van dienst te zijn, vragen wij u om een uitgebreide omschrijving te geven."
+
+msgid "Attachment"
+msgstr "Bijlage"
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Max file upload size"
+msgstr "Maximale bestandsgrootte"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Some simple plugin settings for Wordpress."
+msgstr "Wat makkelijke plugin instellingen voor Wordpress"
+
+msgid "Support Center Status:"
+msgstr "Support Center Status:"
+
+msgid "Helpdesk Name/Title:"
+msgstr "Helpdesk Naam/Titel:"
+
+msgid "SMTP Status"
+msgstr "SMTP Status"
+
+msgid "(Please select smtp status.)"
+msgstr "(Selecteer SMTP Status.)"
+
+msgid "SMTP Username"
+msgstr "SMTP Gebruikersnaam"
+
+msgid "SMTP Password"
+msgstr "SMTP Wachtwoord"
+
+msgid "SMTP Host"
+msgstr "SMTP Host"
+
+msgid "SMTP Port"
+msgstr "SMTP Poort"
+
+msgid "Please enter smtp username."
+msgstr "Voer uw SMTP gebruikersnaam in."
+
+msgid "Please enter smtp password."
+msgstr "Voer uw SMTP gebruikersnaam in."
+
+msgid "Please enter smtp host."
+msgstr "Voer uw SMTP Host in."
+
+msgid "Please enter smtp port."
+msgstr "Voer uw SMTP Poort in."
+
+msgid "Save Settings"
+msgstr "Instellingen Opslaan"
+
+msgid "View or edit your OSTicket database information, you should already have osTicket installed to your server, view the osticket-folder/include/ost-config.php file. Look for DBHOST, DBNAME & DBUSER for the info required below."
+msgstr "osTicket database-informatie bekijken of bewerken.
+U dient osticket reeds op uw server geïnstalleerd te hebben voordat u begint aan deze plugin.
+Bekijk de osTicket-map / include / ost-config.php bestand. 
+Kijk voor DBHOST, DBNAME & DBUSER voor de informatie die hier onder verplicht is."
+
+msgid "Landing Page Name: The welcome page can be any name you want: Support, Helpdesk, Contact-Us, ext...the plugin will create this page. Note: If this page exists it will be over written, also this cannot be the same name as your osTicket folder."
+msgstr "Landingspagina Naam: De hoofd pagina voor de support plugin gebruikers (ticket lijst, ticket aanmaken, ticket beantwoorden). 
+Deze pagina URL kan niet gelijk zijn aan uw osTicket pagina. De plugin zal deze pagina aanmaken. LETOP: Als deze pagina reeds bestaat, zal deze worden overschreven."
+
+msgid "Host Name:"
+msgstr "Host Naam:"
+
+msgid "( Normally this is localhost )"
+msgstr "( Normaal is dit localhost )"
+
+msgid "Database Name:( osTicket Database Name Goes Here )"
+msgstr "Database Name:( osTicket Database Name Goes Here )"
+
+msgid "Database Name:"
+msgstr "Database Naam:"
+
+msgid "( osTicket Database Username Goes Here )"
+msgstr "( osTicket Database Naam moet hier worden ingevult )"
+
+msgid "Database Password:"
+msgstr "Database Wachtwoord:"
+
+msgid "( osTicket Database Password Goes Here )"
+msgstr "( osTicket Database wachtwoord moet hier worden ingevult )"
+
+msgid "Database Prefix:"
+msgstr "Database Prefix:"
+
+msgid "( osTicket Database Prefix Goes Here )"
+msgstr "( osTicket Database Prefix moet hier worden ingevult )"
+
+msgid "Osticket Version:"
+msgstr "Osticket Verzie:"
+
+msgid "(Select Osticket Version)"
+msgstr "(Selecteer uw Osticket Verzie)"
+
+msgid "Enable Closing Ticket By User:"
+msgstr "Gebruiker mag tickets sluiten:"
+
+msgid "Landing Page Name( Create this page...read Landing Page Note above! )"
+msgstr "Landings pagina naam ( Maak deze pagina aan... lees de extra landings pagina informatie boven aan de pagina! )"
+
+msgid "Contact Ticket Page:"
+msgstr "Contact Ticket Pagina:"
+
+msgid "(Select contact ticket page)"
+msgstr "(Selecteer contact ticket pagina)"
+
+msgid "Thank You Page:"
+msgstr "Bedank pagina:"
+
+msgid "(Select thank you page)"
+msgstr "(Selecteer bedank pagina voor contact success)"
+
+msgid "Save Changes"
+msgstr "Veranderingen opslaan"
+
+msgid "Data Config"
+msgstr "Data Config"
+
+msgid "osT-Settings"
+msgstr "osT-Instellingen"
+
+msgid "Email Templates"
+msgstr "E-mail opmaken"
+
+msgid "Support Tickets"
+msgstr "Support Tickets"
+
+msgid "Note: Each input field will have a suggested default template, you can place any text & use the variables listed below."
+msgstr "Opmerking: Elk veld heeft een standaard opmaak, u kunt zelf tekst invoeren en de onderstaande variabelen gebruiken."
+
+msgid "$Variables You can use In Email"
+msgstr "$Variabelen die uw kunt gebruiken in de e-mail"
+
+msgid "New Ticket Email  [Close]"
+msgstr "Nieuwe ticket e-mail  [sluiten]"
+
+msgid "Save - New Ticket Email"
+msgstr "Opslaan - Nieuwe Ticket e-mail"
+
+msgid "Admin Response Email [Close]"
+msgstr "Admin antwoord e-mail [Sluiten]"
+
+msgid "Save - Admin Response Email"
+msgstr "Opslaan - Admin antwoord e-mail"
+
+msgid "User Post Confirmation Email [Close]"
+msgstr "Gebruikersbericht bevestigingsmail [Sluiten]"
+
+msgid "Save - User Post Confirmation Email"
+msgstr "Opslaan - Gebruikersbericht bevestigingsmail"
+
+msgid "Support/Request List"
+msgstr "Ondersteuning / Aanvraaglijst"
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Go"
+msgstr "Ga"
+
+msgid "Date Create"
+msgstr "Datum Aangemaakt"
+
+msgid "User Email"
+msgstr "Gebruikers E-mail"
+
+msgid "Ticket Thread"
+msgstr "Ticket Discussie"
+
+msgid "Close Ticket On Reply"
+msgstr "Sluit ticket op antwoord"
+
+msgid "My signature"
+msgstr "Mijn handtekening"
+
+msgid "Dept. Signature (Support)"
+msgstr "Dept. handtekening (Ondersteuning)"
+
+msgid "Post Reply"
+msgstr "Reageer"
+
+msgid "Cancel - Go Back"
+msgstr "Annuleren - Ga Terug"
+
+msgid "Ticket ID"
+msgstr "Ticket ID"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Ticket #"
+msgstr "Ticket #"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "%d record(s) has been closed successfully"
+msgstr "%d tickets(s) zijn met success gesloten"
+
+msgid "Are you sure you want to continue?"
+msgstr "Weet u zeker dat u wilt doorgaan?"
+
+msgid "A new request has been created successfully!"
+msgstr "Een nieuwe ticket is met success aangemaakt!"
+
+msgid "We are currently notifying the selected department staff..."
+msgstr "Onze medewerkers worden op de hoogte gesteld..."
+
+msgid "Thank you for contacting us!"
+msgstr "Bedankt dat u contact met ons op neemt!"
+
+msgid "Please fill in the form below to open a new ticket. All fields mark with [<font color=red>*</font>] <em>Are Required!"
+msgstr "Gelieve het formulier hieronder invullen om een nieuw ticket te openen. Alle velden gemarkeert met [<font color=red>*</font>] <em>zijn verplicht!"
+
+msgid "Full Name:"
+msgstr "Volledige naam:"
+
+msgid "Your Email:"
+msgstr "Uw E-mail:"
+
+msgid "Catagories:"
+msgstr "Catagorieën:"
+
+msgid "Select a Category"
+msgstr "Selecteer een Categorie"
+
+msgid "Submit"
+msgstr "Versturen"
+
+msgid "Open a New Ticket"
+msgstr "Open een nieuwe Ticket"
+
+msgid "Attachment 1:"
+msgstr "Bijlage 1:"
+
+msgid "Max file upload size :"
+msgstr "Max bestand grote :"
+
+msgid "Attachments on the Filesystem plugin can be downloaded here:"
+msgstr "Bijlagen op de Filesystem plugin kan hier worden gedownload:"
+
+msgid "Attachement Filesystem Plugin"
+msgstr "Bijlagen bestand systeem Plugin"
+
+msgid "You currently have the maximum amount allowed open:"
+msgstr "U op dit moment heeft het maximum toegestane hoeveelheid geopend:"
+
+msgid "Visit your open tickets and see if any has been resolved, if so you can close any ticket(s) and submit a new one."
+msgstr "Bezoek uw geopende tickets om tezien of er een is opgelost, zo ja kunt u ticket(s) sluiten en een nieuwe te dienen."
+
+msgid "View open tickets"
+msgstr "Open tickets weergeven"
+
+msgid "You are currently over the maximum amount allowed open:"
+msgstr "U op dit moment heeft het maximum toegestane hoeveelheid geopend:"
+
+msgid "Thank you for your interest in contacting us."
+msgstr "Dank u voor uw interesse om ons te contacteren."
+
+msgid "Our system is currently offline for maintenance, please check back later."
+msgstr "Ons systeem is momenteel offline voor onderhoud, probeert u het later nog eens."
+
+msgid "1 or more of your email templates is not setup"
+msgstr "1 of meer van uw e-mail opmaken is niet ingesteld"
+
+msgid "Click Here"
+msgstr "Klik Hier"
+
+msgid "osTicket Data Configuration"
+msgstr "osTicket Data Configuratie"
+
+msgid "Error:"
+msgstr "Fout:"
+
+msgid "All fields are required below for the database..."
+msgstr "Alle velden hieronder zijn verplicht voor de database..."
+
+msgid "Your settings saved successfully...Thank you!"
+msgstr "Uw instellingen zijn met success opgeslagen"
+
+msgid "Warning:"
+msgstr "Waarschuwing:"
+
+msgid "osTicket Settings"
+msgstr "osTicket Instellingen"
+
+msgid "(Active)"
+msgstr "(Actief)"
+
+msgid "( offline will display maintenance message on website )"
+msgstr "( offline laat een onderhouds bericht zien op uw website )"
+
+msgid "( displayed in emails & welcome/user pages )"
+msgstr "( weergegeven in e-mails en welkom / gebruiker pagina's )"
+
+msgid "Maximum Open Tickets:"
+msgstr "Maximum Open Tickets:"
+
+msgid "Reply Separator Tag:"
+msgstr "Antwoord  Separator Tag:"
+
+msgid "( should be blank - if you are email polling...read"
+msgstr "( Als uw gebruik maakt van email Cron/ lees meer"
+
+msgid "[+]"
+msgstr "[+]"
+
+msgid " )"
+msgstr " )"
+
+msgid "Note: If email polling, login to: osTicket->Emails->Templates->Response/Reply Template remove %{ticket.client_link}"
+msgstr "Opmerking: als u gebruik maakt van de email cron ga naar: osTicket SCP ->Emails->Templates->Response/Reply Template verwijder %{ticket.client_link}"
+
+msgid "Replace with"
+msgstr "Vervangen met"
+
+msgid "%{ticket.number}"
+msgstr "%{ticket.number}"
+
+#------------------Email Template ost-emailtemp.php Start Here-----------------------------------
+msgid "The \"Email Templates\" sent from site to client: new tickets confirmations, user post confirmations & admin post replies."
+msgstr "De  \"E-mail opmaken\" verstuurd van Site naar klant: nieuwe ticket bevestigingen, gebruiker reactie bevestigingen en admin antwoorden."
+
+msgid "\"$Variables\" You can use In Email"
+msgstr "\"$Variables\" Kunt u gebruiken in de E-mail"
+
+msgid "$username=\"User Name\""
+msgstr "$username=\"Gebruikersnaam\""
+
+msgid "$usermail=\"User Email\""
+msgstr "$usermail=\"Gebruikers E-mail\""
+
+msgid "$ticketid=\"Ticket #\""
+msgstr "$ticketid=\"Ticket #\""
+
+msgid "$ticketurl=\"Ticket Url\""
+msgstr "$ticketurl=\"Ticket Url\""
+
+msgid "$ostitle=\"Support Title\""
+msgstr "$ostitle=\"Support Titel\""
+
+msgid "$siteurl=\"Support Url\""
+msgstr "$siteurl=\"Support Url\""
+
+msgid "$dname=\"Landing Page\""
+msgstr "$dname=\"Landings Pagina\""
+
+msgid "$user_message=\"Users Message\""
+msgstr "$user_message=\"Gebruikers bericht\""
+
+msgid "$admin_response=\"Staff Message\""
+msgstr "$admin_response=\"Personeel bericht\""
+
+msgid "$signature=\"Staff/ Department Signature\""
+msgstr "$signature=\"Personeel/ Departement handtekening\""
+
+msgid "$ussubject=\"Ticket subject\""
+msgstr "$ussubject=\"Ticket onderwerk\""
+
+msgid "*New Ticket Email Template"
+msgstr "*Nieuwe Ticket E-mail opmaak"
+
+#------------------Email Template ost-emailtemp.php End Here half file remain-----------------------------------
+msgid "Stand by while your"
+msgstr "Een ogenblik gedult terwijl"
+
+msgid "are being updated..."
+msgstr "worden geupdate..."
+
+msgid "Thread updated successfully...Stand by: for auto refresh!"
+msgstr "Ticket met succes bijgewerkt ... Een ogenblik gedult voor auto-refresh!"
+
+msgid "Message field cannot be empty, if you are closing the ticket, then enter: \"Closing Ticket\" in post a reply."
+msgstr "Veld Bericht mag niet leeg zijn, als u de ticket wilt sluiten selecteer: \"Sluit Ticket\" aan de onderkant van uw bericht.."
+
+msgid "Admin Response Email"
+msgstr "Admin Antwoord E-mail"
+
+msgid "New Ticket Email"
+msgstr "Nieuwe ticket E-mail"
+
+msgid "is being updated..."
+msgstr "word bijgewerkt..."
+
+msgid "User Post Confirmation Email"
+msgstr "Gebruikers Bericht bevestigingsmail"
+
+msgid "You have exceeds your file upload limit"
+msgstr "U hebt uw bestand upload limiet overschreven"
+
+msgid "Please make sure your file is less than"
+msgstr "Zorg ervoor dat uw bestand groote minder is dan"
+
+msgid "Please make sure your file extension should be :"
+msgstr "De toegestaande bestand types zijn:"
+
+msgid "Reply to Support Request"
+msgstr "Antwoord op de ticket"
+
+msgid "Post a Reply"
+msgstr "Plaats een reactie"
+
+msgid "Ticket On Reply"
+msgstr "Ticket op reactie"
+
+msgid "Dept. Signature"
+msgstr "Dept. handtekening"
+
+msgid "%d record(s) has been re-opened successfully"
+msgstr "%d tickets(s) zijn met success her-opend"
+
+msgid "%d record(s) has been deleted successfully"
+msgstr "%d tickets(s) zijn met success verwijderd"
+
+msgid "Email Tickets"
+msgstr "E-mail Tickets"
+
+msgid "Ticket Status"
+msgstr "Ticket Status"
+
+msgid "Emergency"
+msgstr "Noordgeval"
+
+msgid "High"
+msgstr "Hoog"
+
+msgid "Normal"
+msgstr "Normaal"
+
+msgid "Low"
+msgstr "Laag"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "Select a Priority"
+msgstr "Selecteer een prioriteid"
+
+msgid "WP Username"
+msgstr "WP Gebruikersnaam"
+
+msgid "Osticket Username"
+msgstr "Osticket Gebruikersnaam"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "Maximum Open Tickets"
+msgstr "Maximaale Open Tickets"
+
+msgid "Support Center Status"
+msgstr "Support Center Status"
+
+msgid "osTicket Email Templates"
+msgstr "osTicket E-mail opmaak"
+
+msgid "Reopen"
+msgstr "Her-open"
+
+msgid "New Ticket Email Template"
+msgstr "Nieuwe ticket e-mail opmaak"
+
+msgid "We suggest using this template in the user confirmation email below."
+msgstr "u kunt deze opmaak gebruiken voor de onderstaande bevestigingsmail."
+
+msgid "Admin Response Email Template"
+msgstr "Admin antwoord e-mail opmaak"
+
+msgid "We suggest using this template in your post reply to user below."
+msgstr "u kunt deze opmaak gebruiken als antwoord op de onderstaande gebruiker tickets."
+
+msgid "User Post Confirmation Email Template"
+msgstr "Gebruikersbericht bevestigingsmail opmaak"
+
+msgid "Create Date"
+msgstr "Aanmaak datum"
+
+msgid "To best assist you, please be specific and detailed in your reply."
+msgstr "Schrijf a.u.b zo specifiek en gedetalieerd mogelijk om u zo goed mogelijk van dienst te zijn"
+
+msgid "No such ticket available."
+msgstr "Ticket is niet beschikbaar"
