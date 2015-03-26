@@ -66,20 +66,24 @@ $finalary = "'" . $extimp . "'";
         var FileSize = fieldObj.files[0].size;
         var FileSizeMB = (FileSize / 10485760).toFixed(2);
         var FileExts = new Array(<?php echo $extimp; ?>);
-        if ((FileSize > <?php echo $max_file_size; ?>))
+		
+        if ((FileSize > <?php echo $max_file_size; ?>) || )
         {
             alert("<?php echo __("Please make sure your file is less than", 'key4ce-osticket-bridge'); ?> <?php echo ($max_file_size* .0009765625) * .0009765625; ?>MB.");
             document.getElementById(FileId).value = "";
             return false;
         }
-        if (FileExts.indexOf(FileExt) < 0)
-        {
-            error = "<?php echo __("Please make sure your file extension should be :", 'key4ce-osticket-bridge'); ?> \n";
-            error += FileExts;
-            alert(error);
-            document.getElementById(FileId).value = "";
-            return false;
-        }
+		if(FileExts!="")
+		{
+			if (FileExts.indexOf(FileExt) < 0)
+			{
+				error = "<?php echo __("Please make sure your file extension should be :", 'key4ce-osticket-bridge'); ?> \n";
+				error += FileExts;
+				alert(error);
+				document.getElementById(FileId).value = "";
+				return false;
+			}
+		}
         return true;
     }
 </script>

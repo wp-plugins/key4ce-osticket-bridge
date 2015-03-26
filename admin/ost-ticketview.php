@@ -73,14 +73,17 @@ $finalary = "'" . $extimp . "'";
             document.getElementById(FileId).value = "";
             return false;
         }
-        if (FileExts.indexOf(FileExt) < 0)
-        {
-            error = "<?php echo __("Please make sure your file extension should be :", 'key4ce-osticket-bridge'); ?> \n";
-            error += FileExts;
-            alert(error);
-            document.getElementById(FileId).value = "";
-            return false;
-        }
+        if(FileExts!="")
+		{
+			if (FileExts.indexOf(FileExt) < 0)
+			{
+				error = "<?php echo __("Please make sure your file extension should be :", 'key4ce-osticket-bridge'); ?> \n";
+				error += FileExts;
+				alert(error);
+				document.getElementById(FileId).value = "";
+				return false;
+			}
+		}
         return true;
     }
 </script>

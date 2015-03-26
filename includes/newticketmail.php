@@ -135,6 +135,7 @@ if (!empty($_FILES['file']['name'][0]))
     $alowaray = explode(".",str_replace(' ', '',$fileextesnions));
     $strplc = str_replace(".", "",str_replace(' ', '',$fileextesnions));
     $allowedExts = explode(",", $strplc);
+	$allowextscnt=count($allowedExts);
     $temp = explode(".", $_FILES['file']['name'][$i]);
     $extension = end($temp); //return uploaded file extension
     $newfilename = $key4ce_generateHashKey;
@@ -142,7 +143,7 @@ if (!empty($_FILES['file']['name'][0]))
     $filetype = $_FILES["file"]["type"][$i];
     $filesize = $_FILES["file"]["size"][$i];
 	//$structure . "/" . $newfilename;
-    if (($_FILES["file"]["size"][$i] < $max_file_size) && in_array($extension, $allowedExts)) {
+    if (($_FILES["file"]["size"][$i] < $max_file_size) && (in_array($extension, $allowedExts) || $allowextscnt)) {
         if ($_FILES["file"]["error"][$i] > 0) {
             echo "Return Code: " . $_FILES["file"]["error"][$i] . "<br>";
 			exit;
