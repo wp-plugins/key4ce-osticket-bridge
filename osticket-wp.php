@@ -37,7 +37,7 @@ if (is_user_logged_in()) {
         $thread_table = $keyost_prefix . "ticket_thread";
         $ticket_cdata = $keyost_prefix . "ticket__cdata";
         $ost_user = $keyost_prefix . "user";
-	$ost_email = $keyost_prefix . "email";
+		$ost_email = $keyost_prefix . "email";
         $ost_staff = $keyost_prefix . "staff";
         $ost_useremail = $keyost_prefix . "user_email";
         $ost_ticket_attachment = $keyost_prefix . "ticket_attachment";

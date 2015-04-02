@@ -4,7 +4,7 @@ Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket 1.9.3 - 1.9.6
@@ -89,6 +89,10 @@ http://osticket.com/download
 6. HTML Email template example (with signature).
 
 == Changelog ==
+= 1.2.9 =
+- Added additional File attachment functionality to ignore empty extensions
+- Fixed up queries for shortcode/ forum contact page
+
 = 1.2.8 =
 - Added support for 1.9.5.1 and 1.9.6
 - fixed Attachment support for higher versions
@@ -192,6 +196,9 @@ http://osticket.com/download
 - Fix: If not logged in to Wordpress it will redirect you to the Wordpress login (works with Theme my login plugin)
 
 == Upgrade Notice ==
+= 1.2.9 =
+Added better attachment support and fixed up some queries for contact page.
+
 = 1.2.8 =
 Added support for 1.9.5.1 and 1.9.6
 

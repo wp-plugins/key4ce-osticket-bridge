@@ -38,7 +38,7 @@ $dirname = @$_REQUEST['sdirna'];
 @$sub = Format::stripslashes($_REQUEST['subject']);
 @$newtickettemp = Format::stripslashes($_REQUEST['newtickettemp']);
 $ip_add = $_SERVER['REMOTE_ADDR'];
-if($keyost_version==194)
+if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 $ticketstate = "1";
 else
 $ticketstate = "open";
@@ -78,7 +78,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
 		
     }
 ////End of new user info user_email_id email_id
-	if($keyost_version==194)
+	if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 	{
 	$ost_wpdb->insert($ticket_table, array('number' => $tic_ID, 'user_id' => $last_ost_user_id, 'user_email_id' => $last_ost_user_email_id, 'dept_id' => $dep_id, 'sla_id' => $sla_id, 'topic_id' => $top_id, 'staff_id' => $staff_id, 'team_id' => $team_id, 'email_id' => $last_ost_user_email_id, 'ip_address' => $ip_add, 'status_id' => $ticketstate, 'source' => $sour, 'isoverdue' => $isoverdue, 'isanswered' => $isans, 'lastmessage' => $las_msg, 'created' => $cre), array('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 	}
@@ -99,7 +99,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
 
     $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => key4ce_wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 
-    if($keyost_version==194)
+    if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 	{
 	$ost_wpdb->insert($ticket_cdata, array('ticket_id' => $lastid, 'subject' => $sub, 'priority' =>$pri_id), array('%d', '%s',	'%d'));
 	}

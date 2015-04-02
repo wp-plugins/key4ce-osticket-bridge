@@ -22,7 +22,25 @@ $e_address=$current_user->user_email;
 /*Add user id of ticket instead of wordpress start here */
 $user_id = $ost_wpdb->get_var("SELECT user_id FROM ".$keyost_prefix."user_email WHERE `address` = '".$e_address."'");
 /*Add user id of ticket instead of wordpress end here*/
-
+$ost_wpdb = new wpdb($username, $password, $database, $host);
+        global $current_user;
+		
+        $config_table = $keyost_prefix . "config";
+        $dept_table = $keyost_prefix . "department";
+        $topic_table = $keyost_prefix . "help_topic";
+        $ticket_table = $keyost_prefix . "ticket";
+        $ticket_event_table = $keyost_prefix . "ticket_event";
+        $priority_table = $keyost_prefix . "ticket_priority";
+        $thread_table = $keyost_prefix . "ticket_thread";
+        $ticket_cdata = $keyost_prefix . "ticket__cdata";
+        $ost_user = $keyost_prefix . "user";
+		$ost_email = $keyost_prefix . "email";
+        $ost_staff = $keyost_prefix . "staff";
+        $ost_useremail = $keyost_prefix . "user_email";
+        $ost_ticket_attachment = $keyost_prefix . "ticket_attachment";
+		$ost_ticket_status=$keyost_prefix."ticket_status";
+		
+        $ost_file = $keyost_prefix . "file";
 if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
 $getNumOpenTickets=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id WHERE user_id='$user_id' and $ost_ticket_status.state='open'"); 
@@ -40,22 +58,30 @@ $ticket_count_closed=$ost_wpdb->get_var("SELECT COUNT(*) FROM $ticket_table WHER
 //////Ticket Info
 if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 {
+if(isset($ticket))
+{
 $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ost_ticket_status.state as status,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_ticket_status ON $ost_ticket_status.id=$ticket_table.status_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+}
 }
 else
 {
+if(isset($ticket))
+{
 $ticketinfo=$ost_wpdb->get_row("SELECT $ticket_table.user_id,$ticket_table.number,$ticket_table.created,$ticket_table.ticket_id,$ticket_table.status,$ticket_table.isanswered,$ost_user.name,$dept_table.dept_name,$ticket_cdata.priority,$ticket_cdata.priority_id,$ticket_cdata.subject,$ost_useremail.address FROM $ticket_table INNER JOIN $dept_table ON $dept_table.dept_id=$ticket_table.dept_id INNER JOIN $ost_user ON $ost_user.id=$ticket_table.user_id INNER JOIN $ost_useremail ON $ost_useremail.user_id=$ticket_table.user_id LEFT JOIN $ticket_cdata on $ticket_cdata.ticket_id = $ticket_table.ticket_id WHERE `number` ='$ticket'");
+}
 }
 
 
 //////Thread Info
+if(isset($ticket))
+{
 $threadinfo=$ost_wpdb->get_results("SELECT $ost_useremail.address,$thread_table.created,$thread_table.id,$thread_table.ticket_id,$thread_table.thread_type,$thread_table.body,$thread_table.poster 
 	FROM $thread_table 
 	inner join $ticket_table on $thread_table.ticket_id = $ticket_table.ticket_id 
 	inner join ".$keyost_prefix."user_email on ".$keyost_prefix."user_email.user_id = $ticket_table.user_id
 	where number = '$ticket' 
 	ORDER BY  $thread_table.id ASC"); 
-	
+}
 $search="";
 if(isset($_REQUEST['search']))
 {
