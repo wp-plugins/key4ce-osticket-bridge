@@ -3,11 +3,11 @@ Contributors: key4ce, m.tiggelaar
 Tags: helpdesk, support, ticket, osticket, bridge, email, email ticket system
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40key4ce%2ecom
 Requires at least: 3.5
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.2.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket 1.9.3 - 1.9.6
+Get your own advanced ticket system in Wordpress and Integrate osTicket into your wordpress site. Works with osTicket 1.9.3 - 1.9.7
 
 == Description ==
 This is a rebuild of the original OSTicket WP Bridge plugin
@@ -15,7 +15,7 @@ Because the original plugin was no longer developed we decided to make a new plu
 adding new features, fixing old bugs and security flaws.
 
 = Basic Features: =
-* Compatible with osTicket 1.9.3 - 1.9.6
+* Compatible with osTicket 1.9.3 - 1.9.7
 * POP / IMAP functionality stays intact
 * You can use both osTicket scp, reply to email OR use Wordpress for all tickets
 * Integrates with your Wordpress users
@@ -36,6 +36,7 @@ adding new features, fixing old bugs and security flaws.
 * English
 * Dutch
 * Arabic - by mbnoimi
+* German - by Adrian Oeschger
 * If you would like to contribute your own language please don't hesitate to contact us!
 
 = If you like this plugin please leave a good review behind and help us to promote it. = 
@@ -45,7 +46,7 @@ This plugin is powered by Key4ce - IT Professionals :: https://key4ce.com
 
 = Prerequisites: =
 * Make sure that osTicket is installed
-* Make sure that your osTicket version is 1.9.3, 1.9.4 1.9.5 or 1.9.6 (all subversions should work).
+* Make sure that your osTicket version is 1.9.3, 1.9.4 1.9.5, 1.9.6 or 1.9.7 (all subversions should work).
 * osTicket can be downloaded from http://osticket.com/download
 * For Attachments to work with the Key4ce osTicket Bridge plugin, please download and configure the osTicket plugin: Storage :: Attachments on the Filesystem
 * osTicket Storage :: Attachments on the Filesystem plugin can be downloaded here: http://osticket.com/download/go?dl=plugin%2Fstorage-fs.phar
@@ -74,7 +75,7 @@ You CANNOT use the shortcode: [addosticket] and [addoscontact] on more than one 
 Can be anywhere, just make sure you know it's Database settings and fill them in accordingly in osT-Config page.
 
 = What version of osTicket can i use? =
-osTicket v1.9.3 to v1.9.6 (all subversions are generally supported).
+osTicket v1.9.3 to v1.9.7 (all subversions are generally supported).
 
 = Where can I download the tested osTicket versions? =
 http://osticket.com/download
