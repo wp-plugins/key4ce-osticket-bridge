@@ -31,7 +31,6 @@ $usid = @$_REQUEST['usid'];
 $em = @$_REQUEST['email'];
 $fullname = @$_REQUEST['cur-name'];
 $username_arr = explode('@', $em);
-$nam = preg_replace('/[^\p{L}\p{N}\s]/u', '', $username_arr[0]);
 $adem = $os_admin_email_address->email;
 $title = $os_admin_email_address->name;
 $dirname = @$_REQUEST['sdirna'];
@@ -68,7 +67,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     if (count($result2) > 0) {
         $last_ost_user_id = $ost_wpdb->get_var("SELECT id FROM " . $keyost_prefix . "user WHERE default_email_id = '" . @$last_ost_user_email_id . "'");
     } else {
-        $ost_wpdb->query("INSERT INTO " . $keyost_prefix . "user (id, default_email_id, name, created, updated) VALUES ('','" . $last_ost_user_email_id . "', '" . $nam . "', '" . $cre . "', '" . $cre . "')
+        $ost_wpdb->query("INSERT INTO " . $keyost_prefix . "user (id, default_email_id, name, created, updated) VALUES ('','" . $last_ost_user_email_id . "', '" . $fullname . "', '" . $cre . "', '" . $cre . "')
 	");
         $last_ost_user_id = $ost_wpdb->insert_id;
     if ($usid == "")
@@ -97,7 +96,7 @@ if (isset($_REQUEST['create-contact-ticket']) && isset($_REQUEST["magicword"]) &
     $pid = 0;
     $thread_type = "M";
 
-    $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $nam, 'source' => $sour, 'title' => "", 'body' => key4ce_wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+    $ost_wpdb->insert($thread_table, array('pid' => $pid, 'ticket_id' => $lastid, 'staff_id' => $staff_id, 'thread_type' => $thread_type, 'poster' => $fullname, 'source' => $sour, 'title' => "", 'body' => key4ce_wpetss_forum_text($user_message), 'ip_address' => $ip_add, 'created' => $cre), array('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
 
     if($keyost_version==194 || $keyost_version==195 || $keyost_version==1951)
 	{
